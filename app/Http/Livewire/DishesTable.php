@@ -125,7 +125,7 @@ class DishesTable extends PowerGridComponent
 
             Column::add()
                 ->title(__('Em Estoque'))
-                ->toggleable(false, 'sim', 'não')
+                ->toggleable(true, 'sim', 'não')
                 ->makeBooleanFilter('in_stock', 'sim', 'não')
                 ->field('in_stock'),
 
