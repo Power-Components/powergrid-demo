@@ -36,8 +36,9 @@ cd powergrid-demo
 ### Install
 
 ```
-composer install
+composer update && composer install
 ```
+
 npm
 ```
 npm install && npm run dev
@@ -45,11 +46,30 @@ npm install && npm run dev
 
 ## Configure your .env
 
-Set up the database in .env:
+Copy the default file `.env.example` into `.env`
+
+```
+cp .env.example .env 
+```
+
+Set up the database credentials in `.env` file:
+
+```
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3308
+DB_DATABASE=**your database name**
+DB_USERNAME=**your database user**
+DB_PASSWORD=**your database password**
+```
+
+Run the the migrations and seeders 
 
 ```
 php artisan migrate --seed
 ```
+
+Generate the application key
 
 ```
 php artisan key:generate
@@ -59,3 +79,8 @@ Serve your project:
 ```
 php artisan serve
 ```
+
+Your PowerGrid component can be found at `app/Http/Livewire/DishesTable.php`.
+
+
+# 💓 Thank you for downloading!
