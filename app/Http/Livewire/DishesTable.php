@@ -6,6 +6,7 @@ use Carbon\Carbon;
 use App\Models\Dish;
 use App\Models\Kitchen;
 use App\Models\Category;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Str;
 use Illuminate\Support\Collection;
 use Illuminate\Database\QueryException;
@@ -24,13 +25,20 @@ class DishesTable extends PowerGridComponent
         $this->showCheckBox()
             ->showPerPage()
             ->showRecordCount()
+            ->showExportOption('download', ['excel', 'csv'])
             ->showSearchInput();
     }
 
-    public function dataSource(): array
+    public function dataSource(): ?Builder
     {
-        $model = Dish::query()->with('kitchen', 'category')->get();
-        return PowerGrid::eloquent($model)
+
+        return Dish::query()->with('kitchen', 'category');
+
+    }
+
+    public function addColumns(): ?PowerGrid
+    {
+        return PowerGrid::eloquent()
             ->addColumn('id')
             ->addColumn('name')
             ->addColumn('calories')
@@ -76,8 +84,7 @@ class DishesTable extends PowerGridComponent
             ->addColumn('produced_at')
             ->addColumn('produced_at_formatted', function(Dish $dish) {
                 return Carbon::parse($dish->produced_at)->format('d/m/Y');
-            })
-            ->make();
+            });
     }
 
     public function columns(): array
@@ -163,7 +170,7 @@ class DishesTable extends PowerGridComponent
             Button::add('edit')
                 ->caption(__('Editar'))
                 ->class('bg-indigo-500 text-white')
-                ->route('dish.edit', ['dish' => 'id']),
+                ->openModal('edit-dish', ['dishId' => 'id']),
 
             Button::add('destroy')
                 ->caption(__('Deletar'))

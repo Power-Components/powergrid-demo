@@ -3,6 +3,9 @@
 /public/storage
 /storage/*.key
 /vendor
+/.idea
+composer.lock
+package-lock.json
 .env
 .env.backup
 .phpunit.result.cache

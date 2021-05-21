@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "80afd574af468650220029eee69b437c",
+    "content-hash": "a23330c5be5b30cf8918fcbb401b5ff5",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -61,6 +61,80 @@
                 "source": "https://github.com/asm89/stack-cors/tree/v2.0.3"
             },
             "time": "2021-03-11T06:42:03+00:00"
+        },
+        {
+            "name": "box/spout",
+            "version": "v3.3.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/box/spout.git",
+                "reference": "9bdb027d312b732515b884a341c0ad70372c6295"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/box/spout/zipball/9bdb027d312b732515b884a341c0ad70372c6295",
+                "reference": "9bdb027d312b732515b884a341c0ad70372c6295",
+                "shasum": ""
+            },
+            "require": {
+                "ext-dom": "*",
+                "ext-xmlreader": "*",
+                "ext-zip": "*",
+                "php": ">=7.2.0"
+            },
+            "require-dev": {
+                "friendsofphp/php-cs-fixer": "^2",
+                "phpunit/phpunit": "^8"
+            },
+            "suggest": {
+                "ext-iconv": "To handle non UTF-8 CSV files (if \"php-intl\" is not already installed or is too limited)",
+                "ext-intl": "To handle non UTF-8 CSV files (if \"iconv\" is not already installed)"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "3.1.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Box\\Spout\\": "src/Spout"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "Apache-2.0"
+            ],
+            "authors": [
+                {
+                    "name": "Adrien Loison",
+                    "email": "adrien@box.com"
+                }
+            ],
+            "description": "PHP Library to read and write spreadsheet files (CSV, XLSX and ODS), in a fast and scalable way",
+            "homepage": "https://www.github.com/box/spout",
+            "keywords": [
+                "OOXML",
+                "csv",
+                "excel",
+                "memory",
+                "odf",
+                "ods",
+                "office",
+                "open",
+                "php",
+                "read",
+                "scale",
+                "spreadsheet",
+                "stream",
+                "write",
+                "xlsx"
+            ],
+            "support": {
+                "issues": "https://github.com/box/spout/issues",
+                "source": "https://github.com/box/spout/tree/v3.3.0"
+            },
+            "time": "2021-05-14T21:18:09+00:00"
         },
         {
             "name": "brick/math",
@@ -1345,6 +1419,116 @@
             "time": "2021-01-18T20:58:21+00:00"
         },
         {
+            "name": "livewire-ui/livewire-ui",
+            "version": "0.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/livewire-ui/livewire-ui.git",
+                "reference": "4cb14e029376de0025a9a255cbdba0299ea11218"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/livewire-ui/livewire-ui/zipball/4cb14e029376de0025a9a255cbdba0299ea11218",
+                "reference": "4cb14e029376de0025a9a255cbdba0299ea11218",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/support": "^8.0",
+                "php": "^7.4|^8.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "LivewireUI\\LivewireUIServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "LivewireUI\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Philo Hermans",
+                    "email": "me@philohermans.com"
+                }
+            ],
+            "description": "Laravel Livewire components library.",
+            "keywords": [
+                "laravel",
+                "livewire"
+            ],
+            "support": {
+                "issues": "https://github.com/livewire-ui/livewire-ui/issues",
+                "source": "https://github.com/livewire-ui/livewire-ui/tree/0.1.0"
+            },
+            "time": "2021-04-01T11:57:18+00:00"
+        },
+        {
+            "name": "livewire-ui/modal",
+            "version": "0.1.5",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/livewire-ui/modal.git",
+                "reference": "df90b8f3b7ff382d1df5e73b06ad3f380ca2e5e9"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/livewire-ui/modal/zipball/df90b8f3b7ff382d1df5e73b06ad3f380ca2e5e9",
+                "reference": "df90b8f3b7ff382d1df5e73b06ad3f380ca2e5e9",
+                "shasum": ""
+            },
+            "require": {
+                "livewire-ui/livewire-ui": "^0.1.0",
+                "livewire/livewire": "^2.0",
+                "php": "^7.4|^8.0"
+            },
+            "require-dev": {
+                "orchestra/testbench": "^6.15",
+                "phpunit/phpunit": "^9.5"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "LivewireUI\\Modal\\LivewireModalServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "LivewireUI\\Modal\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Philo Hermans",
+                    "email": "me@philohermans.com"
+                }
+            ],
+            "description": "Laravel Livewire UI component",
+            "keywords": [
+                "laravel",
+                "livewire",
+                "modal"
+            ],
+            "support": {
+                "issues": "https://github.com/livewire-ui/modal/issues",
+                "source": "https://github.com/livewire-ui/modal/tree/0.1.5"
+            },
+            "time": "2021-05-04T15:02:51+00:00"
+        },
+        {
             "name": "livewire/livewire",
             "version": "v2.4.4",
             "source": {
@@ -1797,24 +1981,26 @@
         },
         {
             "name": "power-components/livewire-powergrid",
-            "version": "1.0.0",
+            "version": "dev-dev1.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Power-Components/livewire-powergrid.git",
-                "reference": "512845e8649a8e6c22e6e66f2b5ef7058401dab3"
+                "reference": "17a77ee26ebeacd8eff2d61db9488d489a55d2bc"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Power-Components/livewire-powergrid/zipball/512845e8649a8e6c22e6e66f2b5ef7058401dab3",
-                "reference": "512845e8649a8e6c22e6e66f2b5ef7058401dab3",
+                "url": "https://api.github.com/repos/Power-Components/livewire-powergrid/zipball/17a77ee26ebeacd8eff2d61db9488d489a55d2bc",
+                "reference": "17a77ee26ebeacd8eff2d61db9488d489a55d2bc",
                 "shasum": ""
             },
             "require": {
+                "box/spout": "^3",
                 "livewire/livewire": "^2.4",
-                "php": "^7.4|^8.0",
-                "shuchkin/simplexlsxgen": "^0.9.25"
+                "php": "^7.4|^8"
             },
             "require-dev": {
+                "orchestra/testbench": "^6.17",
+                "pestphp/pest": "^1.1",
                 "phpunit/phpunit": "^9.5"
             },
             "type": "library",
@@ -1828,7 +2014,10 @@
             "autoload": {
                 "psr-4": {
                     "PowerComponents\\LivewirePowerGrid\\": "src"
-                }
+                },
+                "files": [
+                    "src/functions.php"
+                ]
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
@@ -1845,9 +2034,9 @@
             "homepage": "https://github.com/power-components/livewire-powergrid",
             "support": {
                 "issues": "https://github.com/Power-Components/livewire-powergrid/issues",
-                "source": "https://github.com/Power-Components/livewire-powergrid/tree/1.0.0"
+                "source": "https://github.com/Power-Components/livewire-powergrid/tree/dev1.1"
             },
-            "time": "2021-05-01T11:35:47+00:00"
+            "time": "2021-05-21T22:59:48+00:00"
         },
         {
             "name": "psr/container",
@@ -2440,57 +2629,6 @@
                 }
             ],
             "time": "2020-08-18T17:17:46+00:00"
-        },
-        {
-            "name": "shuchkin/simplexlsxgen",
-            "version": "0.9.25",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/shuchkin/simplexlsxgen.git",
-                "reference": "99c6be2fb424abd86972d561c42d33f023f597af"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/shuchkin/simplexlsxgen/zipball/99c6be2fb424abd86972d561c42d33f023f597af",
-                "reference": "99c6be2fb424abd86972d561c42d33f023f597af",
-                "shasum": ""
-            },
-            "require": {
-                "ext-mbstring": "*",
-                "ext-zlib": "*"
-            },
-            "type": "library",
-            "autoload": {
-                "classmap": [
-                    "src/SimpleXLSXGen.php"
-                ]
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Sergey Shuchkin (SMSPILOT)",
-                    "email": "sergey.shuchkin@gmail.com",
-                    "homepage": "https://shuchkin.ru/"
-                }
-            ],
-            "description": "Export data to Excel XLSx file. PHP XLSX generator.",
-            "homepage": "https://github.com/shuchkin/simplexlsxgen",
-            "keywords": [
-                "backend",
-                "creator",
-                "excel",
-                "generator",
-                "php",
-                "xlsx"
-            ],
-            "support": {
-                "issues": "https://github.com/shuchkin/simplexlsxgen/issues",
-                "source": "https://github.com/shuchkin/simplexlsxgen/tree/0.9.25"
-            },
-            "time": "2021-02-26T15:45:38+00:00"
         },
         {
             "name": "swiftmailer/swiftmailer",
@@ -7508,11 +7646,13 @@
     ],
     "aliases": [],
     "minimum-stability": "dev",
-    "stability-flags": [],
+    "stability-flags": {
+        "power-components/livewire-powergrid": 20
+    },
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
-        "php": "^7.3|^8.0"
+        "php": "^7.4|^8.0"
     },
     "platform-dev": [],
     "plugin-api-version": "2.0.0"
