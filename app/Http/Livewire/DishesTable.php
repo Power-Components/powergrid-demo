@@ -141,12 +141,7 @@ class DishesTable extends PowerGridComponent
                 ->field('kitchen_name')
                 ->sortable()
                 ->makeInputMultiSelect(Kitchen::all(), 'name', 'kitchen_id'),
-            /*
-                        Column::add()
-                            ->title(__('cooked'))
-                            ->field('produced_at')
-                            ->hidden(),
-            */
+
             Column::add()
                 ->title(__('Data de produção'))
                 ->field('produced_at_formatted')

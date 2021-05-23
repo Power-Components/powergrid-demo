@@ -1,8 +1,8 @@
 {
-    "name": "laravel/laravel",
+    "name": "powercomponents/powergriddemo",
     "type": "project",
-    "description": "The Laravel Framework.",
-    "keywords": ["framework", "laravel"],
+    "description": "This is a demo project featured in a live code session at Beer and Code Youtube channel.",
+    "keywords": ["powergrid", "demo", "beerandcode"],
     "license": "MIT",
     "require": {
         "php": "^7.4|^8.0",
@@ -12,7 +12,7 @@
         "laravel/framework": "^8.12",
         "laravel/tinker": "^2.5",
         "livewire-ui/modal": "^0.1.5",
-        "power-components/livewire-powergrid": "dev-dev1.1"
+        "power-components/livewire-powergrid": "^1.1"
     },
     "require-dev": {
         "facade/ignition": "^2.5",
