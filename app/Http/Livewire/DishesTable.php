@@ -14,6 +14,7 @@ use PowerComponents\LivewirePowerGrid\Button;
 use PowerComponents\LivewirePowerGrid\Column;
 use PowerComponents\LivewirePowerGrid\PowerGrid;
 use PowerComponents\LivewirePowerGrid\PowerGridComponent;
+use PowerComponents\LivewirePowerGrid\PowerGridEloquent;
 use PowerComponents\LivewirePowerGrid\Traits\ActionButton;
 
 class DishesTable extends PowerGridComponent
@@ -36,7 +37,7 @@ class DishesTable extends PowerGridComponent
 
     }
 
-    public function addColumns(): ?PowerGrid
+    public function addColumns(): ?PowerGridEloquent
     {
         return PowerGrid::eloquent()
             ->addColumn('id')
