@@ -162,15 +162,19 @@ class DishesTable extends PowerGridComponent
 
     public function actions(): array
     {
+
+        $btnEditClass   = (powerGridTheme() === 'tailwind') ? 'bg-indigo-500 text-white': 'btn btn-primary';
+        $btnDeleteClass = (powerGridTheme() === 'tailwind') ? 'bg-red-500 text-white': 'btn btn-danger';
+
         return [
             Button::add('edit')
                 ->caption(__('Editar'))
-                ->class('bg-indigo-500 text-white')
+                ->class($btnEditClass)
                 ->openModal('edit-dish', ['dishId' => 'id']),
 
             Button::add('destroy')
                 ->caption(__('Deletar'))
-                ->class('bg-red-500 text-white')
+                ->class($btnDeleteClass)
                 ->route('dish.destroy', ['dish' => 'id'])
                 ->method('delete')
         ];
