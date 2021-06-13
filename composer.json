@@ -11,7 +11,7 @@
         "guzzlehttp/guzzle": "^7.0.1",
         "laravel/framework": "^8.12",
         "laravel/tinker": "^2.5",
-        "livewire-ui/modal": "dev-bootstrap",
+        "livewire-ui/modal": "^0.1.6",
         "power-components/livewire-powergrid": "^1.1"
     },
     "require-dev": {
@@ -22,12 +22,6 @@
         "nunomaduro/collision": "^5.0",
         "phpunit/phpunit": "^9.3.3"
     },
-    "repositories": [
-        {
-            "type": "vcs",
-            "url": "https://github.com/luanfreitasdev/modal.git"
-        }
-    ],
     "autoload": {
         "psr-4": {
             "App\\": "app/",
