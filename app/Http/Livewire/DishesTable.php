@@ -94,7 +94,6 @@ class DishesTable extends PowerGridComponent
         $canEdit = true; //Permissão pra editar
 
         return [
-
             Column::add()
                 ->title(__('ID'))
                 ->field('id')
@@ -158,11 +157,8 @@ class DishesTable extends PowerGridComponent
     | Enable this section only when you have defined routes for these actions.
     |
     */
-
-
     public function actions(): array
     {
-
         $btnEditClass   = (powerGridTheme() === 'tailwind') ? 'bg-indigo-500 text-white': 'btn btn-primary';
         $btnDeleteClass = (powerGridTheme() === 'tailwind') ? 'bg-red-500 text-white': 'btn btn-danger';
 
@@ -180,7 +176,6 @@ class DishesTable extends PowerGridComponent
         ];
     }
 
-
     /*
     |--------------------------------------------------------------------------
     | Edit Method
@@ -188,8 +183,6 @@ class DishesTable extends PowerGridComponent
     | Enable this section to use editOnClick() or toggleable() methods
     |
     */
-
-
     public function update(array $data ): bool
     {
 
@@ -228,5 +221,4 @@ class DishesTable extends PowerGridComponent
 
         return ($updateMessages[$status][$field] ?? $updateMessages[$status]['_default_message']);
     }
-
 }

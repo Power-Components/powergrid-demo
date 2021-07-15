@@ -13,9 +13,4 @@ class EditDish extends ModalComponent
     {
         return view('livewire.edit-dish');
     }
-
-    public static function bsModalTitle(): string
-    {
-        return 'Plans';
-    }
 }

@@ -2,16 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-
 class DishController extends Controller
 {
-    public function edit()
+    public function edit(): bool
     {
         return true;
     }
 
-    public function destroy()
+    public function destroy(): bool
     {
         return true;
     }
