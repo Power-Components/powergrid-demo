@@ -1,5 +1,8 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<html x-data="{ darkMode: localStorage.getItem('dark')} "
+      x-init="$watch('darkMode', val => localStorage.setItem('dark', val))"
+      x-bind:class="{ 'dark': darkMode }"
+      lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -9,7 +12,7 @@
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
 
-    @if(powerGridTheme() === 'tailwind')
+    @if(powerGridTheme() === 'PowerComponents\LivewirePowerGrid\Themes\Tailwind')
         <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     @else
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"
@@ -20,11 +23,11 @@
     @powerGridStyles
 
 </head>
-<body class="bg-indigo-800 font-sans leading-normal tracking-normal m-12">
+<body class="dark:bg-gray-500 bg-indigo-800 font-sans leading-normal tracking-normal m-12">
 
 @livewireScripts
 
-@if(config('livewire-powergrid.theme') === 'bootstrap')
+@if(powerGridTheme() === 'PowerComponents\LivewirePowerGrid\Themes\Bootstrap')
 
     <div class="container" style="margin-top: 26px;">
         <livewire:dishes-table/>
@@ -43,15 +46,34 @@
             crossorigin="anonymous"></script>
 
 @else
-
-    <div>
-        <div class="bg-white p-10 rounded">
-            <livewire:dishes-table/>
+    <div
+        class="dark:bg-gray-900 bg-white p-10 rounded">
+        <div class="flex justify-end align-middle items-baseline items-center space-x-2 px-4 py-4">
+            <div>
+                    <span class="ml-2" id="annual-billing-label" @click="darkMode = !darkMode; $refs.switch.focus()"
+                          style="margin-top: 0 !important;position: absolute;margin-left: -46px;">
+                      <span class="text-sm font-medium uppercase"
+                            :class="{ 'text-gray-200': darkMode, 'text-gray-800': !(darkMode) }"
+                            x-text="darkMode ? 'Dark': 'Light'"></span>
+                    </span>
+                <button type="button"
+                        class="relative inline-flex flex-shrink-0 h-6 w-11 border-2 border-transparent rounded-full cursor-pointer transition-colors ease-in-out duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 bg-gray-200"
+                        role="switch" aria-checked="false" x-ref="switch"
+                        :class="{ 'bg-gray-300': !(darkMode), 'bg-gray-400': darkMode }"
+                        aria-labelledby="annual-billing-label"
+                        :aria-checked="darkMode" @click="darkMode = !darkMode">
+                            <span aria-hidden="true"
+                                  class="pointer-events-none inline-block h-5 w-5 rounded-full bg-white shadow transform ring-0 transition ease-in-out duration-200 translate-x-0"
+                                  :class="{ 'translate-x-0': !(darkMode), 'translate-x-5': darkMode }">
+                            </span>
+                </button>
+            </div>
         </div>
+
+        <livewire:dishes-table/>
     </div>
 
 @endif
-
 
 @powerGridScripts
 @livewire('livewire-ui-modal')

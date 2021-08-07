@@ -2,14 +2,13 @@
 
 namespace App\Http\Livewire;
 
-use Carbon\Carbon;
+use App\Models\Category;
 use App\Models\Dish;
 use App\Models\Kitchen;
-use App\Models\Category;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Support\Str;
-use Illuminate\Support\Collection;
 use Illuminate\Database\QueryException;
+use Illuminate\Support\Str;
 use PowerComponents\LivewirePowerGrid\Button;
 use PowerComponents\LivewirePowerGrid\Column;
 use PowerComponents\LivewirePowerGrid\PowerGrid;
@@ -26,15 +25,23 @@ class DishesTable extends PowerGridComponent
         $this->showCheckBox()
             ->showPerPage()
             ->showRecordCount()
+            ->showToggleColumns()
             ->showExportOption('download', ['excel', 'csv'])
             ->showSearchInput();
     }
 
     public function dataSource(): ?Builder
     {
-
         return Dish::query()->with('kitchen', 'category');
+    }
 
+    public function relationSearch(): array
+    {
+        return [
+            'category' => [
+                'name'
+            ]
+        ];
     }
 
     public function addColumns(): ?PowerGridEloquent
@@ -44,53 +51,48 @@ class DishesTable extends PowerGridComponent
             ->addColumn('name')
             ->addColumn('calories')
             ->addColumn('calories', function (Dish $dish) {
-                return  $dish->calories . ' kcal';
+                return $dish->calories . ' kcal';
             })
             /*** CATEGORY ***/
             ->addColumn('category_id', function (Dish $dish) {
-                return  $dish->category_id;
+                return $dish->category_id;
             })
             ->addColumn('category_name', function (Dish $dish) {
-                return  $dish->category->name;
+                return $dish->category->name;
             })
-
             /*** KITCHEN ***/
             ->addColumn('kitchen_id', function (Dish $dish) {
-                return  $dish->kitchen_id;
+                return $dish->kitchen_id;
             })
             ->addColumn('kitchen_name', function (Dish $dish) {
-                return  $dish->kitchen->name;
+                return $dish->kitchen->name;
             })
-
             /*** PRICE ***/
             ->addColumn('price')
             ->addColumn('price_BRL', function (Dish $dish) {
-                return  'R$ ' . number_format($dish->price, 2,',', '.'); //R$ 1.000,00
+                return 'R$ ' . number_format($dish->price, 2, ',', '.'); //R$ 1.000,00
             })
-
             /*** SALE'S PRICE ***/
             ->addColumn('sales_price')
             ->addColumn('sales_price_BRL', function (Dish $dish) {
                 $sales_price = $dish->price + ($dish->price * 0.15);
-                return  'R$ ' . number_format($sales_price, 2, ',', '.'); //R$ 1.000,00
-            })
 
+                return 'R$ ' . number_format($sales_price, 2, ',', '.'); //R$ 1.000,00
+            })
             /*** STOCK ***/
             ->addColumn('in_stock')
             ->addColumn('in_stock_label', function (Dish $dish) {
                 return ($dish->in_stock ? "sim" : "não");
             })
-
             /*** Produced At ***/
             ->addColumn('produced_at')
-            ->addColumn('produced_at_formatted', function(Dish $dish) {
+            ->addColumn('produced_at_formatted', function (Dish $dish) {
                 return Carbon::parse($dish->produced_at)->format('d/m/Y');
             });
     }
 
     public function columns(): array
     {
-
         $canEdit = true; //Permissão pra editar
 
         return [
@@ -147,7 +149,6 @@ class DishesTable extends PowerGridComponent
                 ->field('produced_at_formatted')
                 ->makeInputDatePicker('produced_at')
         ];
-
     }
 
     /*
@@ -159,8 +160,8 @@ class DishesTable extends PowerGridComponent
     */
     public function actions(): array
     {
-        $btnEditClass   = (powerGridTheme() === 'tailwind') ? 'bg-indigo-500 text-white': 'btn btn-primary';
-        $btnDeleteClass = (powerGridTheme() === 'tailwind') ? 'bg-red-500 text-white': 'btn btn-danger';
+        $btnEditClass   = (powerGridTheme() === 'PowerComponents\LivewirePowerGrid\Themes\Tailwind') ? 'bg-indigo-500 text-white p-1 m-1 rounded text-sm' : 'btn btn-primary';
+        $btnDeleteClass = (powerGridTheme() === 'PowerComponents\LivewirePowerGrid\Themes\Tailwind') ? 'bg-red-500 p-1 m-1 text-white text-sm' : 'btn btn-danger';
 
         return [
             Button::add('edit')
@@ -176,6 +177,16 @@ class DishesTable extends PowerGridComponent
         ];
     }
 
+    public function header(): array
+    {
+        return [
+            Button::add('new')
+                ->caption(__('Action 1'))
+                ->class('')
+                ->emit('event', []),
+        ];
+    }
+
     /*
     |--------------------------------------------------------------------------
     | Edit Method
@@ -183,7 +194,7 @@ class DishesTable extends PowerGridComponent
     | Enable this section to use editOnClick() or toggleable() methods
     |
     */
-    public function update(array $data ): bool
+    public function update(array $data): bool
     {
 
         //Clean price_BRL R$ 4.947,70 --> 44947.70 and saves in database field 'price'
@@ -202,15 +213,16 @@ class DishesTable extends PowerGridComponent
         } catch (QueryException $exception) {
             $updated = false;
         }
+
         return $updated;
     }
 
     public function updateMessages(string $status, string $field = '_default_message'): string
     {
         $updateMessages = [
-            'success'   => [
+            'success' => [
                 '_default_message' => __('Data has been updated successfully!'),
-                'price_BRL' => __('Preço alterado'),
+                'price_BRL'        => __('Preço alterado'),
                 //'custom_field' => __('Custom Field updated successfully!'),
             ],
             "error" => [

@@ -11,25 +11,7 @@ return [
     | bootstrap or tailwind
     |
     */
-    'theme' => 'tailwind',
-
-    /*
-    |--------------------------------------------------------------------------
-    | Theme Version
-    |--------------------------------------------------------------------------
-    |
-    | Here you define which version and bootstrap or tailwind you are using
-    | >= bootstrap@5.0.0-beta3 working with bootstrap-select
-    |
-    */
-
-    'theme_versions' => [
-        'bootstrap' => '50',
-        /*
-         * https://tailwindcss.com
-         */
-        'tailwind' => '2'
-    ],
+    'theme' => \PowerComponents\LivewirePowerGrid\Themes\Tailwind::class,
 
     /*
     |--------------------------------------------------------------------------

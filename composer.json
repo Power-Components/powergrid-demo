@@ -6,13 +6,15 @@
     "license": "MIT",
     "require": {
         "php": "^7.4|^8.0",
+        "composer/composer": "^2.1",
         "fideloper/proxy": "^4.4",
+        "friendsofphp/php-cs-fixer": "^3.0",
         "fruitcake/laravel-cors": "^2.0",
         "guzzlehttp/guzzle": "^7.0.1",
         "laravel/framework": "^8.12",
         "laravel/tinker": "^2.5",
         "livewire-ui/modal": "^0.1.6",
-        "power-components/livewire-powergrid": "^1.1"
+        "power-components/livewire-powergrid": "dev-main"
     },
     "require-dev": {
         "facade/ignition": "^2.5",
