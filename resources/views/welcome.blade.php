@@ -27,7 +27,7 @@
 
 @livewireScripts
 
-@if(powerGridTheme() === 'PowerComponents\LivewirePowerGrid\Themes\Bootstrap')
+@if(powerGridTheme() === 'PowerComponents\LivewirePowerGrid\Themes\Bootstrap5')
 
     <div class="container" style="margin-top: 26px;">
         <livewire:dishes-table/>
