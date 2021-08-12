@@ -25,7 +25,6 @@ class DishesTable extends PowerGridComponent
         $this->showCheckBox()
             ->showPerPage()
             ->showRecordCount()
-            ->showToggleColumns()
             ->showExportOption('download', ['excel', 'csv'])
             ->showSearchInput();
     }
