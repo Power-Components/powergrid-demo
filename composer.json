@@ -6,7 +6,6 @@
     "license": "MIT",
     "require": {
         "php": "^7.4|^8.0",
-        "composer/composer": "^2.1",
         "fideloper/proxy": "^4.4",
         "friendsofphp/php-cs-fixer": "^3.0",
         "fruitcake/laravel-cors": "^2.0",
@@ -17,6 +16,7 @@
         "power-components/livewire-powergrid": "^v1.2"
     },
     "require-dev": {
+        "composer/composer": "^2.1",
         "facade/ignition": "^2.5",
         "fakerphp/faker": "^1.9.1",
         "laravel/sail": "^1.0.1",
