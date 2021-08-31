@@ -94,7 +94,7 @@ return [
     |
     */
     'js_framework_cdn' => [
-        'alpinejs' => 'https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.8.2/dist/alpine.min.js'
+        'alpinejs' => 'https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js'
     ],
 
      /*
