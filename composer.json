@@ -13,7 +13,7 @@
         "laravel/framework": "^8.12",
         "laravel/tinker": "^2.5",
         "livewire-ui/modal": "^0.1.6",
-        "power-components/livewire-powergrid": "^v1.2"
+        "power-components/livewire-powergrid": "dev-main"
     },
     "require-dev": {
         "composer/composer": "^2.1",

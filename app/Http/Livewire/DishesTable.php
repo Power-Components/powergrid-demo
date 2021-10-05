@@ -108,11 +108,13 @@ class DishesTable extends PowerGridComponent
                 ->editOnClick($canEdit)
                 ->clickToCopy(true)
                 ->makeInputText('name')
+                ->placeholder('Prato placeholder')
                 ->sortable(),
 
             Column::add()
                 ->title(__('Categoria'))
                 ->field('category_name')
+                ->placeholder('Categoria placeholder')
                 ->makeInputMultiSelect(Category::all(), 'name', 'category_id'),
 
             Column::add()
@@ -159,8 +161,8 @@ class DishesTable extends PowerGridComponent
     */
     public function actions(): array
     {
-        $btnEditClass   = (powerGridTheme() === 'PowerComponents\LivewirePowerGrid\Themes\Tailwind') ? 'bg-indigo-500 text-white p-1 m-1 rounded text-sm' : 'btn btn-primary';
-        $btnDeleteClass = (powerGridTheme() === 'PowerComponents\LivewirePowerGrid\Themes\Tailwind') ? 'bg-red-500 p-1 m-1 text-white text-sm' : 'btn btn-danger';
+        $btnEditClass   = (powerGridTheme() === 'tailwind') ? 'bg-indigo-500 text-white p-1 m-1 rounded text-sm' : 'btn btn-primary';
+        $btnDeleteClass = (powerGridTheme() === 'tailwind') ? 'bg-red-500 p-1 m-1 text-white text-sm' : 'btn btn-danger';
 
         return [
             Button::add('edit')
@@ -172,19 +174,20 @@ class DishesTable extends PowerGridComponent
                 ->caption(__('Deletar'))
                 ->class($btnDeleteClass)
                 ->route('dish.destroy', ['dish' => 'id'])
+                ->target('') // default: _blank
                 ->method('delete')
         ];
     }
-
-    public function header(): array
-    {
-        return [
-            Button::add('new')
-                ->caption(__('Action 1'))
-                ->class('')
-                ->emit('event', []),
-        ];
-    }
+//
+//    public function header(): array
+//    {
+//        return [
+//            Button::add('new')
+//                ->caption(__('Action 1'))
+//                ->class('')
+//                ->emit('event', []),
+//        ];
+//    }
 
     /*
     |--------------------------------------------------------------------------

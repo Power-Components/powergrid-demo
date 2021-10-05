@@ -7,7 +7,7 @@ use LivewireUI\Modal\ModalComponent;
 class EditDish extends ModalComponent
 {
 
-    public int $dishId;
+    public $dishId;
 
     public function render()
     {
