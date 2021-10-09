@@ -23,11 +23,11 @@
     @powerGridStyles
 
 </head>
-<body class="dark:bg-gray-500 bg-indigo-800 font-sans leading-normal tracking-normal m-12">
+<body class="dark:bg-gray-400 bg-gray-200 font-sans leading-normal tracking-normal mx-8 mt-10">
 
 @livewireScripts
 
-@if(powerGridTheme() === 'tailwind')
+@if(powerGridTheme() === 'bootstrap')
 
     <div class="container" style="margin-top: 26px;">
         <livewire:dishes-table/>
@@ -47,7 +47,7 @@
 
 @else
     <div
-        class="dark:bg-gray-900 bg-white p-10 rounded">
+        class="dark:bg-gray-900 bg-white p-4 rounded-md shadow-lg">
         <div class="flex justify-end align-middle items-baseline items-center space-x-2 px-4 py-4">
             <div>
                     <span class="ml-2" id="annual-billing-label" @click="darkMode = !darkMode; $refs.switch.focus()"

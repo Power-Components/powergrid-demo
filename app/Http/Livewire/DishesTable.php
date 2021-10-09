@@ -136,6 +136,7 @@ class DishesTable extends PowerGridComponent
             Column::add()
                 ->title(__('Em Estoque'))
                 ->toggleable(true, 'sim', 'não')
+                ->headerAttribute('', 'width: 100px;')
                 ->makeBooleanFilter('in_stock', 'sim', 'não')
                 ->field('in_stock'),
 
@@ -161,8 +162,8 @@ class DishesTable extends PowerGridComponent
     */
     public function actions(): array
     {
-        $btnEditClass   = (powerGridTheme() === 'tailwind') ? 'bg-indigo-500 text-white p-1 m-1 rounded text-sm' : 'btn btn-primary';
-        $btnDeleteClass = (powerGridTheme() === 'tailwind') ? 'bg-red-500 p-1 m-1 text-white text-sm' : 'btn btn-danger';
+        $btnEditClass   = (powerGridTheme() === 'tailwind') ? 'bg-indigo-500 cursor-pointer text-white px-3 py-2 m-1 rounded text-sm' : 'btn btn-primary';
+        $btnDeleteClass = (powerGridTheme() === 'tailwind') ? 'bg-red-500 text-white px-3 py-2 m-1 rounded text-sm' : 'btn btn-danger';
 
         return [
             Button::add('edit')
