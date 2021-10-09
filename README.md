@@ -1,5 +1,5 @@
 <div align="center">
-	<p><img  src="logo.png" alt="PowerGrid Logo"></p>
+	<p><img src="header.jpg" alt="PowerGrid Logo"></p>
 </div>
 
 # Demo Project
