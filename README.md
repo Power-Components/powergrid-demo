@@ -14,7 +14,7 @@ This is a demo project featured in a live code session at [Beer and Code](https:
 
 - [Git](https://github.com/git-guides/install-git)
 - [Composer](https://getcomposer.org/doc/00-intro.md#installation-linux-unix-macos)
-- PHP 7.4+
+- PHP 7.4.1+
 - [Npm](https://www.npmjs.com/get-npm)
 - A database (e.g. MySQL)
 
