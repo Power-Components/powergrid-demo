@@ -29,9 +29,18 @@ class DishesTable extends PowerGridComponent
             ->showSearchInput();
     }
 
+    public string $sortField = 'dishes.id';
+
     public function dataSource(): ?Builder
     {
-        return Dish::query()->with('kitchen', 'category');
+        return Dish::query()
+            ->join('categories', function($categories) {
+            $categories->on('dishes.category_id', '=', 'categories.id');
+            })
+            ->join('kitchens', function($categories) {
+                $categories->on('dishes.kitchen_id', '=', 'kitchens.id');
+            })
+            ->select('dishes.*', 'categories.name as category_name');
     }
 
     public function relationSearch(): array
@@ -47,7 +56,9 @@ class DishesTable extends PowerGridComponent
     {
         return PowerGrid::eloquent()
             ->addColumn('id')
-            ->addColumn('name')
+            ->addColumn('dish_name', function (Dish $dish) {
+                return $dish->name;
+            })
             ->addColumn('calories')
             ->addColumn('calories', function (Dish $dish) {
                 return $dish->calories . ' kcal';
@@ -99,17 +110,17 @@ class DishesTable extends PowerGridComponent
                 ->title(__('ID'))
                 ->field('id')
                 ->searchable()
-                ->sortable(),
+                ->sortable('dishes.id'),
 
             Column::add()
                 ->title(__('Prato'))
-                ->field('name')
+                ->field('dish_name')
                 ->searchable()
                 ->editOnClick($canEdit)
                 ->clickToCopy(true)
                 ->makeInputText('name')
                 ->placeholder('Prato placeholder')
-                ->sortable(),
+                ->sortable('dishes.name'),
 
             Column::add()
                 ->title(__('Categoria'))
@@ -138,12 +149,13 @@ class DishesTable extends PowerGridComponent
                 ->toggleable(true, 'sim', 'não')
                 ->headerAttribute('', 'width: 100px;')
                 ->makeBooleanFilter('in_stock', 'sim', 'não')
+                ->sortable()
                 ->field('in_stock'),
 
             Column::add()
                 ->title(__('Cozinha'))
                 ->field('kitchen_name')
-                ->sortable()
+                ->sortable('kitchens.name')
                 ->makeInputMultiSelect(Kitchen::all(), 'name', 'kitchen_id'),
 
             Column::add()
