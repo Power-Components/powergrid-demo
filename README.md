@@ -6,7 +6,9 @@
 
 This is a demo project featured in a live code session at [Beer and Code](https://www.youtube.com/watch?v=Mml5aagMOm4&ab_channel=BeerandCode) Youtube channel.
 
-❇️ Please check [PowerGrid](https://github.com/Power-Components/livewire-powergrid) main repository for the component most up-to-date version and documentation.
+❇️ Please check [PowerGrid](https://github.com/Power-Components/livewire-powergrid) main repository for the package most update version.
+
+📚 See the [Documentation](https://livewire-powergrid.docsforge.com/) for more information about configuration and features.
 
 ## How to use
 
@@ -82,5 +84,14 @@ php artisan serve
 
 Your PowerGrid component can be found at `app/Http/Livewire/DishesTable.php`.
 
+## Support
+
+For questions, issues, bug reports and feature requests, please use [PowerGrid](https://github.com/Power-Components/livewire-powergrid) official GitHub Repository.
+
+Please look into our previous issues to verify if your bug/question or feature request has been previously submitted.
+
+📣 Submit a [new issue](https://github.com/Power-Components/livewire-powergrid/issues).
+
+<br/>
 
 # 💓 Thank you for downloading!
