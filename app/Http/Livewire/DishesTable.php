@@ -5,10 +5,9 @@ namespace App\Http\Livewire;
 use App\Models\Category;
 use App\Models\Dish;
 use App\Models\Kitchen;
-use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\QueryException;
-use Illuminate\Support\Str;
+use Illuminate\Support\Carbon;
 use PowerComponents\LivewirePowerGrid\Button;
 use PowerComponents\LivewirePowerGrid\Column;
 use PowerComponents\LivewirePowerGrid\PowerGrid;
@@ -16,26 +15,42 @@ use PowerComponents\LivewirePowerGrid\PowerGridComponent;
 use PowerComponents\LivewirePowerGrid\PowerGridEloquent;
 use PowerComponents\LivewirePowerGrid\Traits\ActionButton;
 
-class DishesTable extends PowerGridComponent
+final class DishesTable extends PowerGridComponent
 {
     use ActionButton;
 
-    public function setUp()
+    //Messages informing success/error data is updated.
+    public bool $showUpdateMessages = true;
+    
+    public string $sortField = 'dishes.id';
+
+    /*
+    |--------------------------------------------------------------------------
+    |  Features Setup
+    |--------------------------------------------------------------------------
+    | Setup Table's general features
+    |
+    */
+    public function setUp(): void
     {
         $this->showCheckBox()
             ->showPerPage()
-            ->showRecordCount()
-            ->showExportOption('download', ['excel', 'csv'])
-            ->showSearchInput();
+            ->showSearchInput()
+            ->showExportOption('download', ['excel', 'csv']);
     }
 
-    public string $sortField = 'dishes.id';
-
-    public function dataSource(): ?Builder
+    /*
+    |--------------------------------------------------------------------------
+    |  Datasource
+    |--------------------------------------------------------------------------
+    | Provides data to your Table using a Model or Collection
+    |
+    */
+    public function datasource(): ?Builder
     {
         return Dish::query()
             ->join('categories', function($categories) {
-            $categories->on('dishes.category_id', '=', 'categories.id');
+                $categories->on('dishes.category_id', '=', 'categories.id');
             })
             ->join('kitchens', function($categories) {
                 $categories->on('dishes.kitchen_id', '=', 'kitchens.id');
@@ -43,6 +58,19 @@ class DishesTable extends PowerGridComponent
             ->select('dishes.*', 'categories.name as category_name');
     }
 
+    /*
+    |--------------------------------------------------------------------------
+    |  Relationship Search
+    |--------------------------------------------------------------------------
+    | Configure here relationships to be used by the Search and Table Filters.
+    |
+    */
+
+    /**
+     * Relationship search.
+     *
+     * @return array<string, array<int, string>>
+     */
     public function relationSearch(): array
     {
         return [
@@ -52,6 +80,14 @@ class DishesTable extends PowerGridComponent
         ];
     }
 
+    /*
+    |--------------------------------------------------------------------------
+    |  Add Column
+    |--------------------------------------------------------------------------
+    | Make Datasource fields available to be used as columns.
+    | You can pass a closure to transform/modify the data.
+    |
+    */
     public function addColumns(): ?PowerGridEloquent
     {
         return PowerGrid::eloquent()
@@ -59,6 +95,7 @@ class DishesTable extends PowerGridComponent
             ->addColumn('dish_name', function (Dish $dish) {
                 return $dish->name;
             })
+            ->addColumn('chef_name')
             ->addColumn('calories')
             ->addColumn('calories', function (Dish $dish) {
                 return $dish->calories . ' kcal';
@@ -101,65 +138,88 @@ class DishesTable extends PowerGridComponent
             });
     }
 
+    /*
+    |--------------------------------------------------------------------------
+    |  Include Columns
+    |--------------------------------------------------------------------------
+    | Include the columns added columns, making them visible on the Table.
+    | Each column can be configured with properties, filters, actions...
+    |
+    */
+
+    /**
+    * PowerGrid Columns.
+    *
+    * @return array<int, \PowerComponents\LivewirePowerGrid\Column>
+    */
     public function columns(): array
     {
-        $canEdit = true; //Permissão pra editar
+        $canEdit = true; //Has permission to edit. E,g, $user->can('edit');
 
         return [
             Column::add()
                 ->title(__('ID'))
-                ->field('id')
+                ->field('id', 'dishes.id')
                 ->searchable()
-                ->sortable('dishes.id'),
+                ->sortable(),
 
             Column::add()
-                ->title(__('Prato'))
-                ->field('dish_name')
+                ->title(__('Dish'))
+                ->field('dish_name', 'dishes.name')
                 ->searchable()
                 ->editOnClick($canEdit)
                 ->clickToCopy(true)
-                ->makeInputText('name')
-                ->placeholder('Prato placeholder')
-                ->sortable('dishes.name'),
+                ->makeInputText()
+                ->placeholder('Dish placeholder')
+                ->sortable(),
 
             Column::add()
-                ->title(__('Categoria'))
-                ->field('category_name')
-                ->placeholder('Categoria placeholder')
-                ->makeInputMultiSelect(Category::all(), 'name', 'category_id'),
+                ->title(__('Chef'))
+                ->field('chef_name', 'dishes.chef_name')
+                ->searchable()
+                ->makeInputText()
+                ->placeholder('Chef placeholder')
+                ->sortable(),
 
             Column::add()
-                ->title(__('Preço'))
+                ->title(__('Category'))
+                ->field('category_name', 'categories.name')
+                ->placeholder('Category placeholder')
+                ->makeInputMultiSelect(Category::all(), 'name', 'category_id')
+                ->sortable(),
+
+            Column::add()
+                ->title(__('Price'))
                 ->field('price_BRL')
                 ->editOnClick($canEdit)
                 ->makeInputRange('price', ".", ","),
 
             Column::add()
-                ->title(__('Preço de Venda'))
+                ->title(__('Sales price'))
                 ->field('sales_price_BRL'),
 
             Column::add()
-                ->title(__('Calorias'))
+                ->title(__('Calories'))
                 ->field('calories')
                 ->makeInputRange('calories')
                 ->sortable(),
 
             Column::add()
-                ->title(__('Em Estoque'))
-                ->toggleable(true, 'sim', 'não')
+                ->title(__('In Stock'))
+                ->field('in_stock')
+                ->toggleable(true, 'yes', 'no')
                 ->headerAttribute('', 'width: 100px;')
                 ->makeBooleanFilter('in_stock', 'sim', 'não')
-                ->sortable()
-                ->field('in_stock'),
+                ->sortable(),
 
             Column::add()
-                ->title(__('Cozinha'))
-                ->field('kitchen_name')
+                ->title(__('Kitchen'))
+                ->field('kitchen_name', 'kitchens.name')
                 ->sortable('kitchens.name')
                 ->makeInputMultiSelect(Kitchen::all(), 'name', 'kitchen_id'),
 
             Column::add()
-                ->title(__('Data de produção'))
+                ->title(__('Production date'))
                 ->field('produced_at_formatted')
                 ->makeInputDatePicker('produced_at')
         ];
@@ -172,59 +232,59 @@ class DishesTable extends PowerGridComponent
     | Enable this section only when you have defined routes for these actions.
     |
     */
+
+    /**
+    * PowerGrid Dish action buttons.
+    *
+    * @return array<int, \PowerComponents\LivewirePowerGrid\Button>
+    */    
     public function actions(): array
     {
-        $btnEditClass   = (powerGridTheme() === 'tailwind') ? 'bg-indigo-500 cursor-pointer text-white px-3 py-2 m-1 rounded text-sm' : 'btn btn-primary';
-        $btnDeleteClass = (powerGridTheme() === 'tailwind') ? 'bg-red-500 text-white px-3 py-2 m-1 rounded text-sm' : 'btn btn-danger';
-
         return [
             Button::add('edit')
-                ->caption(__('Editar'))
-                ->class($btnEditClass)
+                ->caption(__('Edit'))
+                ->class("bg-indigo-500 cursor-pointer text-white px-3 py-2 m-1 rounded text-sm' : 'btn btn-primary'")
                 ->openModal('edit-dish', ['dishId' => 'id']),
 
             Button::add('destroy')
-                ->caption(__('Deletar'))
-                ->class($btnDeleteClass)
+                ->caption(__('Delete'))
+                ->class("bg-red-500 text-white px-3 py-2 m-1 rounded text-sm' : 'btn btn-danger'")
                 ->route('dish.destroy', ['dish' => 'id'])
                 ->target('') // default: _blank
                 ->method('delete')
         ];
     }
-//
-//    public function header(): array
-//    {
-//        return [
-//            Button::add('new')
-//                ->caption(__('Action 1'))
-//                ->class('')
-//                ->emit('event', []),
-//        ];
-//    }
-
+    
     /*
     |--------------------------------------------------------------------------
     | Edit Method
     |--------------------------------------------------------------------------
-    | Enable this section to use editOnClick() or toggleable() methods
+    | Enable this section to use editOnClick() or toggleable() methods.
+    | Data must be validated and treated (see "Update Data" in PowerGrid doc).
     |
     */
-    public function update(array $data): bool
-    {
 
+    /**
+    * PowerGrid Dish Update.
+    *
+    * @param array<string,string> $data
+    */    
+    public function update(array $data ): bool
+    {
         //Clean price_BRL R$ 4.947,70 --> 44947.70 and saves in database field 'price'
         if ($data['field'] == 'price_BRL') {
             $data['field'] = 'price';
             $data['value'] = Str::of($data['value'])
-                ->replace('.', '')
-                ->replace(',', '.')
-                ->replaceMatches('/[^Z0-9\.]/', '');
+                                ->replace('.', '')
+                                ->replace(',', '.')
+                                ->replaceMatches('/[^Z0-9\.]/', '');
         }
-
+                
         try {
-            $updated = Dish::query()->find($data['id'])->update([
-                $data['field'] => $data['value']
-            ]);
+            $updated = Dish::query()->findOrFail($data['id'])
+                ->update([
+                    $data['field'] => $data['value']
+                ]);
         } catch (QueryException $exception) {
             $updated = false;
         }
@@ -232,20 +292,22 @@ class DishesTable extends PowerGridComponent
         return $updated;
     }
 
-    public function updateMessages(string $status, string $field = '_default_message'): string
+    public function updateMessages(string $status = 'error', string $field = '_default_message'): string
     {
         $updateMessages = [
-            'success' => [
+            'success'   => [
                 '_default_message' => __('Data has been updated successfully!'),
-                'price_BRL'        => __('Preço alterado'),
-                //'custom_field' => __('Custom Field updated successfully!'),
+                'price_BRL'        => 'Brazilian price changed!',
+                //'custom_field'   => __('Custom Field updated successfully!'),
             ],
-            "error" => [
+            'error' => [
                 '_default_message' => __('Error updating the data.'),
-                //'custom_field' => __('Error updating custom field.'),
+                //'custom_field'   => __('Error updating custom field.'),
             ]
         ];
 
-        return ($updateMessages[$status][$field] ?? $updateMessages[$status]['_default_message']);
+        $message = ($updateMessages[$status][$field] ?? $updateMessages[$status]['_default_message']);
+
+        return (is_string($message)) ? $message : 'Error!';
     }
 }

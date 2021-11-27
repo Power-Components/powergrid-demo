@@ -18,6 +18,7 @@ class CreateDishesTable extends Migration
             $table->foreignId('kitchen_id')->constrained();
             $table->foreignId('category_id')->constrained();
             $table->string('name');
+            $table->string('chef_name')->nullable();
             $table->double('price');
             $table->integer('calories');
             $table->boolean('in_stock')->default(false);
