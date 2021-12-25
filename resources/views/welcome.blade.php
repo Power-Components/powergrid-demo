@@ -79,7 +79,6 @@
 @endif
 
 @powerGridScripts
-@livewire('livewire-ui-modal')
 
 </body>
 </html>

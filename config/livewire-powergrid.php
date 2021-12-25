@@ -11,7 +11,7 @@ return [
     | bootstrap or tailwind
     |
     */
-    'theme' => 'bootstrap',
+    'theme' => 'tailwind',
 
     /*
     |--------------------------------------------------------------------------
