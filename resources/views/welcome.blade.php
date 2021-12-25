@@ -19,13 +19,16 @@
               integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x"
               crossorigin="anonymous">
     @endif
+
     @livewireStyles
+
+    @livewireScripts
+
     @powerGridStyles
 
+    <script src="{{ mix('js/app.js') }}" defer></script>
 </head>
 <body class="dark:bg-gray-400 bg-gray-200 font-sans leading-normal tracking-normal mx-8 mt-10">
-
-@livewireScripts
 
 @if(powerGridTheme() === 'bootstrap')
 

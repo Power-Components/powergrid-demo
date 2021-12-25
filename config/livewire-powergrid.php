@@ -11,7 +11,7 @@ return [
     | bootstrap or tailwind
     |
     */
-    'theme' => 'tailwind',
+    'theme' => 'bootstrap',
 
     /*
     |--------------------------------------------------------------------------
@@ -73,29 +73,14 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | JS Framework
+    | AlpineJS CDN
     |--------------------------------------------------------------------------
     |
-    | Define here which JS framework will be imported in the views.
-    | Alpine JS is required for features like ClickToEdit and Toggleable.
-    | To include it, modify the line below:
+    | Define here the CDN source for imported AlpineJS
     |
-    | 'js_framework' => 'alpinejs',
     */
 
-    'js_framework' => 'alpinejs',
-
-    /*
-    |--------------------------------------------------------------------------
-    | Frameworks CDN
-    |--------------------------------------------------------------------------
-    |
-    | Define here the CDN source for imported JS Framework
-    |
-    */
-    'js_framework_cdn' => [
-        'alpinejs' => 'https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js'
-    ],
+    'alpinejs_cdn' => null,
 
      /*
     |--------------------------------------------------------------------------
