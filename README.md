@@ -8,7 +8,7 @@ This is a demo project featured in a live code session at [Beer and Code](https:
 
 ❇️ Please check [PowerGrid](https://github.com/Power-Components/livewire-powergrid) main repository for the package most update version.
 
-📚 See the [Documentation](https://livewire-powergrid.docsforge.com/) for more information about configuration and features.
+📚 See the [Documentation](https://livewire-powergrid.com/) for more information about configuration and features.
 
 ## How to use
 

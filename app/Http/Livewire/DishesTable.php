@@ -21,9 +21,19 @@ final class DishesTable extends PowerGridComponent
 
     //Messages informing success/error data is updated.
     public bool $showUpdateMessages = true;
-    
+
     public string $sortField = 'dishes.id';
 
+    protected function getListeners()
+    {
+        return array_merge(
+            parent::getListeners(), ['edit-dish' => 'editDish']);
+    }
+
+    public function editDish(array $data)
+    {
+        dd($data);
+    }
     /*
     |--------------------------------------------------------------------------
     |  Features Setup
@@ -237,14 +247,14 @@ final class DishesTable extends PowerGridComponent
     * PowerGrid Dish action buttons.
     *
     * @return array<int, \PowerComponents\LivewirePowerGrid\Button>
-    */    
+    */
     public function actions(): array
     {
         return [
             Button::add('edit')
                 ->caption(__('Edit'))
                 ->class("bg-indigo-500 cursor-pointer text-white px-3 py-2 m-1 rounded text-sm' : 'btn btn-primary'")
-                ->openModal('edit-dish', ['dishId' => 'id']),
+                ->emit('edit-dish', ['dishId' => 'id', 'custom' => __METHOD__]),
 
             Button::add('destroy')
                 ->caption(__('Delete'))
@@ -254,7 +264,7 @@ final class DishesTable extends PowerGridComponent
                 ->method('delete')
         ];
     }
-    
+
     /*
     |--------------------------------------------------------------------------
     | Edit Method
@@ -268,7 +278,7 @@ final class DishesTable extends PowerGridComponent
     * PowerGrid Dish Update.
     *
     * @param array<string,string> $data
-    */    
+    */
     public function update(array $data ): bool
     {
         //Clean price_BRL R$ 4.947,70 --> 44947.70 and saves in database field 'price'
@@ -279,7 +289,7 @@ final class DishesTable extends PowerGridComponent
                                 ->replace(',', '.')
                                 ->replaceMatches('/[^Z0-9\.]/', '');
         }
-                
+
         try {
             $updated = Dish::query()->findOrFail($data['id'])
                 ->update([
