@@ -250,15 +250,20 @@ final class DishesTable extends PowerGridComponent
     */
     public function actions(): array
     {
+        $theme = config('livewire-powergrid.theme');
+
+        $edit = ($theme == 'tailwind') ? 'bg-indigo-500 cursor-pointer text-white px-3 py-2 m-1 rounded text-sm' : 'btn btn-primary';
+        $delete = ($theme == 'tailwind') ? 'bg-red-500 text-white px-3 py-2 m-1 rounded text-sm' : 'btn btn-danger';
+
         return [
             Button::add('edit')
                 ->caption(__('Edit'))
-                ->class("bg-indigo-500 cursor-pointer text-white px-3 py-2 m-1 rounded text-sm' : 'btn btn-primary'")
+                ->class($edit)
                 ->emit('edit-dish', ['dishId' => 'id', 'custom' => __METHOD__]),
 
             Button::add('destroy')
                 ->caption(__('Delete'))
-                ->class("bg-red-500 text-white px-3 py-2 m-1 rounded text-sm' : 'btn btn-danger'")
+                ->class($delete)
                 ->route('dish.destroy', ['dish' => 'id'])
                 ->target('') // default: _blank
                 ->method('delete')

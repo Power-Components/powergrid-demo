@@ -11,7 +11,7 @@ return [
     | bootstrap or tailwind
     |
     */
-    'theme' => 'tailwind',
+    'theme' => 'bootstrap',
 
     /*
     |--------------------------------------------------------------------------
@@ -26,16 +26,16 @@ return [
          * https://github.com/snapappointments/bootstrap-select
          */
         'bootstrap-select' => [
-            'js'  => 'https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.14.0-beta2/js/bootstrap-select.min.js',
-            'css' => 'https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.14.0-beta2/css/bootstrap-select.min.css'
+            'js'  => null,
+            'css' => null
         ],
         /*
          * https://flatpickr.js.org
          */
         'flat_piker' => [
-            'js'        => 'https://cdn.jsdelivr.net/npm/flatpickr',
-            'css'       => 'https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css',
-            'translate' => (app()->getLocale() != 'en') ? 'https://npmcdn.com/flatpickr/dist/l10n/' . \Illuminate\Support\Str::substr(app()->getLocale(), 0, 2) . '.js' : '',
+            'js'        => null,
+            'css'       => null,
+            'translate' => null,
             'locales'   => [
                 'pt_BR' => [
                     'locale'     => 'pt',
