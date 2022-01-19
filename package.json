@@ -18,6 +18,8 @@
         "tailwindcss": "^3.0.7"
     },
     "dependencies": {
-        "alpinejs": "^3.7.1"
+        "alpinejs": "^3.7.1",
+        "bootstrap-select": "^1.13.18",
+        "flatpickr": "^4.6.9"
     }
 }
