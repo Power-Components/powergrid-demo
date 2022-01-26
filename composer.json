@@ -12,7 +12,8 @@
         "guzzlehttp/guzzle": "^7.4",
         "laravel/framework": "^8.80",
         "laravel/tinker": "^2.5",
-        "power-components/livewire-powergrid": "^2.2"
+        "power-components/livewire-powergrid": "^2.2",
+        "wire-elements/modal": "^1.0"
     },
     "require-dev": {
         "composer/composer": "^2.1",
