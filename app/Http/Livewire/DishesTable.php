@@ -255,21 +255,21 @@ final class DishesTable extends PowerGridComponent
 
         return [
             Button::add('edit')
-                ->caption(__('View'))
-                ->class($edit)
-                ->openModal('view-dish', ['dishId' => 'id']),
-
-            Button::add('edit')
                 ->caption(__('Edit'))
                 ->class($edit)
-                ->openModal('edit-dish', ['dishId' => 'id', 'custom' => __METHOD__]),
+                ->emit('edit-dish', [
+                    'dishId' => 'id',
+                    'custom' => __METHOD__
+                ]),
 
             Button::add('destroy')
                 ->caption(__('Delete'))
                 ->class($delete)
-                ->route('dish.destroy', ['dish' => 'id'])
-                ->target('') // default: _blank
-                ->method('delete')
+                ->openModal('delete-dish', [
+                    'dishId' => 'id',
+                    'confirmationTitle' => 'Delete dish',
+                    'confirmationDescription' => 'Are you sure you want to delete this dish?',
+                ]),
         ];
     }
 
