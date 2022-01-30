@@ -9,6 +9,8 @@ class DeleteDish extends ModalComponent
 {
     public ?int $dishId = null;
 
+    public array $dishIds = [];
+
     public string $confirmationTitle = '';
 
     public string $confirmationDescription = '';
@@ -35,9 +37,13 @@ class DeleteDish extends ModalComponent
 
     public function confirm()
     {
-        $dish = Dish::query()->find($this->dishId);
+        if ($this->dishId) {
+            Dish::query()->find($this->dishId)->delete();
+        }
 
-        $dish->delete();
+        if ($this->dishIds) {
+            Dish::query()->whereIn('id', $this->dishIds)->delete();
+        }
 
         $this->closeModalWithEvents([
             'pg:eventRefresh-default',
