@@ -5,23 +5,22 @@
     "keywords": ["powergrid", "demo", "beerandcode"],
     "license": "MIT",
     "require": {
-        "php": "^7.4|^8.0",
-        "fideloper/proxy": "^4.4",
+        "php": "^8.0",
         "friendsofphp/php-cs-fixer": "^3.0",
         "fruitcake/laravel-cors": "^2.0",
         "guzzlehttp/guzzle": "^7.4",
-        "laravel/framework": "^8.80",
+        "laravel/framework": "^9.0",
         "laravel/tinker": "^2.5",
         "power-components/livewire-powergrid": "^2.2",
         "wire-elements/modal": "^1.0"
     },
     "require-dev": {
         "composer/composer": "^2.1",
-        "facade/ignition": "^2.5",
+        "spatie/laravel-ignition": "^1.0",
         "fakerphp/faker": "^1.9.1",
         "laravel/sail": "^1.0.1",
         "mockery/mockery": "^1.4.2",
-        "nunomaduro/collision": "^5.0",
+        "nunomaduro/collision": "^6.1",
         "phpunit/phpunit": "^9.5"
     },
     "autoload": {

@@ -588,12 +588,6 @@ Ensure the default browser behavior of the `hidden` attribute.
 .mr-0 {
   margin-right: 0px;
 }
-.mt-4 {
-  margin-top: 1rem;
-}
-.-mb-4 {
-  margin-bottom: -1rem;
-}
 .block {
   display: block;
 }
@@ -924,10 +918,6 @@ Ensure the default browser behavior of the `hidden` attribute.
   --tw-bg-opacity: 1;
   background-color: rgb(99 102 241 / var(--tw-bg-opacity));
 }
-.bg-red-600 {
-  --tw-bg-opacity: 1;
-  background-color: rgb(220 38 38 / var(--tw-bg-opacity));
-}
 .bg-red-500 {
   --tw-bg-opacity: 1;
   background-color: rgb(239 68 68 / var(--tw-bg-opacity));
@@ -963,10 +953,6 @@ Ensure the default browser behavior of the `hidden` attribute.
 .bg-blue-200 {
   --tw-bg-opacity: 1;
   background-color: rgb(191 219 254 / var(--tw-bg-opacity));
-}
-.bg-blue-50 {
-  --tw-bg-opacity: 1;
-  background-color: rgb(239 246 255 / var(--tw-bg-opacity));
 }
 .fill-current {
   fill: currentColor;
@@ -1335,10 +1321,6 @@ Ensure the default browser behavior of the `hidden` attribute.
 .hover\:bg-gray-600:hover {
   --tw-bg-opacity: 1;
   background-color: rgb(75 85 99 / var(--tw-bg-opacity));
-}
-.hover\:bg-blue-100:hover {
-  --tw-bg-opacity: 1;
-  background-color: rgb(219 234 254 / var(--tw-bg-opacity));
 }
 .hover\:text-blue-500:hover {
   --tw-text-opacity: 1;
