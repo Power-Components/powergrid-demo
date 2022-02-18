@@ -212,8 +212,7 @@ final class DishesTable extends PowerGridComponent
                 ->field('price_BRL')
                 ->editOnClick($canEdit)
                 ->makeInputRange('price', ".", ",")
-                ->withSum('Total', true, true)
-                ->formatSum(fn ($sum) => (new \NumberFormatter('pt_BR', \NumberFormatter::CURRENCY))->format($sum)),
+                ->withSum('Total', true, true),
                 
             Column::add()
                 ->title(__('Sales price'))
