@@ -6,13 +6,15 @@
 
 This repository provides a fully configured PowerGrid implementation on a [Laravel 9](https://laravel.com/) project.
 
+⚡ Check the PowerGrid Table: [app/Http/Livewire/DishesTable.php](https://github.com/Power-Components/powergrid-demo/blob/main/app/Http/Livewire/DishesTable.php).
+
 <br/>
 
 😎 This repository is kept up-to-date so you can use it as reference for your projects.
 
 📚 See the [Documentation](https://livewire-powergrid.com/) for more information about configuration and features.
 
-❇️ Please check [PowerGrid](https://github.com/Power-Components/livewire-powergrid) main repository to see the latest changes on the package.
+❇️ Visit [PowerGrid](https://github.com/Power-Components/livewire-powergrid) main repository to see the latest changes on the package.
 
 <br/>
 
@@ -90,8 +92,6 @@ Serve your project:
 ```shell
 php artisan serve
 ```
-
-⚡ Your PowerGrid Table can be found at `app/Http/Livewire/DishesTable.php`.
 
 ## Tests
 
