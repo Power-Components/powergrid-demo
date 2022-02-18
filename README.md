@@ -4,13 +4,17 @@
 
 # Demo Project
 
-This repository provides a fully configured PowerGrid implementation on a Laravel 9 project.
+This repository provides a fully configured PowerGrid implementation on a [Laravel 9](https://laravel.com/) project.
 
-😎 We try to keep this repository updated so you can use it as reference for your projects.
+<br/>
 
-❇️ Please check [PowerGrid](https://github.com/Power-Components/livewire-powergrid) main repository for the most up to date version of PowerGrid.
+😎 This repository is kept up-to-date so you can use it as reference for your projects.
 
 📚 See the [Documentation](https://livewire-powergrid.com/) for more information about configuration and features.
+
+❇️ Please check [PowerGrid](https://github.com/Power-Components/livewire-powergrid) main repository to see the latest changes on the package.
+
+<br/>
 
 This PowerGrid example was originally created for a living code session at [Beer and Code](https://www.youtube.com/watch?v=Mml5aagMOm4&ab_channel=BeerandCode) Youtube channel.
 
@@ -20,7 +24,7 @@ This PowerGrid example was originally created for a living code session at [Beer
 
 - [Git](https://github.com/git-guides/install-git)
 - [Composer](https://getcomposer.org/doc/00-intro.md#installation-linux-unix-macos)
-- PHP 7.4.1+
+- PHP 8.0+
 - [Npm](https://www.npmjs.com/get-npm)
 - A database (e.g. MySQL)
 
@@ -47,8 +51,6 @@ npm install && npm run dev
 ```
 
 ## Configure your .env
-
-Configure your `.env` file.
 
 Copy the `.env.example` into `.env`
 
