@@ -1,21 +1,15 @@
 <?php
 
-namespace Tests\Feature;
+use App\Models\Dish;
 
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use Tests\TestCase;
+test('Database has dishes', function () {
+    $dishes = Dish::all();
 
-class ExampleTest extends TestCase
-{
-    /**
-     * A basic test example.
-     *
-     * @return void
-     */
-    public function test_example()
-    {
-        $response = $this->get('/');
+    expect($dishes->count())->toBeGreaterThan(0);
+});
 
-        $response->assertStatus(200);
-    }
-}
+test('Home page contains Dishes table', function () {
+    $this->get('/')
+        ->assertOK()
+        ->assertSeeLivewire('dishes-table');
+});

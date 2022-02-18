@@ -38,8 +38,8 @@ final class DishesTable extends PowerGridComponent
     public function bulkDelete()
     {
         $this->emit('openModal', 'delete-dish', [
-            'dishIds' => $this->checkboxValues,
-            'confirmationTitle' => 'Delete dish',
+            'dishIds'                 => $this->checkboxValues,
+            'confirmationTitle'       => 'Delete dish',
             'confirmationDescription' => 'Are you sure you want to delete this dish?',
         ]);
     }
@@ -211,8 +211,10 @@ final class DishesTable extends PowerGridComponent
                 ->title(__('Price'))
                 ->field('price_BRL')
                 ->editOnClick($canEdit)
-                ->makeInputRange('price', ".", ","),
-
+                ->makeInputRange('price', ".", ",")
+                ->withSum('Total', true, true)
+                ->formatSum(fn ($sum) => (new \NumberFormatter('pt_BR', \NumberFormatter::CURRENCY))->format($sum)),
+                
             Column::add()
                 ->title(__('Sales price'))
                 ->field('sales_price_BRL'),
@@ -260,7 +262,7 @@ final class DishesTable extends PowerGridComponent
                 ->caption(__('Bulk delete'))
                 ->class('cursor-pointer block bg-white-200 text-gray-700 border border-gray-300 rounded py-2 px-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-600 dark:border-gray-500 dark:bg-gray-500 2xl:dark:placeholder-gray-300 dark:text-gray-200 dark:text-gray-300')
                 ->emit('bulkDelete', [])
-            ];
+        ];
     }
 
     /**
@@ -272,7 +274,7 @@ final class DishesTable extends PowerGridComponent
     {
         $theme = config('livewire-powergrid.theme');
 
-        $edit = ($theme == 'tailwind') ? 'bg-indigo-500 cursor-pointer text-white px-3 py-2 m-1 rounded text-sm' : 'btn btn-primary';
+        $edit   = ($theme == 'tailwind') ? 'bg-indigo-500 cursor-pointer text-white px-3 py-2 m-1 rounded text-sm' : 'btn btn-primary';
         $delete = ($theme == 'tailwind') ? 'bg-red-500 text-white px-3 py-2 m-1 rounded text-sm' : 'btn btn-danger';
 
         return [
@@ -288,8 +290,8 @@ final class DishesTable extends PowerGridComponent
                 ->caption(__('Delete'))
                 ->class($delete)
                 ->openModal('delete-dish', [
-                    'dishId' => 'id',
-                    'confirmationTitle' => 'Delete dish',
+                    'dishId'                  => 'id',
+                    'confirmationTitle'       => 'Delete dish',
                     'confirmationDescription' => 'Are you sure you want to delete this dish?',
                 ]),
         ];
@@ -319,7 +321,7 @@ final class DishesTable extends PowerGridComponent
                 ->hide(),
 
             Rule::rows()
-                ->when(fn($dish) => (bool) $dish->in_stock === false)
+                ->when(fn($dish) => (bool)$dish->in_stock === false)
                 ->setAttribute('class', 'bg-yellow-50 hover:bg-yellow-100')
         ];
     }
@@ -365,7 +367,7 @@ final class DishesTable extends PowerGridComponent
         $updateMessages = [
             'success' => [
                 '_default_message' => __('Data has been updated successfully!'),
-                'price_BRL' => 'Brazilian price changed!',
+                'price_BRL'        => 'Brazilian price changed!',
                 //'custom_field'   => __('Custom Field updated successfully!'),
             ],
             'error' => [
