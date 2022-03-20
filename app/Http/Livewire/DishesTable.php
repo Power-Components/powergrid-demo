@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire;
 
+use App\Http\Enums\Diet;
 use App\Models\Category;
 use App\Models\Dish;
 use App\Models\Kitchen;
@@ -116,6 +117,9 @@ final class DishesTable extends PowerGridComponent
             })
             ->addColumn('chef_name')
             ->addColumn('calories')
+            ->addColumn('diet', function (Dish $dish) {
+                return Diet::from($dish->diet)->labels();
+            })
             ->addColumn('calories', function (Dish $dish) {
                 return $dish->calories . ' kcal';
             })
@@ -199,6 +203,11 @@ final class DishesTable extends PowerGridComponent
                 ->makeInputText()
                 ->placeholder('Chef placeholder')
                 ->sortable(),
+
+            Column::add()
+                ->field('diet', 'dishes.diet')
+                ->makeInputEnumSelect(Diet::cases(), 'dishes.diet')
+                ->title(__('Dieta')),
 
             Column::add()
                 ->title(__('Category'))

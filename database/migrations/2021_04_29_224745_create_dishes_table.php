@@ -21,6 +21,7 @@ class CreateDishesTable extends Migration
             $table->string('chef_name')->nullable();
             $table->double('price');
             $table->integer('calories');
+            $table->smallInteger('diet');
             $table->boolean('in_stock')->default(false);
             $table->date('produced_at');
             //$table->dateTime('produced_at');
