@@ -1,3 +1,13 @@
+ <!--
+    |*************************************************************************************
+    |                    ⚡ PowerGrid Demo  ⚡
+    |*************************************************************************************
+    | Thank you for download PowerGrid Demo!
+    |
+    | 📚 Documentation: http://livewire-powergrid.com
+    | ⭐ Please consider our repository at https://github.com/Power-Components/livewire-powergrid
+    |*************************************************************************************
+-->
 <!DOCTYPE html>
 <html x-data="{ darkMode: localStorage.getItem('dark')} "
       x-init="$watch('darkMode', val => localStorage.setItem('dark', val))"
@@ -7,10 +17,11 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>PowerGrid - Live Beer and Code</title>
+    <title>PowerGrid Demo</title>
 
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://afeld.github.io/emoji-css/emoji.css" rel="stylesheet">
 
     @if(powerGridTheme() === 'tailwind')
         <link href="{{ asset('css/app.css') }}" rel="stylesheet">
@@ -29,6 +40,7 @@
     <script src="{{ mix('js/app.js') }}" defer></script>
 </head>
 <body class="dark:bg-gray-400 bg-gray-200 font-sans leading-normal tracking-normal mx-8 mt-10">
+
 
 @if(powerGridTheme() === 'bootstrap')
 
@@ -49,9 +61,21 @@
             crossorigin="anonymous"></script>
 
 @else
-    <div
-        class="dark:bg-gray-900 bg-white p-4 rounded-md shadow-lg">
+
+    <div class="p-6 bg-gray-50 mb-3 rounded-md shadow-md text-gray-700 border border-gray-400">
+        <div class="text-xl mb-5">
+            <i class="em em-zap" aria-role="presentation" aria-label="HIGH VOLTAGE SIGN"></i> PowerGrid Demo<i class="em em-zap" aria-role="presentation" aria-label="HIGH VOLTAGE SIGN"></i>
+        </div>
+        <p class="p-2 leading-7">
+            <i class="em em-books" aria-role="presentation" aria-label="BOOKS"></i> Check <a href="https://livewire-powergrid.com/" rel="nofollow" target="_blank" class="bg-gradient-to-r from-yellow-200 to-yellow-200 bg-growing-underline">Documentation</a> for more information.
+            <br/>
+            <i class="em em-star" aria-role="presentation" aria-label="WHITE MEDIUM STAR"></i> Enjoying? Consider starring our <a href="https://github.com/Power-Components/livewire-powergrid" rel="nofollow" target="_blank" class="bg-gradient-to-r from-yellow-200 to-yellow-200 bg-growing-underline">Repository</a>!
+        </p>
+    </div>
+
+    <div class="dark:bg-gray-900 bg-white p-4 rounded-md shadow-lg">
         <div class="flex justify-end align-middle items-baseline items-center space-x-2 px-4 py-4">
+
             <div>
                     <span class="ml-2" id="annual-billing-label" @click="darkMode = !darkMode; $refs.switch.focus()"
                           style="margin-top: 0 !important;position: absolute;margin-left: -46px;">
