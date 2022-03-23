@@ -2,7 +2,6 @@
 
 namespace Database\Seeders;
 
-use App\Http\Enums\Diet;
 use App\Models\Dish;
 use App\Models\Kitchen;
 use Faker\Factory as Faker;
@@ -146,7 +145,7 @@ class DishSeeder extends Seeder
                 'calories'          => $faker->biasedNumberBetween($min = 40, $max = 890, $function = 'sqrt'),
                 'in_stock'          => $faker->boolean(),
                 'produced_at'       => $faker->dateTimeBetween($startDate = '-1 months', $endDate = 'now')->format("Y-m-d"),
-                'diet'              => $faker->randomElement(Diet::cases()),
+                'diet'              => $faker->randomElement([0, 1, 2]), //Diet::cases()
 
             ];
 

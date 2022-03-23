@@ -2,6 +2,7 @@
 
 namespace App\Http\Enums;
 
+/*** Only from Php 8.1
 enum Diet: int
 {
     case ALL      = 0;
@@ -16,13 +17,13 @@ enum Diet: int
             self::CELIAC      => "🥜 Suitable for Celiacs",
         };
     }
-    
-    /**
-      * Sends labels to PowerGrid Enum Input
-      *
-      */
+
+    // Returns labels for PowerGrid Select Filter
     public function labelPowergridFilter(): string
     {
         return $this->labels();
     }
 }
+
+Only from Php 8.1 *******/
+

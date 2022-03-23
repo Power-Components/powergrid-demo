@@ -2,7 +2,6 @@
 
 namespace App\Http\Livewire;
 
-use App\Http\Enums\Diet;
 use App\Models\Category;
 use App\Models\Dish;
 use App\Models\Kitchen;
@@ -115,11 +114,7 @@ final class DishesTable extends PowerGridComponent
             ->addColumn('dish_name', function (Dish $dish) {
                 return $dish->name;
             })
-            ->addColumn('chef_name')
             ->addColumn('calories')
-            ->addColumn('diet', function (Dish $dish) {
-                return Diet::from($dish->diet)->labels();
-            })
             ->addColumn('calories', function (Dish $dish) {
                 return $dish->calories . ' kcal';
             })
@@ -158,8 +153,16 @@ final class DishesTable extends PowerGridComponent
             ->addColumn('produced_at')
             ->addColumn('produced_at_formatted', function (Dish $dish) {
                 return Carbon::parse($dish->produced_at)->format('d/m/Y');
-            });
-    }
+            })
+
+            /*** Only from Php 8.1
+            ->addColumn('diet', function (Dish $dish) {
+                return \App\Http\Enums\Diet::from($dish->diet)->labels();
+            })
+            Only from Php 8.1 *******/
+            
+            ->addColumn('chef_name');
+    }   
 
     /*
     |--------------------------------------------------------------------------
@@ -203,11 +206,13 @@ final class DishesTable extends PowerGridComponent
                 ->makeInputText()
                 ->placeholder('Chef placeholder')
                 ->sortable(),
-
+            
+            /*** Only from Php 8.1
             Column::add()
                 ->field('diet', 'dishes.diet')
-                ->makeInputEnumSelect(Diet::cases(), 'dishes.diet')
+                ->makeInputEnumSelect(\App\Http\Enums\Diet::cases(), 'dishes.diet')
                 ->title(__('Dieta')),
+            Only from Php 8.1 *******/
 
             Column::add()
                 ->title(__('Category'))
