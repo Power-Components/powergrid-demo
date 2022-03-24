@@ -211,7 +211,7 @@ final class DishesTable extends PowerGridComponent
             Column::add()
                 ->field('diet', 'dishes.diet')
                 ->makeInputEnumSelect(\App\Enums\Diet::cases(), 'dishes.diet')
-                ->title(__('Dieta')),
+                ->title(__('Diet')),
             Only from Php 8.1 *******/
 
             Column::add()
