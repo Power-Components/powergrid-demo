@@ -139,12 +139,13 @@ class DishSeeder extends Seeder
             }
 
             $dish += [
-                'chef_name'     => $chef_name,
-                'kitchen_id'    => $kitchens->random()->id,
-                'price'         => $faker->randomFloat(2, 50, 200),
-                'calories'      => $faker->biasedNumberBetween($min = 40, $max = 890, $function = 'sqrt'),
-                'in_stock'      => $faker->boolean(),
-                'produced_at'   => $faker->dateTimeBetween($startDate = '-1 months', $endDate = 'now')->format("Y-m-d"),
+                'chef_name'         => $chef_name,
+                'kitchen_id'        => $kitchens->random()->id,
+                'price'             => $faker->randomFloat(2, 50, 200),
+                'calories'          => $faker->biasedNumberBetween($min = 40, $max = 890, $function = 'sqrt'),
+                'in_stock'          => $faker->boolean(),
+                'produced_at'       => $faker->dateTimeBetween($startDate = '-1 months', $endDate = 'now')->format("Y-m-d"),
+                'diet'              => $faker->randomElement([0, 1, 2]), //Diet::cases()
 
             ];
 

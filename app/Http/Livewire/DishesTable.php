@@ -114,7 +114,6 @@ final class DishesTable extends PowerGridComponent
             ->addColumn('dish_name', function (Dish $dish) {
                 return $dish->name;
             })
-            ->addColumn('chef_name')
             ->addColumn('calories')
             ->addColumn('calories', function (Dish $dish) {
                 return $dish->calories . ' kcal';
@@ -154,8 +153,16 @@ final class DishesTable extends PowerGridComponent
             ->addColumn('produced_at')
             ->addColumn('produced_at_formatted', function (Dish $dish) {
                 return Carbon::parse($dish->produced_at)->format('d/m/Y');
-            });
-    }
+            })
+
+            /*** Only from Php 8.1
+            ->addColumn('diet', function (Dish $dish) {
+                return \App\Enums\Diet::from($dish->diet)->labels();
+            })
+            Only from Php 8.1 *******/
+            
+            ->addColumn('chef_name');
+    }   
 
     /*
     |--------------------------------------------------------------------------
@@ -199,6 +206,13 @@ final class DishesTable extends PowerGridComponent
                 ->makeInputText()
                 ->placeholder('Chef placeholder')
                 ->sortable(),
+            
+            /*** Only from Php 8.1
+            Column::add()
+                ->field('diet', 'dishes.diet')
+                ->makeInputEnumSelect(\App\Enums\Diet::cases(), 'dishes.diet')
+                ->title(__('Diet')),
+            Only from Php 8.1 *******/
 
             Column::add()
                 ->title(__('Category'))

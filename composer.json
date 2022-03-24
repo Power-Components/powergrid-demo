@@ -2,7 +2,7 @@
     "name": "powercomponents/powergriddemo",
     "type": "project",
     "description": "This is a demo project featured in a live code session at Beer and Code Youtube channel.",
-    "keywords": ["powergrid", "demo", "beerandcode"],
+    "keywords": ["powergrid", "demo", "livewire", "datatable"],
     "license": "MIT",
     "require": {
         "php": "^8.0",
@@ -11,7 +11,7 @@
         "guzzlehttp/guzzle": "^7.4",
         "laravel/framework": "^9.0",
         "laravel/tinker": "^2.5",
-        "power-components/livewire-powergrid": "^2.2",
+        "power-components/livewire-powergrid": "^2.4",
         "wire-elements/modal": "^1.0"
     },
     "require-dev": {
@@ -41,7 +41,8 @@
     "scripts": {
         "post-autoload-dump": [
             "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
-            "@php artisan package:discover --ansi"
+            "@php artisan package:discover --ansi",
+            "@php powergrid-welcome.php"
         ],
         "post-root-package-install": [
             "@php -r \"file_exists('.env') || copy('.env.example', '.env');\""
