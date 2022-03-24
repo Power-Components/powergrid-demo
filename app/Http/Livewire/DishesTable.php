@@ -111,6 +111,7 @@ final class DishesTable extends PowerGridComponent
     {
         return PowerGrid::eloquent()
             ->addColumn('id')
+            ->addColumn('serving_at')
             ->addColumn('dish_name', function (Dish $dish) {
                 return $dish->name;
             })
@@ -220,6 +221,12 @@ final class DishesTable extends PowerGridComponent
                 ->placeholder('Category placeholder')
                 ->makeInputMultiSelect(Category::all(), 'name', 'category_id')
                 ->sortable(),
+
+            Column::add()
+                ->title('Serving at')
+                ->field('serving_at')
+                ->sortable()
+                ->makeInputSelect(Dish::servedAt(), 'serving_at'),
 
             Column::add()
                 ->title(__('Price'))

@@ -2,8 +2,8 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Support\Carbon;
 
@@ -35,6 +35,11 @@ class Dish extends Model
         'in_stock'
     ];
 
+    public static function servedAt()
+    {
+        return  Self::select('serving_at')->distinct('serving_at')->get();
+    }
+        
     public function category(): BelongsTo
     {
         return $this->belongsTo(Category::class);

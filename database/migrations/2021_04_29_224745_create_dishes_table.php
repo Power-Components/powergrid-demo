@@ -19,6 +19,7 @@ class CreateDishesTable extends Migration
             $table->foreignId('category_id')->constrained();
             $table->string('name');
             $table->string('chef_name')->nullable();
+            $table->string('serving_at')->default('restaurant');
             $table->double('price');
             $table->integer('calories');
             $table->smallInteger('diet');

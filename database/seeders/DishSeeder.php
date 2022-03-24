@@ -146,7 +146,7 @@ class DishSeeder extends Seeder
                 'in_stock'          => $faker->boolean(),
                 'produced_at'       => $faker->dateTimeBetween($startDate = '-1 months', $endDate = 'now')->format("Y-m-d"),
                 'diet'              => $faker->randomElement([0, 1, 2]), //Diet::cases()
-
+                'serving_at'        => $faker->randomElement(['restaurant', 'room service', 'pool bar'])
             ];
 
             Dish::create($dish);
