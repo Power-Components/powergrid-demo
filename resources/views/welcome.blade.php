@@ -67,7 +67,7 @@
             <i class="em em-zap" aria-role="presentation" aria-label="HIGH VOLTAGE SIGN"></i> PowerGrid Demo<i class="em em-zap" aria-role="presentation" aria-label="HIGH VOLTAGE SIGN"></i>
         </div>
         <p class="p-2 leading-7">
-            <i class="em em-books" aria-role="presentation" aria-label="BOOKS"></i> Check <a href="https://livewire-powergrid.com/" rel="nofollow" target="_blank" class="bg-gradient-to-r from-yellow-200 to-yellow-200 bg-growing-underline">Documentation</a> for more information.
+            <i class="em em-books" aria-role="presentation" aria-label="BOOKS"></i> Visit the <a href="https://livewire-powergrid.com/" rel="nofollow" target="_blank" class="bg-gradient-to-r from-yellow-200 to-yellow-200 bg-growing-underline">Documentation</a> for more information.
             <br/>
             <i class="em em-star" aria-role="presentation" aria-label="WHITE MEDIUM STAR"></i> Enjoying? Consider starring our <a href="https://github.com/Power-Components/livewire-powergrid" rel="nofollow" target="_blank" class="bg-gradient-to-r from-yellow-200 to-yellow-200 bg-growing-underline">Repository</a>!
         </p>
