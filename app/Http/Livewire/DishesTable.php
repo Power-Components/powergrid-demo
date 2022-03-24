@@ -157,7 +157,7 @@ final class DishesTable extends PowerGridComponent
 
             /*** Only from Php 8.1
             ->addColumn('diet', function (Dish $dish) {
-                return \App\Http\Enums\Diet::from($dish->diet)->labels();
+                return \App\Enums\Diet::from($dish->diet)->labels();
             })
             Only from Php 8.1 *******/
             
@@ -210,7 +210,7 @@ final class DishesTable extends PowerGridComponent
             /*** Only from Php 8.1
             Column::add()
                 ->field('diet', 'dishes.diet')
-                ->makeInputEnumSelect(\App\Http\Enums\Diet::cases(), 'dishes.diet')
+                ->makeInputEnumSelect(\App\Enums\Diet::cases(), 'dishes.diet')
                 ->title(__('Dieta')),
             Only from Php 8.1 *******/
 

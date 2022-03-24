@@ -37,7 +37,7 @@ EOF;
 */
 
 if (version_compare(PHP_VERSION, '8.1', '>')) {
-    $files = ['app/Http/Enums/Diet.php', 'app/Http/Livewire/DishesTable.php'];
+    $files = ['app/Enums/Diet.php', 'app/Http/Livewire/DishesTable.php'];
 
     foreach ($files as $filePath) {
         $fileContent = file_get_contents($filePath);

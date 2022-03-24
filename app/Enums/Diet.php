@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Enums;
+namespace App\Enums;
 
 /*** Only from Php 8.1
 enum Diet: int
