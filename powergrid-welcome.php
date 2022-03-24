@@ -40,8 +40,10 @@ if (version_compare(PHP_VERSION, '8.1', '>')) {
     $files = ['app/Enums/Diet.php', 'app/Http/Livewire/DishesTable.php'];
 
     foreach ($files as $filePath) {
+        $filePath = str_replace('\\', DIRECTORY_SEPARATOR, __DIR__ . '\\' . $filePath);
+
         $fileContent = file_get_contents($filePath);
-    
+
         $fileContent = preg_replace('/^.*Only from Php 8.1[^\\n]*/m', "", $fileContent);
 
         file_put_contents($filePath, $fileContent);
