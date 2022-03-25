@@ -149,7 +149,6 @@ final class DishesTable extends PowerGridComponent
             ->addColumn('dish_name', function (Dish $dish) {
                 return $dish->name;
             })
-            ->addColumn('calories')
             ->addColumn('calories', function (Dish $dish) {
                 return $dish->calories . ' kcal';
             })
