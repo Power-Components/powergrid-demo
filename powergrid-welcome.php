@@ -2,6 +2,10 @@
 
 declare(strict_types = 1);
 
+define('RUN_STATUS', 'never_ran');
+
+runOnce();
+
 $green    = "\033[0;32m";
 $yellow   = "\033[0;33m";
 $noColor  = "\033[0m";
@@ -18,8 +22,9 @@ echo <<<EOF
 {$noColor}Welcome and thank you for downloading our Demo!
 
 
-📚 See the Documentation at {$yellow}https://livewire-powergrid.com/{$noColor} for more information.
+👀 Check the {$yellow}PowerGrid Table{$noColor} at: {$green}[{$yellow}app/Http/Livewire/DishesTable.php{$green}]{$noColor}.
 
+📚 See the Documentation at {$yellow}https://livewire-powergrid.com/{$noColor} for more information.
 
 ⭐ Please consider {$yellow}starring{$noColor} our repository at {$yellow}https://github.com/Power-Components/livewire-powergrid{$noColor} ⭐
 
@@ -44,8 +49,24 @@ if (version_compare(PHP_VERSION, '8.1', '>')) {
 
         $fileContent = file_get_contents($filePath);
 
-        $fileContent = preg_replace('/^.*Only from Php 8.1[^\\n]*/m', "", $fileContent);
+        $fileContent = preg_replace('/^.*Only from Php 8.1[^\\n]*/m', '', $fileContent);
 
         file_put_contents($filePath, $fileContent);
     }
+}
+
+/*
+|*********************************************************************
+|          This script should run only once
+|*********************************************************************
+*/
+
+function runOnce(): void
+{
+    if (RUN_STATUS == 'ran') {
+        exit(0);
+    }
+
+    $fileContent = str_replace('never' . '_ran', 'ran', file_get_contents(__FILE__));
+    file_put_contents(__FILE__, $fileContent);
 }
