@@ -2,7 +2,7 @@
 
 declare(strict_types = 1);
 
-define('RUN_STATUS', 'never_ran');
+define('RUN_STATUS', 'ran');
 
 runOnce();
 

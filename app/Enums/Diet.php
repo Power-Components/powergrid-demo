@@ -2,7 +2,7 @@
 
 namespace App\Enums;
 
-/*** Only from Php 8.1
+
 enum Diet: int
 {
     case ALL      = 0;
@@ -25,5 +25,5 @@ enum Diet: int
     }
 }
 
-Only from Php 8.1 *******/
+
 

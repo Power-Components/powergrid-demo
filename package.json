@@ -15,10 +15,10 @@
         "laravel-mix": "^6.0.6",
         "lodash": "^4.17.19",
         "postcss": "^8.2.13",
-        "tailwindcss": "^3.0.7"
+        "tailwindcss": "^3.1.7"
     },
     "dependencies": {
-        "alpinejs": "^3.7.1",
+        "alpinejs": "^3.10.3",
         "bootstrap-select": "^1.13.18",
         "flatpickr": "^4.6.9"
     }

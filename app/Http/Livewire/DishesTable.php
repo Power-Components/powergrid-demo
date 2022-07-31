@@ -10,19 +10,20 @@ use Illuminate\Database\QueryException;
 use Illuminate\Support\Carbon;
 use PowerComponents\LivewirePowerGrid\Button;
 use PowerComponents\LivewirePowerGrid\Column;
+use PowerComponents\LivewirePowerGrid\Exportable;
+use PowerComponents\LivewirePowerGrid\Footer;
+use PowerComponents\LivewirePowerGrid\Header;
 use PowerComponents\LivewirePowerGrid\PowerGrid;
 use PowerComponents\LivewirePowerGrid\PowerGridComponent;
 use PowerComponents\LivewirePowerGrid\PowerGridEloquent;
 use PowerComponents\LivewirePowerGrid\Rules\Rule;
+use PowerComponents\LivewirePowerGrid\Rules\RuleActions;
 use PowerComponents\LivewirePowerGrid\Traits\ActionButton;
 
 final class DishesTable extends PowerGridComponent
 {
     use ActionButton;
 
-    //Messages informing success/error data is updated.
-    public bool $showUpdateMessages = true;
-    
     //Table sort field
     public string $sortField = 'dishes.id';
 
@@ -33,7 +34,6 @@ final class DishesTable extends PowerGridComponent
     | Add custom events to DishesTable
     |
     */
-    
     protected function getListeners(): array
     {
         return array_merge(
@@ -48,7 +48,6 @@ final class DishesTable extends PowerGridComponent
     |  Bulk delete button
     |--------------------------------------------------------------------------
     */
-
     public function bulkDelete(): void
     {
         $this->emit('openModal', 'delete-dish', [
@@ -63,7 +62,6 @@ final class DishesTable extends PowerGridComponent
     |  Edit Dish button
     |--------------------------------------------------------------------------
     */
-
     public function editDish(array $data): void
     {
         dd('You are editing', $data);
@@ -76,12 +74,22 @@ final class DishesTable extends PowerGridComponent
     | Setup Table's general features
     |
     */
-    public function setUp(): void
+    public function setUp(): array
     {
-        $this->showCheckBox()
-            ->showPerPage()
-            ->showSearchInput()
-            ->showExportOption('download', ['excel', 'csv']);
+        $this->showCheckBox();
+
+        return [
+            Exportable::make('export')
+                ->striped()
+                ->type(Exportable::TYPE_XLS, Exportable::TYPE_CSV),
+
+            Header::make()
+                ->showSearchInput(),
+
+            Footer::make()
+                ->showPerPage()
+                ->showRecordCount('min')
+        ];
     }
 
     /*
@@ -91,11 +99,11 @@ final class DishesTable extends PowerGridComponent
     | Provides data to your Table using a Model or Collection
     |
     */
-    
+
     /**
     * PowerGrid datasource.
     *
-    * @return  \Illuminate\Database\Eloquent\Builder<\App\Models\Dish>|null
+    * @return  Builder<Dish>|null
     */
     public function datasource(): ?Builder
     {
@@ -140,7 +148,7 @@ final class DishesTable extends PowerGridComponent
     |
     */
 
-    public function addColumns(): ?PowerGridEloquent
+    public function addColumns(): PowerGridEloquent
     {
         return PowerGrid::eloquent()
             ->addColumn('id')
@@ -180,19 +188,14 @@ final class DishesTable extends PowerGridComponent
 
                 return 'R$ ' . number_format($sales_price, 2, ',', '.'); //R$ 1.000,00
             })
-
             /*** STOCK ***/
             ->addColumn('in_stock')
             ->addColumn('in_stock_label', function (Dish $dish) {
                 return ($dish->in_stock ? "sim" : "não");
             })
-
-            /*** Only from Php 8.1
             ->addColumn('diet', function (Dish $dish) {
                 return \App\Enums\Diet::from($dish->diet)->labels();
             })
-            Only from Php 8.1 *******/
-
             /*** Produced At ***/
             ->addColumn('produced_at')
             ->addColumn('produced_at_formatted', function (Dish $dish) {
@@ -243,12 +246,12 @@ final class DishesTable extends PowerGridComponent
                 ->placeholder('Chef placeholder')
                 ->sortable(),
 
-            /*** Only from Php 8.1      
+
             Column::add()
                 ->field('diet', 'dishes.diet')
                 ->makeInputEnumSelect(\App\Enums\Diet::cases(), 'dishes.diet')
                 ->title(__('Diet')),
-            Only from Php 8.1 *******/
+
 
             Column::add()
                 ->title(__('Category'))
@@ -270,7 +273,7 @@ final class DishesTable extends PowerGridComponent
                 ->editOnClick($canEdit)
                 ->makeInputRange('price', ".", ",")
                 ->withSum('Total', true, true),
-                
+
             Column::add()
                 ->title(__('Sales price'))
                 ->field('sales_price_BRL'),
@@ -317,7 +320,7 @@ final class DishesTable extends PowerGridComponent
                 ->emit('bulkDelete', [])
         ];
     }
-    
+
     /*
     |--------------------------------------------------------------------------
     | Actions Method
@@ -329,8 +332,8 @@ final class DishesTable extends PowerGridComponent
     /**
     * PowerGrid Dish Action Buttons.
     *
-    * @return array<int, \PowerComponents\LivewirePowerGrid\Button>
-    */    
+    * @return array<int, Button>
+    */
     public function actions(): array
     {
         $theme = config('livewire-powergrid.theme');
@@ -358,7 +361,7 @@ final class DishesTable extends PowerGridComponent
                 ]),
         ];
     }
-    
+
     /*
     |--------------------------------------------------------------------------
     | Actions Rules
@@ -370,7 +373,7 @@ final class DishesTable extends PowerGridComponent
     /**
     * PowerGrid Dish Action Rules.
     *
-    * @return array<int, \PowerComponents\LivewirePowerGrid\Rules\RuleActions>
+    * @return array<int, RuleActions>
     */
     public function actionRules(): array
     {
@@ -391,62 +394,5 @@ final class DishesTable extends PowerGridComponent
                 ->when(fn($dish) => (bool)$dish->in_stock === false)
                 ->setAttribute('class', 'bg-yellow-50 hover:bg-yellow-100')
         ];
-    }
-
-    /*
-    |--------------------------------------------------------------------------
-    | Edit Method
-    |--------------------------------------------------------------------------
-    | Enable the method below to use editOnClick() or toggleable() methods.
-    | Data must be validated and treated (see "Update Data" in PowerGrid doc).
-    |
-    */
-
-    /**
-    * PowerGrid Dish Update.
-    *
-    * @param array<string,string> $data
-    */
-    public function update(array $data ): bool
-    {
-        //Clean price_BRL R$ 4.947,70 --> 44947.70 and saves in database field 'price'
-
-        if ($data['field'] == 'price_BRL') {
-            $data['field'] = 'price';
-            $data['value'] = Str::of($data['value'])
-                ->replace('.', '')
-                ->replace(',', '.')
-                ->replaceMatches('/[^Z0-9\.]/', '');
-        }
-
-        try {
-            $updated = Dish::query()->findOrFail($data['id'])
-                ->update([
-                    $data['field'] => $data['value']
-                ]);
-        } catch (QueryException $exception) {
-            $updated = false;
-        }
-
-        return $updated;
-    }
-
-    public function updateMessages(string $status = 'error', string $field = '_default_message'): string
-    {
-        $updateMessages = [
-            'success' => [
-                '_default_message' => __('Data has been updated successfully!'),
-                'price_BRL'        => 'Brazilian price changed!',
-                //'custom_field'   => __('Custom Field updated successfully!'),
-            ],
-            'error' => [
-                '_default_message' => __('Error updating the data.'),
-                //'custom_field'   => __('Error updating custom field.'),
-            ]
-        ];
-
-        $message = ($updateMessages[$status][$field] ?? $updateMessages[$status]['_default_message']);
-
-        return (is_string($message)) ? $message : 'Error!';
     }
 }

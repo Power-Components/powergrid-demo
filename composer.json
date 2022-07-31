@@ -9,9 +9,9 @@
         "friendsofphp/php-cs-fixer": "^3.0",
         "fruitcake/laravel-cors": "^2.0",
         "guzzlehttp/guzzle": "^7.4",
-        "laravel/framework": "^9.0",
+        "laravel/framework": "^9.22",
         "laravel/tinker": "^2.5",
-        "power-components/livewire-powergrid": "^2.4",
+        "power-components/livewire-powergrid": "^3.2",
         "wire-elements/modal": "^1.0"
     },
     "require-dev": {
