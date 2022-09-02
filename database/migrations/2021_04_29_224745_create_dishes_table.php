@@ -20,6 +20,7 @@ class CreateDishesTable extends Migration
             $table->string('name');
             $table->string('chef_name')->nullable();
             $table->string('serving_at')->default('restaurant');
+            $table->string('code')->default('0');
             $table->double('price');
             $table->integer('calories');
             $table->smallInteger('diet');

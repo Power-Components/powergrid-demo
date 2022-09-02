@@ -6,7 +6,6 @@ use App\Models\Category;
 use App\Models\Dish;
 use App\Models\Kitchen;
 use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\QueryException;
 use Illuminate\Support\Carbon;
 use PowerComponents\LivewirePowerGrid\Button;
 use PowerComponents\LivewirePowerGrid\Column;
@@ -37,10 +36,10 @@ final class DishesTable extends PowerGridComponent
     protected function getListeners(): array
     {
         return array_merge(
-                parent::getListeners(), [
-                    'edit-dish' => 'editDish',
-                    'bulkDelete',
-                ]);
+            parent::getListeners(), [
+                'edit-dish' => 'editDish',
+                'bulkDelete',
+            ]);
     }
 
     /*
@@ -175,6 +174,9 @@ final class DishesTable extends PowerGridComponent
                 return $dish->kitchen->name;
             })
 
+            /*** CODE ***/
+            ->addColumn('code_label', fn ($dish) => Dish::codes()->firstWhere('code', $dish->code)['label'])
+
             /*** PRICE ***/
             ->addColumn('price')
             ->addColumn('price_BRL', function (Dish $dish) {
@@ -246,12 +248,10 @@ final class DishesTable extends PowerGridComponent
                 ->placeholder('Chef placeholder')
                 ->sortable(),
 
-
             Column::add()
                 ->field('diet', 'dishes.diet')
                 ->makeInputEnumSelect(\App\Enums\Diet::cases(), 'dishes.diet')
                 ->title(__('Diet')),
-
 
             Column::add()
                 ->title(__('Category'))
@@ -273,6 +273,11 @@ final class DishesTable extends PowerGridComponent
                 ->editOnClick($canEdit)
                 ->makeInputRange('price', ".", ",")
                 ->withSum('Total', true, true),
+
+            Column::add()
+                ->title('code')
+                ->field('code_label', 'code')
+                ->makeInputSelect(Dish::codes(), 'label', 'code'),
 
             Column::add()
                 ->title(__('Sales price'))

@@ -141,6 +141,7 @@ class DishSeeder extends Seeder
             $dish += [
                 'chef_name'         => $chef_name,
                 'kitchen_id'        => $kitchens->random()->id,
+                'code'              => $faker->randomElement(Dish::codes()->pluck('code')),
                 'price'             => $faker->randomFloat(2, 50, 200),
                 'calories'          => $faker->biasedNumberBetween($min = 40, $max = 890, $function = 'sqrt'),
                 'in_stock'          => $faker->boolean(),
