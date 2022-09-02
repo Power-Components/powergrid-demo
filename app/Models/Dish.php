@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Collection;
 
 /**
  * @property int $id
@@ -49,4 +50,15 @@ class Dish extends Model
     {
         return $this->belongsTo(Kitchen::class);
     }
+
+        public static function codes(): Collection
+        {
+            return collect(
+                [
+                    ['code' => 0,  'label' => 'Best before'],
+                    ['code' => 1,  'label' => 'Expiring'],
+                    ['code' => 2, 'label'  => 'Expired'],
+                ]
+            );
+        }
 }
