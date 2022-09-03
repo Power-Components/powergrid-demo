@@ -114,7 +114,7 @@ final class DishesTable extends PowerGridComponent
             ->join('kitchens', function ($categories) {
                 $categories->on('dishes.kitchen_id', '=', 'kitchens.id');
             })
-
+            /** Many to Many Relationship **/
             ->leftJoin('dish_restaurant','dishes.id','=','dish_restaurant.dish_id')
             ->leftJoin('restaurants','restaurants.id','=','dish_restaurant.restaurant_id')
             ->with([
@@ -189,9 +189,7 @@ final class DishesTable extends PowerGridComponent
             ->addColumn('code_label', fn ($dish) => Dish::codes()->firstWhere('code', $dish->code)['label'])
             
             /*** RESTAURANTS ***/
-            ->addColumn('restaurant_title', fn($dish) => implode(", ", 
-                $dish->restaurants->each(fn($restaurant) => $restaurant->title =  e($restaurant->title) )->pluck('title')->toArray())
-                 ?? '' )
+            ->addColumn('restaurant_title', fn($dish) => $dish->restaurants->pluck('title')->map(fn($title) => e($title))->implode(', '))
 
             /*** PRICE ***/
             ->addColumn('price')
