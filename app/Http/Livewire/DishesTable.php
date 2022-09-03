@@ -5,6 +5,7 @@ namespace App\Http\Livewire;
 use App\Models\Category;
 use App\Models\Dish;
 use App\Models\Kitchen;
+use App\Models\Restaurant;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Carbon;
 use PowerComponents\LivewirePowerGrid\Button;
@@ -113,7 +114,14 @@ final class DishesTable extends PowerGridComponent
             ->join('kitchens', function ($categories) {
                 $categories->on('dishes.kitchen_id', '=', 'kitchens.id');
             })
-            ->select('dishes.*', 'categories.name as category_name');
+            /** Many to Many Relationship **/
+            ->leftJoin('dish_restaurant','dishes.id','=','dish_restaurant.dish_id')
+            ->leftJoin('restaurants','restaurants.id','=','dish_restaurant.restaurant_id')
+            ->with([
+                'restaurants',
+            ])
+            ->select('dishes.*', 'categories.name as category_name')
+            ->groupBy('dishes.id');
     }
 
     /*
@@ -133,8 +141,11 @@ final class DishesTable extends PowerGridComponent
     {
         return [
             'category' => [
-                'name'
-            ]
+                'name',
+            ],
+            'restaurants' => [
+                'title',
+            ],
         ];
     }
 
@@ -176,6 +187,9 @@ final class DishesTable extends PowerGridComponent
 
             /*** CODE ***/
             ->addColumn('code_label', fn ($dish) => Dish::codes()->firstWhere('code', $dish->code)['label'])
+            
+            /*** RESTAURANTS ***/
+            ->addColumn('restaurant_title', fn($dish) => $dish->restaurants->pluck('title')->map(fn($title) => e($title))->implode(', '))
 
             /*** PRICE ***/
             ->addColumn('price')
@@ -266,6 +280,12 @@ final class DishesTable extends PowerGridComponent
                 ->makeInputSelect(Dish::servedAt(), 'serving_at')
                 //->MakeInputMultiSelect(Dish::select('serving_at')->distinct()->get(), 'serving_at')
                 ->sortable(),
+
+            Column::add()
+                ->title('restaurant')
+                ->field('restaurant_title','restaurants.title')
+                ->makeInputMultiSelect(Restaurant::orderBy('title')->select('title','id')->get(),'title','restaurant_id')
+                ,
 
             Column::add()
                 ->title(__('Price'))
