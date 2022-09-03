@@ -160,33 +160,37 @@ final class DishesTable extends PowerGridComponent
 
     public function addColumns(): PowerGridEloquent
     {
+        /****
+         * ❗ IMPORTANT: You must use the function e() to escape
+         *    values coming from the database in closures.
+         */
         return PowerGrid::eloquent()
             ->addColumn('id')
             ->addColumn('serving_at')
             ->addColumn('chef_name')
             ->addColumn('dish_name', function (Dish $dish) {
-                return $dish->name;
+                return e($dish->name);;
             })
             ->addColumn('calories', function (Dish $dish) {
-                return $dish->calories . ' kcal';
+                return e($dish->calories) . ' kcal';
             })
             ->addColumn('category_id', function (Dish $dish) {
-                return $dish->category_id;
+                return e($dish->category_id);
             })
             ->addColumn('category_name', function (Dish $dish) {
-                return $dish->category->name;
+                return e($dish->category->name);
             })
 
             /*** KITCHEN ***/
             ->addColumn('kitchen_id', function (Dish $dish) {
-                return $dish->kitchen_id;
+                return e($dish->kitchen_id);
             })
             ->addColumn('kitchen_name', function (Dish $dish) {
-                return $dish->kitchen->name;
+                return e($dish->kitchen->name);
             })
 
             /*** CODE ***/
-            ->addColumn('code_label', fn ($dish) => Dish::codes()->firstWhere('code', $dish->code)['label'])
+            ->addColumn('code_label', fn ($dish) => e(Dish::codes()->firstWhere('code', $dish->code)['label']))
             
             /*** RESTAURANTS ***/
             ->addColumn('restaurant_title', fn($dish) => $dish->restaurants->pluck('title')->map(fn($title) => e($title))->implode(', '))
@@ -194,7 +198,7 @@ final class DishesTable extends PowerGridComponent
             /*** PRICE ***/
             ->addColumn('price')
             ->addColumn('price_BRL', function (Dish $dish) {
-                return 'R$ ' . number_format($dish->price, 2, ',', '.'); //R$ 1.000,00
+                return 'R$ ' . number_format(e($dish->price), 2, ',', '.'); //R$ 1.000,00
             })
 
             /*** SALE'S PRICE ***/
@@ -202,7 +206,7 @@ final class DishesTable extends PowerGridComponent
             ->addColumn('sales_price_BRL', function (Dish $dish) {
                 $sales_price = $dish->price + ($dish->price * 0.15);
 
-                return 'R$ ' . number_format($sales_price, 2, ',', '.'); //R$ 1.000,00
+                return 'R$ ' . number_format(e($sales_price), 2, ',', '.'); //R$ 1.000,00
             })
             /*** STOCK ***/
             ->addColumn('in_stock')
@@ -258,7 +262,7 @@ final class DishesTable extends PowerGridComponent
                 ->title(__('Chef'))
                 ->field('chef_name', 'dishes.chef_name')
                 ->searchable()
-                ->makeInputText()
+                ->makeInputText('dishes.chef_name')
                 ->placeholder('Chef placeholder')
                 ->sortable(),
 
@@ -284,8 +288,7 @@ final class DishesTable extends PowerGridComponent
             Column::add()
                 ->title('restaurant')
                 ->field('restaurant_title','restaurants.title')
-                ->makeInputMultiSelect(Restaurant::orderBy('title')->select('title','id')->get(),'title','restaurant_id')
-                ,
+                ->makeInputMultiSelect(Restaurant::orderBy('title')->select('title','id')->get(),'title','restaurant_id'),
 
             Column::add()
                 ->title(__('Price'))
