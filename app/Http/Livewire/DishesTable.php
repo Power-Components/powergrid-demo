@@ -89,7 +89,7 @@ final class DishesTable extends PowerGridComponent
 
             Footer::make()
                 ->showPerPage()
-                ->showRecordCount('min')
+                ->showRecordCount('min'),
 
             Detail::make()
                 ->view('components.detail') // views/components.detail.blade.php
