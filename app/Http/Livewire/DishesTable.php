@@ -12,6 +12,7 @@ use PowerComponents\LivewirePowerGrid\Button;
 use PowerComponents\LivewirePowerGrid\Column;
 use PowerComponents\LivewirePowerGrid\Exportable;
 use PowerComponents\LivewirePowerGrid\Footer;
+use PowerComponents\LivewirePowerGrid\Detail;
 use PowerComponents\LivewirePowerGrid\Header;
 use PowerComponents\LivewirePowerGrid\PowerGrid;
 use PowerComponents\LivewirePowerGrid\PowerGridComponent;
@@ -89,6 +90,11 @@ final class DishesTable extends PowerGridComponent
             Footer::make()
                 ->showPerPage()
                 ->showRecordCount('min')
+
+            Detail::make()
+                ->view('components.detail') // views/components.detail.blade.php
+                ->options(['message' => 'hello world'])
+                ->showCollapseIcon(),
         ];
     }
 
