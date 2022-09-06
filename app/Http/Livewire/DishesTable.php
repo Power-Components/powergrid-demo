@@ -10,9 +10,9 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Carbon;
 use PowerComponents\LivewirePowerGrid\Button;
 use PowerComponents\LivewirePowerGrid\Column;
+use PowerComponents\LivewirePowerGrid\Detail;
 use PowerComponents\LivewirePowerGrid\Exportable;
 use PowerComponents\LivewirePowerGrid\Footer;
-use PowerComponents\LivewirePowerGrid\Detail;
 use PowerComponents\LivewirePowerGrid\Header;
 use PowerComponents\LivewirePowerGrid\PowerGrid;
 use PowerComponents\LivewirePowerGrid\PowerGridComponent;
@@ -28,6 +28,22 @@ final class DishesTable extends PowerGridComponent
     //Table sort field
     public string $sortField = 'dishes.id';
 
+    /*
+    |--------------------------------------------------------------------------
+    |  Custom Theme - ❤️‍🔥 BIG FONTS LOVERS
+    |--------------------------------------------------------------------------
+    | PowerGrid allows you to create custom themes.
+    |
+    | Uncomment if you love BIG fonts
+    |
+    */
+    /*
+    public function template(): ?string
+    {
+        return \App\Themes\TailwindBig::class;
+    }
+    */
+    
     /*
     |--------------------------------------------------------------------------
     |  Event listeners
