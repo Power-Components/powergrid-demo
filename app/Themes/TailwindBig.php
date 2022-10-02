@@ -15,11 +15,12 @@ use PowerComponents\LivewirePowerGrid\Themes\Components\{Actions,
     FilterSelect,
     Footer,
     Table};
+use PowerComponents\LivewirePowerGrid\Themes\Tailwind;
 
 /**
  * This is a theme for people who ❤️‍🔥 BIG FONTS LOVERS
  */
-class TailwindBig extends \PowerComponents\LivewirePowerGrid\Themes\ThemeBase
+class TailwindBig extends Tailwind
 {
     public string $name = 'tailwind';
 

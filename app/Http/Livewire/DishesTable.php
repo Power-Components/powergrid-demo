@@ -37,13 +37,14 @@ final class DishesTable extends PowerGridComponent
     | Uncomment if you love BIG fonts
     |
     */
+
     /*
     public function template(): ?string
     {
         return \App\Themes\TailwindBig::class;
     }
     */
-    
+
     /*
     |--------------------------------------------------------------------------
     |  Event listeners
@@ -213,7 +214,7 @@ final class DishesTable extends PowerGridComponent
 
             /*** CODE ***/
             ->addColumn('code_label', fn ($dish) => e(Dish::codes()->firstWhere('code', $dish->code)['label']))
-            
+
             /*** RESTAURANTS ***/
             ->addColumn('restaurant_title', fn($dish) => $dish->restaurants->pluck('title')->map(fn($title) => e($title))->implode(', '))
 

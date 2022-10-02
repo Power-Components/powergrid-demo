@@ -15,3 +15,5 @@ Homestead.yaml
 npm-debug.log
 yarn-error.log
 storage/download.xlsx
+public/css/
+public/js/
