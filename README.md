@@ -20,6 +20,12 @@ This repository provides a fully configured PowerGrid implementation on a [Larav
 
 This PowerGrid example was originally created for a living code session at [Beer and Code](https://www.youtube.com/watch?v=Mml5aagMOm4&ab_channel=BeerandCode) Youtube channel.
 
+<br/>
+
+<sup><b>Notice of Non-Affiliation and Disclaimer:</b> Livewire PowerGrid is not affiliated, associated, endorsed by, or in any way officially connected with the Laravel Livewire - copyright by Caleb Porzio.</sup>
+
+<br/>
+
 ## How to use
 
 ### Requirements
