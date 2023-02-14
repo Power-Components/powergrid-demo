@@ -5,13 +5,12 @@
     "keywords": ["powergrid", "demo", "livewire", "datatable"],
     "license": "MIT",
     "require": {
-        "php": "^8.0",
+        "php": "^8.1",
         "friendsofphp/php-cs-fixer": "^3.0",
-        "fruitcake/laravel-cors": "^2.0",
         "guzzlehttp/guzzle": "^7.4",
-        "laravel/framework": "^9.22",
-        "laravel/tinker": "^2.5",
-        "power-components/livewire-powergrid": "^3.2",
+        "laravel/framework": "^10.0",
+        "laravel/tinker": "^2.8",
+        "power-components/livewire-powergrid": "^3.7",
         "wire-elements/modal": "^1.0"
     },
     "require-dev": {
@@ -24,7 +23,7 @@
         "pestphp/pest-plugin-laravel": "^1.2",
         "pestphp/pest-plugin-livewire": "^1.0",
         "phpunit/phpunit": "^9.5",
-        "spatie/laravel-ignition": "^1.0"
+        "spatie/laravel-ignition": "^2.0"
     },
     "autoload": {
         "psr-4": {
@@ -64,6 +63,6 @@
             "pestphp/pest-plugin": true
         }
     },
-    "minimum-stability": "dev",
+    "minimum-stability": "stable",
     "prefer-stable": true
 }
