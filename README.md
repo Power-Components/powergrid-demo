@@ -28,11 +28,13 @@ This PowerGrid example was originally created for a living code session at [Beer
 
 ## How to use
 
+The PowerGrid Demo Project runs in Laravel 10.
+
 ### Requirements
 
 - [Git](https://github.com/git-guides/install-git)
 - [Composer](https://getcomposer.org/doc/00-intro.md#installation-linux-unix-macos)
-- PHP 8.0+
+- PHP 8.1+
 - [Npm](https://www.npmjs.com/get-npm)
 - A database (e.g. MySQL)
 
