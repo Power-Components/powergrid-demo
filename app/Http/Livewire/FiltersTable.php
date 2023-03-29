@@ -131,30 +131,30 @@ final class FiltersTable extends PowerGridComponent
             Column::make('Dish', 'name')
                 ->searchable()
                 ->sortable(),
-            //
-            //            Column::add()
-            //                ->title('Serving at')
-            //                ->field('serving_at')
-            //                ->sortable(),
-            //
-            //            Column::make('Chef', 'chef_name')
-            //                ->searchable()
-            //                ->sortable(),
-            //
-            //            Column::make('Category', 'category_name'),
-            //
-            //            Column::add()
-            //                ->title(__('Price'))
-            //                ->field('price_BRL'),
-            //
-            //            Column::make('Sale Price', 'sales_price_BRL'),
-            //
-            //            Column::make('Calories', 'calories')
-            //                ->sortable(),
-            //
-            //            Column::make('Diet', 'diet', 'dishes.diet'),
-            //
-            //            Column::make('In Stock', 'in_stock_label', 'in_stock'),
+
+            Column::add()
+                ->title('Serving at')
+                ->field('serving_at')
+                ->sortable(),
+
+            Column::make('Chef', 'chef_name')
+                ->searchable()
+                ->sortable(),
+
+            Column::make('Category', 'category_name'),
+
+            Column::add()
+                ->title(__('Price'))
+                ->field('price_BRL'),
+
+            Column::make('Sale Price', 'sales_price_BRL'),
+
+            Column::make('Calories', 'calories')
+                ->sortable(),
+
+            Column::make('Diet', 'diet', 'dishes.diet'),
+
+            Column::make('In Stock', 'in_stock_label', 'in_stock'),
             Column::make('Produced At', 'produced_at_formatted')
                 ->sortable(),
 
@@ -207,7 +207,7 @@ final class FiltersTable extends PowerGridComponent
 
             Filter::datetimepicker('created_at_formatted', 'created_at')
                 ->params([
-                    //'timezone' => 'America/Sao_Paulo'
+                    'timezone' => 'America/Sao_Paulo',
                 ]),
         ];
     }
