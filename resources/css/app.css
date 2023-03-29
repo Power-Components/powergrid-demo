@@ -1,0 +1,29 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+    font-family: 'Nunito', sans-serif;
+    overflow: hidden;
+}
+
+[x-cloak] {
+    display: none !important;
+}
+
+*::-webkit-scrollbar {
+    width: 10px;
+    height: 8px;
+    cursor: pointer;
+}
+
+*::-webkit-scrollbar-track {
+    background-color: rgba(211, 211, 211, 0.808);
+    cursor: pointer;
+}
+
+*::-webkit-scrollbar-thumb {
+    cursor: pointer;
+    background-color: #a0aec0;
+    border-radius: 4px;
+}
