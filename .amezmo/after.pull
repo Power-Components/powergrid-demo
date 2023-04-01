@@ -1,0 +1,14 @@
+#!/bin/bash
+set -e
+
+APP_ENV=$(cat .env | grep APP_ENV | cut -d '=' -f 2);
+
+echo "Running composer install from ${APPLICATION_ROOT}";
+composer2 --no-ansi --no-interaction --optimize-autoloader --no-progress --profile --no-cache install;
+
+echo "Running migrations for ${APP_ENV} environment";
+php artisan migrate --force
+
+echo "Running NPM for ${APP_ENV} environment";
+npm install -no-audit --no-optional --no-progress
+npm run build

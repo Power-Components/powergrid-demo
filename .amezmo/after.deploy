@@ -1,0 +1,7 @@
+#!/bin/bash
+
+# Learn more at https://amezmo.com/docs
+set -e;
+
+php artisan storage:link;
+php artisan optimize;
