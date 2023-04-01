@@ -7,7 +7,7 @@ echo "Running composer install from ${APPLICATION_ROOT}";
 composer2 --no-ansi --no-interaction --optimize-autoloader --no-progress --profile --no-cache install;
 
 echo "Running migrations for ${APP_ENV} environment";
-php artisan migrate --force
+php artisan migrate:fresh --seed --force
 
 echo "Running NPM for ${APP_ENV} environment";
 npm install -no-audit --no-optional --no-progress
