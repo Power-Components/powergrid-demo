@@ -2789,12 +2789,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Power-Components/livewire-powergrid.git",
-                "reference": "fa26ca9a40cc491893e13c0575bc42c320fa52fd"
+                "reference": "81b6103e59afed17d229d75a950aa6a0322a56c4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Power-Components/livewire-powergrid/zipball/fa26ca9a40cc491893e13c0575bc42c320fa52fd",
-                "reference": "fa26ca9a40cc491893e13c0575bc42c320fa52fd",
+                "url": "https://api.github.com/repos/Power-Components/livewire-powergrid/zipball/81b6103e59afed17d229d75a950aa6a0322a56c4",
+                "reference": "81b6103e59afed17d229d75a950aa6a0322a56c4",
                 "shasum": ""
             },
             "require": {
@@ -2808,7 +2808,7 @@
                 "laradumps/laradumps": "^1.9.3",
                 "laravel/pint": "^1.7",
                 "nunomaduro/larastan": "^2.5.1",
-                "orchestra/testbench": "^7.0 | ^8.1.1",
+                "orchestra/testbench": "^7.0 | ^8.2.0",
                 "pestphp/pest": "^2.3.0",
                 "pestphp/pest-plugin-faker": "^2.0",
                 "pestphp/pest-plugin-livewire": "^2.0",
@@ -2862,7 +2862,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2023-03-31T14:03:24+00:00"
+            "time": "2023-04-02T13:01:36+00:00"
         },
         {
             "name": "psr/cache",
