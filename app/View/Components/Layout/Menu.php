@@ -33,6 +33,11 @@ class Menu extends Component
                 'name' => 'filters',
             ],
             [
+                'label' => 'Filters outside',
+                'route' => route('filters-outside'),
+                'name' => 'filters-outside',
+            ],
+            [
                 'label' => 'Validation',
                 'route' => route('validation'),
                 'name' => 'validation',

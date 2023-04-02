@@ -206,11 +206,9 @@ final class DishesTable extends PowerGridComponent
                 return $dish->in_stock ? 'sim' : 'não';
             })
 
-            /*** Only from Php 8.1
             ->addColumn('diet', function (Dish $dish) {
-            return \App\Enums\Diet::from($dish->diet)->labels();
+                return \App\Enums\Diet::from($dish->diet)->labels();
             })
-            Only from Php 8.1 *******/
 
             /*** Produced At ***/
             ->addColumn('produced_at')

@@ -49,9 +49,9 @@ final class ValidationTable extends PowerGridComponent
     {
         $this->validate();
 
-        User::query()->find($id)->update([
-            $field => $value,
-        ]);
+//        User::query()->find($id)->update([
+//            $field => $value,
+//        ]);
 
         $this->notification([
             'title' => 'Profile saved!',

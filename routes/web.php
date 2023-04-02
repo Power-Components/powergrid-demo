@@ -10,6 +10,7 @@ Route::get('/collection', fn () => view('collection'))->name('collection');
 Route::get('/join', fn () => view('join'))->name('join');
 Route::get('/multiple', fn () => view('multiple'))->name('multiple');
 Route::get('/filters', fn () => view('filters'))->name('filters');
+Route::get('/filters-outside', fn () => view('filters-outside'))->name('filters-outside');
 Route::get('/dish', fn () => view('dish'))->name('dish');
 Route::get('/validation', fn () => view('validation'))->name('validation');
 Route::get('/persist', fn () => view('persist'))->name('persist');

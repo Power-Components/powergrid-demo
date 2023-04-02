@@ -113,11 +113,9 @@ final class BatchExportTable extends PowerGridComponent
                 return $dish->in_stock ? 'sim' : 'não';
             })
 
-            /*** Only from Php 8.1
             ->addColumn('diet', function (Dish $dish) {
             return \App\Enums\Diet::from($dish->diet)->labels();
             })
-            Only from Php 8.1 *******/
 
             ->addColumn('produced_at')
             ->addColumn('produced_at_formatted', function (Dish $dish) {

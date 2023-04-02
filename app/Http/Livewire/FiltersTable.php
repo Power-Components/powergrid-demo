@@ -97,6 +97,9 @@ final class FiltersTable extends PowerGridComponent
             ->addColumn('price_EUR', function (Dish $dish) use ($fmt) {
                 return $fmt->formatCurrency($dish->price, 'EUR');
             })
+            ->addColumn('diet', function (Dish $dish) {
+                return \App\Enums\Diet::from($dish->diet)->labels();
+            })
             ->addColumn('price_BRL', function (Dish $dish) {
                 return 'R$ '.number_format($dish->price, 2, ',', '.'); //R$ 1.000,00
             })
@@ -186,7 +189,7 @@ final class FiltersTable extends PowerGridComponent
 
             Filter::boolean('in_stock', 'in_stock')
                 ->label('In stock', 'Out of stock')
-                ->query(function (Builder $query, string $value) {
+                ->builder(function (Builder $query, string $value) {
                     return $query->where('in_stock', $value === 'true' ? 1 : 0);
                 }),
 

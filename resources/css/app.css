@@ -12,7 +12,7 @@ body {
 }
 
 *::-webkit-scrollbar {
-    width: 10px;
+    width: 8px;
     height: 8px;
     cursor: pointer;
 }
@@ -24,6 +24,6 @@ body {
 
 *::-webkit-scrollbar-thumb {
     cursor: pointer;
-    background-color: #a0aec0;
+    background-color: #b6c0ce;
     border-radius: 4px;
 }
