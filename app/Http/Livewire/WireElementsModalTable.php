@@ -12,10 +12,12 @@ use PowerComponents\LivewirePowerGrid\PowerGrid;
 use PowerComponents\LivewirePowerGrid\PowerGridComponent;
 use PowerComponents\LivewirePowerGrid\PowerGridEloquent;
 use PowerComponents\LivewirePowerGrid\Traits\ActionButton;
+use WireUi\Traits\Actions;
 
 final class WireElementsModalTable extends PowerGridComponent
 {
     use ActionButton;
+    use Actions;
 
     public function setUp(): array
     {
@@ -69,10 +71,25 @@ final class WireElementsModalTable extends PowerGridComponent
                 ->sortable(),
 
             Column::make('In Stock', 'in_stock_label')
+                ->toggleable()
                 ->field('in_stock'),
 
             Column::make('Created At', 'created_at_formatted'),
         ];
+    }
+
+    public function onUpdatedToggleable(string $id, string $field, string $value): void
+    {
+        $this->notification([
+            'title' => 'onUpdatedToggleable',
+            'description' => "Id: {$id}, Field: {$field}, Value: {$value}",
+            'icon' => 'success',
+            'timeout' => 4000,
+        ]);
+
+        Dish::query()->where('id', $id)->update([
+            $field => $value,
+        ]);
     }
 
     public function actions(): array
@@ -83,7 +100,7 @@ final class WireElementsModalTable extends PowerGridComponent
                 ->class('text-center')
                 ->openModal('edit-stock', ['dishId' => 'id']),
 
-            Button::add('edit-stock')
+            Button::add('delete-stock')
                 ->caption('<div class="pg-btn-white bg-red-500 border-red-600 !text-white hover:!bg-red-600">Delete</div>')
                 ->class('text-center')
                 ->openModal('delete-dish', ['dishId' => 'id']),

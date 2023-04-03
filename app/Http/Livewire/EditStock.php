@@ -4,12 +4,27 @@ namespace App\Http\Livewire;
 
 use App\Models\Dish;
 use LivewireUI\Modal\ModalComponent;
+use WireUi\Traits\Actions;
 
 class EditStock extends ModalComponent
 {
+    use Actions;
+
     public ?int $dishId = null;
 
-    public ?array $dishIds = [];
+    public bool $inStock = false;
+
+    protected function getRules()
+    {
+        return [
+            'inStock' => 'required|string',
+        ];
+    }
+
+    public function mount()
+    {
+        $this->inStock = Dish::query()->find($this->dishId)->in_stock;
+    }
 
     public static function modalMaxWidth(): string
     {
@@ -33,13 +48,16 @@ class EditStock extends ModalComponent
 
     public function confirm()
     {
-        if ($this->dishId) {
-           // Dish::query()->find($this->dishId)->delete();
-        }
+        Dish::query()->where('id', $this->dishId)
+            ->update([
+                'in_stock' => $this->inStock,
+            ]);
 
-        if ($this->dishIds) {
-           // Dish::query()->whereIn('id', $this->dishIds)->delete();
-        }
+        $this->notification([
+            'title' => 'Dish updated successfully!',
+            'icon' => 'success',
+            'timeout' => 2000,
+        ]);
 
         $this->closeModalWithEvents([
             'pg:eventRefresh-default',
