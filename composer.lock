@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "ff428e09278714fc2378a76de9f883a1",
+    "content-hash": "72257e797c1b952d83b48709fb6c2c25",
     "packages": [
         {
             "name": "brick/math",
@@ -2785,16 +2785,16 @@
         },
         {
             "name": "power-components/livewire-powergrid",
-            "version": "4.x-dev",
+            "version": "v4.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Power-Components/livewire-powergrid.git",
-                "reference": "81b6103e59afed17d229d75a950aa6a0322a56c4"
+                "reference": "3b55832d74eb4c071560bee40b06d053c011f661"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Power-Components/livewire-powergrid/zipball/81b6103e59afed17d229d75a950aa6a0322a56c4",
-                "reference": "81b6103e59afed17d229d75a950aa6a0322a56c4",
+                "url": "https://api.github.com/repos/Power-Components/livewire-powergrid/zipball/3b55832d74eb4c071560bee40b06d053c011f661",
+                "reference": "3b55832d74eb4c071560bee40b06d053c011f661",
                 "shasum": ""
             },
             "require": {
@@ -2812,7 +2812,6 @@
                 "pestphp/pest": "^2.3.0",
                 "pestphp/pest-plugin-faker": "^2.0",
                 "pestphp/pest-plugin-livewire": "^2.0",
-                "phpunit/phpunit": "^10.0.19",
                 "spaze/phpstan-disallowed-calls": "^2.12.1"
             },
             "suggest": {
@@ -2854,7 +2853,7 @@
             "homepage": "https://github.com/power-components/livewire-powergrid",
             "support": {
                 "issues": "https://github.com/Power-Components/livewire-powergrid/issues",
-                "source": "https://github.com/Power-Components/livewire-powergrid/tree/4.x"
+                "source": "https://github.com/Power-Components/livewire-powergrid/tree/v4.0.0"
             },
             "funding": [
                 {
@@ -2862,7 +2861,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2023-04-02T13:01:36+00:00"
+            "time": "2023-04-03T13:41:56+00:00"
         },
         {
             "name": "psr/cache",
@@ -8713,9 +8712,7 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": {
-        "power-components/livewire-powergrid": 20
-    },
+    "stability-flags": [],
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {

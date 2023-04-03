@@ -13,7 +13,7 @@
         "laravel/tinker": "^2.8.1",
         "livewire/livewire": "^2.12.3",
         "openspout/openspout": "^4.13.1",
-        "power-components/livewire-powergrid": "4.x-dev",
+        "power-components/livewire-powergrid": "^4.0",
         "wire-elements/modal": "^1.0.7",
         "wireui/wireui": "^1.17.9"
     },
