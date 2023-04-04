@@ -32,6 +32,10 @@ final class FiltersTable extends PowerGridComponent
 
     public function setUp(): array
     {
+        if ($this->filtersOutside) {
+            $this->dispatchBrowserEvent('toggle-filters-'.$this->tableName);
+        }
+
         return [
             Exportable::make('export')
                 ->striped()
@@ -51,6 +55,8 @@ final class FiltersTable extends PowerGridComponent
     {
         if ($this->filtersOutside) {
             config(['livewire-powergrid.filter' => 'outside']);
+
+            $this->dispatchBrowserEvent('toggle-filters-'.$this->tableName);
         }
 
         return Dish::query()

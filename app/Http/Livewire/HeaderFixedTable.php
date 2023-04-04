@@ -2,7 +2,7 @@
 
 namespace App\Http\Livewire;
 
-use App\Http\Livewire\PowerGridThemes\TailwindHeaderFixed;
+use App\Helpers\PowerGridThemes\TailwindHeaderFixed;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Carbon;

@@ -2,7 +2,7 @@
 
 namespace App\Http\Livewire;
 
-use App\Http\Livewire\PowerGridThemes\TailwindStriped;
+use App\Helpers\PowerGridThemes\TailwindStriped;
 use App\Models\Dish;
 use Illuminate\Support\Carbon;
 use PowerComponents\LivewirePowerGrid\Button;
