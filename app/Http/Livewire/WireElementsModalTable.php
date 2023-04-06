@@ -96,14 +96,22 @@ final class WireElementsModalTable extends PowerGridComponent
     {
         return [
             Button::add('edit-stock')
-                ->caption('<div class="pg-btn-white">Edit</div>')
-                ->class('text-center')
-                ->openModal('edit-stock', ['dishId' => 'id']),
+                ->bladeComponent('button.circle', function (Dish $dish) {
+                    return [
+                        'primary' => true,
+                        'icon' => 'pencil',
+                        'wire:click' => '$emit(\'openModal\', \'edit-stock\', {{ json_encode([\'dishId\' => '.$dish->id.']) }})',
+                    ];
+                }),
 
             Button::add('delete-stock')
-                ->caption('<div class="pg-btn-white bg-red-500 border-red-600 !text-white hover:!bg-red-600">Delete</div>')
-                ->class('text-center')
-                ->openModal('delete-dish', ['dishId' => 'id']),
+                ->bladeComponent('button.circle', function (Dish $dish) {
+                    return [
+                        'negative' => true,
+                        'icon' => 'trash',
+                        'wire:click' => '$emit(\'openModal\', \'delete-dish\', {{ json_encode([\'dishId\' => '.$dish->id.']) }})',
+                    ];
+                }),
         ];
     }
 }

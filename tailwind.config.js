@@ -5,7 +5,7 @@ module.exports = {
         './resources/**/*.js',
         // powergrid
         './app/Http/Livewire/**/*Table.php',
-        './app/Http/Livewire/PowerGridThemes/*.php',
+        './app/Helpers/PowerGridThemes/*.php',
         './vendor/power-components/livewire-powergrid/resources/views/**/*.php',
         './vendor/power-components/livewire-powergrid/src/Themes/Tailwind.php',
         // wire-elements

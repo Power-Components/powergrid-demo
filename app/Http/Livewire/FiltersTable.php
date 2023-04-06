@@ -6,6 +6,7 @@ use App\Enums\Diet;
 use App\Models\Dish;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\Blade;
 use NumberFormatter;
 use PowerComponents\LivewirePowerGrid\Button;
 use PowerComponents\LivewirePowerGrid\Column;
@@ -17,10 +18,12 @@ use PowerComponents\LivewirePowerGrid\PowerGrid;
 use PowerComponents\LivewirePowerGrid\PowerGridComponent;
 use PowerComponents\LivewirePowerGrid\PowerGridEloquent;
 use PowerComponents\LivewirePowerGrid\Traits\ActionButton;
+use WireUi\Traits\Actions;
 
 final class FiltersTable extends PowerGridComponent
 {
     use ActionButton;
+    use Actions;
 
     public bool $filtersOutside = false;
 
@@ -175,15 +178,34 @@ final class FiltersTable extends PowerGridComponent
     public function actions(): array
     {
         return [
-            Button::make('edit-stock', 'Edit')
-                ->class('text-center')
-                ->openModal('edit-stock', ['dishId' => 'id']),
+            Button::make('edit')
+                ->render(function (Dish $dish) {
+                    return Blade::render(<<<HTML
+<x-button.circle primary icon="pencil" wire:click="editDish('$dish->id')" />
+HTML);
+                }),
 
-            Button::make('destroy', 'Delete')
-                ->class('text-center')
-                ->emit('deletedEvent', ['dishId' => 'id'])
-                ->method('delete'),
+            Button::make('delete')
+                ->bladeComponent('button.circle', function (Dish $dish) {
+                    return [
+                        'negative' => true,
+                        'icon' => 'trash',
+                        'wire:click' => 'editDish(\''.$dish->id.'\')',
+                    ];
+                }),
         ];
+    }
+
+    public function editDish(int $dishId): void
+    {
+        $this->notification()
+            ->info('Edit DishId: '.$dishId);
+    }
+
+    public function deleteDish(int $dishId): void
+    {
+        $this->notification()
+            ->success('Edit DishId: '.$dishId);
     }
 
     public function filters(): array

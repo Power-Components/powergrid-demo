@@ -330,22 +330,23 @@ final class DishesTable extends PowerGridComponent
     public function actions(): array
     {
         return [
-            Button::add('edit')
-                ->caption('Edit')
-                ->class('bg-indigo-500 cursor-pointer text-white px-3 py-2 m-1 rounded text-sm')
-                ->emit('edit-dish', [
-                    'dishId' => 'id',
-                    'custom' => __METHOD__,
-                ]),
+            Button::add('edit-stock')
+                ->bladeComponent('button.circle', function (Dish $dish) {
+                    return [
+                        'primary' => true,
+                        'icon' => 'pencil',
+                        'wire:click' => '$emit(\'openModal\', \'edit-stock\', {{ json_encode([\'dishId\' => '.$dish->id.']) }})',
+                    ];
+                }),
 
-            Button::add('destroy')
-                ->caption(__('Delete'))
-                ->class('bg-red-500 text-white px-3 py-2 m-1 rounded text-sm')
-                ->openModal('delete-dish', [
-                    'dishId' => 'id',
-                    'confirmationTitle' => 'Delete dish',
-                    'confirmationDescription' => 'Are you sure you want to delete this dish?',
-                ]),
+            Button::add('delete-stock')
+                ->bladeComponent('button.circle', function (Dish $dish) {
+                    return [
+                        'negative' => true,
+                        'icon' => 'trash',
+                        'wire:click' => '$emit(\'openModal\', \'delete-dish\', {{ json_encode([\'dishId\' => '.$dish->id.']) }})',
+                    ];
+                }),
         ];
     }
 

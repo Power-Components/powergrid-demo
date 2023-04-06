@@ -4,6 +4,7 @@ namespace App\Http\Livewire;
 
 use App\Models\Dish;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\Blade;
 use PowerComponents\LivewirePowerGrid\Column;
 use PowerComponents\LivewirePowerGrid\Footer;
 use PowerComponents\LivewirePowerGrid\Header;
@@ -12,7 +13,7 @@ use PowerComponents\LivewirePowerGrid\PowerGridComponent;
 use PowerComponents\LivewirePowerGrid\PowerGridEloquent;
 use PowerComponents\LivewirePowerGrid\Traits\ActionButton;
 
-final class SimpleTable extends PowerGridComponent
+class SimpleTable extends PowerGridComponent
 {
     use ActionButton;
 
@@ -41,11 +42,15 @@ final class SimpleTable extends PowerGridComponent
             ->addColumn('chef_name')
             ->addColumn('price')
             ->addColumn('in_stock')
-            ->addColumn('in_stock_label', function ($entry) {
-                return $entry->in_stock ? 'sim' : 'não';
+            ->addColumn('in_stock_label', function (Dish $dish) {
+                if ($dish->in_stock) {
+                    return Blade::render('<x-badge sky label="Yes" />');
+                }
+
+                return Blade::render('<x-badge negative label="No" />');
             })
-            ->addColumn('created_at_formatted', function ($entry) {
-                return Carbon::parse($entry->created_at)->format('d/m/Y');
+            ->addColumn('created_at_formatted', function (Dish $dish) {
+                return Carbon::parse($dish->created_at)->format('d/m/Y');
             });
     }
 
@@ -67,8 +72,7 @@ final class SimpleTable extends PowerGridComponent
             Column::make('Price', 'price')
                 ->sortable(),
 
-            Column::make('In Stock', 'in_stock_label')
-                ->field('in_stock'),
+            Column::make('In Stock', 'in_stock_label'),
 
             Column::make('Created At', 'created_at_formatted'),
         ];

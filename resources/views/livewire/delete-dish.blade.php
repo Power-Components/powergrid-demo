@@ -9,16 +9,10 @@
             DishIds: @json($dishIds)
         @endif
         <div class="font-normal text-gray-600">{{ $confirmationDescription }}</div>
-        <div class="space-x-2 flex justify-end mt-3">
-            <button class="bg-gray-200 cursor-pointer text-black border border-gray-400 px-3 py-2 m-1 rounded text-sm"
-                    wire:click="cancel">
-                Cancel
-            </button>
-            <button class="bg-indigo-500 cursor-pointer text-white px-3 py-2 m-1 rounded text-sm"
-                    wire:click="confirm">
-                Confirm
-            </button>
-        </div>
+            <div class="space-x-2 flex justify-end mt-3">
+                <x-button flat label="Cancel" wire:click="cancel"/>
+                <x-button primary label="Save" wire:click="confirm"/>
+            </div>
     </div>
 
 </div>

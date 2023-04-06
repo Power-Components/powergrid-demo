@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "72257e797c1b952d83b48709fb6c2c25",
+    "content-hash": "9f6fb1aac112172f34464e65864b6d56",
     "packages": [
         {
             "name": "brick/math",
@@ -1322,16 +1322,16 @@
         },
         {
             "name": "laravel/framework",
-            "version": "v10.5.1",
+            "version": "v10.6.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/framework.git",
-                "reference": "485f22333e8c1dff5bae0fe0421c1e2e139713de"
+                "reference": "13dc93889617427352f72b6aa8b195b252af1197"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/framework/zipball/485f22333e8c1dff5bae0fe0421c1e2e139713de",
-                "reference": "485f22333e8c1dff5bae0fe0421c1e2e139713de",
+                "url": "https://api.github.com/repos/laravel/framework/zipball/13dc93889617427352f72b6aa8b195b252af1197",
+                "reference": "13dc93889617427352f72b6aa8b195b252af1197",
                 "shasum": ""
             },
             "require": {
@@ -1430,7 +1430,7 @@
                 "league/flysystem-read-only": "^3.3",
                 "league/flysystem-sftp-v3": "^3.0",
                 "mockery/mockery": "^1.5.1",
-                "orchestra/testbench-core": "^8.1",
+                "orchestra/testbench-core": "^8.4",
                 "pda/pheanstalk": "^4.0",
                 "phpstan/phpdoc-parser": "^1.15",
                 "phpstan/phpstan": "^1.4.7",
@@ -1518,7 +1518,7 @@
                 "issues": "https://github.com/laravel/framework/issues",
                 "source": "https://github.com/laravel/framework"
             },
-            "time": "2023-03-29T15:09:16+00:00"
+            "time": "2023-04-05T15:28:17+00:00"
         },
         {
             "name": "laravel/sanctum",
@@ -2785,17 +2785,11 @@
         },
         {
             "name": "power-components/livewire-powergrid",
-            "version": "v4.0.2",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/Power-Components/livewire-powergrid.git",
-                "reference": "63acc32f637af4673bbe167db0a745b6ed195456"
-            },
+            "version": "4.x-dev",
             "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/Power-Components/livewire-powergrid/zipball/63acc32f637af4673bbe167db0a745b6ed195456",
-                "reference": "63acc32f637af4673bbe167db0a745b6ed195456",
-                "shasum": ""
+                "type": "path",
+                "url": "/Users/luan.freitas/Documents/livewire-powergrid",
+                "reference": "193e5ad9d44668e3897c22c81f41ea01b9fc36a8"
             },
             "require": {
                 "doctrine/dbal": "^3.6.1|2.12.1",
@@ -2826,14 +2820,54 @@
                 }
             },
             "autoload": {
-                "files": [
-                    "src/functions.php"
-                ],
                 "psr-4": {
                     "PowerComponents\\LivewirePowerGrid\\": "src"
+                },
+                "files": [
+                    "src/functions.php"
+                ]
+            },
+            "autoload-dev": {
+                "psr-4": {
+                    "PowerComponents\\LivewirePowerGrid\\Tests\\": "tests"
                 }
             },
-            "notification-url": "https://packagist.org/downloads/",
+            "scripts": {
+                "pint:fix": [
+                    "./vendor/bin/pint"
+                ],
+                "test": [
+                    "@test:sqlite"
+                ],
+                "test:pint": [
+                    "./vendor/bin/pint --test"
+                ],
+                "test:sqlite": [
+                    "XDEBUG_MODE=coverage ./vendor/bin/pest --compact --coverage --min=80"
+                ],
+                "test:mysql": [
+                    "./vendor/bin/pest --compact --configuration phpunit.mysql.xml"
+                ],
+                "test:pgsql": [
+                    "./vendor/bin/pest --compact --configuration phpunit.pgsql.xml"
+                ],
+                "test:sqlsrv": [
+                    "./vendor/bin/pest --configuration phpunit.sqlsrv.xml"
+                ],
+                "test:types": [
+                    "./vendor/bin/phpstan analyse --ansi --memory-limit=-1 --xdebug"
+                ],
+                "test:dbs": [
+                    "@test:sqlite",
+                    "@test:mysql",
+                    "@test:pgsql"
+                ],
+                "verify": [
+                    "@test:pint",
+                    "@test:types",
+                    "@test"
+                ]
+            },
             "license": [
                 "MIT"
             ],
@@ -2851,17 +2885,9 @@
             ],
             "description": "PowerGrid generates Advanced Datatables using Laravel Livewire.",
             "homepage": "https://github.com/power-components/livewire-powergrid",
-            "support": {
-                "issues": "https://github.com/Power-Components/livewire-powergrid/issues",
-                "source": "https://github.com/Power-Components/livewire-powergrid/tree/v4.0.2"
-            },
-            "funding": [
-                {
-                    "url": "https://github.com/luanfreitasdev",
-                    "type": "github"
-                }
-            ],
-            "time": "2023-04-04T08:33:13+00:00"
+            "transport-options": {
+                "relative": false
+            }
         },
         {
             "name": "psr/cache",
@@ -8712,7 +8738,9 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": [],
+    "stability-flags": {
+        "power-components/livewire-powergrid": 20
+    },
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
