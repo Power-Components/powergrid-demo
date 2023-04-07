@@ -28,7 +28,7 @@ describe('simple', () => {
 
             expect(texts, 'data').to.deep.equal(data)
         })
+
+        cy.contains('Showing 1 to 3 of 3 Results')
     })
-
-
 })

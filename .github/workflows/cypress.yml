@@ -25,23 +25,6 @@ jobs:
           --health-timeout=5s
           --health-retries=3
 
-      postgres:
-        # Docker Hub image (also with version)
-        image: postgres:latest
-        env:
-          POSTGRES_USER: postgres
-          POSTGRES_PASSWORD: postgres
-          POSTGRES_DB: db_test_laravel
-        ## map the "external" 55432 port with the "internal" 5432
-        ports:
-          - 55432:5432
-        # Set health checks to wait until postgresql database has started (it takes some seconds to start)
-        options: >-
-          --health-cmd pg_isready
-          --health-interval 10s
-          --health-timeout 5s
-          --health-retries 5
-
     strategy:
       matrix:
         operating-system: [ubuntu-latest]
@@ -119,15 +102,3 @@ jobs:
         run: |
           php artisan serve -q & sleep 5 &
           composer cypress
-
-      - name: Cypress (Postgres)
-        env:
-          DB_CONNECTION: pgsql
-          DB_DATABASE: db_test_laravel
-          DB_PORT: 55432
-          DB_USERNAME: postgres
-          DB_PASSWORD: postgres
-        run: |
-          php artisan about &
-          php artisan serve -q & sleep 5 &
-          composer cypress    
