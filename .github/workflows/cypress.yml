@@ -128,5 +128,6 @@ jobs:
           DB_USERNAME: postgres
           DB_PASSWORD: postgres
         run: |
+          php artisan about &
           php artisan serve -q & sleep 5 &
           composer cypress    
