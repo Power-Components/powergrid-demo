@@ -49,7 +49,7 @@ jobs:
         if: steps.node_modules-cache.outputs.cache-hit != 'true'
         run: npm ci
       - name: Build frontend
-        run: npm run development
+        run: npm run build
       - name: Install PHP versions
         uses: shivammathur/setup-php@v2
         with:
@@ -96,7 +96,7 @@ jobs:
           DB_PORT: 33306
           DB_USER: root
 
-        run: php artisan migrate
+        run: php artisan migrate:fresh --seed
 
       - name: Show dir
         run: pwd
