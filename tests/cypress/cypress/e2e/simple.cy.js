@@ -1,6 +1,6 @@
 describe('simple', () => {
     it('can visit simple page', () => {
-        cy.visit('/')
+        cy.visit('/simple')
         cy.contains('Simple')
     })
 
