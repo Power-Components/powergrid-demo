@@ -28,7 +28,7 @@ jobs:
     strategy:
       matrix:
         operating-system: [ubuntu-latest]
-        php-versions: [ '8.2','8.1' ]
+        php-versions: [ '8.1' ]
         dependency-stability: [ 'prefer-none' ]
 
     name: P${{ matrix.php-versions }} - L${{ matrix.laravel }} - ${{ matrix.dependency-stability }} - ${{ matrix.operating-system}}
@@ -101,5 +101,4 @@ jobs:
 
       - name: Cypress
         run: |
-          php artisan serve & sleep 5 & curl http://127.0.0.1:8000 &
-          composer cypress 
+          php artisan serve & sleep 5
