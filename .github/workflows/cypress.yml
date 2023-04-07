@@ -99,5 +99,5 @@ jobs:
           DB_PORT: 33306
           DB_USER: root
         run: |
-          php artisan serve & sleep 5 &
+          php artisan serve -q & sleep 5 &
           composer cypress

@@ -11,7 +11,7 @@ describe('simple', () => {
         cy.get('[data-cy=pg-search-default]').
             type('Bife')
 
-        cy.wait(800) // wait for livewire debounce 700
+        cy.wait(2000) // wait for livewire debounce 700
 
         const data = [
             '4', 'Bife à Rolê', 'Luan', '51.79', 'No', '05/04/2023',
