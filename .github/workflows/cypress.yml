@@ -48,8 +48,6 @@ jobs:
       - name: Install NPM packages
         if: steps.node_modules-cache.outputs.cache-hit != 'true'
         run: npm ci
-      - name: Build frontend
-        run: npm run build
       - name: Install PHP versions
         uses: shivammathur/setup-php@v2
         with:
@@ -84,6 +82,9 @@ jobs:
         if: matrix.dependency-stability == 'prefer-lowest'
         run: composer update --prefer-stable --prefer-lowest
 
+      - name: Build frontend
+        run: npm run build
+
       - name: Generate key
         run: php artisan key:generate
       - name: Directory Permissions
@@ -102,3 +103,8 @@ jobs:
         run: pwd
       - name: PHP Version
         run: php --version
+
+      - name: Cypress
+        run: |
+          php artisan serve -q & sleep 5 &
+          composer cypress
