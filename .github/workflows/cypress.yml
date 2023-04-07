@@ -104,10 +104,7 @@ jobs:
       - name: Show files
         run: ls -lh
 
-      - name: PHP Version
-        run: php --version
-
       - name: Cypress
         run: |
-          php artisan serve -q & sleep 5 & cat storage/logs/laravel.log &
+          php artisan serve & sleep 5 &
           composer cypress 
