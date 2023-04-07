@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "07381a281baac5dbbb6f9a3e6d97c0ba",
+    "content-hash": "ad076c970dfa8a6279792f898e834ceb",
     "packages": [
         {
             "name": "brick/math",
@@ -2786,10 +2786,16 @@
         {
             "name": "power-components/livewire-powergrid",
             "version": "dev-cypress-datacy",
-            "dist": {
-                "type": "path",
-                "url": "/Users/luan.freitas/Documents/livewire-powergrid",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Power-Components/livewire-powergrid.git",
                 "reference": "852cb03298193c94891fbd506bc4483cf18e7a80"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Power-Components/livewire-powergrid/zipball/852cb03298193c94891fbd506bc4483cf18e7a80",
+                "reference": "852cb03298193c94891fbd506bc4483cf18e7a80",
+                "shasum": ""
             },
             "require": {
                 "doctrine/dbal": "^3.6.1|2.12.1",
@@ -2820,54 +2826,14 @@
                 }
             },
             "autoload": {
-                "psr-4": {
-                    "PowerComponents\\LivewirePowerGrid\\": "src"
-                },
                 "files": [
                     "src/functions.php"
-                ]
-            },
-            "autoload-dev": {
+                ],
                 "psr-4": {
-                    "PowerComponents\\LivewirePowerGrid\\Tests\\": "tests"
+                    "PowerComponents\\LivewirePowerGrid\\": "src"
                 }
             },
-            "scripts": {
-                "pint:fix": [
-                    "./vendor/bin/pint"
-                ],
-                "test": [
-                    "@test:sqlite"
-                ],
-                "test:pint": [
-                    "./vendor/bin/pint --test"
-                ],
-                "test:sqlite": [
-                    "./vendor/bin/pest --compact --min=80"
-                ],
-                "test:mysql": [
-                    "./vendor/bin/pest --compact --configuration phpunit.mysql.xml"
-                ],
-                "test:pgsql": [
-                    "./vendor/bin/pest --compact --configuration phpunit.pgsql.xml"
-                ],
-                "test:sqlsrv": [
-                    "./vendor/bin/pest --configuration phpunit.sqlsrv.xml"
-                ],
-                "test:types": [
-                    "./vendor/bin/phpstan analyse --ansi --memory-limit=-1 --xdebug"
-                ],
-                "test:dbs": [
-                    "@test:sqlite",
-                    "@test:mysql",
-                    "@test:pgsql"
-                ],
-                "verify": [
-                    "@test:pint",
-                    "@test:types",
-                    "@test"
-                ]
-            },
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
@@ -2885,9 +2851,17 @@
             ],
             "description": "PowerGrid generates Advanced Datatables using Laravel Livewire.",
             "homepage": "https://github.com/power-components/livewire-powergrid",
-            "transport-options": {
-                "relative": false
-            }
+            "support": {
+                "issues": "https://github.com/Power-Components/livewire-powergrid/issues",
+                "source": "https://github.com/Power-Components/livewire-powergrid/tree/cypress-datacy"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/luanfreitasdev",
+                    "type": "github"
+                }
+            ],
+            "time": "2023-04-07T09:54:27+00:00"
         },
         {
             "name": "psr/cache",
