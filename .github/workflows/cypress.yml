@@ -102,3 +102,7 @@ jobs:
       - name: Cypress
         run: |
           php artisan serve & sleep 5
+
+      - name: PHPUnit
+        run: |
+          ./vendor/bin/phpunit
