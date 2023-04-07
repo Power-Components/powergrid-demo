@@ -100,6 +100,11 @@ jobs:
         run: php artisan migrate:fresh --seed
 
       - name: Cypress
+        env:
+          DB_CONNECTION: mysql
+          DB_DATABASE: db_test_laravel
+          DB_PORT: 33306
+          DB_USER: root
         run: |
           php artisan serve & sleep 5
 
