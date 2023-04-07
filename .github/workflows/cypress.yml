@@ -1,6 +1,6 @@
 # GitHub Actions Workflow generated with Ghygen
 # Original configuration: https://ghygen.hi-folks.dev?code=1cd3007f2777cd55000cf663d42902e1
-name: Cypress (Mysql)
+name: Cypress
 on: [ workflow_dispatch ]
 
 jobs:
@@ -25,10 +25,28 @@ jobs:
           --health-timeout=5s
           --health-retries=3
 
+      postgres:
+        # Docker Hub image (also with version)
+        image: postgres:latest
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_DB: db_test_laravel
+        ## map the "external" 55432 port with the "internal" 5432
+        ports:
+          - 55432:5432
+        # Set health checks to wait until postgresql database has started (it takes some seconds to start)
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+
     strategy:
       matrix:
         operating-system: [ubuntu-latest]
-        php-versions: [ '8.1' ]
+        php-versions: [ '8.2', '8.1' ]
+        laravel: [ 10.* ]
         dependency-stability: [ 'prefer-none' ]
 
     name: P${{ matrix.php-versions }} - L${{ matrix.laravel }} - ${{ matrix.dependency-stability }} - ${{ matrix.operating-system}}
@@ -92,7 +110,7 @@ jobs:
 
         run: php artisan migrate:fresh --seed
 
-      - name: Cypress
+      - name: Cypress (MySQL)
         env:
           DB_CONNECTION: mysql
           DB_DATABASE: db_test_laravel
@@ -101,3 +119,14 @@ jobs:
         run: |
           php artisan serve -q & sleep 5 &
           composer cypress
+
+      - name: Cypress (Postgres)
+        env:
+          DB_CONNECTION: pgsql
+          DB_DATABASE: db_test_laravel
+          DB_PORT: 55432
+          DB_USERNAME: postgres
+          DB_PASSWORD: postgres
+        run: |
+          php artisan serve -q & sleep 5 &
+          composer cypress    
