@@ -101,6 +101,9 @@ jobs:
 
       - name: Show dir
         run: pwd
+      - name: Show files
+        run: ls -lh
+
       - name: PHP Version
         run: php --version
 
