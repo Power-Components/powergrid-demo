@@ -1,3 +1,5 @@
+import moment from "moment";
+
 describe('simple', () => {
     it('can visit simple page', () => {
         cy.visit('/simple')
@@ -11,12 +13,14 @@ describe('simple', () => {
         cy.get('[data-cy=pg-search-default]').
             type('Bife')
 
-        cy.wait(2000) // wait for livewire debounce 700
+        cy.wait(1000) // wait for livewire debounce 700
+
+        const createdAt = moment().format('DD/MM/YYYY')
 
         const data = [
-            '4', 'Bife à Rolê', 'Luan', '51.79', 'No', '05/04/2023',
-            '11', 'Bife à Parmegiana', 'Luan', '129.15', 'Yes', '05/04/2023',
-            '45', 'Bife à Milanesa', 'Dan', '181.65', 'Yes', '05/04/2023'
+            '4', 'Bife à Rolê', 'Vitor', '$100.13', 'No', ''+createdAt,
+            '11', 'Bife à Parmegiana', 'Luan', '$110.20', 'Yes', ''+createdAt,
+            '45', 'Bife à Milanesa', 'Dan', '$100.10', 'No', ''+createdAt,
         ];
 
         cy.get('table tbody tr td').then(($td) => {

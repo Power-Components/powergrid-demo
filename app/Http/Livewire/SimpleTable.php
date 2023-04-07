@@ -40,7 +40,10 @@ class SimpleTable extends PowerGridComponent
             ->addColumn('id')
             ->addColumn('name')
             ->addColumn('chef_name')
-            ->addColumn('price')
+            ->addColumn('price', function (Dish $dish) {
+                return (new \NumberFormatter('en_US', \NumberFormatter::CURRENCY))
+                    ->formatCurrency($dish->price, 'USD');
+            })
             ->addColumn('in_stock')
             ->addColumn('in_stock_label', function (Dish $dish) {
                 if ($dish->in_stock) {
