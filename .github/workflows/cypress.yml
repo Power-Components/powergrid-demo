@@ -110,4 +110,4 @@ jobs:
       - name: Cypress
         run: |
           php artisan serve -q & sleep 5 &
-          composer cypress
+          composer cypress & cat storage/logs/laravel.log
