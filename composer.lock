@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "ff428e09278714fc2378a76de9f883a1",
+    "content-hash": "ad076c970dfa8a6279792f898e834ceb",
     "packages": [
         {
             "name": "brick/math",
@@ -2785,16 +2785,16 @@
         },
         {
             "name": "power-components/livewire-powergrid",
-            "version": "4.x-dev",
+            "version": "dev-cypress-datacy",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Power-Components/livewire-powergrid.git",
-                "reference": "1bbc1174f71d68eb8acd082e3279db28eae9934b"
+                "reference": "852cb03298193c94891fbd506bc4483cf18e7a80"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Power-Components/livewire-powergrid/zipball/1bbc1174f71d68eb8acd082e3279db28eae9934b",
-                "reference": "1bbc1174f71d68eb8acd082e3279db28eae9934b",
+                "url": "https://api.github.com/repos/Power-Components/livewire-powergrid/zipball/852cb03298193c94891fbd506bc4483cf18e7a80",
+                "reference": "852cb03298193c94891fbd506bc4483cf18e7a80",
                 "shasum": ""
             },
             "require": {
@@ -2817,7 +2817,6 @@
             "suggest": {
                 "openspout/openspout": "Required to export XLS and CSV"
             },
-            "default-branch": true,
             "type": "library",
             "extra": {
                 "laravel": {
@@ -2854,7 +2853,7 @@
             "homepage": "https://github.com/power-components/livewire-powergrid",
             "support": {
                 "issues": "https://github.com/Power-Components/livewire-powergrid/issues",
-                "source": "https://github.com/Power-Components/livewire-powergrid/tree/4.x"
+                "source": "https://github.com/Power-Components/livewire-powergrid/tree/cypress-datacy"
             },
             "funding": [
                 {
@@ -2862,7 +2861,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2023-04-06T22:37:54+00:00"
+            "time": "2023-04-07T09:54:27+00:00"
         },
         {
             "name": "psr/cache",
