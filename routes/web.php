@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', fn () => view('simple'))->name('simple');
+Route::get('/', fn () => view('simple'))->name('default');
 Route::get('/simple', fn () => view('simple'))->name('simple');
 Route::get('/striped', fn () => view('striped'))->name('striped');
 Route::get('/header-fixed', fn () => view('header-fixed'))->name('header-fixed');
