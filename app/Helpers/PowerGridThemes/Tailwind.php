@@ -16,6 +16,7 @@ class Tailwind extends \PowerComponents\LivewirePowerGrid\Themes\Tailwind
             ->tbody('text-gray-800')
             ->trBody('border odd:bg-gray-100 hover:odd:bg-gray-200 border-gray-200 dark:border-gray-400 hover:bg-gray-50 dark:hover:bg-gray-700')
             ->tdBody('pl-[19px] px-3 py-2 whitespace-nowrap dark:text-gray-200')
+            ->tdBodyEmpty('px-3 py-2 whitespace-nowrap dark:text-pg-primary-200')
             ->tdBodyTotalColumns('px-3 py-2 whitespace-nowrap dark:text-gray-200 text-sm text-gray-600 text-right space-y-2');
     }
 }

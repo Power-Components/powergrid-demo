@@ -39,11 +39,6 @@ class Dish extends Model
         'in_stock',
     ];
 
-    public static function created($callback): void
-    {
-        self::clearCache();
-    }
-
     protected static function booted(): void
     {
         static::created(fn (User $user) => self::clearCache());
