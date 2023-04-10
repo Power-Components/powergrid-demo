@@ -41,9 +41,9 @@ class Dish extends Model
 
     protected static function booted(): void
     {
-        static::created(fn (User $user) => self::clearCache());
-        static::updated(fn (User $user) => self::clearCache());
-        static::deleted(fn (User $user) => self::clearCache());
+        static::created(fn (Dish $dish) => self::clearCache());
+        static::updated(fn (Dish $dish) => self::clearCache());
+        static::deleted(fn (Dish $dish) => self::clearCache());
     }
 
     private static function clearCache(): void
