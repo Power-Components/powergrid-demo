@@ -4,6 +4,7 @@ namespace App\Http\Livewire;
 
 use App\Models\User;
 use Illuminate\Database\Eloquent\Builder;
+use PowerComponents\LivewirePowerGrid\Cache;
 use PowerComponents\LivewirePowerGrid\Column;
 use PowerComponents\LivewirePowerGrid\Footer;
 use PowerComponents\LivewirePowerGrid\Header;
@@ -22,6 +23,8 @@ final class ValidationTable extends PowerGridComponent
 
     public bool $showErrorBag = true;
 
+    public string $tableName = 'validationTable';
+
     protected array $rules = [
         'name.*' => ['required', 'min:6'],
     ];
@@ -36,6 +39,9 @@ final class ValidationTable extends PowerGridComponent
     public function setUp(): array
     {
         return [
+            Cache::make()
+                ->forever(),
+
             Header::make()
                 ->showSearchInput(),
 
@@ -49,9 +55,9 @@ final class ValidationTable extends PowerGridComponent
     {
         $this->validate();
 
-//        User::query()->find($id)->update([
-//            $field => $value,
-//        ]);
+        User::query()->find($id)->update([
+            $field => $value,
+        ]);
 
         $this->notification([
             'title' => 'Profile saved!',

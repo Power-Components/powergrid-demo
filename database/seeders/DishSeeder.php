@@ -6,7 +6,6 @@ use App\Models\Dish;
 use App\Models\Kitchen;
 use Faker\Factory as Faker;
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Arr;
 
 class DishSeeder extends Seeder
 {

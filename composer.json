@@ -13,11 +13,12 @@
         "laravel/tinker": "^2.8.1",
         "livewire/livewire": "^2.12.3",
         "openspout/openspout": "^4.13.1",
-        "power-components/livewire-powergrid": "dev-cypress-datacy",
+        "power-components/livewire-powergrid": "^4.3",
         "wire-elements/modal": "^1.0.7",
         "wireui/wireui": "^1.17.9"
     },
     "require-dev": {
+        "barryvdh/laravel-debugbar": "^3.8",
         "fakerphp/faker": "^1.21.0",
         "laradumps/laradumps": "^1.9.3",
         "laravel/pint": "^1.7",

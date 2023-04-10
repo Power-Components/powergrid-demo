@@ -46,6 +46,7 @@ final class FiltersTable extends PowerGridComponent
 
             Header::make()
                 ->showToggleColumns()
+                ->withoutLoading()
                 ->showSearchInput(),
 
             Footer::make()

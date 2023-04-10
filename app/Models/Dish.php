@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\Cache;
 
 /**
  * @property int $id
@@ -37,6 +38,23 @@ class Dish extends Model
         'calories',
         'in_stock',
     ];
+
+    public static function created($callback): void
+    {
+        self::clearCache();
+    }
+
+    protected static function booted(): void
+    {
+        static::created(fn (User $user) => self::clearCache());
+        static::updated(fn (User $user) => self::clearCache());
+        static::deleted(fn (User $user) => self::clearCache());
+    }
+
+    private static function clearCache(): void
+    {
+        Cache::tags(['powergrid-dishes-simpleTable'])->flush();
+    }
 
     public function category(): BelongsTo
     {

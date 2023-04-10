@@ -5,6 +5,7 @@ namespace App\Http\Livewire;
 use App\Models\Dish;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Blade;
+use PowerComponents\LivewirePowerGrid\Cache;
 use PowerComponents\LivewirePowerGrid\Column;
 use PowerComponents\LivewirePowerGrid\Footer;
 use PowerComponents\LivewirePowerGrid\Header;
@@ -17,9 +18,14 @@ class SimpleTable extends PowerGridComponent
 {
     use ActionButton;
 
+    public string $tableName = 'simpleTable';
+
     public function setUp(): array
     {
         return [
+            Cache::make()
+                ->forever(),
+
             Header::make()
                 ->showSearchInput(),
 
