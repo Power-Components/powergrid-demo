@@ -14,6 +14,7 @@
         "livewire/livewire": "^2.12.3",
         "openspout/openspout": "^4.13.1",
         "power-components/livewire-powergrid": "^4.3",
+        "predis/predis": "^2.1",
         "wire-elements/modal": "^1.0.7",
         "wireui/wireui": "^1.17.9"
     },
