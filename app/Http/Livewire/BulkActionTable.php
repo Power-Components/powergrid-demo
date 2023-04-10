@@ -234,7 +234,7 @@ final class BulkActionTable extends PowerGridComponent
 
             Column::add()
                 ->title(__('Price'))
-                ->field('price_BRL')
+                ->field('price')
                 ->editOnClick(true)
                 ->withSum('Total', true, true),
 
