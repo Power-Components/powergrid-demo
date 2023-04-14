@@ -5,5 +5,5 @@
 @endsection
 
 @section('main')
-    <livewire:striped-table/>
+    <livewire:join-table/>
 @endsection
