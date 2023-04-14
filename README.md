@@ -2,7 +2,7 @@
 
 _PowerGrid version 4 demo_
 
-This repository provides a fully configured PowerGrid implementation on a [Laravel 9](https://laravel.com/) project.
+This repository provides a fully configured PowerGrid implementation on a [Laravel 10](https://laravel.com/) project.
 
 ⚡ Check the PowerGrid Table: [app/Http/Livewire/DishesTable.php](https://github.com/Power-Components/powergrid-demo/blob/main/app/Http/Livewire/DishesTable.php).
 
@@ -91,16 +91,6 @@ Serve your project:
 
 ```shell
 php artisan serve
-```
-
-## Tests
-
-This repository comes with starter tests written in [Pest PHP](http://pestphp.com).
-
-To run tests, execute:
-
-```php
-php artisan test
 ```
 
 ## Support
