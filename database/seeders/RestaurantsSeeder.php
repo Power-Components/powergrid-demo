@@ -17,18 +17,18 @@ class RestaurantsSeeder extends Seeder
     {
         Restaurant::insert(
             [
-                ["title" => "Παρά θιν' αλός"],
-                ["title" => "The Aviary"],
-                ["title" => "Brass Tacks"],
-                ["title" => "Cibo Matto"],
-                ["title" => "Catch 35"],
-                ["title" => "Parallel 37"],
-                ["title" => "Eleven Madison Park"]
+                ['title' => "Παρά θιν' αλός"],
+                ['title' => 'The Aviary'],
+                ['title' => 'Brass Tacks'],
+                ['title' => 'Cibo Matto'],
+                ['title' => 'Catch 35'],
+                ['title' => 'Parallel 37'],
+                ['title' => 'Eleven Madison Park'],
             ]
         );
 
         $restaurants = Restaurant::all();
-        
-        Dish::all()->each(fn($dish) => $dish->restaurants()->sync($restaurants->random(rand(1,3))));
+
+        Dish::all()->each(fn ($dish) => $dish->restaurants()->sync($restaurants->random(rand(1, 3))));
     }
 }

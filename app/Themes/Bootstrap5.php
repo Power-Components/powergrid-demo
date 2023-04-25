@@ -1,21 +1,21 @@
 <?php
 
-namespace App\Themes;;
+namespace App\Themes;
 
-use App\Themes\Components\{Actions,
-    Checkbox,
-    ClickToCopy,
-    Cols,
-    Editable,
-    FilterBoolean,
-    FilterDatePicker,
-    FilterInputText,
-    FilterMultiSelect,
-    FilterNumber,
-    FilterSelect,
-    Footer,
-    Table,
-    Toggleable};
+use App\Themes\Components\Actions;
+use App\Themes\Components\Checkbox;
+use App\Themes\Components\ClickToCopy;
+use App\Themes\Components\Cols;
+use App\Themes\Components\Editable;
+use App\Themes\Components\FilterBoolean;
+use App\Themes\Components\FilterDatePicker;
+use App\Themes\Components\FilterInputText;
+use App\Themes\Components\FilterMultiSelect;
+use App\Themes\Components\FilterNumber;
+use App\Themes\Components\FilterSelect;
+use App\Themes\Components\Footer;
+use App\Themes\Components\Table;
+use App\Themes\Components\Toggleable;
 
 class Bootstrap5 extends ThemeBase
 {
@@ -44,7 +44,7 @@ class Bootstrap5 extends ThemeBase
     public function footer(): Footer
     {
         return Theme::footer()
-            ->view($this->root() . '.footer')
+            ->view($this->root().'.footer')
             ->select('');
     }
 
@@ -58,13 +58,13 @@ class Bootstrap5 extends ThemeBase
     public function toggleable(): Toggleable
     {
         return Theme::toggleable()
-            ->view($this->root() . '.toggleable');
+            ->view($this->root().'.toggleable');
     }
 
     public function editable(): Editable
     {
         return Theme::editable()
-            ->view($this->root() . '.editable')
+            ->view($this->root().'.editable')
             ->span('d-flex justify-content-between')
             ->button('width: 100%;text-align: left;border: 0;padding: 4px;background: none')
             ->input('form-control shadow-none');
@@ -88,35 +88,35 @@ class Bootstrap5 extends ThemeBase
     public function filterBoolean(): FilterBoolean
     {
         return Theme::filterBoolean()
-            ->view($this->root() . '.filters.boolean')
+            ->view($this->root().'.filters.boolean')
             ->select('form-control form-select shadow-none');
     }
 
     public function filterDatePicker(): FilterDatePicker
     {
         return Theme::filterDatePicker()
-            ->view($this->root() . '.filters.date-picker')
+            ->view($this->root().'.filters.date-picker')
             ->input('form-control shadow-none');
     }
 
     public function filterMultiSelect(): FilterMultiSelect
     {
         return Theme::filterMultiSelect()
-            ->view($this->root() . '.filters.multi-select');
+            ->view($this->root().'.filters.multi-select');
     }
 
     public function filterNumber(): FilterNumber
     {
         return Theme::filterNumber()
             ->base(attrStyle: 'min-width: 85px !important')
-            ->view($this->root() . '.filters.number')
+            ->view($this->root().'.filters.number')
             ->input('form-control shadow-none');
     }
 
     public function filterSelect(): FilterSelect
     {
         return Theme::filterSelect()
-            ->view($this->root() . '.filters.select')
+            ->view($this->root().'.filters.select')
             ->select('form-control form-select shadow-none');
     }
 
@@ -124,7 +124,7 @@ class Bootstrap5 extends ThemeBase
     {
         return Theme::filterInputText()
             ->base(attrStyle: 'min-width: 165px !important')
-            ->view($this->root() . '.filters.input-text')
+            ->view($this->root().'.filters.input-text')
             ->select('form-control mb-1 shadow-none form-select')
             ->input('form-control shadow-none');
     }

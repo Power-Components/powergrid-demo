@@ -6,10 +6,20 @@ use App\Models\Category;
 use App\Models\Dish;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Carbon;
+use PowerComponents\LivewirePowerGrid\Button;
+use PowerComponents\LivewirePowerGrid\Column;
+use PowerComponents\LivewirePowerGrid\Detail;
+use PowerComponents\LivewirePowerGrid\Exportable;
 use PowerComponents\LivewirePowerGrid\Filters\Filter;
-use PowerComponents\LivewirePowerGrid\Rules\{Rule, RuleActions};
-use PowerComponents\LivewirePowerGrid\Traits\{ActionButton, WithExport};
-use PowerComponents\LivewirePowerGrid\{Button, Column, Detail, Exportable, Footer, Header, PowerGrid, PowerGridComponent, PowerGridEloquent};
+use PowerComponents\LivewirePowerGrid\Footer;
+use PowerComponents\LivewirePowerGrid\Header;
+use PowerComponents\LivewirePowerGrid\PowerGrid;
+use PowerComponents\LivewirePowerGrid\PowerGridComponent;
+use PowerComponents\LivewirePowerGrid\PowerGridEloquent;
+use PowerComponents\LivewirePowerGrid\Rules\Rule;
+use PowerComponents\LivewirePowerGrid\Rules\RuleActions;
+use PowerComponents\LivewirePowerGrid\Traits\ActionButton;
+use PowerComponents\LivewirePowerGrid\Traits\WithExport;
 
 final class DishesTable extends PowerGridComponent
 {
@@ -50,7 +60,7 @@ final class DishesTable extends PowerGridComponent
             Footer::make()
                 ->showPerPage()
                 ->showRecordCount('min'),
-            
+
             Detail::make()
                 ->view('components.detail') // views/components.detail.blade.php
                 ->options(['message' => 'hello world'])
@@ -69,7 +79,7 @@ final class DishesTable extends PowerGridComponent
     /**
      * PowerGrid datasource.
      *
-     * @return Builder<\App\Models\Dish|Null>
+     * @return Builder<\App\Models\Dish|null>
      */
     public function datasource(): Builder
     {
@@ -81,8 +91,8 @@ final class DishesTable extends PowerGridComponent
                 $categories->on('dishes.kitchen_id', '=', 'kitchens.id');
             })
             /** Many to Many Relationship **/
-            ->leftJoin('dish_restaurant','dishes.id','=','dish_restaurant.dish_id')
-            ->leftJoin('restaurants','restaurants.id','=','dish_restaurant.restaurant_id')
+            ->leftJoin('dish_restaurant', 'dishes.id', '=', 'dish_restaurant.dish_id')
+            ->leftJoin('restaurants', 'restaurants.id', '=', 'dish_restaurant.restaurant_id')
             ->with([
                 'restaurants',
             ])
@@ -137,10 +147,10 @@ final class DishesTable extends PowerGridComponent
             ->addColumn('serving_at')
             ->addColumn('chef_name')
             ->addColumn('dish_name', function (Dish $dish) {
-                return e($dish->name);;
+                return e($dish->name);
             })
             ->addColumn('calories', function (Dish $dish) {
-                return e($dish->calories) . ' kcal';
+                return e($dish->calories).' kcal';
             })
             ->addColumn('category_id', function (Dish $dish) {
                 return e($dish->category_id);
@@ -161,12 +171,12 @@ final class DishesTable extends PowerGridComponent
             ->addColumn('code_label', fn ($dish) => e(Dish::codes()->firstWhere('code', $dish->code)['label']))
 
             /*** RESTAURANTS ***/
-            ->addColumn('restaurant_title', fn($dish) => $dish->restaurants->pluck('title')->map(fn($title) => e($title))->implode(', '))
+            ->addColumn('restaurant_title', fn ($dish) => $dish->restaurants->pluck('title')->map(fn ($title) => e($title))->implode(', '))
 
             /*** PRICE ***/
             ->addColumn('price')
             ->addColumn('price_BRL', function (Dish $dish) {
-                return 'R$ ' . number_format(e($dish->price), 2, ',', '.'); //R$ 1.000,00
+                return 'R$ '.number_format(e($dish->price), 2, ',', '.'); //R$ 1.000,00
             })
 
             /*** SALE'S PRICE ***/
@@ -174,12 +184,12 @@ final class DishesTable extends PowerGridComponent
             ->addColumn('sales_price_BRL', function (Dish $dish) {
                 $sales_price = $dish->price + ($dish->price * 0.15);
 
-                return 'R$ ' . number_format(e($sales_price), 2, ',', '.'); //R$ 1.000,00
+                return 'R$ '.number_format(e($sales_price), 2, ',', '.'); //R$ 1.000,00
             })
             /*** STOCK ***/
             ->addColumn('in_stock')
             ->addColumn('in_stock_label', function (Dish $dish) {
-                return ($dish->in_stock ? "sim" : "não");
+                return $dish->in_stock ? 'sim' : 'não';
             })
             ->addColumn('diet', function (Dish $dish) {
                 return \App\Enums\Diet::from($dish->diet)->labels();
@@ -200,17 +210,17 @@ final class DishesTable extends PowerGridComponent
     |
     */
 
-     /**
-      * PowerGrid Columns.
-      *
-      * @return array<int, Column>
-      */
+    /**
+     * PowerGrid Columns.
+     *
+     * @return array<int, Column>
+     */
     public function columns(): array
     {
         $canEdit = true; //Has permission to edit. E,g, $user->can('edit');
 
         return [
-            
+
             Column::make('Id', 'id', 'dishes.id')
                 ->searchable()
                 ->sortable(),
@@ -227,37 +237,37 @@ final class DishesTable extends PowerGridComponent
                 ->placeholder('Chef placeholder')
                 ->sortable(),
 
-            Column::make(__('Diet'),'diet', 'dishes.diet'),
+            Column::make(__('Diet'), 'diet', 'dishes.diet'),
 
-            Column::make(__('Category'),'category_name', 'categories.name')
+            Column::make(__('Category'), 'category_name', 'categories.name')
                 ->placeholder('Category placeholder')
                 ->sortable(),
 
-            Column::make('Serving at','serving_at')
+            Column::make('Serving at', 'serving_at')
                 ->sortable(),
 
-            Column::make('Restaurant', 'restaurant_title','restaurants.title'),
+            Column::make('Restaurant', 'restaurant_title', 'restaurants.title'),
 
-            Column::make(__('Price'),'price_BRL')
+            Column::make(__('Price'), 'price_BRL')
                 ->editOnClick($canEdit)
                 ->withSum('Total', true, true),
 
-            Column::make('Code','code_label', 'code'),
+            Column::make('Code', 'code_label', 'code'),
 
-            Column::make(__('Sales price'),'sales_price_BRL'),
+            Column::make(__('Sales price'), 'sales_price_BRL'),
 
-            Column::make(__('Calories'),'calories')
+            Column::make(__('Calories'), 'calories')
                 ->sortable(),
 
-            Column::make( __('In Stock'),'in_stock')
+            Column::make(__('In Stock'), 'in_stock')
                 ->toggleable(true, 'yes', 'no')
                 ->headerAttribute('', 'width: 100px;')
                 ->sortable(),
 
-            Column::make(__('Kitchen'),'kitchen_name', 'kitchens.name')
+            Column::make(__('Kitchen'), 'kitchen_name', 'kitchens.name')
                 ->sortable('kitchens.name'),
 
-            Column::make(__('Production date'),'produced_at_formatted')
+            Column::make(__('Production date'), 'produced_at_formatted'),
         ];
     }
 
@@ -271,12 +281,12 @@ final class DishesTable extends PowerGridComponent
         return [
 
             Filter::number('price', 'price_in_brl')
-              ->thousands('.')
-              ->decimal(','),
+                ->thousands('.')
+                ->decimal(','),
 
             Filter::number('price', 'price_in_brl')
-            ->thousands('.')
-            ->decimal(','),
+                ->thousands('.')
+                ->decimal(','),
 
             Filter::number('calories'),
 
@@ -298,7 +308,7 @@ final class DishesTable extends PowerGridComponent
                 ->params(['timezone' => 'America/Sao_Paulo']),
 
             Filter::boolean('in_stock')
-               ->label('yes', 'no'),
+                ->label('yes', 'no'),
         ];
     }
 
@@ -308,7 +318,7 @@ final class DishesTable extends PowerGridComponent
             Button::add('bulk-delete')
                 ->caption(__('Bulk delete'))
                 ->class('cursor-pointer block bg-white-200 text-gray-700 border border-gray-300 rounded py-2 px-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-600 dark:border-gray-500 dark:bg-gray-500 2xl:dark:placeholder-gray-300 dark:text-gray-200 dark:text-gray-300')
-                ->emit('bulkDelete', [])
+                ->emit('bulkDelete', []),
         ];
     }
 
@@ -329,7 +339,7 @@ final class DishesTable extends PowerGridComponent
     {
         $theme = config('livewire-powergrid.theme');
 
-        $edit   = ($theme == 'tailwind') ? 'bg-indigo-500 cursor-pointer text-white px-3 py-2 m-1 rounded text-sm' : 'btn btn-primary';
+        $edit = ($theme == 'tailwind') ? 'bg-indigo-500 cursor-pointer text-white px-3 py-2 m-1 rounded text-sm' : 'btn btn-primary';
 
         $delete = ($theme == 'tailwind') ? 'bg-red-500 text-white px-3 py-2 m-1 rounded text-sm' : 'btn btn-danger';
 
@@ -339,15 +349,15 @@ final class DishesTable extends PowerGridComponent
                 ->class($edit)
                 ->emit('edit-dish', [
                     'dishId' => 'id',
-                    'custom' => __METHOD__
+                    'custom' => __METHOD__,
                 ]),
 
             Button::add('destroy')
                 ->caption(__('Delete'))
                 ->class($delete)
                 ->openModal('delete-dish', [
-                    'dishId'                  => 'id',
-                    'confirmationTitle'       => 'Delete dish',
+                    'dishId' => 'id',
+                    'confirmationTitle' => 'Delete dish',
                     'confirmationDescription' => 'Are you sure you want to delete this dish?',
                 ]),
         ];
@@ -370,20 +380,20 @@ final class DishesTable extends PowerGridComponent
     {
         return [
             Rule::button('edit')
-                ->when(fn($dish) => $dish->id == 1)
+                ->when(fn ($dish) => $dish->id == 1)
                 ->hide(),
 
             Rule::button('destroy')
-                ->when(fn($dish) => $dish->id == 1)
+                ->when(fn ($dish) => $dish->id == 1)
                 ->caption('Delete #1'),
 
             Rule::checkbox()
-                ->when(fn($dish) => $dish->id == 2)
+                ->when(fn ($dish) => $dish->id == 2)
                 ->hide(),
 
             Rule::rows()
-                ->when(fn($dish) => (bool)$dish->in_stock === false)
-                ->setAttribute('class', 'bg-yellow-50 hover:bg-yellow-100')
+                ->when(fn ($dish) => (bool) $dish->in_stock === false)
+                ->setAttribute('class', 'bg-yellow-50 hover:bg-yellow-100'),
         ];
     }
 
@@ -411,8 +421,8 @@ final class DishesTable extends PowerGridComponent
     public function bulkDelete(): void
     {
         $this->emit('openModal', 'delete-dish', [
-            'dishIds'                 => $this->checkboxValues,
-            'confirmationTitle'       => 'Delete dish',
+            'dishIds' => $this->checkboxValues,
+            'confirmationTitle' => 'Delete dish',
             'confirmationDescription' => 'Are you sure you want to delete this dish?',
         ]);
     }

@@ -3,9 +3,6 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
-use Database\Seeders\DishSeeder;
-use Database\Seeders\KitchenSeeder;
-use Database\Seeders\CategorySeeder;
 
 class DatabaseSeeder extends Seeder
 {
