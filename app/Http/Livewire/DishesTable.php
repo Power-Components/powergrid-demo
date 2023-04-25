@@ -63,7 +63,7 @@ final class DishesTable extends PowerGridComponent
 
             Detail::make()
                 ->view('components.detail') // views/components.detail.blade.php
-                ->options(['message' => 'hello world'])
+                ->params(['message' => 'hello world'])
                 ->showCollapseIcon(),
         ];
     }
@@ -150,7 +150,7 @@ final class DishesTable extends PowerGridComponent
                 return e($dish->name);
             })
             ->addColumn('calories', function (Dish $dish) {
-                return e($dish->calories).' kcal';
+                return e($dish->calories) . ' kcal';
             })
             ->addColumn('category_id', function (Dish $dish) {
                 return e($dish->category_id);
@@ -176,7 +176,7 @@ final class DishesTable extends PowerGridComponent
             /*** PRICE ***/
             ->addColumn('price')
             ->addColumn('price_BRL', function (Dish $dish) {
-                return 'R$ '.number_format(e($dish->price), 2, ',', '.'); //R$ 1.000,00
+                return 'R$ ' . number_format(e($dish->price), 2, ',', '.'); //R$ 1.000,00
             })
 
             /*** SALE'S PRICE ***/
@@ -184,7 +184,7 @@ final class DishesTable extends PowerGridComponent
             ->addColumn('sales_price_BRL', function (Dish $dish) {
                 $sales_price = $dish->price + ($dish->price * 0.15);
 
-                return 'R$ '.number_format(e($sales_price), 2, ',', '.'); //R$ 1.000,00
+                return 'R$ ' . number_format(e($sales_price), 2, ',', '.'); //R$ 1.000,00
             })
             /*** STOCK ***/
             ->addColumn('in_stock')
@@ -356,8 +356,8 @@ final class DishesTable extends PowerGridComponent
                 ->caption(__('Delete'))
                 ->class($delete)
                 ->openModal('delete-dish', [
-                    'dishId' => 'id',
-                    'confirmationTitle' => 'Delete dish',
+                    'dishId'                  => 'id',
+                    'confirmationTitle'       => 'Delete dish',
                     'confirmationDescription' => 'Are you sure you want to delete this dish?',
                 ]),
         ];
@@ -392,7 +392,7 @@ final class DishesTable extends PowerGridComponent
                 ->hide(),
 
             Rule::rows()
-                ->when(fn ($dish) => (bool) $dish->in_stock === false)
+                ->when(fn ($dish) => (bool)$dish->in_stock === false)
                 ->setAttribute('class', 'bg-yellow-50 hover:bg-yellow-100'),
         ];
     }
@@ -421,8 +421,8 @@ final class DishesTable extends PowerGridComponent
     public function bulkDelete(): void
     {
         $this->emit('openModal', 'delete-dish', [
-            'dishIds' => $this->checkboxValues,
-            'confirmationTitle' => 'Delete dish',
+            'dishIds'                 => $this->checkboxValues,
+            'confirmationTitle'       => 'Delete dish',
             'confirmationDescription' => 'Are you sure you want to delete this dish?',
         ]);
     }
