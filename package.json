@@ -10,16 +10,22 @@
         "production": "mix --production"
     },
     "devDependencies": {
-        "autoprefixer": "^10.2.5",
-        "axios": "^0.21",
+        "autoprefixer": "^10.4.14",
+        "axios": "^1.3.5",
         "laravel-mix": "^6.0.6",
         "lodash": "^4.17.19",
-        "postcss": "^8.2.13",
-        "tailwindcss": "^3.1.7"
+        "postcss": "^8.4.21",
+        "tailwindcss": "^3.3.1"
     },
+    
     "dependencies": {
+        "@tailwindcss/forms": "^0.5.3",
         "alpinejs": "^3.10.3",
         "bootstrap-select": "^1.13.18",
-        "flatpickr": "^4.6.9"
+        "flatpickr": "^4.6.9",
+        "flowbite-datepicker": "^1.2.2",
+        "moment": "^2.29.4",
+        "slim-select": "^2.4.5",
+        "tom-select": "^2.2.2"
     }
 }

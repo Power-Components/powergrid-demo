@@ -33,6 +33,7 @@ class TailwindBig extends Tailwind
             ->trFilters('bg-white shadow-sm dark:bg-slate-700')
             ->th('font-semibold px-2 pr-4 py-3 text-left text-xl font-semibold text-slate-700 tracking-wider whitespace-nowrap dark:text-slate-300')
             ->tbody('text-slate-800')
+            ->tdBodyEmpty('px-3 py-2 whitespace-nowrap dark:text-pg-primary-200')
             ->trBody('border border-slate-100 dark:border-slate-400 hover:bg-slate-50 dark:bg-slate-700 dark:odd:bg-slate-800 dark:odd:hover:bg-slate-900 dark:hover:bg-slate-700')
             ->tdBody('px-3 py-2 whitespace-nowrap dark:text-slate-200')
             ->tdBodyTotalColumns('px-3 py-2 whitespace-nowrap dark:text-slate-200 text-sm text-slate-600 text-right space-y-2');
@@ -126,5 +127,13 @@ class TailwindBig extends Tailwind
             ->base('min-w-[9.5rem]')
             ->select('appearance-none block bg-white border border-slate-300 text-slate-700 py-2 px-3 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-slate-500 w-full active dark:bg-slate-600 dark:text-slate-200 dark:placeholder-slate-200 dark:border-slate-500')
             ->input('w-full block bg-white text-slate-700 border border-slate-300 rounded py-2 px-3 leading-tight focus:outline-none focus:bg-white focus:border-slate-500 dark:bg-slate-600 dark:text-slate-200 dark:placeholder-slate-200 dark:border-slate-500');
+    }
+
+    public function searchBox(): SearchBox
+    {
+        return Theme::searchBox()
+           ->input('placeholder-pg-primary-400 pl-[36px] block w-full float-right bg-white text-pg-primary-700 border border-pg-primary-300 rounded-full py-2 px-3 leading-tight focus:outline-none focus:bg-white focus:border-pg-primary-500 pl-10 dark:bg-pg-primary-600 dark:text-pg-primary-200 dark:placeholder-pg-primary-200 dark:border-pg-primary-500')
+           ->iconClose('text-pg-primary-300 dark:text-pg-primary-200')
+           ->iconSearch('text-pg-primary-300 mr-2 w-5 h-5 dark:text-pg-primary-200');
     }
 }

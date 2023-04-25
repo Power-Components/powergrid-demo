@@ -1,3 +1,4 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+/** @import "./../../node_modules/slim-select/dist/slimselect.css" **/

@@ -35,8 +35,6 @@
 
     @livewireScripts
 
-    @powerGridStyles
-
     <script src="{{ mix('js/app.js') }}" defer></script>
 </head>
 <body class="dark:bg-gray-400 bg-gray-200 font-sans leading-normal tracking-normal mx-8 mt-10">
@@ -101,8 +99,6 @@
     </div>
 
 @endif
-
-@powerGridScripts
 @livewire('livewire-ui-modal')
 </body>
 </html>

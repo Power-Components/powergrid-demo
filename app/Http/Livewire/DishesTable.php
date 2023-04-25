@@ -4,26 +4,17 @@ namespace App\Http\Livewire;
 
 use App\Models\Category;
 use App\Models\Dish;
-use App\Models\Kitchen;
-use App\Models\Restaurant;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Carbon;
-use PowerComponents\LivewirePowerGrid\Button;
-use PowerComponents\LivewirePowerGrid\Column;
-use PowerComponents\LivewirePowerGrid\Detail;
-use PowerComponents\LivewirePowerGrid\Exportable;
-use PowerComponents\LivewirePowerGrid\Footer;
-use PowerComponents\LivewirePowerGrid\Header;
-use PowerComponents\LivewirePowerGrid\PowerGrid;
-use PowerComponents\LivewirePowerGrid\PowerGridComponent;
-use PowerComponents\LivewirePowerGrid\PowerGridEloquent;
-use PowerComponents\LivewirePowerGrid\Rules\Rule;
-use PowerComponents\LivewirePowerGrid\Rules\RuleActions;
-use PowerComponents\LivewirePowerGrid\Traits\ActionButton;
+use PowerComponents\LivewirePowerGrid\Filters\Filter;
+use PowerComponents\LivewirePowerGrid\Rules\{Rule, RuleActions};
+use PowerComponents\LivewirePowerGrid\Traits\{ActionButton, WithExport};
+use PowerComponents\LivewirePowerGrid\{Button, Column, Detail, Exportable, Footer, Header, PowerGrid, PowerGridComponent, PowerGridEloquent};
 
 final class DishesTable extends PowerGridComponent
 {
     use ActionButton;
+    use WithExport;
 
     //Table sort field
     public string $sortField = 'dishes.id';
@@ -37,53 +28,6 @@ final class DishesTable extends PowerGridComponent
     | Uncomment if you love BIG fonts
     |
     */
-
-    /*
-    public function template(): ?string
-    {
-        return \App\Themes\TailwindBig::class;
-    }
-    */
-
-    /*
-    |--------------------------------------------------------------------------
-    |  Event listeners
-    |--------------------------------------------------------------------------
-    | Add custom events to DishesTable
-    |
-    */
-    protected function getListeners(): array
-    {
-        return array_merge(
-            parent::getListeners(), [
-                'edit-dish' => 'editDish',
-                'bulkDelete',
-            ]);
-    }
-
-    /*
-    |--------------------------------------------------------------------------
-    |  Bulk delete button
-    |--------------------------------------------------------------------------
-    */
-    public function bulkDelete(): void
-    {
-        $this->emit('openModal', 'delete-dish', [
-            'dishIds'                 => $this->checkboxValues,
-            'confirmationTitle'       => 'Delete dish',
-            'confirmationDescription' => 'Are you sure you want to delete this dish?',
-        ]);
-    }
-
-    /*
-    |--------------------------------------------------------------------------
-    |  Edit Dish button
-    |--------------------------------------------------------------------------
-    */
-    public function editDish(array $data): void
-    {
-        dd('You are editing', $data);
-    }
 
     /*
     |--------------------------------------------------------------------------
@@ -101,13 +45,12 @@ final class DishesTable extends PowerGridComponent
                 ->striped()
                 ->type(Exportable::TYPE_XLS, Exportable::TYPE_CSV),
 
-            Header::make()
-                ->showSearchInput(),
+            Header::make()->showSearchInput(),
 
             Footer::make()
                 ->showPerPage()
                 ->showRecordCount('min'),
-
+            
             Detail::make()
                 ->view('components.detail') // views/components.detail.blade.php
                 ->options(['message' => 'hello world'])
@@ -124,11 +67,11 @@ final class DishesTable extends PowerGridComponent
     */
 
     /**
-    * PowerGrid datasource.
-    *
-    * @return  Builder<Dish>|null
-    */
-    public function datasource(): ?Builder
+     * PowerGrid datasource.
+     *
+     * @return Builder<\App\Models\Dish|Null>
+     */
+    public function datasource(): Builder
     {
         return Dish::query()
             ->join('categories', function ($categories) {
@@ -179,8 +122,10 @@ final class DishesTable extends PowerGridComponent
     | Make Datasource fields available to be used as columns.
     | You can pass a closure to transform/modify the data.
     |
+    | ❗ IMPORTANT: When using closures, you must escape any value coming from
+    |    the database using the `e()` Laravel Helper function.
+    |
     */
-
     public function addColumns(): PowerGridEloquent
     {
         /****
@@ -255,112 +200,107 @@ final class DishesTable extends PowerGridComponent
     |
     */
 
-    /**
-    * PowerGrid Columns.
-    *
-    * @return array<int, Column>
-    */
+     /**
+      * PowerGrid Columns.
+      *
+      * @return array<int, Column>
+      */
     public function columns(): array
     {
         $canEdit = true; //Has permission to edit. E,g, $user->can('edit');
 
         return [
-            Column::add()
-                ->title(__('ID'))
-                ->field('id', 'dishes.id')
+            
+            Column::make('Id', 'id', 'dishes.id')
                 ->searchable()
                 ->sortable(),
 
-            Column::add()
-                ->title(__('Dish'))
-                ->field('dish_name', 'dishes.name')
+            Column::make(__('Dish'), 'dish_name', 'dishes.name')
                 ->searchable()
                 ->editOnClick($canEdit)
                 ->clickToCopy(true)
-                ->makeInputText()
                 ->placeholder('Dish placeholder')
                 ->sortable(),
 
-            Column::add()
-                ->title(__('Chef'))
-                ->field('chef_name', 'dishes.chef_name')
+            Column::make(__('Chef'), 'chef_name', 'dishes.chef_name')
                 ->searchable()
-                ->makeInputText('dishes.chef_name')
                 ->placeholder('Chef placeholder')
                 ->sortable(),
 
-            Column::add()
-                ->field('diet', 'dishes.diet')
-                ->makeInputEnumSelect(\App\Enums\Diet::cases(), 'dishes.diet')
-                ->title(__('Diet')),
+            Column::make(__('Diet'),'diet', 'dishes.diet'),
 
-            Column::add()
-                ->title(__('Category'))
-                ->field('category_name', 'categories.name')
+            Column::make(__('Category'),'category_name', 'categories.name')
                 ->placeholder('Category placeholder')
-                ->makeInputMultiSelect(Category::all(), 'name', 'category_id')
                 ->sortable(),
 
-            Column::add()
-                ->title('Serving at')
-                ->field('serving_at')
-                ->makeInputSelect(Dish::servedAt(), 'serving_at')
-                //->MakeInputMultiSelect(Dish::select('serving_at')->distinct()->get(), 'serving_at')
+            Column::make('Serving at','serving_at')
                 ->sortable(),
 
-            Column::add()
-                ->title('restaurant')
-                ->field('restaurant_title','restaurants.title')
-                ->makeInputMultiSelect(Restaurant::orderBy('title')->select('title','id')->get(),'title','restaurant_id'),
+            Column::make('Restaurant', 'restaurant_title','restaurants.title'),
 
-            Column::add()
-                ->title(__('Price'))
-                ->field('price_BRL')
+            Column::make(__('Price'),'price_BRL')
                 ->editOnClick($canEdit)
-                ->makeInputRange('price', ".", ",")
                 ->withSum('Total', true, true),
 
-            Column::add()
-                ->title('code')
-                ->field('code_label', 'code')
-                ->makeInputSelect(Dish::codes(), 'label', 'code'),
+            Column::make('Code','code_label', 'code'),
 
-            Column::add()
-                ->title(__('Sales price'))
-                ->field('sales_price_BRL'),
+            Column::make(__('Sales price'),'sales_price_BRL'),
 
-            Column::add()
-                ->title(__('Calories'))
-                ->field('calories')
-                ->makeInputRange('calories')
+            Column::make(__('Calories'),'calories')
                 ->sortable(),
 
-            Column::add()
-                ->title(__('In Stock'))
-                ->field('in_stock')
+            Column::make( __('In Stock'),'in_stock')
                 ->toggleable(true, 'yes', 'no')
                 ->headerAttribute('', 'width: 100px;')
-                ->makeBooleanFilter('in_stock', 'sim', 'não')
                 ->sortable(),
 
-            Column::add()
-                ->title(__('Kitchen'))
-                ->field('kitchen_name', 'kitchens.name')
-                ->sortable('kitchens.name')
-                ->makeInputMultiSelect(Kitchen::all(), 'name', 'kitchen_id'),
+            Column::make(__('Kitchen'),'kitchen_name', 'kitchens.name')
+                ->sortable('kitchens.name'),
 
-            Column::add()
-                ->title(__('Production date'))
-                ->field('produced_at_formatted')
-                ->makeInputDatePicker('produced_at')
+            Column::make(__('Production date'),'produced_at_formatted')
         ];
     }
 
-    /*
-    |--------------------------------------------------------------------------
-    | Header Action Buttons
-    |--------------------------------------------------------------------------
-    */
+    /**
+     * PowerGrid Filters.
+     *
+     * @return array<int, Filter>
+     */
+    public function filters(): array
+    {
+        return [
+
+            Filter::number('price', 'price_in_brl')
+              ->thousands('.')
+              ->decimal(','),
+
+            Filter::number('price', 'price_in_brl')
+            ->thousands('.')
+            ->decimal(','),
+
+            Filter::number('calories'),
+
+            Filter::inputText('dish_name', 'dishes.name')
+                ->operators(['contains', 'is', 'is_not']),
+
+            Filter::inputText('chef_name', 'dishes.chef_name'),
+
+            Filter::enumSelect('diet', 'dishes.diet')
+                ->dataSource(\App\Enums\Diet::cases())
+                ->optionLabel('dishes.diet'),
+
+            Filter::multiSelect('category_name', 'category_id')
+                ->dataSource(Category::all())
+                ->optionValue('id')
+                ->optionLabel('name'),
+
+            Filter::datepicker('produced_at_formatted', 'produced_at')
+                ->params(['timezone' => 'America/Sao_Paulo']),
+
+            Filter::boolean('in_stock')
+               ->label('yes', 'no'),
+        ];
+    }
 
     public function header(): array
     {
@@ -381,10 +321,10 @@ final class DishesTable extends PowerGridComponent
     */
 
     /**
-    * PowerGrid Dish Action Buttons.
-    *
-    * @return array<int, Button>
-    */
+     * PowerGrid Dish Action Buttons.
+     *
+     * @return array<int, Button>
+     */
     public function actions(): array
     {
         $theme = config('livewire-powergrid.theme');
@@ -422,10 +362,10 @@ final class DishesTable extends PowerGridComponent
     */
 
     /**
-    * PowerGrid Dish Action Rules.
-    *
-    * @return array<int, RuleActions>
-    */
+     * PowerGrid Dish Action Rules.
+     *
+     * @return array<int, RuleActions>
+     */
     public function actionRules(): array
     {
         return [
@@ -445,5 +385,45 @@ final class DishesTable extends PowerGridComponent
                 ->when(fn($dish) => (bool)$dish->in_stock === false)
                 ->setAttribute('class', 'bg-yellow-50 hover:bg-yellow-100')
         ];
+    }
+
+    /*
+    |--------------------------------------------------------------------------
+    |  Event listeners
+    |--------------------------------------------------------------------------
+    | Add custom events to DishesTable
+    |
+    */
+    protected function getListeners(): array
+    {
+        return array_merge(
+            parent::getListeners(), [
+                'edit-dish' => 'editDish',
+                'bulkDelete',
+            ]);
+    }
+
+    /*
+    |--------------------------------------------------------------------------
+    |  Bulk delete button
+    |--------------------------------------------------------------------------
+    */
+    public function bulkDelete(): void
+    {
+        $this->emit('openModal', 'delete-dish', [
+            'dishIds'                 => $this->checkboxValues,
+            'confirmationTitle'       => 'Delete dish',
+            'confirmationDescription' => 'Are you sure you want to delete this dish?',
+        ]);
+    }
+
+    /*
+    |--------------------------------------------------------------------------
+    |  Edit Dish button
+    |--------------------------------------------------------------------------
+    */
+    public function editDish(array $data): void
+    {
+        dd('You are editing', $data);
     }
 }

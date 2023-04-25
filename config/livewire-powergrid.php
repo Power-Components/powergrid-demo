@@ -23,28 +23,44 @@ return [
     */
     'plugins' => [
         /*
-         * https://github.com/snapappointments/bootstrap-select
-         */
-        'bootstrap-select' => [
-            'js'  => null, // 'https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.14.0-beta2/js/bootstrap-select.min.js',
-            'css' => null, // 'https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.14.0-beta2/css/bootstrap-select.min.css'
-        ],
-        /*
          * https://flatpickr.js.org
          */
-        'flat_piker' => [
-            'js'        => null, // 'https://cdn.jsdelivr.net/npm/flatpickr',
-            'css'       => null, // 'https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css',
-            'translate' => null, // (app()->getLocale() != 'en') ? 'https://npmcdn.com/flatpickr/dist/l10n/' . \Illuminate\Support\Str::substr(app()->getLocale(), 0, 2) . '.js' : '',
-            'locales'   => [
+        'flatpickr' => [
+            'locales' => [
                 'pt_BR' => [
                     'locale'     => 'pt',
                     'dateFormat' => 'd/m/Y H:i',
                     'enableTime' => true,
-                    'time_24hr'  => true
-                ]
-            ]
-        ]
+                    'time_24hr'  => true,
+                ],
+            ],
+        ],
+
+        'select' => [
+            'default' => 'tom',
+
+            /*
+             * TomSelect Options
+             * https://tom-select.js.org
+             */
+            'tom' => [
+                'plugins' => [
+                    'clear_button' => [
+                        'title' => 'Remove all selected options',
+                    ],
+                ],
+            ],
+
+            /*
+             * Slim Select options
+             * https://slimselectjs.com/
+             */
+            'slim' => [
+                'settings' => [
+                    'alwaysOpen' => false,
+                ],
+            ],
+        ],
     ],
 
     /*
@@ -73,17 +89,6 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | AlpineJS CDN
-    |--------------------------------------------------------------------------
-    |
-    | Define here the CDN source for imported AlpineJS
-    |
-    */
-
-    'alpinejs_cdn' => null,
-
-     /*
-    |--------------------------------------------------------------------------
     | Notification latest version
     |--------------------------------------------------------------------------
     |
@@ -91,5 +96,25 @@ return [
     | and change this value to `true`
     |
     */
-    'check_version' => true
+    'check_version' => false,
+
+    /*
+    |--------------------------------------------------------------------------
+    | Exportable class
+    |--------------------------------------------------------------------------
+    |
+    |
+    */
+
+    'exportable' => [
+        'default'      => 'openspout_v4',
+        'openspout_v4' => [
+            'xlsx' => \PowerComponents\LivewirePowerGrid\Services\OpenSpout\v4\ExportToXLS::class,
+            'csv'  => \PowerComponents\LivewirePowerGrid\Services\OpenSpout\v4\ExportToCsv::class,
+        ],
+        'openspout_v3' => [
+            'xlsx' => \PowerComponents\LivewirePowerGrid\Services\OpenSpout\v3\ExportToXLS::class,
+            'csv'  => \PowerComponents\LivewirePowerGrid\Services\OpenSpout\v3\ExportToCsv::class,
+        ],
+    ],
 ];
