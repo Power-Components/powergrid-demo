@@ -46,8 +46,6 @@ class Table
 
     /**
      * Table constructor.
-     * @param string $tableClass
-     * @param string $tableStyle
      */
     public function __construct(string $tableClass, string $tableStyle = '')
     {

@@ -1,4 +1,19 @@
+const colors = require('tailwindcss/colors')
+
+/** @type {import('tailwindcss').Config} */
 module.exports = {
+        presets: [
+        require("./vendor/power-components/livewire-powergrid/tailwind.config.js"),
+    ],
+
+    theme: {
+        extend: {
+            colors: {
+                "pg-primary": colors.gray,
+            },
+        },
+    },
+
     content: [
         './resources/**/*.blade.php',
         './resources/**/*.js',

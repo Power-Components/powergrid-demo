@@ -1,14 +1,14 @@
 <?php
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
 define('RUN_STATUS', 'ran');
 
 runOnce();
 
-$green    = "\033[0;32m";
-$yellow   = "\033[0;33m";
-$noColor  = "\033[0m";
+$green = "\033[0;32m";
+$yellow = "\033[0;33m";
+$noColor = "\033[0m";
 
 echo <<<EOF
 
@@ -37,7 +37,7 @@ EOF;
 |*********************************************************************
 | Although PowerGrid Demo repository requires PHP 8.0 as minimum version,
 | we have decided to include a commented version of the 'Enum Filter' feature.
-| Enum is available from Php 8.1+ and the script below removes comments 
+| Enum is available from Php 8.1+ and the script below removes comments
 | in certain files, guaranteeing that nothing will break for your PHP version.
 */
 
@@ -45,7 +45,7 @@ if (version_compare(PHP_VERSION, '8.1', '>')) {
     $files = ['app/Enums/Diet.php', 'app/Http/Livewire/DishesTable.php'];
 
     foreach ($files as $filePath) {
-        $filePath = str_replace('\\', DIRECTORY_SEPARATOR, __DIR__ . '\\' . $filePath);
+        $filePath = str_replace('\\', DIRECTORY_SEPARATOR, __DIR__.'\\'.$filePath);
 
         $fileContent = file_get_contents($filePath);
 
@@ -67,6 +67,6 @@ function runOnce(): void
         exit(0);
     }
 
-    $fileContent = str_replace('never' . '_ran', 'ran', file_get_contents(__FILE__));
+    $fileContent = str_replace('never'.'_ran', 'ran', file_get_contents(__FILE__));
     file_put_contents(__FILE__, $fileContent);
 }

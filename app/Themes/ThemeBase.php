@@ -2,7 +2,8 @@
 
 namespace App\Themes;
 
-use App\Themes\Components\{Layout, Toggleable};
+use App\Themes\Components\Layout;
+use App\Themes\Components\Toggleable;
 
 class ThemeBase extends AbstractTheme
 {
@@ -12,42 +13,42 @@ class ThemeBase extends AbstractTheme
 
     public function root(): string
     {
-        return $this->base . '' . $this->name;
+        return $this->base.''.$this->name;
     }
 
     public function toggleable(): Toggleable
     {
         return Theme::toggleable()
-            ->view($this->root() . '.toggleable');
+            ->view($this->root().'.toggleable');
     }
 
     public function layout(): Layout
     {
         return Theme::layout()
-            ->table($this->root() . '.table-base')
-            ->header($this->root() . '.header')
-            ->pagination($this->root() . '.pagination')
-            ->message($this->root() . '.message')
-            ->footer($this->root() . '.footer');
+            ->table($this->root().'.table-base')
+            ->header($this->root().'.header')
+            ->pagination($this->root().'.pagination')
+            ->message($this->root().'.message')
+            ->footer($this->root().'.footer');
     }
 
     public function apply(): ThemeBase
     {
-        $this->table             = $this->table();
-        $this->footer            = $this->footer();
-        $this->cols              = $this->cols();
-        $this->editable          = $this->editable();
-        $this->clickToCopy       = $this->clickToCopy();
-        $this->layout            = $this->layout();
-        $this->toggleable        = $this->toggleable();
-        $this->actions           = $this->actions();
-        $this->checkbox          = $this->checkbox();
-        $this->filterBoolean     = $this->filterBoolean();
-        $this->filterDatePicker  = $this->filterDatePicker();
+        $this->table = $this->table();
+        $this->footer = $this->footer();
+        $this->cols = $this->cols();
+        $this->editable = $this->editable();
+        $this->clickToCopy = $this->clickToCopy();
+        $this->layout = $this->layout();
+        $this->toggleable = $this->toggleable();
+        $this->actions = $this->actions();
+        $this->checkbox = $this->checkbox();
+        $this->filterBoolean = $this->filterBoolean();
+        $this->filterDatePicker = $this->filterDatePicker();
         $this->filterMultiSelect = $this->filterMultiSelect();
-        $this->filterNumber      = $this->filterNumber();
-        $this->filterSelect      = $this->filterSelect();
-        $this->filterInputText   = $this->filterInputText();
+        $this->filterNumber = $this->filterNumber();
+        $this->filterSelect = $this->filterSelect();
+        $this->filterInputText = $this->filterInputText();
 
         return $this;
     }

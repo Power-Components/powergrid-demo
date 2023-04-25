@@ -11,10 +11,10 @@ use Illuminate\Support\Arr;
 class DishSeeder extends Seeder
 {
     /**
-    * Run the database seeds.
-    *
-    * @return void
-    */
+     * Run the database seeds.
+     *
+     * @return void
+     */
     public function run()
     {
         $dishes = [
@@ -123,7 +123,7 @@ class DishSeeder extends Seeder
         ];
 
         $kitchens = Kitchen::all();
-        $faker    = Faker::create();
+        $faker = Faker::create();
 
         foreach ($dishes as $dish) {
             $chef_name = Arr::random(['Luan', 'Dan', 'Vitor', 'Claudio']);
@@ -139,15 +139,15 @@ class DishSeeder extends Seeder
             }
 
             $dish += [
-                'chef_name'         => $chef_name,
-                'kitchen_id'        => $kitchens->random()->id,
-                'code'              => $faker->randomElement(Dish::codes()->pluck('code')),
-                'price'             => $faker->randomFloat(2, 50, 200),
-                'calories'          => $faker->biasedNumberBetween($min = 40, $max = 890, $function = 'sqrt'),
-                'in_stock'          => $faker->boolean(),
-                'produced_at'       => $faker->dateTimeBetween($startDate = '-1 months', $endDate = 'now')->format("Y-m-d"),
-                'diet'              => $faker->randomElement([0, 1, 2]), //Diet::cases()
-                'serving_at'        => $faker->randomElement(['restaurant', 'room service', 'pool bar'])
+                'chef_name' => $chef_name,
+                'kitchen_id' => $kitchens->random()->id,
+                'code' => $faker->randomElement(Dish::codes()->pluck('code')),
+                'price' => $faker->randomFloat(2, 50, 200),
+                'calories' => $faker->biasedNumberBetween($min = 40, $max = 890, $function = 'sqrt'),
+                'in_stock' => $faker->boolean(),
+                'produced_at' => $faker->dateTimeBetween($startDate = '-1 months', $endDate = 'now')->format('Y-m-d'),
+                'diet' => $faker->randomElement([0, 1, 2]), //Diet::cases()
+                'serving_at' => $faker->randomElement(['restaurant', 'room service', 'pool bar']),
             ];
 
             Dish::create($dish);

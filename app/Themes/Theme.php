@@ -1,23 +1,23 @@
 <?php
 
-namespace App\Themes;;
+namespace App\Themes;
 
+use App\Themes\Components\Actions;
+use App\Themes\Components\Checkbox;
+use App\Themes\Components\ClickToCopy;
+use App\Themes\Components\Cols;
+use App\Themes\Components\Editable;
+use App\Themes\Components\FilterBoolean;
+use App\Themes\Components\FilterDatePicker;
+use App\Themes\Components\FilterInputText;
+use App\Themes\Components\FilterMultiSelect;
+use App\Themes\Components\FilterNumber;
+use App\Themes\Components\FilterSelect;
+use App\Themes\Components\Footer;
+use App\Themes\Components\Layout;
+use App\Themes\Components\Table;
+use App\Themes\Components\Toggleable;
 use Illuminate\Support\Facades\Facade;
-use App\Themes\Components\{Actions,
-    Checkbox,
-    ClickToCopy,
-    Cols,
-    Editable,
-    FilterBoolean,
-    FilterDatePicker,
-    FilterInputText,
-    FilterMultiSelect,
-    FilterNumber,
-    FilterSelect,
-    Footer,
-    Layout,
-    Table,
-    Toggleable};
 
 /**
  * @method static Table table(string $attrClass, string $attrStyle='')
@@ -35,6 +35,7 @@ use App\Themes\Components\{Actions,
  * @method static FilterNumber filterNumber()
  * @method static FilterSelect filterSelect()
  * @method static FilterInputText filterInputText()
+ *
  * @see \namespace App\Themes\ThemeManager
  */
 class Theme extends Facade

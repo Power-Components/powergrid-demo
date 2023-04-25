@@ -11,5 +11,7 @@ test('Database has dishes', function () {
 test('Home page contains Dishes table', function () {
     $this->get('/')
         ->assertOK()
+        ->assertDontSee('@powerGridScripts')
+        ->assertDontSee('@powerGridStyles')
         ->assertSeeLivewire('dishes-table');
 });

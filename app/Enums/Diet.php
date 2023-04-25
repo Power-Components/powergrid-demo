@@ -2,19 +2,18 @@
 
 namespace App\Enums;
 
-
 enum Diet: int
 {
-    case ALL      = 0;
-    case VEGAN    = 1;
-    case CELIAC   = 2;
+    case ALL = 0;
+    case VEGAN = 1;
+    case CELIAC = 2;
 
-    public  function labels(): string
+    public function labels(): string
     {
         return match ($this) {
-            self::ALL         => "🍽️ All diets",
-            self::VEGAN       => "🌱 Suitable for Vegans",
-            self::CELIAC      => "🥜 Suitable for Celiacs",
+            self::ALL => '🍽️ All diets',
+            self::VEGAN => '🌱 Suitable for Vegans',
+            self::CELIAC => '🥜 Suitable for Celiacs',
         };
     }
 
@@ -24,6 +23,3 @@ enum Diet: int
         return $this->labels();
     }
 }
-
-
-
