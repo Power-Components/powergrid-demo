@@ -104,7 +104,6 @@ final class DetailTable extends PowerGridComponent
 
             Column::make('Name', 'name')
                 ->sortable()
-                ->editOnClick(true, 'name')
                 ->searchable(),
 
             Column::make('Email', 'email')
