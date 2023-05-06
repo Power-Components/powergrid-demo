@@ -249,11 +249,11 @@ final class PowerGridDemoTable extends PowerGridComponent
      */
     public function actions(): array
     {
-       return [
-           Button::make('info', 'Click me')
-               ->class('bg-indigo-500 hover:bg-indigo-600 cursor-pointer text-white px-3 py-2 text-sm rounded-md')
-               ->emit('rowActionEvent', ['id' => 'id']),
-       ];
+        return [
+            Button::make('info', 'Click me')
+                ->class('bg-indigo-500 hover:bg-indigo-600 cursor-pointer text-white px-3 py-2 text-sm rounded-md')
+                ->emit('rowActionEvent', ['id' => 'id']),
+        ];
     }
 
     /*

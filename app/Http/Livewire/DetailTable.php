@@ -79,7 +79,7 @@ final class DetailTable extends PowerGridComponent
             ->addColumn(
                 'created_at_formatted',
                 fn (User $model) => Carbon::parse($model->created_at)
-                ->format('d/m/Y H:i:s')
+                    ->format('d/m/Y H:i:s')
             );
     }
 

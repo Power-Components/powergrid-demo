@@ -41,11 +41,11 @@ class DeleteDish extends ModalComponent
     public function confirm()
     {
         if ($this->dishId) {
-           // Dish::query()->find($this->dishId)->delete();
+            // Dish::query()->find($this->dishId)->delete();
         }
 
         if ($this->dishIds) {
-           // Dish::query()->whereIn('id', $this->dishIds)->delete();
+            // Dish::query()->whereIn('id', $this->dishIds)->delete();
         }
 
         $this->notification([

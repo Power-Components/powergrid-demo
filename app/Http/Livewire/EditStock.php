@@ -46,12 +46,12 @@ class EditStock extends ModalComponent
         $this->closeModal();
     }
 
-    public function confirm()
+    public function confirm(): void
     {
-        Dish::query()->where('id', $this->dishId)
-            ->update([
-                'in_stock' => $this->inStock,
-            ]);
+        //        Dish::query()->where('id', $this->dishId)
+        //            ->update([
+        //                'in_stock' => $this->inStock,
+        //            ]);
 
         $this->notification([
             'title' => 'Dish updated successfully!',

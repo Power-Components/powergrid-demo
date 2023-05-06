@@ -39,7 +39,7 @@ final class SoftDeleteTable extends PowerGridComponent
 
     public function datasource()
     {
-        return  Dish::with('category');
+        return Dish::with('category');
     }
 
     public function addColumns(): PowerGridEloquent

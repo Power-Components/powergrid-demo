@@ -33,7 +33,7 @@ final class WireElementsModalTable extends PowerGridComponent
 
     public function datasource()
     {
-        return  Dish::with('category');
+        return Dish::with('category');
     }
 
     public function addColumns(): PowerGridEloquent
@@ -87,9 +87,9 @@ final class WireElementsModalTable extends PowerGridComponent
             'timeout' => 4000,
         ]);
 
-        Dish::query()->where('id', $id)->update([
-            $field => $value,
-        ]);
+        //        Dish::query()->where('id', $id)->update([
+        //            $field => $value,
+        //        ]);
     }
 
     public function actions(): array

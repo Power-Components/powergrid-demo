@@ -114,7 +114,7 @@ final class BatchExportTable extends PowerGridComponent
             })
 
             ->addColumn('diet', function (Dish $dish) {
-            return \App\Enums\Diet::from($dish->diet)->labels();
+                return \App\Enums\Diet::from($dish->diet)->labels();
             })
 
             ->addColumn('produced_at')

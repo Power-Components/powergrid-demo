@@ -37,7 +37,7 @@ class SimpleTable extends PowerGridComponent
 
     public function datasource()
     {
-        return  Dish::with('category');
+        return Dish::with('category');
     }
 
     public function addColumns(): PowerGridEloquent
@@ -59,7 +59,8 @@ class SimpleTable extends PowerGridComponent
                 return Blade::render('<x-badge negative label="No" />');
             })
             ->addColumn('created_at_formatted', function (Dish $dish) {
-                return Carbon::parse($dish->created_at)->format('d/m/Y');
+                return Carbon::parse($dish->created_at)
+                    ->timezone('America/Sao_Paulo')->format('d/m/Y');
             });
     }
 
