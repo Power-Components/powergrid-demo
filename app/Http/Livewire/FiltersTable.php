@@ -212,9 +212,9 @@ HTML);
     public function filters(): array
     {
         return [
-            Filter::inputText('name')
-                ->placeholder('Test')
-                ->operators(['contains']),
+            Filter::inputText('name')->operators(['contains']),
+
+            Filter::inputText('chef_name'),
 
             Filter::boolean('in_stock', 'in_stock')
                 ->label('In stock', 'Out of stock')
