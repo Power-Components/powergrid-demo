@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Facades\DB;
 use PowerComponents\LivewirePowerGrid\Button;
 use PowerComponents\LivewirePowerGrid\Column;
+use PowerComponents\LivewirePowerGrid\Filters\Filter;
 use PowerComponents\LivewirePowerGrid\Footer;
 use PowerComponents\LivewirePowerGrid\Header;
 use PowerComponents\LivewirePowerGrid\PowerGrid;
@@ -102,10 +103,10 @@ final class BulkActionTable extends PowerGridComponent
     public function datasource()
     {
         return Dish::query()
-            ->join('categories', function ($categories) {
+            ->leftJoin('categories', function ($categories) {
                 $categories->on('dishes.category_id', '=', 'categories.id');
             })
-            ->join('kitchens', function ($categories) {
+            ->leftJoin('kitchens', function ($categories) {
                 $categories->on('dishes.kitchen_id', '=', 'kitchens.id');
             })
             ->select('dishes.*', 'categories.name as category_name', DB::raw('DATE_FORMAT(dishes.produced_at, "%d/%m/%Y") as produced_at_formatted'));
@@ -307,6 +308,13 @@ final class BulkActionTable extends PowerGridComponent
                     'confirmationTitle' => 'Delete dish',
                     'confirmationDescription' => 'Are you sure you want to delete this dish?',
                 ]),
+        ];
+    }
+
+    public function filters(): array
+    {
+        return [
+            Filter::number('price')->thousands(',')
         ];
     }
 }
