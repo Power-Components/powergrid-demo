@@ -314,7 +314,7 @@ final class BulkActionTable extends PowerGridComponent
     public function filters(): array
     {
         return [
-            Filter::number('price')->thousands(',')
+            Filter::number('price')->thousands(','),
         ];
     }
 }

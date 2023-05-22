@@ -7,6 +7,7 @@ Route::get('/simple', fn () => view('simple'))->name('simple');
 Route::get('/striped', fn () => view('striped'))->name('striped');
 Route::get('/header-fixed', fn () => view('header-fixed'))->name('header-fixed');
 Route::get('/collection', fn () => view('collection'))->name('collection');
+Route::get('/query-builder', fn () => view('query-builder'))->name('query-builder');
 Route::get('/join', fn () => view('join'))->name('join');
 Route::get('/multiple', fn () => view('multiple'))->name('multiple');
 Route::get('/filters', fn () => view('filters'))->name('filters');

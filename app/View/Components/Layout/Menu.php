@@ -48,6 +48,11 @@ class Menu extends Component
                 'name' => 'collection',
             ],
             [
+                'label' => 'Query Builder',
+                'route' => route('query-builder'),
+                'name' => 'query-builder',
+            ],
+            [
                 'label' => 'Join',
                 'route' => route('join'),
                 'name' => 'join',
