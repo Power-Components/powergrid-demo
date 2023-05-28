@@ -48,7 +48,9 @@ class Dish extends Model
 
     private static function clearCache(): void
     {
-        Cache::tags(['powergrid-dishes-simpleTable'])->flush();
+        if (Cache::supportsTags()) {
+            Cache::tags(['powergrid-dishes-simpleTable'])->flush();
+        }
     }
 
     public function category(): BelongsTo
