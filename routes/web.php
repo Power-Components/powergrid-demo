@@ -11,6 +11,7 @@ Route::get('/query-builder', fn () => view('query-builder'))->name('query-builde
 Route::get('/join', fn () => view('join'))->name('join');
 Route::get('/multiple', fn () => view('multiple'))->name('multiple');
 Route::get('/filters', fn () => view('filters'))->name('filters');
+Route::get('/dynamic-filters', fn () => view('dynamic-filters'))->name('dynamic-filters');
 Route::get('/filters-outside', fn () => view('filters-outside'))->name('filters-outside');
 Route::get('/dish', fn () => view('dish'))->name('dish');
 Route::get('/validation', fn () => view('validation'))->name('validation');

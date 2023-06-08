@@ -54,10 +54,10 @@ final class ValidationTable extends PowerGridComponent
     public function onUpdatedEditable(string $id, string $field, string $value): void
     {
         $this->validate();
-//
-//        User::query()->find($id)->update([
-//            $field => $value,
-//        ]);
+        //
+        //        User::query()->find($id)->update([
+        //            $field => $value,
+        //        ]);
 
         $this->notification([
             'title' => 'Profile saved!',

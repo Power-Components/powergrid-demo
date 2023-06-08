@@ -2836,16 +2836,16 @@
         },
         {
             "name": "power-components/livewire-powergrid",
-            "version": "v4.6.2",
+            "version": "v4.6.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Power-Components/livewire-powergrid.git",
-                "reference": "754af635c48dbf5a61f8188f2242c10c31972b32"
+                "reference": "8eba9747a26895f633735f4600f1e51545b7798d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Power-Components/livewire-powergrid/zipball/754af635c48dbf5a61f8188f2242c10c31972b32",
-                "reference": "754af635c48dbf5a61f8188f2242c10c31972b32",
+                "url": "https://api.github.com/repos/Power-Components/livewire-powergrid/zipball/8eba9747a26895f633735f4600f1e51545b7798d",
+                "reference": "8eba9747a26895f633735f4600f1e51545b7798d",
                 "shasum": ""
             },
             "require": {
@@ -2904,7 +2904,7 @@
             "homepage": "https://github.com/power-components/livewire-powergrid",
             "support": {
                 "issues": "https://github.com/Power-Components/livewire-powergrid/issues",
-                "source": "https://github.com/Power-Components/livewire-powergrid/tree/v4.6.2"
+                "source": "https://github.com/Power-Components/livewire-powergrid/tree/v4.6.3"
             },
             "funding": [
                 {
@@ -2912,7 +2912,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2023-06-07T00:55:07+00:00"
+            "time": "2023-06-08T14:01:56+00:00"
         },
         {
             "name": "predis/predis",

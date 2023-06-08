@@ -38,6 +38,11 @@ class Menu extends Component
                 'name' => 'filters-outside',
             ],
             [
+                'label' => 'Dynamic Filters',
+                'route' => route('dynamic-filters'),
+                'name' => 'dynamic-filters',
+            ],
+            [
                 'label' => 'Validation',
                 'route' => route('validation'),
                 'name' => 'validation',
