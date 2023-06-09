@@ -14,7 +14,7 @@ Route::get('/filters', fn () => view('filters'))->name('filters');
 Route::get('/dynamic-filters', fn () => view('dynamic-filters'))->name('dynamic-filters');
 Route::get('/filters-outside', fn () => view('filters-outside'))->name('filters-outside');
 Route::get('/dish', fn () => view('dish'))->name('dish');
-Route::get('/dish-responsive', fn () => view('dish', ['responsive' => true]))->name('dish-responsive');
+Route::get('/dish-responsive', fn () => view('dish-responsive'))->name('dish-responsive');
 Route::get('/validation', fn () => view('validation'))->name('validation');
 Route::get('/persist', fn () => view('persist'))->name('persist');
 Route::get('/detail', fn () => view('detail'))->name('detail');

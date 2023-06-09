@@ -96,7 +96,7 @@ final class DishesTable extends PowerGridComponent
 
         $responsive = $this->withResponsive ? [
             Responsive::make()
-                ->fixedColumns('dishes.id', 'dishes.name', Responsive::ACTIONS_COLUMN_NAME)
+                ->fixedColumns('dishes.id', 'dishes.name', Responsive::ACTIONS_COLUMN_NAME),
         ] : [];
 
         return [
