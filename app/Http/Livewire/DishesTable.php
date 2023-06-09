@@ -94,7 +94,10 @@ final class DishesTable extends PowerGridComponent
     {
         $this->showCheckBox();
 
-        $responsive = $this->withResponsive ? [Responsive::make()] : [];
+        $responsive = $this->withResponsive ? [
+            Responsive::make()
+                ->fixedColumns('dishes.id', 'dishes.name', Responsive::ACTIONS_COLUMN_NAME)
+        ] : [];
 
         return [
             Exportable::make('export')
@@ -251,8 +254,6 @@ final class DishesTable extends PowerGridComponent
                 ->title(__('Dish'))
                 ->field('dish_name', 'dishes.name')
                 ->searchable()
-                ->editOnClick(true)
-                ->clickToCopy(true)
                 ->placeholder('Dish placeholder')
                 ->sortable(),
 
@@ -315,7 +316,7 @@ final class DishesTable extends PowerGridComponent
     {
         return [
             Button::add('bulk-delete')
-                ->caption(__('Bulk delete'))
+                ->caption(__('Bulk delete (<span x-text="window.pgBulkActions.count(\''.$this->tableName.'\')"></span>)'))
                 ->class('cursor-pointer block bg-white-200 text-gray-700 border border-gray-300 rounded py-2 px-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-600 dark:border-gray-500 dark:bg-gray-500 2xl:dark:placeholder-gray-300 dark:text-gray-200 dark:text-gray-300')
                 ->emit('bulkDelete', []),
         ];
