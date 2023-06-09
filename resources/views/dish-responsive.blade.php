@@ -1,9 +1,9 @@
 @extends('layouts.base')
 
 @section('title')
-    Dishes
+    Dishes Responsive
 @endsection
 
 @section('main')
-    <livewire:dishes-table />
+    <livewire:dishes-table :with-responsive="true"/>
 @endsection

@@ -73,6 +73,11 @@ class Menu extends Component
                 'name' => 'dish',
             ],
             [
+                'label' => 'Responsive',
+                'route' => route('dish-responsive'),
+                'name' => 'dish-responsive',
+            ],
+            [
                 'label' => 'Persist',
                 'route' => route('persist'),
                 'name' => 'persist',

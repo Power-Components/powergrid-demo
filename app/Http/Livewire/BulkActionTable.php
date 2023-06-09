@@ -279,7 +279,7 @@ final class BulkActionTable extends PowerGridComponent
             Button::add('bulk-delete')
                 ->class('hidden')
                 ->caption(__('Bulk delete (<span x-text="window.pgBulkActions.count(\''.$this->tableName.'\')"></span>)'))
-                ->class('cursor-pointer block bg-white-200 text-gray-700 border border-gray-300 rounded py-2 px-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-600 dark:border-gray-500 dark:bg-gray-500 2xl:dark:placeholder-gray-300 dark:text-gray-200 dark:text-gray-300')
+                ->class('cursor-pointer block bg-white-200 text-slate-700 border border-slate-300 rounded py-2 px-3 leading-tight focus:outline-none focus:bg-white focus:border-slate-600 dark:border-slate-500 dark:bg-slate-500 2xl:dark:placeholder-slate-300 dark:text-slate-200 dark:text-slate-300')
                 ->emit('bulkDelete-'.$this->tableName, []),
         ];
     }

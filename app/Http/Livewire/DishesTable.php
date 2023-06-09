@@ -14,6 +14,7 @@ use PowerComponents\LivewirePowerGrid\Header;
 use PowerComponents\LivewirePowerGrid\PowerGrid;
 use PowerComponents\LivewirePowerGrid\PowerGridComponent;
 use PowerComponents\LivewirePowerGrid\PowerGridEloquent;
+use PowerComponents\LivewirePowerGrid\Responsive;
 use PowerComponents\LivewirePowerGrid\Rules\Rule;
 use PowerComponents\LivewirePowerGrid\Rules\RuleActions;
 use PowerComponents\LivewirePowerGrid\Traits\ActionButton;
@@ -26,6 +27,8 @@ final class DishesTable extends PowerGridComponent
 
     //Table sort field
     public string $sortField = 'dishes.id';
+
+    public bool $withResponsive = true;
 
     /*
     |--------------------------------------------------------------------------
@@ -91,6 +94,8 @@ final class DishesTable extends PowerGridComponent
     {
         $this->showCheckBox();
 
+        $responsive = $this->withResponsive ? [Responsive::make()] : [];
+
         return [
             Exportable::make('export')
                 ->striped()
@@ -103,6 +108,8 @@ final class DishesTable extends PowerGridComponent
             Footer::make()
                 ->showPerPage()
                 ->showRecordCount(),
+
+            ...$responsive,
         ];
     }
 
