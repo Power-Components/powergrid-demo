@@ -28,7 +28,7 @@ final class DishesTable extends PowerGridComponent
     //Table sort field
     public string $sortField = 'dishes.id';
 
-    public bool $withResponsive = true;
+    public bool $withResponsive = false;
 
     /*
     |--------------------------------------------------------------------------
