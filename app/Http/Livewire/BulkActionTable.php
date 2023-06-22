@@ -12,8 +12,8 @@ use PowerComponents\LivewirePowerGrid\Filters\Filter;
 use PowerComponents\LivewirePowerGrid\Footer;
 use PowerComponents\LivewirePowerGrid\Header;
 use PowerComponents\LivewirePowerGrid\PowerGrid;
+use PowerComponents\LivewirePowerGrid\PowerGridColumns;
 use PowerComponents\LivewirePowerGrid\PowerGridComponent;
-use PowerComponents\LivewirePowerGrid\PowerGridEloquent;
 use PowerComponents\LivewirePowerGrid\Traits\ActionButton;
 
 final class BulkActionTable extends PowerGridComponent
@@ -143,9 +143,9 @@ final class BulkActionTable extends PowerGridComponent
     |
     */
 
-    public function addColumns(): PowerGridEloquent
+    public function addColumns(): PowerGridColumns
     {
-        return PowerGrid::eloquent()
+        return PowerGrid::columns()
             ->addColumn('id')
             ->addColumn('serving_at')
             ->addColumn('chef_name')

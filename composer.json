@@ -21,7 +21,7 @@
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.8.1",
         "fakerphp/faker": "^1.22.0",
-        "laradumps/laradumps": "^1.12.2",
+        "laradumps/laradumps": "2.x-dev",
         "laravel/pint": "^1.10",
         "laravel/sail": "^1.22.0",
         "mockery/mockery": "^1.5.1",

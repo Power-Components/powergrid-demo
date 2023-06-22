@@ -9,8 +9,8 @@ use PowerComponents\LivewirePowerGrid\Column;
 use PowerComponents\LivewirePowerGrid\Footer;
 use PowerComponents\LivewirePowerGrid\Header;
 use PowerComponents\LivewirePowerGrid\PowerGrid;
+use PowerComponents\LivewirePowerGrid\PowerGridColumns;
 use PowerComponents\LivewirePowerGrid\PowerGridComponent;
-use PowerComponents\LivewirePowerGrid\PowerGridEloquent;
 use PowerComponents\LivewirePowerGrid\Traits\ActionButton;
 use WireUi\Traits\Actions;
 
@@ -54,10 +54,10 @@ final class ValidationTable extends PowerGridComponent
     public function onUpdatedEditable(string $id, string $field, string $value): void
     {
         $this->validate();
-        //
-        //        User::query()->find($id)->update([
-        //            $field => $value,
-        //        ]);
+
+        //  User::query()->find($id)->update([
+        //     $field => $value,
+        //  ]);
 
         $this->notification([
             'title' => 'Profile saved!',
@@ -91,10 +91,11 @@ final class ValidationTable extends PowerGridComponent
     | You can pass a closure to transform/modify the data.
     |
     */
-    public function addColumns(): PowerGridEloquent
+    public function addColumns(): PowerGridColumns
     {
-        return PowerGrid::eloquent()
+        return PowerGrid::columns()
             ->addColumn('id')
+            ->addColumn('active')
             ->addColumn('name')
             ->addColumn('email');
     }
@@ -126,6 +127,8 @@ final class ValidationTable extends PowerGridComponent
             Column::make('EMAIL', 'email')
                 ->sortable()
                 ->searchable(),
+
+            Column::make('Active', 'active'),
         ];
     }
 }

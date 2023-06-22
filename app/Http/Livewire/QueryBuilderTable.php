@@ -11,7 +11,7 @@ use PowerComponents\LivewirePowerGrid\Filters\Filter;
 use PowerComponents\LivewirePowerGrid\Footer;
 use PowerComponents\LivewirePowerGrid\Header;
 use PowerComponents\LivewirePowerGrid\PowerGrid;
-use PowerComponents\LivewirePowerGrid\PowerGridColumns;
+use PowerComponents\LivewirePowerGrid\PowerGridColumnss;
 use PowerComponents\LivewirePowerGrid\PowerGridComponent;
 use PowerComponents\LivewirePowerGrid\Rules\Rule;
 use PowerComponents\LivewirePowerGrid\Rules\RuleActions;
@@ -90,7 +90,7 @@ final class QueryBuilderTable extends PowerGridComponent
     |    the database using the `e()` Laravel Helper function.
     |
     */
-    public function addColumns(): PowerGridColumns
+    public function addColumns(): PowerGridColumnss
     {
         return PowerGrid::columns()
             ->addColumn('active')
