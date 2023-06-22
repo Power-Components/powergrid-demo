@@ -45,7 +45,7 @@ final class CollectionTable extends PowerGridComponent
                 'name' => 'Name 1',
                 'price' => 1.58,
                 'in_stock' => true,
-                'created_at' => '2021-01-01 00:00:00',
+                'created_at' => '2023-01-01 00:00:00',
                 'chef_name' => '',
             ],
             [
@@ -53,7 +53,7 @@ final class CollectionTable extends PowerGridComponent
                 'name' => 'Name 2',
                 'price' => 1.68,
                 'in_stock' => true,
-                'created_at' => '2021-02-02 00:00:00',
+                'created_at' => '2023-02-02 00:00:00',
                 'chef_name' => null,
             ],
             [
@@ -61,7 +61,7 @@ final class CollectionTable extends PowerGridComponent
                 'name' => 'Name 3',
                 'price' => 1.78,
                 'in_stock' => false,
-                'created_at' => '2021-03-03 00:00:00',
+                'created_at' => '2023-03-03 00:00:00',
                 'chef_name' => 'Luan',
             ],
             [
@@ -69,7 +69,7 @@ final class CollectionTable extends PowerGridComponent
                 'name' => 'Name 4',
                 'price' => 1.88,
                 'in_stock' => true,
-                'created_at' => '2021-04-04 00:00:00',
+                'created_at' => '2023-04-04 00:00:00',
                 'chef_name' => 'Luan',
             ],
             [
@@ -77,7 +77,7 @@ final class CollectionTable extends PowerGridComponent
                 'name' => 'Name 5',
                 'price' => 1.98,
                 'in_stock' => false,
-                'created_at' => '2021-05-05 00:00:00',
+                'created_at' => '2023-05-05 00:00:00',
                 'chef_name' => 'Luan',
             ],
         ]);
@@ -93,6 +93,9 @@ final class CollectionTable extends PowerGridComponent
             ->addColumn('in_stock')
             ->addColumn('in_stock_label', function ($entry) {
                 return $entry->in_stock ? 'sim' : 'não';
+            })
+            ->addColumn('created_at', function ($entry) {
+                return Carbon::parse($entry->created_at);
             })
             ->addColumn('created_at_formatted', function ($entry) {
                 return Carbon::parse($entry->created_at)->format('d/m/Y');
@@ -143,6 +146,9 @@ final class CollectionTable extends PowerGridComponent
                 ->collection(function ($builder, $values) {
                     return $builder->where('id', 1);
                 }),
+            Filter::datepicker('created_at_formatted', 'created_at')->params([
+                'timezone' => 'America/Sao_Paulo',
+            ]),
         ];
     }
 }

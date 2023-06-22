@@ -186,11 +186,11 @@ final class PowerGridTable extends PowerGridComponent
     |
     */
 
-     /**
-     * PowerGrid User Action Rules.
-     *
-     * @return array<int, RuleActions>
-     */
+    /**
+    * PowerGrid User Action Rules.
+    *
+    * @return array<int, RuleActions>
+    */
 
     /*
     public function actionRules(): array
