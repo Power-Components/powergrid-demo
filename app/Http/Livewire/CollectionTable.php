@@ -130,7 +130,7 @@ final class CollectionTable extends PowerGridComponent
 
             Column::add()
                 ->title(__('In Stock'))
-                ->toggleable(true, 'sim', 'não')
+                ->toggleable(true, 'yes', 'no')
                 ->field('in_stock'),
 
             Column::add()
@@ -146,6 +146,8 @@ final class CollectionTable extends PowerGridComponent
                 ->collection(function ($builder, $values) {
                     return $builder->where('id', 1);
                 }),
+            Filter::boolean('in_stock', 'in_stock')
+                ->label('yes', 'no'),
             Filter::datepicker('created_at_formatted', 'created_at')->params([
                 'timezone' => 'America/Sao_Paulo',
             ]),

@@ -13,7 +13,7 @@
         "laravel/tinker": "^2.8.1",
         "livewire/livewire": "^2.12.3",
         "openspout/openspout": "^4.14.0",
-        "power-components/livewire-powergrid": "^4.7",
+        "power-components/livewire-powergrid": "^4.8",
         "predis/predis": "^2.1.2",
         "wire-elements/modal": "^1.0.8",
         "wireui/wireui": "^1.17.9"
@@ -21,7 +21,7 @@
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.8.1",
         "fakerphp/faker": "^1.22.0",
-        "laradumps/laradumps": "2.x-dev",
+        "laradumps/laradumps": "^2.0",
         "laravel/pint": "^1.10",
         "laravel/sail": "^1.22.0",
         "mockery/mockery": "^1.5.1",
