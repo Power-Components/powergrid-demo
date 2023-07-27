@@ -11,7 +11,6 @@
 
     <wireui:scripts />
     @vite(['resources/css/app.css', 'resources/js/app.js'])
-    @livewireStyles
 </head>
 <body class="antialiased h-screen">
 <div class="h-full flex" x-data="{ sideBarOpen: false }" >
@@ -66,8 +65,5 @@
         </div>
     </div>
 </div>
-@livewireScripts
-@livewire('livewire-ui-modal')
-<x-notifications />
 </body>
 </html>

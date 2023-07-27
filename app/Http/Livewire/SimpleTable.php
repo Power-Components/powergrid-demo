@@ -11,7 +11,7 @@ use PowerComponents\LivewirePowerGrid\Footer;
 use PowerComponents\LivewirePowerGrid\Header;
 use PowerComponents\LivewirePowerGrid\PowerGrid;
 use PowerComponents\LivewirePowerGrid\PowerGridComponent;
-use PowerComponents\LivewirePowerGrid\PowerGridEloquent;
+use PowerComponents\LivewirePowerGrid\PowerGridColumns;
 use PowerComponents\LivewirePowerGrid\Traits\ActionButton;
 
 class SimpleTable extends PowerGridComponent
@@ -23,8 +23,8 @@ class SimpleTable extends PowerGridComponent
     public function setUp(): array
     {
         return [
-            Cache::make()
-                ->forever(),
+//            Cache::make()
+//                ->forever(),
 
             Header::make()
                 ->showSearchInput(),
@@ -40,9 +40,9 @@ class SimpleTable extends PowerGridComponent
         return Dish::with('category');
     }
 
-    public function addColumns(): PowerGridEloquent
+    public function addColumns(): PowerGridColumns
     {
-        return PowerGrid::eloquent()
+        return PowerGrid::columns()
             ->addColumn('id')
             ->addColumn('name')
             ->addColumn('chef_name')
@@ -53,10 +53,10 @@ class SimpleTable extends PowerGridComponent
             ->addColumn('in_stock')
             ->addColumn('in_stock_label', function (Dish $dish) {
                 if ($dish->in_stock) {
-                    return Blade::render('<x-badge sky label="Yes" />');
+                    return Blade::render('Yes');
                 }
 
-                return Blade::render('<x-badge negative label="No" />');
+                return Blade::render('No');
             })
             ->addColumn('created_at_formatted', function (Dish $dish) {
                 return Carbon::parse($dish->created_at)

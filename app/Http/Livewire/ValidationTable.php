@@ -10,14 +10,12 @@ use PowerComponents\LivewirePowerGrid\Footer;
 use PowerComponents\LivewirePowerGrid\Header;
 use PowerComponents\LivewirePowerGrid\PowerGrid;
 use PowerComponents\LivewirePowerGrid\PowerGridComponent;
-use PowerComponents\LivewirePowerGrid\PowerGridEloquent;
+use PowerComponents\LivewirePowerGrid\PowerGridColumns;
 use PowerComponents\LivewirePowerGrid\Traits\ActionButton;
-use WireUi\Traits\Actions;
 
 final class ValidationTable extends PowerGridComponent
 {
     use ActionButton;
-    use Actions;
 
     public array $name;
 
@@ -55,16 +53,16 @@ final class ValidationTable extends PowerGridComponent
     {
         $this->validate();
 
-        //        User::query()->find($id)->update([
-        //            $field => $value,
-        //        ]);
+                User::query()->find($id)->update([
+                    $field => $value,
+                ]);
 
-        $this->notification([
-            'title' => 'Profile saved!',
-            'description' => 'Your profile was successfully saved',
-            'icon' => 'success',
-            'timeout' => 3000,
-        ]);
+//        $this->notification([
+//            'title' => 'Profile saved!',
+//            'description' => 'Your profile was successfully saved',
+//            'icon' => 'success',
+//            'timeout' => 3000,
+//        ]);
     }
 
     /*
@@ -91,9 +89,9 @@ final class ValidationTable extends PowerGridComponent
     | You can pass a closure to transform/modify the data.
     |
     */
-    public function addColumns(): PowerGridEloquent
+    public function addColumns(): PowerGridColumns
     {
-        return PowerGrid::eloquent()
+        return PowerGrid::columns()
             ->addColumn('id')
             ->addColumn('name')
             ->addColumn('email');

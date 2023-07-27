@@ -12,7 +12,7 @@ use PowerComponents\LivewirePowerGrid\Footer;
 use PowerComponents\LivewirePowerGrid\Header;
 use PowerComponents\LivewirePowerGrid\PowerGrid;
 use PowerComponents\LivewirePowerGrid\PowerGridComponent;
-use PowerComponents\LivewirePowerGrid\PowerGridEloquent;
+use PowerComponents\LivewirePowerGrid\PowerGridColumns;
 use PowerComponents\LivewirePowerGrid\Traits\ActionButton;
 
 final class BulkActionTable extends PowerGridComponent
@@ -45,13 +45,16 @@ final class BulkActionTable extends PowerGridComponent
     |  Bulk delete button
     |--------------------------------------------------------------------------
     */
-    public function bulkDelete(): void
+    public function bulkDelete(array $params): void
     {
-        $this->emit('openModal', 'delete-dish', [
-            'dishIds' => $this->checkboxValues,
-            'confirmationTitle' => 'Delete dish',
-            'confirmationDescription' => 'Are you sure you want to delete this dish?',
-        ]);
+
+        ds($params);
+//
+//        $this->emit('openModal', 'delete-dish', [
+//            'dishIds' => $this->checkboxValues,
+//            'confirmationTitle' => 'Delete dish',
+//            'confirmationDescription' => 'Are you sure you want to delete this dish?',
+//        ]);
     }
 
     /*
@@ -142,9 +145,9 @@ final class BulkActionTable extends PowerGridComponent
     |
     */
 
-    public function addColumns(): PowerGridEloquent
+    public function addColumns(): PowerGridColumns
     {
-        return PowerGrid::eloquent()
+        return PowerGrid::columns()
             ->addColumn('id')
             ->addColumn('serving_at')
             ->addColumn('chef_name')
@@ -279,7 +282,7 @@ final class BulkActionTable extends PowerGridComponent
                 ->class('hidden')
                 ->caption(__('Bulk delete (<span x-text="window.pgBulkActions.count(\''.$this->tableName.'\')"></span>)'))
                 ->class('cursor-pointer block bg-white-200 text-gray-700 border border-gray-300 rounded py-2 px-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-600 dark:border-gray-500 dark:bg-gray-500 2xl:dark:placeholder-gray-300 dark:text-gray-200 dark:text-gray-300')
-                ->emit('bulkDelete-'.$this->tableName, []),
+                ->dispatch('bulkDelete-'.$this->tableName, []),
         ];
     }
 
@@ -294,19 +297,19 @@ final class BulkActionTable extends PowerGridComponent
             Button::add('edit')
                 ->caption('Edit')
                 ->class('bg-indigo-500 cursor-pointer text-white px-3 py-2 m-1 rounded text-sm')
-                ->emit('edit-dish', [
+                ->dispatch('edit-dish', [
                     'dishId' => 'id',
                     'custom' => __METHOD__,
                 ]),
 
             Button::add('destroy')
                 ->caption(__('Delete'))
-                ->class('bg-red-500 text-white px-3 py-2 m-1 rounded text-sm')
-                ->openModal('delete-dish', [
-                    'dishId' => 'id',
-                    'confirmationTitle' => 'Delete dish',
-                    'confirmationDescription' => 'Are you sure you want to delete this dish?',
-                ]),
+                ->class('bg-red-500 text-white px-3 py-2 m-1 rounded text-sm'),
+//                ->openModal('delete-dish', [
+//                    'dishId' => 'id',
+//                    'confirmationTitle' => 'Delete dish',
+//                    'confirmationDescription' => 'Are you sure you want to delete this dish?',
+               // ]),
         ];
     }
 }

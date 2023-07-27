@@ -16,14 +16,12 @@ use PowerComponents\LivewirePowerGrid\Footer;
 use PowerComponents\LivewirePowerGrid\Header;
 use PowerComponents\LivewirePowerGrid\PowerGrid;
 use PowerComponents\LivewirePowerGrid\PowerGridComponent;
-use PowerComponents\LivewirePowerGrid\PowerGridEloquent;
+use PowerComponents\LivewirePowerGrid\PowerGridColumns;
 use PowerComponents\LivewirePowerGrid\Traits\ActionButton;
-use WireUi\Traits\Actions;
 
 final class FiltersTable extends PowerGridComponent
 {
     use ActionButton;
-    use Actions;
 
     public bool $filtersOutside = false;
 
@@ -36,7 +34,7 @@ final class FiltersTable extends PowerGridComponent
     public function setUp(): array
     {
         if ($this->filtersOutside) {
-            $this->dispatchBrowserEvent('toggle-filters-'.$this->tableName);
+            $this->dispatch('toggle-filters-'.$this->tableName);
         }
 
         return [
@@ -60,7 +58,7 @@ final class FiltersTable extends PowerGridComponent
         if ($this->filtersOutside) {
             config(['livewire-powergrid.filter' => 'outside']);
 
-            $this->dispatchBrowserEvent('toggle-filters-'.$this->tableName);
+            $this->dispatch('toggle-filters-'.$this->tableName);
         }
 
         return Dish::query()
@@ -83,11 +81,11 @@ final class FiltersTable extends PowerGridComponent
         ];
     }
 
-    public function addColumns(): PowerGridEloquent
+    public function addColumns(): PowerGridColumns
     {
         $fmt = new NumberFormatter('ca_ES', NumberFormatter::CURRENCY);
 
-        return PowerGrid::eloquent()
+        return PowerGrid::columns()
             ->addColumn('id')
             ->addColumn('name')
             ->addColumn('storage_room')
@@ -182,31 +180,31 @@ final class FiltersTable extends PowerGridComponent
             Button::make('edit')
                 ->render(function (Dish $dish) {
                     return Blade::render(<<<HTML
-<x-button.circle primary icon="pencil" wire:click="editDish('$dish->id')" />
+<div></div>
 HTML);
                 }),
 
-            Button::make('delete')
-                ->bladeComponent('button.circle', function (Dish $dish) {
-                    return [
-                        'negative' => true,
-                        'icon' => 'trash',
-                        'wire:click' => 'editDish(\''.$dish->id.'\')',
-                    ];
-                }),
+//            Button::make('delete')
+//                ->bladeComponent('button.circle', function (Dish $dish) {
+//                    return [
+//                        'negative' => true,
+//                        'icon' => 'trash',
+//                        'wire:click' => 'editDish(\''.$dish->id.'\')',
+//                    ];
+//                }),
         ];
     }
 
     public function editDish(int $dishId): void
     {
-        $this->notification()
-            ->info('Edit DishId: '.$dishId);
+//        $this->notification()
+//            ->info('Edit DishId: '.$dishId);
     }
 
     public function deleteDish(int $dishId): void
     {
-        $this->notification()
-            ->success('Edit DishId: '.$dishId);
+//        $this->notification()
+//            ->success('Edit DishId: '.$dishId);
     }
 
     public function filters(): array

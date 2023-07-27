@@ -5,23 +5,28 @@
     "homepage": "https://demo.livewire-powergrid.com",
     "keywords": ["framework", "laravel"],
     "license": "MIT",
+    "repositories": [
+        {
+            "type": "path",
+            "url": "/Users/luan.freitas/Documents/livewire-powergrid"
+        }
+    ],
     "require": {
         "php": "^8.1",
         "guzzlehttp/guzzle": "^7.5.1",
         "laravel/framework": "^10.9.0",
         "laravel/sanctum": "^3.2.5",
         "laravel/tinker": "^2.8.1",
-        "livewire/livewire": "^2.12.3",
+        "livewire/livewire": "^3.0.0-beta.4",
         "openspout/openspout": "^4.13.1",
-        "power-components/livewire-powergrid": "^4.4.2",
-        "predis/predis": "^2.1.2",
-        "wire-elements/modal": "^1.0.8",
-        "wireui/wireui": "^1.17.9"
+        "power-components/livewire-powergrid": "4.x-dev",
+        "predis/predis": "^2.1.2"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.8.1",
         "fakerphp/faker": "^1.21.0",
-        "laradumps/laradumps": "^1.11.2",
+        "laradumps/laradumps": "^2.1",
+        "laradumps/laradumps-core": "^0.2.0",
         "laravel/pint": "^1.10",
         "laravel/sail": "^1.21.5",
         "mockery/mockery": "^1.5.1",
@@ -80,5 +85,5 @@
         }
     },
     "minimum-stability": "stable",
-    "prefer-stable": true
+    "prefer-stable": false
 }

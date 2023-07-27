@@ -23,7 +23,6 @@
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
         <script src="https://cdn.tailwindcss.com"></script>
         <script src="https://cdn.jsdelivr.net/npm/flatpickr" defer></script>
-        @livewireStyles
     </head>
     <body class="antialiased overflow-auto px-10 py-8 bg-gray-50">
         <div class="p-6 bg-gray-50 mb-3 rounded-md shadow-md text-gray-700 border border-gray-400">
@@ -50,7 +49,6 @@
         </div>
 
         <!-- Scripts -->
-        @livewireScripts
         <script defer>
             /*! For license information please see powergrid.js.LICENSE.txt */
             /*! For license information please see powergrid.js.LICENSE.txt */

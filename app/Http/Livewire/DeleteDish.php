@@ -2,14 +2,10 @@
 
 namespace App\Http\Livewire;
 
-use App\Models\Dish;
 use LivewireUI\Modal\ModalComponent;
-use WireUi\Traits\Actions;
 
 class DeleteDish extends ModalComponent
 {
-    use Actions;
-
     public ?int $dishId = null;
 
     public array $dishIds = [];
@@ -48,15 +44,15 @@ class DeleteDish extends ModalComponent
             // Dish::query()->whereIn('id', $this->dishIds)->delete();
         }
 
-        $this->notification([
-            'title' => 'Dish deleted successfully!',
-            'icon' => 'success',
-            'timeout' => 1300,
-        ]);
-
-        $this->closeModalWithEvents([
-            'pg:eventRefresh-default',
-        ]);
+//        $this->notification([
+//            'title' => 'Dish deleted successfully!',
+//            'icon' => 'success',
+//            'timeout' => 1300,
+//        ]);
+//
+//        $this->closeModalWithEvents([
+//            'pg:eventRefresh-default',
+//        ]);
     }
 
     public function render()

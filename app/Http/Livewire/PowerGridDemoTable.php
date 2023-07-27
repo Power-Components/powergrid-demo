@@ -25,7 +25,7 @@ use PowerComponents\LivewirePowerGrid\Footer;
 use PowerComponents\LivewirePowerGrid\Header;
 use PowerComponents\LivewirePowerGrid\PowerGrid;
 use PowerComponents\LivewirePowerGrid\PowerGridComponent;
-use PowerComponents\LivewirePowerGrid\PowerGridEloquent;
+use PowerComponents\LivewirePowerGrid\PowerGridColumns;
 use PowerComponents\LivewirePowerGrid\Rules\Rule;
 use PowerComponents\LivewirePowerGrid\Rules\RuleActions;
 use PowerComponents\LivewirePowerGrid\Traits\ActionButton;
@@ -67,20 +67,20 @@ final class PowerGridDemoTable extends PowerGridComponent
     {
         $message = 'You have clicked #'.$data['id'];
 
-        $this->dispatchBrowserEvent('showAlert', ['message' => $message]);
+        $this->dispatch('showAlert', ['message' => $message]);
     }
 
     public function bulkActionEvent(): void
     {
         if (count($this->checkboxValues) == 0) {
-            $this->dispatchBrowserEvent('showAlert', ['message' => 'You must select at least one item!']);
+            $this->dispatch('showAlert', ['message' => 'You must select at least one item!']);
 
             return;
         }
 
         $ids = implode(', ', $this->checkboxValues);
 
-        $this->dispatchBrowserEvent('showAlert', ['message' => 'You have selected IDs: '.$ids]);
+        $this->dispatch('showAlert', ['message' => 'You have selected IDs: '.$ids]);
     }
 
     /*
@@ -151,9 +151,9 @@ final class PowerGridDemoTable extends PowerGridComponent
     |    the database using the `e()` Laravel Helper function.
     |
     */
-    public function addColumns(): PowerGridEloquent
+    public function addColumns(): PowerGridColumns
     {
-        return PowerGrid::eloquent()
+        return PowerGrid::columns()
             ->addColumn('id')
             ->addColumn('name')
             ->addColumn('email')

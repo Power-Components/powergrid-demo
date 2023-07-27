@@ -9,7 +9,7 @@ use PowerComponents\LivewirePowerGrid\Footer;
 use PowerComponents\LivewirePowerGrid\Header;
 use PowerComponents\LivewirePowerGrid\PowerGrid;
 use PowerComponents\LivewirePowerGrid\PowerGridComponent;
-use PowerComponents\LivewirePowerGrid\PowerGridEloquent;
+use PowerComponents\LivewirePowerGrid\PowerGridColumns;
 use PowerComponents\LivewirePowerGrid\Traits\ActionButton;
 
 class JoinTable extends PowerGridComponent
@@ -36,9 +36,9 @@ class JoinTable extends PowerGridComponent
             ->select('dishes.*', 'newCategories.name as category_name');
     }
 
-    public function addColumns(): PowerGridEloquent
+    public function addColumns(): PowerGridColumns
     {
-        return PowerGrid::eloquent()
+        return PowerGrid::columns()
             ->addColumn('id')
             ->addColumn('dish_name', fn (Dish $dish) => $dish->name)
             ->addColumn('category_name', fn (Dish $dish) => $dish->category->name);
