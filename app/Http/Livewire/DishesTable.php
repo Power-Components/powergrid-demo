@@ -9,13 +9,12 @@ use Illuminate\Support\Carbon;
 use PowerComponents\LivewirePowerGrid\Button;
 use PowerComponents\LivewirePowerGrid\Column;
 use PowerComponents\LivewirePowerGrid\Exportable;
+use PowerComponents\LivewirePowerGrid\Facades\Rule;
 use PowerComponents\LivewirePowerGrid\Footer;
 use PowerComponents\LivewirePowerGrid\Header;
 use PowerComponents\LivewirePowerGrid\PowerGrid;
-use PowerComponents\LivewirePowerGrid\PowerGridComponent;
 use PowerComponents\LivewirePowerGrid\PowerGridColumns;
-use PowerComponents\LivewirePowerGrid\Rules\Rule;
-use PowerComponents\LivewirePowerGrid\Rules\RuleActions;
+use PowerComponents\LivewirePowerGrid\PowerGridComponent;
 use PowerComponents\LivewirePowerGrid\Traits\ActionButton;
 
 final class DishesTable extends PowerGridComponent
@@ -245,7 +244,6 @@ final class DishesTable extends PowerGridComponent
                 ->field('dish_name', 'dishes.name')
                 ->searchable()
                 ->editOnClick(true)
-                ->clickToCopy(true)
                 ->placeholder('Dish placeholder')
                 ->sortable(),
 
@@ -308,7 +306,7 @@ final class DishesTable extends PowerGridComponent
     {
         return [
             Button::add('bulk-delete')
-                ->caption(__('Bulk delete'))
+                ->slot(__('Bulk delete'))
                 ->class('cursor-pointer block bg-white-200 text-gray-700 border border-gray-300 rounded py-2 px-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-600 dark:border-gray-500 dark:bg-gray-500 2xl:dark:placeholder-gray-300 dark:text-gray-200 dark:text-gray-300')
                 ->emit('bulkDelete', []),
         ];
@@ -378,7 +376,7 @@ final class DishesTable extends PowerGridComponent
 
             Rule::button('destroy')
                 ->when(fn ($dish) => $dish->id == 1)
-                ->caption('Delete #1'),
+                ->slot('Delete #1'),
 
             Rule::checkbox()
                 ->when(fn ($dish) => $dish->id == 2)

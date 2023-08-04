@@ -20,14 +20,13 @@ use Illuminate\Support\Collection;
 use PowerComponents\LivewirePowerGrid\Button;
 use PowerComponents\LivewirePowerGrid\Column;
 use PowerComponents\LivewirePowerGrid\Exportable;
-use PowerComponents\LivewirePowerGrid\Filters\Filter;
+use PowerComponents\LivewirePowerGrid\Facades\Filter;
 use PowerComponents\LivewirePowerGrid\Footer;
 use PowerComponents\LivewirePowerGrid\Header;
 use PowerComponents\LivewirePowerGrid\PowerGrid;
-use PowerComponents\LivewirePowerGrid\PowerGridComponent;
 use PowerComponents\LivewirePowerGrid\PowerGridColumns;
-use PowerComponents\LivewirePowerGrid\Rules\Rule;
-use PowerComponents\LivewirePowerGrid\Rules\RuleActions;
+use PowerComponents\LivewirePowerGrid\PowerGridComponent;
+use PowerComponents\LivewirePowerGrid\Facades\Rule;
 use PowerComponents\LivewirePowerGrid\Traits\ActionButton;
 
 final class PowerGridDemoTable extends PowerGridComponent
@@ -191,7 +190,7 @@ final class PowerGridDemoTable extends PowerGridComponent
     {
         return [
             Button::add('bulk-demo')
-                ->caption(__('Bulk Action'))
+                ->slot(__('Bulk Action'))
                 ->class('cursor-pointer block bg-indigo-500 text-white border border-gray-300 rounded py-2 px-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-600 dark:border-gray-500 dark:bg-gray-500 2xl:dark:placeholder-gray-300 dark:text-gray-200 dark:text-gray-300')
                 ->emit('bulkActionEvent', []),
         ];
@@ -280,13 +279,13 @@ final class PowerGridDemoTable extends PowerGridComponent
             //Disable "info" button for row with user ID 2
             Rule::button('info')
                 ->when(fn ($user) => $user->id === 2)
-                ->caption('Click me (disabled)')
+                ->slot('Click me (disabled)')
                 ->disable(),
 
             //Change "info" button caption for row with user ID 3
             Rule::button('info')
                 ->when(fn ($user) => $user->id === 3)
-                ->caption('Click me! 🤠'),
+                ->slot('Click me! 🤠'),
 
             //Change "background" for row with user ID 4
             Rule::rows()

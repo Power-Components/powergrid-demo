@@ -50,15 +50,15 @@ class EditStock extends ModalComponent
         //                'in_stock' => $this->inStock,
         //            ]);
 
-//        $this->notification([
-//            'title' => 'Dish updated successfully!',
-//            'icon' => 'success',
-//            'timeout' => 2000,
-//        ]);
-//
-//        $this->closeModalWithEvents([
-//            'pg:eventRefresh-default',
-//        ]);
+        //        $this->notification([
+        //            'title' => 'Dish updated successfully!',
+        //            'icon' => 'success',
+        //            'timeout' => 2000,
+        //        ]);
+        //
+        //        $this->closeModalWithEvents([
+        //            'pg:eventRefresh-default',
+        //        ]);
     }
 
     public function render()

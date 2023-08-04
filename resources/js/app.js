@@ -11,3 +11,8 @@ window.TomSelect = TomSelect
 
 import './../../vendor/power-components/livewire-powergrid/dist/powergrid'
 
+import JSConfetti from 'js-confetti'
+
+const jsConfetti = new JSConfetti()
+
+window.confetti = () => jsConfetti.addConfetti()

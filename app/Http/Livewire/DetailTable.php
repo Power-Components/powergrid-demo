@@ -11,10 +11,9 @@ use PowerComponents\LivewirePowerGrid\Detail;
 use PowerComponents\LivewirePowerGrid\Footer;
 use PowerComponents\LivewirePowerGrid\Header;
 use PowerComponents\LivewirePowerGrid\PowerGrid;
-use PowerComponents\LivewirePowerGrid\PowerGridComponent;
 use PowerComponents\LivewirePowerGrid\PowerGridColumns;
-use PowerComponents\LivewirePowerGrid\Rules\Rule;
-use PowerComponents\LivewirePowerGrid\Rules\RuleActions;
+use PowerComponents\LivewirePowerGrid\PowerGridComponent;
+use PowerComponents\LivewirePowerGrid\Facades\Rule;
 use PowerComponents\LivewirePowerGrid\Traits\ActionButton;
 
 final class DetailTable extends PowerGridComponent
@@ -120,17 +119,12 @@ final class DetailTable extends PowerGridComponent
     {
         return [
             Button::add('detail')
-                ->caption('Detail')
+                ->slot('Detail')
                 ->class('bg-indigo-500 rounded-md cursor-pointer text-white px-3 py-2 m-1 text-sm')
                 ->toggleDetail(),
         ];
     }
 
-    /**
-     * PowerGrid Dish Action Rules.
-     *
-     * @return array<int, RuleActions>
-     */
     public function actionRules(): array
     {
         return [

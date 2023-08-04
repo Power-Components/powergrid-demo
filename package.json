@@ -18,6 +18,7 @@
         "cypress": "^12.9.0",
         "flatpickr": "^4.6.13",
         "flowbite-datepicker": "^1.2.2",
+        "js-confetti": "^0.11.0",
         "moment": "^2.29.4",
         "slim-select": "^2.4.5",
         "tom-select": "^2.2.2"

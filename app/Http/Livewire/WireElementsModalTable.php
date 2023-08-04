@@ -9,8 +9,8 @@ use PowerComponents\LivewirePowerGrid\Column;
 use PowerComponents\LivewirePowerGrid\Footer;
 use PowerComponents\LivewirePowerGrid\Header;
 use PowerComponents\LivewirePowerGrid\PowerGrid;
-use PowerComponents\LivewirePowerGrid\PowerGridComponent;
 use PowerComponents\LivewirePowerGrid\PowerGridColumns;
+use PowerComponents\LivewirePowerGrid\PowerGridComponent;
 use PowerComponents\LivewirePowerGrid\Traits\ActionButton;
 
 final class WireElementsModalTable extends PowerGridComponent
@@ -78,12 +78,12 @@ final class WireElementsModalTable extends PowerGridComponent
 
     public function onUpdatedToggleable(string $id, string $field, string $value): void
     {
-//        $this->notification([
-//            'title' => 'onUpdatedToggleable',
-//            'description' => "Id: {$id}, Field: {$field}, Value: {$value}",
-//            'icon' => 'success',
-//            'timeout' => 4000,
-//        ]);
+        //        $this->notification([
+        //            'title' => 'onUpdatedToggleable',
+        //            'description' => "Id: {$id}, Field: {$field}, Value: {$value}",
+        //            'icon' => 'success',
+        //            'timeout' => 4000,
+        //        ]);
 
         //        Dish::query()->where('id', $id)->update([
         //            $field => $value,

@@ -11,12 +11,12 @@ use NumberFormatter;
 use PowerComponents\LivewirePowerGrid\Button;
 use PowerComponents\LivewirePowerGrid\Column;
 use PowerComponents\LivewirePowerGrid\Exportable;
-use PowerComponents\LivewirePowerGrid\Filters\Filter;
+use PowerComponents\LivewirePowerGrid\Facades\Filter;
 use PowerComponents\LivewirePowerGrid\Footer;
 use PowerComponents\LivewirePowerGrid\Header;
 use PowerComponents\LivewirePowerGrid\PowerGrid;
-use PowerComponents\LivewirePowerGrid\PowerGridComponent;
 use PowerComponents\LivewirePowerGrid\PowerGridColumns;
+use PowerComponents\LivewirePowerGrid\PowerGridComponent;
 use PowerComponents\LivewirePowerGrid\Traits\ActionButton;
 
 final class FiltersTable extends PowerGridComponent
@@ -179,32 +179,32 @@ final class FiltersTable extends PowerGridComponent
         return [
             Button::make('edit')
                 ->render(function (Dish $dish) {
-                    return Blade::render(<<<HTML
+                    return Blade::render(<<<'HTML'
 <div></div>
 HTML);
                 }),
 
-//            Button::make('delete')
-//                ->bladeComponent('button.circle', function (Dish $dish) {
-//                    return [
-//                        'negative' => true,
-//                        'icon' => 'trash',
-//                        'wire:click' => 'editDish(\''.$dish->id.'\')',
-//                    ];
-//                }),
+            //            Button::make('delete')
+            //                ->bladeComponent('button.circle', function (Dish $dish) {
+            //                    return [
+            //                        'negative' => true,
+            //                        'icon' => 'trash',
+            //                        'wire:click' => 'editDish(\''.$dish->id.'\')',
+            //                    ];
+            //                }),
         ];
     }
 
     public function editDish(int $dishId): void
     {
-//        $this->notification()
-//            ->info('Edit DishId: '.$dishId);
+        //        $this->notification()
+        //            ->info('Edit DishId: '.$dishId);
     }
 
     public function deleteDish(int $dishId): void
     {
-//        $this->notification()
-//            ->success('Edit DishId: '.$dishId);
+        //        $this->notification()
+        //            ->success('Edit DishId: '.$dishId);
     }
 
     public function filters(): array

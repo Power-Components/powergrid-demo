@@ -11,8 +11,8 @@ use PowerComponents\LivewirePowerGrid\Column;
 use PowerComponents\LivewirePowerGrid\Footer;
 use PowerComponents\LivewirePowerGrid\Header;
 use PowerComponents\LivewirePowerGrid\PowerGrid;
-use PowerComponents\LivewirePowerGrid\PowerGridComponent;
 use PowerComponents\LivewirePowerGrid\PowerGridColumns;
+use PowerComponents\LivewirePowerGrid\PowerGridComponent;
 use PowerComponents\LivewirePowerGrid\Traits\ActionButton;
 
 final class BulkActionTable extends PowerGridComponent
@@ -49,12 +49,12 @@ final class BulkActionTable extends PowerGridComponent
     {
 
         ds($params);
-//
-//        $this->emit('openModal', 'delete-dish', [
-//            'dishIds' => $this->checkboxValues,
-//            'confirmationTitle' => 'Delete dish',
-//            'confirmationDescription' => 'Are you sure you want to delete this dish?',
-//        ]);
+        //
+        //        $this->emit('openModal', 'delete-dish', [
+        //            'dishIds' => $this->checkboxValues,
+        //            'confirmationTitle' => 'Delete dish',
+        //            'confirmationDescription' => 'Are you sure you want to delete this dish?',
+        //        ]);
     }
 
     /*
@@ -85,6 +85,7 @@ final class BulkActionTable extends PowerGridComponent
 
             Footer::make()
                 ->showPerPage()
+                ->pagination('livewire::tailwind')
                 ->showRecordCount(),
         ];
     }
@@ -214,7 +215,6 @@ final class BulkActionTable extends PowerGridComponent
                 ->field('dish_name', 'dishes.name')
                 ->searchable()
                 ->editOnClick(true)
-                ->clickToCopy(true)
                 ->placeholder('Dish placeholder')
                 ->sortable(),
 
@@ -238,8 +238,7 @@ final class BulkActionTable extends PowerGridComponent
             Column::add()
                 ->title(__('Price'))
                 ->field('price')
-                ->editOnClick(true)
-                ->withSum('Total', true, true),
+                ->editOnClick(true),
 
             Column::add()
                 ->title(__('Sales price'))
@@ -280,9 +279,10 @@ final class BulkActionTable extends PowerGridComponent
         return [
             Button::add('bulk-delete')
                 ->class('hidden')
-                ->caption(__('Bulk delete (<span x-text="window.pgBulkActions.count(\''.$this->tableName.'\')"></span>)'))
+                ->slot(__('Bulk delete (<span x-text="window.pgBulkActions.count(\''.$this->tableName.'\')"></span>)'))
                 ->class('cursor-pointer block bg-white-200 text-gray-700 border border-gray-300 rounded py-2 px-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-600 dark:border-gray-500 dark:bg-gray-500 2xl:dark:placeholder-gray-300 dark:text-gray-200 dark:text-gray-300')
-                ->dispatch('bulkDelete-'.$this->tableName, []),
+                ->js('alert(\'Hello !\' . $row.id) '),
+
         ];
     }
 
@@ -295,7 +295,7 @@ final class BulkActionTable extends PowerGridComponent
     {
         return [
             Button::add('edit')
-                ->caption('Edit')
+                ->slot('Edit')
                 ->class('bg-indigo-500 cursor-pointer text-white px-3 py-2 m-1 rounded text-sm')
                 ->dispatch('edit-dish', [
                     'dishId' => 'id',
@@ -303,13 +303,13 @@ final class BulkActionTable extends PowerGridComponent
                 ]),
 
             Button::add('destroy')
-                ->caption(__('Delete'))
+                ->slot(__('Delete'))
                 ->class('bg-red-500 text-white px-3 py-2 m-1 rounded text-sm'),
-//                ->openModal('delete-dish', [
-//                    'dishId' => 'id',
-//                    'confirmationTitle' => 'Delete dish',
-//                    'confirmationDescription' => 'Are you sure you want to delete this dish?',
-               // ]),
+            //                ->openModal('delete-dish', [
+            //                    'dishId' => 'id',
+            //                    'confirmationTitle' => 'Delete dish',
+            //                    'confirmationDescription' => 'Are you sure you want to delete this dish?',
+            // ]),
         ];
     }
 }

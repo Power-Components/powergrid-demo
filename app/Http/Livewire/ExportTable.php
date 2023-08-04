@@ -10,8 +10,8 @@ use PowerComponents\LivewirePowerGrid\Exportable;
 use PowerComponents\LivewirePowerGrid\Footer;
 use PowerComponents\LivewirePowerGrid\Header;
 use PowerComponents\LivewirePowerGrid\PowerGrid;
-use PowerComponents\LivewirePowerGrid\PowerGridComponent;
 use PowerComponents\LivewirePowerGrid\PowerGridColumns;
+use PowerComponents\LivewirePowerGrid\PowerGridComponent;
 use PowerComponents\LivewirePowerGrid\Traits\ActionButton;
 use PowerComponents\LivewirePowerGrid\Traits\WithExport;
 
@@ -108,7 +108,7 @@ final class ExportTable extends PowerGridComponent
     {
         return [
             Button::add('edit-stock')
-                ->caption('<div id="edit">Edit</div>')
+                ->slot('<div id="edit">Edit</div>')
                 ->class('text-center')
                 ->openModal('edit-stock', ['dishId' => 'id']),
         ];

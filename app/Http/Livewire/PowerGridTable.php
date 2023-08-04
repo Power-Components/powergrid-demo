@@ -8,14 +8,14 @@ use Illuminate\Support\Carbon;
 use PowerComponents\LivewirePowerGrid\Button;
 use PowerComponents\LivewirePowerGrid\Column;
 use PowerComponents\LivewirePowerGrid\Exportable;
-use PowerComponents\LivewirePowerGrid\Filters\Filter;
+use PowerComponents\LivewirePowerGrid\Facades\Filter;
 use PowerComponents\LivewirePowerGrid\Footer;
 use PowerComponents\LivewirePowerGrid\Header;
 use PowerComponents\LivewirePowerGrid\PowerGrid;
-use PowerComponents\LivewirePowerGrid\PowerGridComponent;
 use PowerComponents\LivewirePowerGrid\PowerGridColumns;
-use PowerComponents\LivewirePowerGrid\Rules\Rule;
-use PowerComponents\LivewirePowerGrid\Rules\RuleActions;
+use PowerComponents\LivewirePowerGrid\PowerGridComponent;
+use PowerComponents\LivewirePowerGrid\Facades\Rule;
+use PowerComponents\LivewirePowerGrid\Facades\RuleActions;
 use PowerComponents\LivewirePowerGrid\Traits\ActionButton;
 
 final class PowerGridTable extends PowerGridComponent
@@ -186,11 +186,11 @@ final class PowerGridTable extends PowerGridComponent
     |
     */
 
-     /**
-     * PowerGrid User Action Rules.
-     *
-     * @return array<int, RuleActions>
-     */
+    /**
+    * PowerGrid User Action Rules.
+    *
+    * @return array<int, RuleActions>
+    */
 
     /*
     public function actionRules(): array

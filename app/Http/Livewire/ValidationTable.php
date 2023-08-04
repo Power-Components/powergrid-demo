@@ -9,8 +9,8 @@ use PowerComponents\LivewirePowerGrid\Column;
 use PowerComponents\LivewirePowerGrid\Footer;
 use PowerComponents\LivewirePowerGrid\Header;
 use PowerComponents\LivewirePowerGrid\PowerGrid;
-use PowerComponents\LivewirePowerGrid\PowerGridComponent;
 use PowerComponents\LivewirePowerGrid\PowerGridColumns;
+use PowerComponents\LivewirePowerGrid\PowerGridComponent;
 use PowerComponents\LivewirePowerGrid\Traits\ActionButton;
 
 final class ValidationTable extends PowerGridComponent
@@ -53,16 +53,16 @@ final class ValidationTable extends PowerGridComponent
     {
         $this->validate();
 
-                User::query()->find($id)->update([
-                    $field => $value,
-                ]);
+        User::query()->find($id)->update([
+            $field => $value,
+        ]);
 
-//        $this->notification([
-//            'title' => 'Profile saved!',
-//            'description' => 'Your profile was successfully saved',
-//            'icon' => 'success',
-//            'timeout' => 3000,
-//        ]);
+        //        $this->notification([
+        //            'title' => 'Profile saved!',
+        //            'description' => 'Your profile was successfully saved',
+        //            'icon' => 'success',
+        //            'timeout' => 3000,
+        //        ]);
     }
 
     /*
