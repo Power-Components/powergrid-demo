@@ -21,12 +21,12 @@ use PowerComponents\LivewirePowerGrid\Button;
 use PowerComponents\LivewirePowerGrid\Column;
 use PowerComponents\LivewirePowerGrid\Exportable;
 use PowerComponents\LivewirePowerGrid\Facades\Filter;
+use PowerComponents\LivewirePowerGrid\Facades\Rule;
 use PowerComponents\LivewirePowerGrid\Footer;
 use PowerComponents\LivewirePowerGrid\Header;
 use PowerComponents\LivewirePowerGrid\PowerGrid;
 use PowerComponents\LivewirePowerGrid\PowerGridColumns;
 use PowerComponents\LivewirePowerGrid\PowerGridComponent;
-use PowerComponents\LivewirePowerGrid\Facades\Rule;
 use PowerComponents\LivewirePowerGrid\Traits\ActionButton;
 
 final class PowerGridDemoTable extends PowerGridComponent
@@ -192,7 +192,7 @@ final class PowerGridDemoTable extends PowerGridComponent
             Button::add('bulk-demo')
                 ->slot(__('Bulk Action'))
                 ->class('cursor-pointer block bg-indigo-500 text-white border border-gray-300 rounded py-2 px-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-600 dark:border-gray-500 dark:bg-gray-500 2xl:dark:placeholder-gray-300 dark:text-gray-200 dark:text-gray-300')
-                ->emit('bulkActionEvent', []),
+                ->dispatch('bulkActionEvent', []),
         ];
     }
 
@@ -251,7 +251,7 @@ final class PowerGridDemoTable extends PowerGridComponent
         return [
             Button::make('info', 'Click me')
                 ->class('bg-indigo-500 hover:bg-indigo-600 cursor-pointer text-white px-3 py-2 text-sm rounded-md')
-                ->emit('rowActionEvent', ['id' => 'id']),
+                ->dispatch('rowActionEvent', ['id' => 'id']),
         ];
     }
 

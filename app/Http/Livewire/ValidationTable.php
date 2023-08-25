@@ -49,7 +49,7 @@ final class ValidationTable extends PowerGridComponent
         ];
     }
 
-    public function onUpdatedEditable(string $id, string $field, string $value): void
+    public function onUpdatedEditable(string|int $id, string $field, string $value): void
     {
         $this->validate();
 

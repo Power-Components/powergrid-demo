@@ -21,7 +21,8 @@
         "livewire/livewire": "^3.0@beta",
         "openspout/openspout": "^4.13.1",
         "power-components/livewire-powergrid": "5.x-dev",
-        "predis/predis": "^2.1.2"
+        "predis/predis": "^2.1.2",
+        "wire-elements/modal": "^2.0@beta"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.8.1",

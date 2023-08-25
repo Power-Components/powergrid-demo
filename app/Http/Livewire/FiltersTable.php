@@ -224,16 +224,14 @@ HTML);
                 ->dataSource(Diet::cases())
                 ->optionLabel('dishes.diet'),
 
-            Filter::multiSelectAsync('category_name', 'category_id')
-                ->url(route('category.index'))
-                ->method('POST')
-                ->parameters([0 => 'Luan'])
-                ->optionValue('id')
-                ->optionLabel('name'),
+            //            Filter::multiSelectAsync('category_name', 'category_id')
+            //                ->url(route('category.index'))
+            //                ->method('POST')
+            //                ->parameters([0 => 'Luan'])
+            //                ->optionValue('id')
+            //                ->optionLabel('name'),
 
             Filter::number('price_BRL', 'price'),
-
-            Filter::datepicker('produced_at_formatted', 'produced_at'),
 
             Filter::datetimepicker('created_at_formatted', 'created_at')
                 ->params([

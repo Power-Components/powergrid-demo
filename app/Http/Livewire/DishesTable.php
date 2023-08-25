@@ -6,6 +6,7 @@ use App\Models\Dish;
 use App\Models\Kitchen;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Carbon;
+use Livewire\Attributes\On;
 use PowerComponents\LivewirePowerGrid\Button;
 use PowerComponents\LivewirePowerGrid\Column;
 use PowerComponents\LivewirePowerGrid\Exportable;
@@ -15,6 +16,7 @@ use PowerComponents\LivewirePowerGrid\Header;
 use PowerComponents\LivewirePowerGrid\PowerGrid;
 use PowerComponents\LivewirePowerGrid\PowerGridColumns;
 use PowerComponents\LivewirePowerGrid\PowerGridComponent;
+use PowerComponents\LivewirePowerGrid\Responsive;
 use PowerComponents\LivewirePowerGrid\Traits\ActionButton;
 
 final class DishesTable extends PowerGridComponent
@@ -26,6 +28,8 @@ final class DishesTable extends PowerGridComponent
     //Table sort field
     public string $sortField = 'dishes.id';
 
+    public bool $withResponsive = false;
+
     /*
     |--------------------------------------------------------------------------
     |  Event listeners
@@ -34,17 +38,6 @@ final class DishesTable extends PowerGridComponent
     |
     */
     public bool $ableToLoad = false;
-
-    protected function getListeners(): array
-    {
-        return array_merge(
-            parent::getListeners(),
-            [
-                'edit-dish' => 'editDish',
-                'bulkDelete',
-            ]
-        );
-    }
 
     public function onUpdatedToggleable($id, $field, $value): void
     {
@@ -59,9 +52,10 @@ final class DishesTable extends PowerGridComponent
     |--------------------------------------------------------------------------
     */
 
+    #[On('bulkDelete')]
     public function bulkDelete(): void
     {
-        $this->emit('openModal', 'delete-dish', [
+        $this->dispatch('openModal', 'delete-dish', [
             'dishIds' => $this->checkboxValues,
             'confirmationTitle' => 'Delete dish',
             'confirmationDescription' => 'Are you sure you want to delete this dish?',
@@ -90,6 +84,11 @@ final class DishesTable extends PowerGridComponent
     {
         $this->showCheckBox();
 
+        $responsive = $this->withResponsive ? [
+            Responsive::make()
+                ->fixedColumns('dishes.id', 'dishes.name', Responsive::ACTIONS_COLUMN_NAME),
+        ] : [];
+
         return [
             Exportable::make('export')
                 ->striped()
@@ -102,6 +101,8 @@ final class DishesTable extends PowerGridComponent
             Footer::make()
                 ->showPerPage()
                 ->showRecordCount(),
+
+            ...$responsive,
         ];
     }
 
@@ -293,6 +294,9 @@ final class DishesTable extends PowerGridComponent
             Column::add()
                 ->title(__('Production date'))
                 ->field('produced_at_formatted'),
+
+            Column::action('Action')
+                ->fixedOnResponsive()
         ];
     }
 
@@ -308,7 +312,7 @@ final class DishesTable extends PowerGridComponent
             Button::add('bulk-delete')
                 ->slot(__('Bulk delete'))
                 ->class('cursor-pointer block bg-white-200 text-gray-700 border border-gray-300 rounded py-2 px-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-600 dark:border-gray-500 dark:bg-gray-500 2xl:dark:placeholder-gray-300 dark:text-gray-200 dark:text-gray-300')
-                ->emit('bulkDelete', []),
+                ->dispatch('bulkDelete', []),
         ];
     }
 
@@ -325,26 +329,24 @@ final class DishesTable extends PowerGridComponent
      *
      * @return array<int, Button>
      */
-    public function actions(): array
+    public function actions(Dish $dish): array
     {
         return [
             Button::add('edit-stock')
-                ->bladeComponent('button.circle', function (Dish $dish) {
-                    return [
-                        'primary' => true,
-                        'icon' => 'pencil',
-                        'wire:click' => '$emit(\'openModal\', \'edit-stock\', {{ json_encode([\'dishId\' => '.$dish->id.']) }})',
-                    ];
-                }),
+                ->slot('edit')
+                ->openModal('edit-stock', ['dishId' => $dish->id])
+//                ->bladeComponent('button.circle', [
+//                    'primary' => true,
+//                    'icon' => 'pencil',
+//                    'wire:click' => '$dispatch(\'openModal\', \'edit-stock\', {{ json_encode([\'dishId\' => '.$dish->id.']) }})',
+//                ]),
 
-            Button::add('delete-stock')
-                ->bladeComponent('button.circle', function (Dish $dish) {
-                    return [
-                        'negative' => true,
-                        'icon' => 'trash',
-                        'wire:click' => '$emit(\'openModal\', \'delete-dish\', {{ json_encode([\'dishId\' => '.$dish->id.']) }})',
-                    ];
-                }),
+          //  Button::add('delete-stock')
+//                ->bladeComponent('button.circle', [
+//                    'negative' => true,
+//                    'icon' => 'trash',
+//                    'wire:click' => '$dispatch(\'openModal\', \'delete-dish\', {{ json_encode([\'dishId\' => '.$dish->id.']) }})',
+//                ]),
         ];
     }
 

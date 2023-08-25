@@ -3,20 +3,15 @@
 namespace App\Http\Livewire;
 
 use App\Models\Dish;
+use Livewire\Attributes\Rule;
 use LivewireUI\Modal\ModalComponent;
 
 class EditStock extends ModalComponent
 {
     public ?int $dishId = null;
 
+    #[Rule('required|string')]
     public bool $inStock = false;
-
-    protected function getRules()
-    {
-        return [
-            'inStock' => 'required|string',
-        ];
-    }
 
     public function mount()
     {

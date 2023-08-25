@@ -98,7 +98,7 @@ final class WireElementsModalTable extends PowerGridComponent
                     return [
                         'primary' => true,
                         'icon' => 'pencil',
-                        'wire:click' => '$emit(\'openModal\', \'edit-stock\', {{ json_encode([\'dishId\' => '.$dish->id.']) }})',
+                        'wire:click' => '$dispatch(\'openModal\', \'edit-stock\', {{ json_encode([\'dishId\' => '.$dish->id.']) }})',
                     ];
                 }),
 
@@ -107,7 +107,7 @@ final class WireElementsModalTable extends PowerGridComponent
                     return [
                         'negative' => true,
                         'icon' => 'trash',
-                        'wire:click' => '$emit(\'openModal\', \'delete-dish\', {{ json_encode([\'dishId\' => '.$dish->id.']) }})',
+                        'wire:click' => '$dispatch(\'openModal\', \'delete-dish\', {{ json_encode([\'dishId\' => '.$dish->id.']) }})',
                     ];
                 }),
         ];
