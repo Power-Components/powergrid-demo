@@ -13,7 +13,7 @@ class CreateDishesTable extends Migration
             $table->foreignId('kitchen_id')->constrained();
             $table->foreignId('category_id')->constrained();
             $table->string('name');
-            $table->string('chef_name')->nullable();
+            $table->foreignId('chef_id')->nullable()->constrained();
             $table->string('serving_at')->default('restaurant');
             $table->double('price');
             $table->integer('calories');

@@ -3,14 +3,15 @@
 namespace App\Http\Livewire;
 
 use App\Models\Category;
+use App\Models\Chef;
 use App\Models\Dish;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Blade;
 use Livewire\Attributes\On;
 use PowerComponents\LivewirePowerGrid\Button;
 use PowerComponents\LivewirePowerGrid\Column;
 use PowerComponents\LivewirePowerGrid\Facades\Filter;
-use PowerComponents\LivewirePowerGrid\Facades\Rule;
 use PowerComponents\LivewirePowerGrid\Footer;
 use PowerComponents\LivewirePowerGrid\Header;
 use PowerComponents\LivewirePowerGrid\PowerGrid;
@@ -24,7 +25,7 @@ class SimpleTable extends PowerGridComponent
 
     public string $tableName = 'simpleTable';
 
-    public string|int $selectedChef = '';
+    public string|int $selectedCategoryId = '';
 
     public function setUp(): array
     {
@@ -51,7 +52,9 @@ class SimpleTable extends PowerGridComponent
         return PowerGrid::columns()
             ->addColumn('id')
             ->addColumn('name')
-            ->addColumn('chef_name')
+            ->addColumn('chef_name', function (Dish $dish) {
+                return $dish->chef->name;
+            })
             ->addColumn('category_id', function ($dish) {
                 return $dish->category_id;
             })
@@ -79,10 +82,11 @@ class SimpleTable extends PowerGridComponent
     public function summarizeFormat(): array
     {
         return [
-            'price' => function ($value) {
+            'price.{sum,avg}' => function ($value) {
                 return (new \NumberFormatter('en_US', \NumberFormatter::CURRENCY))
                     ->formatCurrency($value, 'USD');
-            }
+            },
+            'price.count' => fn ($value) => $value,
         ];
     }
 
@@ -104,9 +108,9 @@ class SimpleTable extends PowerGridComponent
                 ->sortable(),
 
             Column::make('Price', 'price')
-                ->withSum('Sum Price', true, false)
-                ->withCount('Count Price', true, false)
-                ->withAvg('Avg Price', true, false)
+//                ->withSum('Sum Price', true, false)
+//                ->withCount('Count Price', true, false)
+//                ->withAvg('Avg Price', true, false)
                 ->sortable(),
 
             Column::make('Price', 'price_fmt')
@@ -120,12 +124,6 @@ class SimpleTable extends PowerGridComponent
         ];
     }
 
-    #[On('execute')]
-    public function execute(string $component, array $parameters = [])
-    {
-        dd(get_defined_vars());
-    }
-
     public function actions(Dish $dish): array
     {
         return [
@@ -136,74 +134,5 @@ class SimpleTable extends PowerGridComponent
                 ->openModal('edit-stock', ['dishId' => $dish->id])
                 ->hideWhen(fn () => $dish->id === 2),
         ];
-    }
-
-    public function filters(): array
-    {
-        return [
-            Filter::select('category_name', 'category_id')
-                ->dataSource(Category::all())
-                ->optionLabel('name')
-                ->optionValue('id'),
-
-            Filter::select('chef_name', 'category_id')
-                ->dataSource(collect($this->getCategoryByChefFilter($this->selectedChef)))
-                ->optionLabel('name')
-                ->optionValue('id')
-        ];
-    }
-
-    public function afterChangedSelectFilter(string $field, string $label, mixed $value): void
-    {
-        $this->selectedChef = $value;
-    }
-
-    public function getCategoryByChefFilter(string|int $categoryId = null): array
-    {
-        if (blank($categoryId)) {
-            return [
-                [
-                    'id' => 1,
-                    'name' => 'Luan'
-                ],
-                [
-                    'id' => 2,
-                    'name' => 'Dan'
-                ],
-                [
-                    'id' => 3,
-                    'name' => 'Vitor'
-                ],
-                [
-                    'id' => 4,
-                    'name' => 'Claudio'
-                ],
-            ];
-        }
-
-        $values = [
-            '1' => [
-                [
-                    'id' => 'Luan',
-                    'name' => 'Luan'
-                ],
-                [
-                    'id' => 2,
-                    'name' => 'Dan'
-                ],
-            ],
-            '2' => [
-                [
-                    'id' => 3,
-                    'name' => 'Vitor'
-                ],
-                [
-                    'id' => 4,
-                    'name' => 'Claudio'
-                ],
-            ],
-        ];
-
-        return $values[$categoryId];
     }
 }

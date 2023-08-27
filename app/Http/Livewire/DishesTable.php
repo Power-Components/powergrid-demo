@@ -296,7 +296,7 @@ final class DishesTable extends PowerGridComponent
                 ->field('produced_at_formatted'),
 
             Column::action('Action')
-                ->fixedOnResponsive()
+                ->fixedOnResponsive(),
         ];
     }
 
@@ -334,19 +334,19 @@ final class DishesTable extends PowerGridComponent
         return [
             Button::add('edit-stock')
                 ->slot('edit')
-                ->openModal('edit-stock', ['dishId' => $dish->id])
-//                ->bladeComponent('button.circle', [
-//                    'primary' => true,
-//                    'icon' => 'pencil',
-//                    'wire:click' => '$dispatch(\'openModal\', \'edit-stock\', {{ json_encode([\'dishId\' => '.$dish->id.']) }})',
-//                ]),
+                ->openModal('edit-stock', ['dishId' => $dish->id]),
+            //                ->bladeComponent('button.circle', [
+            //                    'primary' => true,
+            //                    'icon' => 'pencil',
+            //                    'wire:click' => '$dispatch(\'openModal\', \'edit-stock\', {{ json_encode([\'dishId\' => '.$dish->id.']) }})',
+            //                ]),
 
-          //  Button::add('delete-stock')
-//                ->bladeComponent('button.circle', [
-//                    'negative' => true,
-//                    'icon' => 'trash',
-//                    'wire:click' => '$dispatch(\'openModal\', \'delete-dish\', {{ json_encode([\'dishId\' => '.$dish->id.']) }})',
-//                ]),
+            //  Button::add('delete-stock')
+            //                ->bladeComponent('button.circle', [
+            //                    'negative' => true,
+            //                    'icon' => 'trash',
+            //                    'wire:click' => '$dispatch(\'openModal\', \'delete-dish\', {{ json_encode([\'dishId\' => '.$dish->id.']) }})',
+            //                ]),
         ];
     }
 

@@ -3,6 +3,8 @@
 namespace App\Http\Livewire;
 
 use App\Enums\Diet;
+use App\Models\Category;
+use App\Models\Chef;
 use App\Models\Dish;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Carbon;
@@ -89,7 +91,9 @@ final class FiltersTable extends PowerGridComponent
             ->addColumn('id')
             ->addColumn('name')
             ->addColumn('storage_room')
-            ->addColumn('chef_name')
+            ->addColumn('chef_name', function (Dish $dish) {
+                return $dish->chef->name;
+            })
             ->addColumn('serving_at')
             ->addColumn('calories')
             ->addColumn('calories', function (Dish $dish) {
@@ -148,11 +152,11 @@ final class FiltersTable extends PowerGridComponent
                 ->field('serving_at')
                 ->sortable(),
 
+            Column::make('Category', 'category_name'),
+
             Column::make('Chef', 'chef_name')
                 ->searchable()
                 ->sortable(),
-
-            Column::make('Category', 'category_name'),
 
             Column::add()
                 ->title(__('Price'))
@@ -183,15 +187,6 @@ final class FiltersTable extends PowerGridComponent
 <div></div>
 HTML);
                 }),
-
-            //            Button::make('delete')
-            //                ->bladeComponent('button.circle', function (Dish $dish) {
-            //                    return [
-            //                        'negative' => true,
-            //                        'icon' => 'trash',
-            //                        'wire:click' => 'editDish(\''.$dish->id.'\')',
-            //                    ];
-            //                }),
         ];
     }
 
@@ -230,6 +225,25 @@ HTML);
             //                ->parameters([0 => 'Luan'])
             //                ->optionValue('id')
             //                ->optionLabel('name'),
+
+            Filter::select('category_name', 'category_id')
+                ->dataSource(Category::all())
+                ->optionLabel('name')
+                ->optionValue('id'),
+
+            Filter::select('chef_name', 'chef_id')
+                ->depends(['category_id'])
+                ->dataSource(fn ($depends) =>
+                Chef::query()
+                    ->when(isset($depends['category_id']),
+                        fn (Builder $query) => $query->whereRelation('categories',
+                            fn (Builder $builder) => $builder->where('id', $depends['category_id'])
+                        )
+                    )
+                    ->get()
+                )
+                ->optionLabel('name')
+                ->optionValue('id'),
 
             Filter::number('price_BRL', 'price'),
 

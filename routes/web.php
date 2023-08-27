@@ -24,3 +24,20 @@ Route::get('/soft-delete', fn () => view('soft-delete'))->name('soft-delete');
 Route::get('/wire-elements-modal', fn () => view('wire-elements-modal'))->name('wire-elements-modal');
 
 Route::view('/powergrid', 'powergrid-demo');
+
+
+Route::get('/admin.blog.show', function () {
+    return '';
+})->name('admin.blog.show');
+
+Route::get('/admin.blog.edit', function () {
+    return '';
+})->name('admin.blog.edit');
+
+Route::get('/admin.blog.show-on-site', function () {
+    return '';
+})->name('admin.blog.show-on-site');
+
+Route::delete('/admin.blog.destroy', function () {
+    return '';
+})->name('admin.blog.destroy');

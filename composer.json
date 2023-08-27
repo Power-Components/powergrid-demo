@@ -25,7 +25,6 @@
         "wire-elements/modal": "^2.0@beta"
     },
     "require-dev": {
-        "barryvdh/laravel-debugbar": "^3.8.1",
         "barryvdh/laravel-ide-helper": "^2.13",
         "fakerphp/faker": "^1.21.0",
         "laradumps/laradumps": "^2.1",
