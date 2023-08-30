@@ -136,10 +136,7 @@ final class CollectionTable extends PowerGridComponent
     public function filters(): array
     {
         return [
-            Filter::inputText('name')
-                ->collection(function ($builder, $values) {
-                    return $builder->where('id', 1);
-                }),
+            Filter::inputText('name'),
         ];
     }
 }
