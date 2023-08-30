@@ -15,20 +15,19 @@ namespace App\Http\Livewire;
 
 use App\Models\User;
 use Faker\Factory as FakerFactory;
-use Illuminate\Support\Carbon;
-use Illuminate\Support\Collection;
-use PowerComponents\LivewirePowerGrid\Button;
-use PowerComponents\LivewirePowerGrid\Column;
-use PowerComponents\LivewirePowerGrid\Exportable;
-use PowerComponents\LivewirePowerGrid\Filters\Filter;
-use PowerComponents\LivewirePowerGrid\Footer;
-use PowerComponents\LivewirePowerGrid\Header;
-use PowerComponents\LivewirePowerGrid\PowerGrid;
-use PowerComponents\LivewirePowerGrid\PowerGridColumns;
-use PowerComponents\LivewirePowerGrid\PowerGridComponent;
-use PowerComponents\LivewirePowerGrid\Rules\Rule;
-use PowerComponents\LivewirePowerGrid\Rules\RuleActions;
+use Illuminate\Support\{Carbon, Collection};
 use PowerComponents\LivewirePowerGrid\Traits\ActionButton;
+use PowerComponents\LivewirePowerGrid\{Button,
+    Column,
+    Components\Rules\RuleActions,
+    Exportable,
+    Facades\Filter,
+    Facades\Rule,
+    Footer,
+    Header,
+    PowerGrid,
+    PowerGridComponent,
+    PowerGridColumns};
 
 final class PowerGridDemoTable extends PowerGridComponent
 {
@@ -44,7 +43,7 @@ final class PowerGridDemoTable extends PowerGridComponent
     /**
      * User name
      *
-     * @var array<int, string>
+     * @var array<int, string> $name
      */
     public array $name;
 
@@ -65,7 +64,7 @@ final class PowerGridDemoTable extends PowerGridComponent
     */
     public function rowActionEvent(array $data): void
     {
-        $message = 'You have clicked #'.$data['id'];
+        $message = 'You have clicked #' . $data['id'];
 
         $this->dispatch('showAlert', ['message' => $message]);
     }
@@ -80,7 +79,7 @@ final class PowerGridDemoTable extends PowerGridComponent
 
         $ids = implode(', ', $this->checkboxValues);
 
-        $this->dispatch('showAlert', ['message' => 'You have selected IDs: '.$ids]);
+        $this->dispatch('showAlert', ['message' => 'You have selected IDs: ' . $ids]);
     }
 
     /*
@@ -114,8 +113,9 @@ final class PowerGridDemoTable extends PowerGridComponent
     */
 
     /**
-     * PowerGrid datasource.
-     */
+    * PowerGrid datasource.
+    *
+    */
     public function datasource()
     {
         return $this->demoUsers(); //Get demo users. Should be removed in a real project.
@@ -165,7 +165,7 @@ final class PowerGridDemoTable extends PowerGridComponent
 
             // Create a custom column "laracon" based on "has_laracon_ticket" boolean field
             ->addColumn('laracon', function (User $model) {
-                return $model->has_laracon_ticket ? 'yes' : 'no';
+                return ($model->has_laracon_ticket ? 'yes' : 'no');
             })
 
             //Create a custom column "laravel_since_formatted" for humans, based on "laravel_since"
@@ -182,7 +182,7 @@ final class PowerGridDemoTable extends PowerGridComponent
     |
 
     */
-    /**
+     /**
      * PowerGrid Header
      *
      * @return array<int, Button>
@@ -191,9 +191,9 @@ final class PowerGridDemoTable extends PowerGridComponent
     {
         return [
             Button::add('bulk-demo')
-                ->caption(__('Bulk Action'))
+                ->slot(__('Bulk Action'))
                 ->class('cursor-pointer block bg-indigo-500 text-white border border-gray-300 rounded py-2 px-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-600 dark:border-gray-500 dark:bg-gray-500 2xl:dark:placeholder-gray-300 dark:text-gray-200 dark:text-gray-300')
-                ->dispatch('bulkActionEvent', []),
+                ->dispatch('bulkActionEvent', [])
         ];
     }
 
@@ -207,17 +207,12 @@ final class PowerGridDemoTable extends PowerGridComponent
     */
     public function columns(): array
     {
-        //User permissions. In a real world project, this would be managed by your system.
-        $canEdit = true;
-        $canCopy = true;
-
         return [
             Column::make('ID', 'id'),
 
             Column::make('Full name', 'name')
                 ->sortable() //Adds sorting button to the header
-                ->searchable() //Includes column in search option (top page)
-                ->editOnClick($canEdit), //Allows user to edit information on click
+                ->searchable() ,
 
             Column::make('Email address', 'email')
                 ->searchable(),
@@ -228,7 +223,7 @@ final class PowerGridDemoTable extends PowerGridComponent
                 ->sortable(),
 
             Column::make('Laravel user since', 'laravel_since_formatted')
-                ->sortable(),
+                ->sortable()
         ];
     }
 
@@ -240,17 +235,18 @@ final class PowerGridDemoTable extends PowerGridComponent
     |
     */
 
-    /**
+     /**
      * PowerGrid action buttons.
      *
      * @return array<int, Button>
      */
+
     public function actions(): array
     {
-        return [
-            Button::make('info', 'Click me')
-                ->class('bg-indigo-500 hover:bg-indigo-600 cursor-pointer text-white px-3 py-2 text-sm rounded-md')
-                ->dispatch('rowActionEvent', ['id' => 'id']),
+       return [
+           Button::make('info', 'Click me')
+               ->class('bg-indigo-500 hover:bg-indigo-600 cursor-pointer text-white px-3 py-2 text-sm rounded-md')
+               ->dispatch('rowActionEvent', ['id' => 'id']),
         ];
     }
 
@@ -263,32 +259,32 @@ final class PowerGridDemoTable extends PowerGridComponent
     */
 
     /**
-     * PowerGrid action rules.
-     *
-     * @return array<int, RuleActions>
-     */
+    * PowerGrid action rules.
+    *
+    * @return array<int, RuleActions>
+    */
     public function actionRules(): array
     {
         return [
             //Hide "info" button for row with user ID 1
             Rule::button('info')
-                ->when(fn ($user) => $user->id === 1)
+                ->when(fn($user) => $user->id === 1)
                 ->hide(),
 
             //Disable "info" button for row with user ID 2
             Rule::button('info')
-                ->when(fn ($user) => $user->id === 2)
-                ->caption('Click me (disabled)')
+                ->when(fn($user) => $user->id === 2)
+                ->slot('Click me (disabled)')
                 ->disable(),
 
             //Change "info" button caption for row with user ID 3
             Rule::button('info')
-                ->when(fn ($user) => $user->id === 3)
-                ->caption('Click me! 🤠'),
+                ->when(fn($user) => $user->id === 3)
+                ->slot('Click me! 🤠'),
 
             //Change "background" for row with user ID 4
             Rule::rows()
-                ->when(fn ($user) => $user->id === 4)
+                ->when(fn($user) => $user->id === 4)
                 ->setAttribute('class', 'bg-pg-secondary-200 hover:bg-pg-secondary-300'),
         ];
     }
@@ -300,7 +296,7 @@ final class PowerGridDemoTable extends PowerGridComponent
     | Data update is blocked on demo to protect your database.
 
     */
-    public function onUpdatedEditable(string $id, string $field, string $value): void
+    public function onUpdatedEditable(string|int $id, string $field, string $value): void
     {
         throw new \Exception(' Data update is blocked on demo to protect your database!');
     }
@@ -325,10 +321,12 @@ final class PowerGridDemoTable extends PowerGridComponent
 
     /**
      * Generate demo users
+     *
+     * @return Collection
      */
     protected function demoUsers(): Collection
     {
-        if (! is_null($this->demoUsers)) {
+        if (!is_null($this->demoUsers)) {
             return $this->demoUsers;
         }
 
@@ -339,13 +337,13 @@ final class PowerGridDemoTable extends PowerGridComponent
 
         $users = collect();
 
-        for ($i = 1; $i <= 20; $i++) {
+        for ($i=1; $i <= 20; $i++) {
             $user = new User([
                 'name' => $faker->name(),
                 'email' => $faker->unique()->safeEmail(),
                 'email_verified_at' => (boolval(rand(0, 1)) === true ? now() : null),
                 'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi',
-                'remember_token' => 'hKNojklraZ',
+                'remember_token' => 'hKNojklraZ'
             ]);
 
             $user->setAttribute('id', $i);

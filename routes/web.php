@@ -21,23 +21,7 @@ Route::get('/batch', fn () => view('batch'))->name('batch');
 Route::get('/custom-layout', fn () => view('custom-layout'))->name('custom-layout');
 Route::get('/bulk-actions', fn () => view('bulk-actions'))->name('bulk-actions');
 Route::get('/soft-delete', fn () => view('soft-delete'))->name('soft-delete');
+Route::get('/summarize', fn () => view('summarize'))->name('summarize');
 Route::get('/wire-elements-modal', fn () => view('wire-elements-modal'))->name('wire-elements-modal');
 
 Route::view('/powergrid', 'powergrid-demo');
-
-
-Route::get('/admin.blog.show', function () {
-    return '';
-})->name('admin.blog.show');
-
-Route::get('/admin.blog.edit', function () {
-    return '';
-})->name('admin.blog.edit');
-
-Route::get('/admin.blog.show-on-site', function () {
-    return '';
-})->name('admin.blog.show-on-site');
-
-Route::delete('/admin.blog.destroy', function () {
-    return '';
-})->name('admin.blog.destroy');

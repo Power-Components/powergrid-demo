@@ -103,6 +103,11 @@ class Menu extends Component
                 'name' => 'soft-delete',
             ],
             [
+                'label' => 'Summarize',
+                'route' => route('summarize'),
+                'name' => 'summarize',
+            ],
+            [
                 'label' => 'Wire Elements Modal',
                 'route' => route('wire-elements-modal'),
                 'name' => 'wire-elements-modal',

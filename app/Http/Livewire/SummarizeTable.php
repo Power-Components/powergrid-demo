@@ -15,11 +15,13 @@ use PowerComponents\LivewirePowerGrid\PowerGridColumns;
 use PowerComponents\LivewirePowerGrid\PowerGridComponent;
 use PowerComponents\LivewirePowerGrid\Traits\ActionButton;
 
-class SimpleTable extends PowerGridComponent
+class SummarizeTable extends PowerGridComponent
 {
     use ActionButton;
 
     public string $tableName = 'simpleTable';
+
+    public string|int $selectedCategoryId = '';
 
     public function setUp(): array
     {
@@ -43,9 +45,6 @@ class SimpleTable extends PowerGridComponent
         return PowerGrid::columns()
             ->addColumn('id')
             ->addColumn('name')
-            ->addColumn('category_id', function ($dish) {
-                return $dish->category_id;
-            })
             ->addColumn('category_name', function (Dish $dish) {
                 return $dish->category->name;
             })
@@ -67,6 +66,17 @@ class SimpleTable extends PowerGridComponent
             });
     }
 
+    public function summarizeFormat(): array
+    {
+        return [
+            'price.{sum,avg}' => function ($value) {
+                return (new \NumberFormatter('en_US', \NumberFormatter::CURRENCY))
+                    ->formatCurrency($value, 'USD');
+            },
+            'price.{count,min,max}' => fn ($value) => $value,
+        ];
+    }
+
     public function columns(): array
     {
         return [
@@ -80,11 +90,12 @@ class SimpleTable extends PowerGridComponent
 
             Column::make('Category', 'category_name'),
 
-            Column::make('Chef', 'chef_name')
-                ->searchable()
-                ->sortable(),
-
             Column::make('Price', 'price')
+                ->withSum('Sum Price', true, false)
+                ->withCount('Count Price', true, false)
+                ->withAvg('Avg Price', true, false)
+                ->withMin('Min Price', false, true)
+                ->withMax('Max Price', false, true)
                 ->sortable(),
 
             Column::make('Price', 'price_fmt')
@@ -96,6 +107,12 @@ class SimpleTable extends PowerGridComponent
 
             Column::action('Action'),
         ];
+    }
+
+    #[On('event')]
+    public function event(string $dishId)
+    {
+        dd($dishId);
     }
 
     public function actions(Dish $dish): array

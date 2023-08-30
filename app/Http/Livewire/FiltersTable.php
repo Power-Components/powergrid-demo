@@ -233,8 +233,7 @@ HTML);
 
             Filter::select('chef_name', 'chef_id')
                 ->depends(['category_id'])
-                ->dataSource(fn ($depends) =>
-                Chef::query()
+                ->dataSource(fn ($depends) => Chef::query()
                     ->when(isset($depends['category_id']),
                         fn (Builder $query) => $query->whereRelation('categories',
                             fn (Builder $builder) => $builder->where('id', $depends['category_id'])
