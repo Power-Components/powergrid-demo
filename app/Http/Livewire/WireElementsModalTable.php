@@ -11,12 +11,9 @@ use PowerComponents\LivewirePowerGrid\Header;
 use PowerComponents\LivewirePowerGrid\PowerGrid;
 use PowerComponents\LivewirePowerGrid\PowerGridColumns;
 use PowerComponents\LivewirePowerGrid\PowerGridComponent;
-use PowerComponents\LivewirePowerGrid\Traits\ActionButton;
 
 final class WireElementsModalTable extends PowerGridComponent
 {
-    use ActionButton;
-
     public function setUp(): array
     {
         return [
@@ -94,22 +91,18 @@ final class WireElementsModalTable extends PowerGridComponent
     {
         return [
             Button::add('edit-stock')
-                ->bladeComponent('button.circle', function (Dish $dish) {
-                    return [
-                        'primary' => true,
-                        'icon' => 'pencil',
-                        'wire:click' => '$dispatch(\'openModal\', \'edit-stock\', {{ json_encode([\'dishId\' => '.$dish->id.']) }})',
-                    ];
-                }),
+                ->bladeComponent('button.circle', [
+                    'primary' => true,
+                    'icon' => 'pencil',
+                    'wire:click' => '$dispatch(\'openModal\', \'edit-stock\', {{ json_encode([\'dishId\' => '.$dish->id.']) }})',
+                ]),
 
             Button::add('delete-stock')
-                ->bladeComponent('button.circle', function (Dish $dish) {
-                    return [
-                        'negative' => true,
-                        'icon' => 'trash',
-                        'wire:click' => '$dispatch(\'openModal\', \'delete-dish\', {{ json_encode([\'dishId\' => '.$dish->id.']) }})',
-                    ];
-                }),
+                ->bladeComponent('button.circle', [
+                    'negative' => true,
+                    'icon' => 'trash',
+                    'wire:click' => '$dispatch(\'openModal\', \'delete-dish\', {{ json_encode([\'dishId\' => '.$dish->id.']) }})',
+                ]),
         ];
     }
 }

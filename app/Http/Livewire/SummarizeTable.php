@@ -13,12 +13,9 @@ use PowerComponents\LivewirePowerGrid\Header;
 use PowerComponents\LivewirePowerGrid\PowerGrid;
 use PowerComponents\LivewirePowerGrid\PowerGridColumns;
 use PowerComponents\LivewirePowerGrid\PowerGridComponent;
-use PowerComponents\LivewirePowerGrid\Traits\ActionButton;
 
 class SummarizeTable extends PowerGridComponent
 {
-    use ActionButton;
-
     public string $tableName = 'simpleTable';
 
     public string|int $selectedCategoryId = '';

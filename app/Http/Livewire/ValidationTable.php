@@ -11,12 +11,9 @@ use PowerComponents\LivewirePowerGrid\Header;
 use PowerComponents\LivewirePowerGrid\PowerGrid;
 use PowerComponents\LivewirePowerGrid\PowerGridColumns;
 use PowerComponents\LivewirePowerGrid\PowerGridComponent;
-use PowerComponents\LivewirePowerGrid\Traits\ActionButton;
 
 final class ValidationTable extends PowerGridComponent
 {
-    use ActionButton;
-
     public array $name;
 
     public bool $showErrorBag = true;

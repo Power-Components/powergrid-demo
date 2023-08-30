@@ -4,7 +4,6 @@ namespace App\Http\Livewire;
 
 use App\Enums\Diet;
 use App\Models\Dish;
-use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Facades\DB;
 use Livewire\Attributes\On;
 use PowerComponents\LivewirePowerGrid\Button;
@@ -14,50 +13,22 @@ use PowerComponents\LivewirePowerGrid\Header;
 use PowerComponents\LivewirePowerGrid\PowerGrid;
 use PowerComponents\LivewirePowerGrid\PowerGridColumns;
 use PowerComponents\LivewirePowerGrid\PowerGridComponent;
-use PowerComponents\LivewirePowerGrid\Traits\ActionButton;
 
 final class BulkActionTable extends PowerGridComponent
 {
-    use ActionButton;
-
-    //Table sort field
     public string $sortField = 'dishes.id';
 
-    /*
-    |--------------------------------------------------------------------------
-    |  Bulk delete button
-    |--------------------------------------------------------------------------
-    */
     #[On('bulkDelete.{tableName}')]
     public function bulkDelete(): void
     {
-        dd($this->checkboxValues);
-        //
-        //        $this->dispatch('openModal', 'delete-dish', [
-        //            'dishIds' => $this->checkboxValues,
-        //            'confirmationTitle' => 'Delete dish',
-        //            'confirmationDescription' => 'Are you sure you want to delete this dish?',
-        //        ]);
-    }
 
-    /*
-    |--------------------------------------------------------------------------
-    |  Edit Dish button
-    |--------------------------------------------------------------------------
-    */
+    }
 
     public function editDish(array $data): void
     {
         dd('You are editing', $data);
     }
 
-    /*
-    |--------------------------------------------------------------------------
-    |  Features Setup
-    |--------------------------------------------------------------------------
-    | Setup Table's general features
-    |
-    */
     public function setUp(): array
     {
         $this->showCheckBox();
@@ -73,19 +44,6 @@ final class BulkActionTable extends PowerGridComponent
         ];
     }
 
-    /*
-    |--------------------------------------------------------------------------
-    |  Datasource
-    |--------------------------------------------------------------------------
-    | Provides data to your Table using a Model or Collection
-    |
-    */
-
-    /**
-     * PowerGrid datasource.
-     *
-     * @return  Builder<Dish>|null
-     */
     public function datasource()
     {
         return Dish::query()
@@ -98,19 +56,6 @@ final class BulkActionTable extends PowerGridComponent
             ->select('dishes.*', 'categories.name as category_name', DB::raw('DATE_FORMAT(dishes.produced_at, "%d/%m/%Y") as produced_at_formatted'));
     }
 
-    /*
-    |--------------------------------------------------------------------------
-    |  Relationship Search
-    |--------------------------------------------------------------------------
-    | Configure here relationships to be used by the Search and Table Filters.
-    |
-    */
-
-    /**
-     * Relationship search.
-     *
-     * @return array<string, array<int, string>>
-     */
     public function relationSearch(): array
     {
         return [
@@ -119,15 +64,6 @@ final class BulkActionTable extends PowerGridComponent
             ],
         ];
     }
-
-    /*
-    |--------------------------------------------------------------------------
-    |  Add Column
-    |--------------------------------------------------------------------------
-    | Make Datasource fields available to be used as columns.
-    | You can pass a closure to transform/modify the data.
-    |
-    */
 
     public function addColumns(): PowerGridColumns
     {
@@ -170,20 +106,6 @@ final class BulkActionTable extends PowerGridComponent
             ->addColumn('produced_at_formatted');
     }
 
-    /*
-    |--------------------------------------------------------------------------
-    |  Include Columns
-    |--------------------------------------------------------------------------
-    | Include the columns added columns, making them visible on the Table.
-    | Each column can be configured with properties, filters, actions...
-    |
-    */
-
-    /**
-     * PowerGrid Columns.
-     *
-     * @return array<int, Column>
-     */
     public function columns(): array
     {
         return [
@@ -251,12 +173,6 @@ final class BulkActionTable extends PowerGridComponent
         ];
     }
 
-    /*
-   |--------------------------------------------------------------------------
-   | Header Action Buttons
-   |--------------------------------------------------------------------------
-   */
-
     public function header(): array
     {
         return [
@@ -268,11 +184,6 @@ final class BulkActionTable extends PowerGridComponent
         ];
     }
 
-    /**
-     * PowerGrid Dish Action Buttons.
-     *
-     * @return array<int, Button>
-     */
     public function actions(): array
     {
         return [
@@ -287,11 +198,6 @@ final class BulkActionTable extends PowerGridComponent
             Button::add('destroy')
                 ->slot(__('Delete'))
                 ->class('bg-red-500 text-white px-3 py-2 m-1 rounded text-sm'),
-            //                ->openModal('delete-dish', [
-            //                    'dishId' => 'id',
-            //                    'confirmationTitle' => 'Delete dish',
-            //                    'confirmationDescription' => 'Are you sure you want to delete this dish?',
-            // ]),
         ];
     }
 }

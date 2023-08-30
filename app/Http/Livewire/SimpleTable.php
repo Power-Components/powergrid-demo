@@ -5,20 +5,17 @@ namespace App\Http\Livewire;
 use App\Models\Dish;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Blade;
-use Livewire\Attributes\On;
 use PowerComponents\LivewirePowerGrid\Button;
 use PowerComponents\LivewirePowerGrid\Column;
+use PowerComponents\LivewirePowerGrid\Facades\Rule;
 use PowerComponents\LivewirePowerGrid\Footer;
 use PowerComponents\LivewirePowerGrid\Header;
 use PowerComponents\LivewirePowerGrid\PowerGrid;
 use PowerComponents\LivewirePowerGrid\PowerGridColumns;
 use PowerComponents\LivewirePowerGrid\PowerGridComponent;
-use PowerComponents\LivewirePowerGrid\Traits\ActionButton;
 
 class SimpleTable extends PowerGridComponent
 {
-    use ActionButton;
-
     public string $tableName = 'simpleTable';
 
     public function setUp(): array
@@ -75,6 +72,7 @@ class SimpleTable extends PowerGridComponent
                 ->sortable(),
 
             Column::make('Name', 'name')
+                ->bodyAttribute('!text-wrap') // <--- add "!"
                 ->searchable()
                 ->sortable(),
 
@@ -98,6 +96,12 @@ class SimpleTable extends PowerGridComponent
         ];
     }
 
+    #[\Livewire\Attributes\On('edit')]
+    public function edit(int $dishId): void
+    {
+        $this->js('alert('.$dishId.')');
+    }
+
     public function actions(Dish $dish): array
     {
         return [
@@ -105,8 +109,18 @@ class SimpleTable extends PowerGridComponent
                 ->slot('Edit: '.$dish->id)
                 ->id()
                 ->class('cursor-pointer block bg-white text-sm text-gray-700 border border-gray-300 rounded py-1.5 px-2 leading-tight focus:outline-none focus:bg-white focus:border-gray-600 dark:border-gray-500 dark:bg-gray-500 2xl:dark:placeholder-gray-300 dark:text-gray-200 dark:text-gray-300')
-                ->dispatch('event', ['dishId' => $dish->id])
-                ->hideWhen(fn () => $dish->id === 2),
+                ->dispatch('edit', ['dishId' => $dish->id]),
+        ];
+    }
+
+    public function actionRules($row): array
+    {
+        return [
+
+            // Hide button edit for ID 1
+            Rule::button('edit')
+                ->when(fn ($row) => $row->id == 1)
+                ->hide(),
         ];
     }
 }

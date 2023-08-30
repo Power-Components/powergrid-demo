@@ -12,12 +12,9 @@ use PowerComponents\LivewirePowerGrid\Header;
 use PowerComponents\LivewirePowerGrid\PowerGrid;
 use PowerComponents\LivewirePowerGrid\PowerGridColumns;
 use PowerComponents\LivewirePowerGrid\PowerGridComponent;
-use PowerComponents\LivewirePowerGrid\Traits\ActionButton;
 
 final class CollectionTable extends PowerGridComponent
 {
-    use ActionButton;
-
     public function setUp(): array
     {
         $this->showCheckBox();

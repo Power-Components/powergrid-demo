@@ -19,11 +19,11 @@ use PowerComponents\LivewirePowerGrid\Header;
 use PowerComponents\LivewirePowerGrid\PowerGrid;
 use PowerComponents\LivewirePowerGrid\PowerGridColumns;
 use PowerComponents\LivewirePowerGrid\PowerGridComponent;
-use PowerComponents\LivewirePowerGrid\Traits\ActionButton;
+use PowerComponents\LivewirePowerGrid\Traits\WithExport;
 
 final class FiltersTable extends PowerGridComponent
 {
-    use ActionButton;
+    use WithExport;
 
     public bool $filtersOutside = false;
 

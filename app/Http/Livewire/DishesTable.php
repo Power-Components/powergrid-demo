@@ -4,7 +4,6 @@ namespace App\Http\Livewire;
 
 use App\Models\Dish;
 use App\Models\Kitchen;
-use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Carbon;
 use Livewire\Attributes\On;
 use PowerComponents\LivewirePowerGrid\Button;
@@ -17,26 +16,15 @@ use PowerComponents\LivewirePowerGrid\PowerGrid;
 use PowerComponents\LivewirePowerGrid\PowerGridColumns;
 use PowerComponents\LivewirePowerGrid\PowerGridComponent;
 use PowerComponents\LivewirePowerGrid\Responsive;
-use PowerComponents\LivewirePowerGrid\Traits\ActionButton;
 
 final class DishesTable extends PowerGridComponent
 {
-    use ActionButton;
-
     public bool $filtersOutside = false;
 
-    //Table sort field
     public string $sortField = 'dishes.id';
 
     public bool $withResponsive = false;
 
-    /*
-    |--------------------------------------------------------------------------
-    |  Event listeners
-    |--------------------------------------------------------------------------
-    | Add custom events to DishesTable
-    |
-    */
     public bool $ableToLoad = false;
 
     public function onUpdatedToggleable($id, $field, $value): void
@@ -45,12 +33,6 @@ final class DishesTable extends PowerGridComponent
             $field => $value,
         ]);
     }
-
-    /*
-    |--------------------------------------------------------------------------
-    |  Bulk delete button
-    |--------------------------------------------------------------------------
-    */
 
     #[On('bulkDelete')]
     public function bulkDelete(): void
@@ -62,24 +44,11 @@ final class DishesTable extends PowerGridComponent
         ]);
     }
 
-    /*
-    |--------------------------------------------------------------------------
-    |  Edit Dish button
-    |--------------------------------------------------------------------------
-    */
-
     public function editDish(array $data): void
     {
         dd('You are editing', $data);
     }
 
-    /*
-    |--------------------------------------------------------------------------
-    |  Features Setup
-    |--------------------------------------------------------------------------
-    | Setup Table's general features
-    |
-    */
     public function setUp(): array
     {
         $this->showCheckBox();
@@ -106,19 +75,6 @@ final class DishesTable extends PowerGridComponent
         ];
     }
 
-    /*
-    |--------------------------------------------------------------------------
-    |  Datasource
-    |--------------------------------------------------------------------------
-    | Provides data to your Table using a Model or Collection
-    |
-    */
-
-    /**
-     * PowerGrid datasource.
-     *
-     * @return  Builder<Dish>|null
-     */
     public function datasource()
     {
         if ($this->filtersOutside) {
@@ -128,19 +84,6 @@ final class DishesTable extends PowerGridComponent
         return Dish::with(['category:id,name', 'kitchen']);
     }
 
-    /*
-    |--------------------------------------------------------------------------
-    |  Relationship Search
-    |--------------------------------------------------------------------------
-    | Configure here relationships to be used by the Search and Table Filters.
-    |
-    */
-
-    /**
-     * Relationship search.
-     *
-     * @return array<string, array<int, string>>
-     */
     public function relationSearch(): array
     {
         return [
@@ -149,15 +92,6 @@ final class DishesTable extends PowerGridComponent
             ],
         ];
     }
-
-    /*
-    |--------------------------------------------------------------------------
-    |  Add Column
-    |--------------------------------------------------------------------------
-    | Make Datasource fields available to be used as columns.
-    | You can pass a closure to transform/modify the data.
-    |
-    */
 
     public function addColumns(): PowerGridColumns
     {
@@ -217,20 +151,6 @@ final class DishesTable extends PowerGridComponent
             });
     }
 
-    /*
-    |--------------------------------------------------------------------------
-    |  Include Columns
-    |--------------------------------------------------------------------------
-    | Include the columns added columns, making them visible on the Table.
-    | Each column can be configured with properties, filters, actions...
-    |
-    */
-
-    /**
-     * PowerGrid Columns.
-     *
-     * @return array<int, Column>
-     */
     public function columns(): array
     {
         return [
@@ -300,12 +220,6 @@ final class DishesTable extends PowerGridComponent
         ];
     }
 
-    /*
-    |--------------------------------------------------------------------------
-    | Header Action Buttons
-    |--------------------------------------------------------------------------
-    */
-
     public function header(): array
     {
         return [
@@ -316,58 +230,15 @@ final class DishesTable extends PowerGridComponent
         ];
     }
 
-    /*
-    |--------------------------------------------------------------------------
-    | Actions Method
-    |--------------------------------------------------------------------------
-    | Enable the method below only if the Routes below are defined in your app.
-    |
-    */
-
-    /**
-     * PowerGrid Dish Action Buttons.
-     *
-     * @return array<int, Button>
-     */
     public function actions(Dish $dish): array
     {
         return [
             Button::add('edit-stock')
                 ->slot('edit')
                 ->openModal('edit-stock', ['dishId' => $dish->id]),
-            //                ->bladeComponent('button.circle', [
-            //                    'primary' => true,
-            //                    'icon' => 'pencil',
-            //                    'wire:click' => '$dispatch(\'openModal\', \'edit-stock\', {{ json_encode([\'dishId\' => '.$dish->id.']) }})',
-            //                ]),
-
-            //  Button::add('delete-stock')
-            //                ->bladeComponent('button.circle', [
-            //                    'negative' => true,
-            //                    'icon' => 'trash',
-            //                    'wire:click' => '$dispatch(\'openModal\', \'delete-dish\', {{ json_encode([\'dishId\' => '.$dish->id.']) }})',
-            //                ]),
         ];
     }
 
-    /*
-    |--------------------------------------------------------------------------
-    | Actions Rules
-    |--------------------------------------------------------------------------
-    | Enable the method below to configure Rules for your Table and Action Buttons.
-    |
-    */
-
-    public function test(array $params)
-    {
-        ds($params)->label('test');
-    }
-
-    /**
-     * PowerGrid Dish Action Rules.
-     *
-     * @return array<int, RuleActions>
-     */
     public function actionRules(): array
     {
         return [
