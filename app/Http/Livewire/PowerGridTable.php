@@ -3,9 +3,8 @@
 namespace App\Http\Livewire;
 
 use App\Models\User;
-use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Carbon;
-use Livewire\Attributes\On;
+use Illuminate\Database\Eloquent\Builder;
 use PowerComponents\LivewirePowerGrid\Button;
 use PowerComponents\LivewirePowerGrid\Column;
 use PowerComponents\LivewirePowerGrid\Exportable;
@@ -52,7 +51,7 @@ final class PowerGridTable extends PowerGridComponent
             ->addColumn('id')
             ->addColumn('name')
 
-            /** Example of custom column using a closure **/
+           /** Example of custom column using a closure **/
             ->addColumn('name_lower', fn (User $model) => strtolower(e($model->name)))
 
             ->addColumn('email')
@@ -86,25 +85,25 @@ final class PowerGridTable extends PowerGridComponent
         ];
     }
 
-    #[On('edit')]
+    #[\Livewire\Attributes\On('edit')]
     public function edit($rowId): void
     {
         $this->js('alert('.$rowId.')');
     }
 
-    public function actions(User $row): array
+    public function actions(\App\Models\User $row): array
     {
         return [
             Button::add('edit')
                 ->slot('Edit: '.$row->id)
                 ->id()
                 ->class('cursor-pointer block bg-white text-sm text-gray-700 border border-gray-300 rounded py-1.5 px-2 leading-tight focus:outline-none focus:bg-white focus:border-gray-600 dark:border-gray-500 dark:bg-gray-500 2xl:dark:placeholder-gray-300 dark:text-gray-200 dark:text-gray-300')
-                ->dispatch('edit', ['rowId' => $row->id]),
+                ->dispatch('edit', ['rowId' => $row->id])
         ];
     }
 
     /*
-    public function actionRules(): array
+    public function actionRules($row): array
     {
        return [
             // Hide button edit for ID 1

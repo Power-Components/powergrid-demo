@@ -109,7 +109,8 @@ class SimpleTable extends PowerGridComponent
                 ->slot('Edit: '.$dish->id)
                 ->id()
                 ->class('cursor-pointer block bg-white text-sm text-gray-700 border border-gray-300 rounded py-1.5 px-2 leading-tight focus:outline-none focus:bg-white focus:border-gray-600 dark:border-gray-500 dark:bg-gray-500 2xl:dark:placeholder-gray-300 dark:text-gray-200 dark:text-gray-300')
-                ->dispatch('edit', ['dishId' => $dish->id]),
+                ->dispatch('edit', ['dishId' => $dish->id])
+                ->can(fn ($dish) => $dish->id === 4),
         ];
     }
 
@@ -118,9 +119,9 @@ class SimpleTable extends PowerGridComponent
         return [
 
             // Hide button edit for ID 1
-            Rule::button('edit')
-                ->when(fn ($row) => $row->id == 1)
-                ->hide(),
+//            Rule::button('edit')
+//                ->when(fn ($row) => $row->id == 1)
+//                ->hide(),
         ];
     }
 }
