@@ -31,7 +31,7 @@ class Status extends Model
      * @var array
      */
     protected $fillable = [
-        'name', 'is_active'
+        'name', 'is_active',
     ];
 
     /**
@@ -47,9 +47,9 @@ class Status extends Model
 
     public function scopeSearch($query, $params)
     {
-        if (!empty($params)) {
+        if (! empty($params)) {
             return $query->where('name', 'like', '%'.$params.'%');
         }
-        return null;
+
     }
 }

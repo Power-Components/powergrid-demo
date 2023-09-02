@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "f5ea42dd5a60bbef895137ea754a26f5",
+    "content-hash": "875dec89abd443665f68abdcc16470aa",
     "packages": [
         {
             "name": "brick/math",
@@ -2915,26 +2915,31 @@
         },
         {
             "name": "power-components/livewire-powergrid",
-            "version": "5.x-dev",
+            "version": "v5.0.0-beta",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Power-Components/livewire-powergrid.git",
+                "reference": "f60e8544c5382c556dca58f399cefdceca2ef1e0"
+            },
             "dist": {
-                "type": "path",
-                "url": "/Users/luan.freitas/Documents/livewire-powergrid",
-                "reference": "2f5a649fb98282aab5f1ca1acc244fc089adb374"
+                "type": "zip",
+                "url": "https://api.github.com/repos/Power-Components/livewire-powergrid/zipball/f60e8544c5382c556dca58f399cefdceca2ef1e0",
+                "reference": "f60e8544c5382c556dca58f399cefdceca2ef1e0",
+                "shasum": ""
             },
             "require": {
-                "doctrine/dbal": "2.12.1 | ^3.6.5",
+                "doctrine/dbal": "2.12.1 | ^3.6.6",
                 "illuminate/support": "^10.0",
-                "livewire/livewire": "^3.0",
-                "openspout/openspout": "^4.16",
+                "livewire/livewire": "^3.0.1",
                 "php": "^8.1"
             },
             "require-dev": {
                 "composer/composer": "^2.5.8",
                 "laradumps/laradumps-core": "^0.3.0",
-                "laravel/pint": "^1.10.5",
-                "nunomaduro/larastan": "^2.6.3",
-                "orchestra/testbench": "^8.5.11",
-                "pestphp/pest": "^2.9.5",
+                "laravel/pint": "^1.12.0",
+                "nunomaduro/larastan": "^2.6.4",
+                "orchestra/testbench": "^8.10.0",
+                "pestphp/pest": "^2.16.1",
                 "spaze/phpstan-disallowed-calls": "^2.16"
             },
             "suggest": {
@@ -2949,57 +2954,14 @@
                 }
             },
             "autoload": {
-                "psr-4": {
-                    "PowerComponents\\LivewirePowerGrid\\": "src"
-                },
                 "files": [
                     "src/functions.php"
-                ]
-            },
-            "autoload-dev": {
+                ],
                 "psr-4": {
-                    "PowerComponents\\LivewirePowerGrid\\Tests\\": "tests"
-                },
-                "files": [
-                    "tests/Plugins/Autoload.php"
-                ]
+                    "PowerComponents\\LivewirePowerGrid\\": "src"
+                }
             },
-            "scripts": {
-                "pint:fix": [
-                    "./vendor/bin/pint"
-                ],
-                "test": [
-                    "@test:sqlite"
-                ],
-                "test:pint": [
-                    "./vendor/bin/pint --test"
-                ],
-                "test:sqlite": [
-                    "./vendor/bin/pest --compact"
-                ],
-                "test:mysql": [
-                    "./vendor/bin/pest --compact --configuration phpunit.mysql.xml"
-                ],
-                "test:pgsql": [
-                    "./vendor/bin/pest --compact --configuration phpunit.pgsql.xml"
-                ],
-                "test:sqlsrv": [
-                    "./vendor/bin/pest --configuration phpunit.sqlsrv.xml"
-                ],
-                "test:types": [
-                    "./vendor/bin/phpstan analyse --ansi --memory-limit=-1"
-                ],
-                "test:dbs": [
-                    "@test:sqlite",
-                    "@test:mysql",
-                    "@test:pgsql"
-                ],
-                "verify": [
-                    "@test:pint",
-                    "@test:types",
-                    "@test"
-                ]
-            },
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
@@ -3017,9 +2979,17 @@
             ],
             "description": "PowerGrid generates Advanced Datatables using Laravel Livewire.",
             "homepage": "https://github.com/power-components/livewire-powergrid",
-            "transport-options": {
-                "relative": false
-            }
+            "support": {
+                "issues": "https://github.com/Power-Components/livewire-powergrid/issues",
+                "source": "https://github.com/Power-Components/livewire-powergrid/tree/v5.0.0-beta"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/luanfreitasdev",
+                    "type": "github"
+                }
+            ],
+            "time": "2023-09-02T13:18:06+00:00"
         },
         {
             "name": "predis/predis",
@@ -9597,7 +9567,7 @@
     "minimum-stability": "dev",
     "stability-flags": {
         "livewire/livewire": 10,
-        "power-components/livewire-powergrid": 20,
+        "power-components/livewire-powergrid": 10,
         "wire-elements/modal": 10
     },
     "prefer-stable": false,

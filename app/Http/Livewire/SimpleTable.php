@@ -119,9 +119,9 @@ class SimpleTable extends PowerGridComponent
         return [
 
             // Hide button edit for ID 1
-//            Rule::button('edit')
-//                ->when(fn ($row) => $row->id == 1)
-//                ->hide(),
+            //            Rule::button('edit')
+            //                ->when(fn ($row) => $row->id == 1)
+            //                ->hide(),
         ];
     }
 }
