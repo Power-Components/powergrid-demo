@@ -14,9 +14,10 @@
         "laravel/tinker": "^2.8.1",
         "livewire/livewire": "^3.0",
         "openspout/openspout": "^4.13.1",
-        "power-components/livewire-powergrid": "^5.0@beta",
+        "power-components/livewire-powergrid": "dev-v5-macros",
         "predis/predis": "^2.1.2",
-        "wire-elements/modal": "^2.0@beta"
+        "wire-elements/modal": "^2.0@beta",
+        "wireui/wireui": "dev-support-livewire-v3"
     },
     "require-dev": {
         "barryvdh/laravel-ide-helper": "^2.13",
