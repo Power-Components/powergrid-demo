@@ -5,9 +5,12 @@ namespace App\Http\Livewire;
 use App\Models\Dish;
 use Livewire\Attributes\Rule;
 use LivewireUI\Modal\ModalComponent;
+use WireUi\Traits\Actions;
 
 class EditStock extends ModalComponent
 {
+    use Actions;
+
     public ?int $dishId = null;
 
     #[Rule('required|string')]
@@ -45,15 +48,15 @@ class EditStock extends ModalComponent
         //                'in_stock' => $this->inStock,
         //            ]);
 
-        //        $this->notification([
-        //            'title' => 'Dish updated successfully!',
-        //            'icon' => 'success',
-        //            'timeout' => 2000,
-        //        ]);
-        //
-        //        $this->closeModalWithEvents([
-        //            'pg:eventRefresh-default',
-        //        ]);
+        $this->notification([
+            'title' => 'Dish updated successfully!',
+            'icon' => 'success',
+            'timeout' => 2000,
+        ]);
+
+        $this->closeModalWithEvents([
+            'pg:eventRefresh-default',
+        ]);
     }
 
     public function render()

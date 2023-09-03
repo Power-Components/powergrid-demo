@@ -11,9 +11,12 @@ use PowerComponents\LivewirePowerGrid\Header;
 use PowerComponents\LivewirePowerGrid\PowerGrid;
 use PowerComponents\LivewirePowerGrid\PowerGridColumns;
 use PowerComponents\LivewirePowerGrid\PowerGridComponent;
+use WireUi\Traits\Actions;
 
 final class ValidationTable extends PowerGridComponent
 {
+    use Actions;
+
     public array $name;
 
     public bool $showErrorBag = true;
@@ -50,16 +53,16 @@ final class ValidationTable extends PowerGridComponent
     {
         $this->validate();
 
-        User::query()->find($id)->update([
-            $field => $value,
-        ]);
-
-        //        $this->notification([
-        //            'title' => 'Profile saved!',
-        //            'description' => 'Your profile was successfully saved',
-        //            'icon' => 'success',
-        //            'timeout' => 3000,
+        //        User::query()->find($id)->update([
+        //            $field => $value,
         //        ]);
+
+        $this->notification([
+            'title' => 'Profile saved!',
+            'description' => 'Your profile was successfully saved',
+            'icon' => 'success',
+            'timeout' => 3000,
+        ]);
     }
 
     /*
