@@ -34,6 +34,8 @@ class User extends Authenticatable
 
     private static function clearCache(): void
     {
-        Cache::tags(['powergrid-users-validationTable'])->flush();
+        if (Cache::supportsTags()) {
+            Cache::tags(['powergrid-users-validationTable'])->flush();
+        }
     }
 }
