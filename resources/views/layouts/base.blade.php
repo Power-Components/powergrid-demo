@@ -65,7 +65,6 @@
         </div>
     </div>
 </div>
-@livewire('wire-elements-modal')
 <x-notifications />
 </body>
 </html>

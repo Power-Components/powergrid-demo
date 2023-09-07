@@ -12,9 +12,12 @@ use PowerComponents\LivewirePowerGrid\Header;
 use PowerComponents\LivewirePowerGrid\PowerGrid;
 use PowerComponents\LivewirePowerGrid\PowerGridColumns;
 use PowerComponents\LivewirePowerGrid\PowerGridComponent;
+use PowerComponents\LivewirePowerGrid\Traits\WithExport;
 
 final class CollectionTable extends PowerGridComponent
 {
+    use WithExport;
+
     public function setUp(): array
     {
         $this->showCheckBox();

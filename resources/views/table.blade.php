@@ -6,4 +6,5 @@
 
 @section('main')
     <livewire:is :$component />
+    @livewire('wire-elements-modal')
 @endsection
