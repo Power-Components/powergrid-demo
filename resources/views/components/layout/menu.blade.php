@@ -48,7 +48,7 @@
             <div class="flex-1 flex flex-col pt-5 pb-4 overflow-y-auto">
                 <div class="flex items-center flex-shrink-0 px-4">
                     <img class="h-8 w-auto"
-                        src="https://raw.githubusercontent.com/Power-Components/livewire-powergrid/main/art/logo.svg"
+                        src="https://raw.githubusercontent.com/Power-Components/livewire-powergrid/main/art/logomark.svg"
                         alt="Workflow">
                 </div>
                 <nav class="mt-5 flex-1" aria-label="Sidebar">
