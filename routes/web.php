@@ -2,7 +2,10 @@
 
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', fn () => view('simple'))
+Route::get('/', fn () => view('table', [
+    'title' => 'Simple',
+    'component' => 'simple-table',
+]))
     ->name('default');
 
 Route::get('/{table}', fn (string $table) => view('table', [

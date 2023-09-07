@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Livewire;
+namespace App\Livewire;
 
 use App\Enums\Diet;
 use App\Models\Category;
@@ -8,7 +8,9 @@ use App\Models\Chef;
 use App\Models\Dish;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\Blade;
 use NumberFormatter;
+use PowerComponents\LivewirePowerGrid\Button;
 use PowerComponents\LivewirePowerGrid\Column;
 use PowerComponents\LivewirePowerGrid\Exportable;
 use PowerComponents\LivewirePowerGrid\Facades\Filter;
@@ -19,7 +21,7 @@ use PowerComponents\LivewirePowerGrid\PowerGridColumns;
 use PowerComponents\LivewirePowerGrid\PowerGridComponent;
 use PowerComponents\LivewirePowerGrid\Traits\WithExport;
 
-final class PersistTable extends PowerGridComponent
+final class FiltersTable extends PowerGridComponent
 {
     use WithExport;
 
@@ -33,6 +35,10 @@ final class PersistTable extends PowerGridComponent
 
     public function setUp(): array
     {
+        if ($this->filtersOutside) {
+            $this->dispatch('toggle-filters-'.$this->tableName);
+        }
+
         return [
             Exportable::make('export')
                 ->striped()
@@ -51,6 +57,12 @@ final class PersistTable extends PowerGridComponent
 
     public function datasource(): Builder
     {
+        if ($this->filtersOutside) {
+            config(['livewire-powergrid.filter' => 'outside']);
+
+            $this->dispatch('toggle-filters-'.$this->tableName);
+        }
+
         return Dish::query()
             ->when(
                 $this->categoryId,
@@ -164,6 +176,30 @@ final class PersistTable extends PowerGridComponent
             Column::make('Created At', 'created_at_formatted')
                 ->sortable(),
         ];
+    }
+
+    public function actions(): array
+    {
+        return [
+            Button::make('edit')
+                ->render(function (Dish $dish) {
+                    return Blade::render(<<<'HTML'
+<div></div>
+HTML);
+                }),
+        ];
+    }
+
+    public function editDish(int $dishId): void
+    {
+        //        $this->notification()
+        //            ->info('Edit DishId: '.$dishId);
+    }
+
+    public function deleteDish(int $dishId): void
+    {
+        //        $this->notification()
+        //            ->success('Edit DishId: '.$dishId);
     }
 
     public function filters(): array

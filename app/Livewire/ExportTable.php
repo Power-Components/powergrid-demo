@@ -1,25 +1,35 @@
 <?php
 
-namespace App\Http\Livewire;
+namespace App\Livewire;
 
 use App\Models\Dish;
 use Illuminate\Support\Carbon;
 use PowerComponents\LivewirePowerGrid\Button;
 use PowerComponents\LivewirePowerGrid\Column;
+use PowerComponents\LivewirePowerGrid\Exportable;
 use PowerComponents\LivewirePowerGrid\Footer;
 use PowerComponents\LivewirePowerGrid\Header;
 use PowerComponents\LivewirePowerGrid\PowerGrid;
 use PowerComponents\LivewirePowerGrid\PowerGridColumns;
 use PowerComponents\LivewirePowerGrid\PowerGridComponent;
-use WireUi\Traits\Actions;
+use PowerComponents\LivewirePowerGrid\Traits\WithExport;
 
-final class WireElementsModalTable extends PowerGridComponent
+final class ExportTable extends PowerGridComponent
 {
-    use Actions;
+    use WithExport;
 
     public function setUp(): array
     {
+        $this->showCheckBox();
+
         return [
+            Exportable::make('export')
+                ->striped()
+                ->columnWidth([
+                    2 => 30,
+                ])
+                ->type(Exportable::TYPE_XLS, Exportable::TYPE_CSV),
+
             Header::make()
                 ->showSearchInput(),
 
@@ -39,6 +49,9 @@ final class WireElementsModalTable extends PowerGridComponent
         return PowerGrid::columns()
             ->addColumn('id')
             ->addColumn('name')
+            ->addColumn('html_name', function ($dish) {
+                return '<b>'.$dish->name.'</b>';
+            })
             ->addColumn('chef_name')
             ->addColumn('price')
             ->addColumn('in_stock')
@@ -59,6 +72,13 @@ final class WireElementsModalTable extends PowerGridComponent
 
             Column::make('Name', 'name')
                 ->searchable()
+                ->hidden()
+                ->visibleInExport(true)
+                ->sortable(),
+
+            Column::make('Name', 'html_name')
+                ->searchable()
+                ->visibleInExport(false)
                 ->sortable(),
 
             Column::make('Chef', 'chef_name')
@@ -69,49 +89,19 @@ final class WireElementsModalTable extends PowerGridComponent
                 ->sortable(),
 
             Column::make('In Stock', 'in_stock_label')
-                ->toggleable()
                 ->field('in_stock'),
 
             Column::make('Created At', 'created_at_formatted'),
-
-            Column::action('Action'),
         ];
     }
 
-    public function onUpdatedToggleable(string $id, string $field, string $value): void
-    {
-        $this->notification([
-            'title' => 'onUpdatedToggleable',
-            'description' => "Id: {$id}, Field: {$field}, Value: {$value}",
-            'icon' => 'success',
-            'timeout' => 4000,
-        ]);
-
-        //        Dish::query()->where('id', $id)->update([
-        //            $field => $value,
-        //        ]);
-    }
-
-    public function actions($dish): array
+    public function actions(): array
     {
         return [
             Button::add('edit-stock')
-                ->bladeComponent('button.circle', [
-                    'primary' => true,
-                    'icon' => 'pencil',
-                ])
-                ->openModal('edit-stock', [
-                    'dishId' => $dish->id,
-                ]),
-
-            Button::add('delete-stock')
-                ->bladeComponent('button.circle', [
-                    'negative' => true,
-                    'icon' => 'trash',
-                ])
-                ->openModal('delete-dish', [
-                    'dishId' => $dish->id,
-                ]),
+                ->slot('<div id="edit">Edit</div>')
+                ->class('text-center')
+                ->openModal('edit-stock', ['dishId' => 'id']),
         ];
     }
 }

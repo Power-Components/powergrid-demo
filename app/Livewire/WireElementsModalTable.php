@@ -1,35 +1,25 @@
 <?php
 
-namespace App\Http\Livewire;
+namespace App\Livewire;
 
 use App\Models\Dish;
 use Illuminate\Support\Carbon;
 use PowerComponents\LivewirePowerGrid\Button;
 use PowerComponents\LivewirePowerGrid\Column;
-use PowerComponents\LivewirePowerGrid\Exportable;
 use PowerComponents\LivewirePowerGrid\Footer;
 use PowerComponents\LivewirePowerGrid\Header;
 use PowerComponents\LivewirePowerGrid\PowerGrid;
 use PowerComponents\LivewirePowerGrid\PowerGridColumns;
 use PowerComponents\LivewirePowerGrid\PowerGridComponent;
-use PowerComponents\LivewirePowerGrid\Traits\WithExport;
+use WireUi\Traits\Actions;
 
-final class ExportTable extends PowerGridComponent
+final class WireElementsModalTable extends PowerGridComponent
 {
-    use WithExport;
+    use Actions;
 
     public function setUp(): array
     {
-        $this->showCheckBox();
-
         return [
-            Exportable::make('export')
-                ->striped()
-                ->columnWidth([
-                    2 => 30,
-                ])
-                ->type(Exportable::TYPE_XLS, Exportable::TYPE_CSV),
-
             Header::make()
                 ->showSearchInput(),
 
@@ -49,9 +39,6 @@ final class ExportTable extends PowerGridComponent
         return PowerGrid::columns()
             ->addColumn('id')
             ->addColumn('name')
-            ->addColumn('html_name', function ($dish) {
-                return '<b>'.$dish->name.'</b>';
-            })
             ->addColumn('chef_name')
             ->addColumn('price')
             ->addColumn('in_stock')
@@ -72,13 +59,6 @@ final class ExportTable extends PowerGridComponent
 
             Column::make('Name', 'name')
                 ->searchable()
-                ->hidden()
-                ->visibleInExport(true)
-                ->sortable(),
-
-            Column::make('Name', 'html_name')
-                ->searchable()
-                ->visibleInExport(false)
                 ->sortable(),
 
             Column::make('Chef', 'chef_name')
@@ -89,19 +69,49 @@ final class ExportTable extends PowerGridComponent
                 ->sortable(),
 
             Column::make('In Stock', 'in_stock_label')
+                ->toggleable()
                 ->field('in_stock'),
 
             Column::make('Created At', 'created_at_formatted'),
+
+            Column::action('Action'),
         ];
     }
 
-    public function actions(): array
+    public function onUpdatedToggleable(string $id, string $field, string $value): void
+    {
+        $this->notification([
+            'title' => 'onUpdatedToggleable',
+            'description' => "Id: {$id}, Field: {$field}, Value: {$value}",
+            'icon' => 'success',
+            'timeout' => 4000,
+        ]);
+
+        //        Dish::query()->where('id', $id)->update([
+        //            $field => $value,
+        //        ]);
+    }
+
+    public function actions($dish): array
     {
         return [
             Button::add('edit-stock')
-                ->slot('<div id="edit">Edit</div>')
-                ->class('text-center')
-                ->openModal('edit-stock', ['dishId' => 'id']),
+                ->bladeComponent('button.circle', [
+                    'primary' => true,
+                    'icon' => 'pencil',
+                ])
+                ->openModal('edit-stock', [
+                    'dishId' => $dish->id,
+                ]),
+
+            Button::add('delete-stock')
+                ->bladeComponent('button.circle', [
+                    'negative' => true,
+                    'icon' => 'trash',
+                ])
+                ->openModal('delete-dish', [
+                    'dishId' => $dish->id,
+                ]),
         ];
     }
 }

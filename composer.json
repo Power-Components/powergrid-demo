@@ -14,7 +14,7 @@
         "laravel/tinker": "^2.8.2",
         "livewire/livewire": "^3.0.2",
         "openspout/openspout": "^4.17.0",
-        "power-components/livewire-powergrid": "^5.0@beta",
+        "power-components/livewire-powergrid": "5.x-dev",
         "predis/predis": "^2.2.1",
         "wire-elements/modal": "^2.0",
         "wireui/wireui": "^1.18"
@@ -78,6 +78,6 @@
             "php-http/discovery": true
         }
     },
-    "minimum-stability": "stable",
+    "minimum-stability": "dev",
     "prefer-stable": false
 }

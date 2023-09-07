@@ -33,7 +33,7 @@
             </div>
         </div>
         <div class="flex-1 relative z-0 flex overflow-hidden">
-            <main class="flex-1 relative z-0 overflow-y-auto focus:outline-none xl:order-last dark:bg-slate-700">
+            <main class="flex-1 relative z-0 overflow-y-auto focus:outline-none xl:order-last dark:bg-slate-900">
                 <!-- Start main area-->
                 <div class="py-6 px-4 sm:px-6 lg:px-8">
 
@@ -45,7 +45,7 @@
                         <button type="button"
                                 class="relative inline-flex flex-shrink-0 h-6 w-11 border-2 border-transparent rounded-full cursor-pointer transition-colors ease-in-out duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 bg-gray-200"
                                 role="switch" aria-checked="false" x-ref="switch"
-                                :class="{ 'bg-gray-300': !(darkMode), 'bg-gray-400': darkMode }"
+                                :class="{ 'bg-slate-300': !(darkMode), 'bg-slate-400': darkMode }"
                                 aria-labelledby="annual-billing-label"
                                 :aria-checked="darkMode" @click="darkMode = !darkMode">
                             <span aria-hidden="true"
@@ -56,7 +56,7 @@
                     </div>
 
                     <div class="h-full border-2 border-slate-200 dark:border-slate-800 border-dashed rounded-lg p-6">
-                        <div class="font-bold text-lg text-slate-700 dark:text-slate-400">@yield('title')</div>
+                        <div class="font-bold text-lg text-slate-700 dark:text-slate-300">@yield('title')</div>
                         @yield('main')
                     </div>
                 </div>
