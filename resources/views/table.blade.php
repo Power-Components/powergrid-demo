@@ -1,9 +1,9 @@
 @extends('layouts.base')
 
 @section('title')
-    Batch Export
+    {{ $title }}
 @endsection
 
 @section('main')
-    <livewire:batch-export-table />
+    <livewire:is :$component />
 @endsection

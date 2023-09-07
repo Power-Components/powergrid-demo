@@ -33,13 +33,13 @@
             </div>
         </div>
         <div class="flex-1 relative z-0 flex overflow-hidden">
-            <main class="flex-1 relative z-0 overflow-y-auto focus:outline-none xl:order-last">
+            <main class="flex-1 relative z-0 overflow-y-auto focus:outline-none xl:order-last dark:bg-slate-700">
                 <!-- Start main area-->
                 <div class="py-6 px-4 sm:px-6 lg:px-8">
 
                     <div class="gap-2 flex m-2">
                         <span class="ml-2 items-center" @click="darkMode = !darkMode; $refs.switch.focus()">
-                          <span class="text-sm font-medium uppercase text-gray-800"
+                          <span class="text-sm font-medium uppercase text-slate-800 dark:text-gray-300"
                                 x-text="darkMode ? 'Dark': 'Light'"></span>
                         </span>
                         <button type="button"
@@ -55,8 +55,8 @@
                         </button>
                     </div>
 
-                    <div class="h-full border-2 border-slate-200 border-dashed rounded-lg p-6">
-                        <div class="font-bold text-lg text-slate-700">@yield('title')</div>
+                    <div class="h-full border-2 border-slate-200 dark:border-slate-800 border-dashed rounded-lg p-6">
+                        <div class="font-bold text-lg text-slate-700 dark:text-slate-400">@yield('title')</div>
                         @yield('main')
                     </div>
                 </div>

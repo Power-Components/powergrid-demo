@@ -14,102 +14,99 @@ class Menu extends Component
         $this->menu = collect([
             [
                 'label' => 'Simple',
-                'route' => route('simple'),
+                'route' => route('default', ['table' => 'simple']),
                 'name' => 'simple',
             ],
             [
                 'label' => 'Striped',
-                'route' => route('striped'),
+                'route' => route('default', ['table' => 'striped']),
                 'name' => 'striped',
             ],
             [
                 'label' => 'Header Fixed',
-                'route' => route('header-fixed'),
+                'route' => route('default', ['table' => 'header-fixed']),
                 'name' => 'header-fixed',
             ],
             [
                 'label' => 'Filters',
-                'route' => route('filters'),
+                'route' => route('default', ['table' => 'filters']),
                 'name' => 'filters',
             ],
             [
                 'label' => 'Filters outside',
-                'route' => route('filters-outside'),
+                'route' => route('default', [
+                    'table' => 'filters',
+                ]),
                 'name' => 'filters-outside',
             ],
             [
                 'label' => 'Validation',
-                'route' => route('validation'),
+                'route' => route('default', ['table' => 'validation']),
                 'name' => 'validation',
             ],
             [
                 'label' => 'Collection',
-                'route' => route('collection'),
+                'route' => route('default', ['table' => 'collection']),
                 'name' => 'collection',
             ],
             [
                 'label' => 'Join',
-                'route' => route('join'),
+                'route' => route('default', ['table' => 'join']),
                 'name' => 'join',
             ],
             [
-                'label' => 'Multiple',
-                'route' => route('multiple'),
-                'name' => 'multiple',
-            ],
-            [
                 'label' => 'Dishes',
-                'route' => route('dish'),
+                'route' => route('default', ['table' => 'dishes']),
                 'name' => 'dish',
             ],
             [
                 'label' => 'Responsive',
-                'route' => route('dish-responsive'),
+                'route' => route('default', ['table' => 'responsive']),
                 'name' => 'dish-responsive',
             ],
             [
                 'label' => 'Persist',
-                'route' => route('persist'),
+                'route' => route('default', ['table' => 'persist']),
                 'name' => 'persist',
             ],
             [
                 'label' => 'Detail',
-                'route' => route('detail'),
+                'route' => route('default', ['table' => 'detail']),
                 'name' => 'detail',
             ],
             [
                 'label' => 'Export',
-                'route' => route('export'),
+                'route' => route('default', ['table' => 'export']),
                 'name' => 'export',
             ],
             [
                 'label' => 'Batch Export',
-                'route' => route('batch'),
+                'route' => route('default', ['table' => 'batch-export']),
                 'name' => 'batch',
             ],
             [
                 'label' => 'Custom Layout',
-                'route' => route('custom-layout'),
+                'route' => route('default', ['table' => 'custom-layout']),
                 'name' => 'custom-layout',
             ],
             [
                 'label' => 'Bulk Actions',
-                'route' => route('bulk-actions'),
+                'route' => route('default', ['table' => 'bulk-action']),
                 'name' => 'bulk-actions',
             ],
             [
                 'label' => 'Soft Delete',
-                'route' => route('soft-delete'),
+                'route' => route('default', ['table' => 'soft-delete']),
                 'name' => 'soft-delete',
             ],
             [
                 'label' => 'Summarize',
-                'route' => route('summarize'),
+                'route' => route('default', ['table' => 'summarize']),
                 'name' => 'summarize',
             ],
             [
                 'label' => 'Wire Elements Modal',
-                'route' => route('wire-elements-modal'),
+                'route' => route('default', ['table' => 'wire-elements-modal']),
                 'name' => 'wire-elements-modal',
             ],
         ]);

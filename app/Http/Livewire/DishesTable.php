@@ -17,7 +17,7 @@ use PowerComponents\LivewirePowerGrid\PowerGridColumns;
 use PowerComponents\LivewirePowerGrid\PowerGridComponent;
 use PowerComponents\LivewirePowerGrid\Responsive;
 
-final class DishesTable extends PowerGridComponent
+class DishesTable extends PowerGridComponent
 {
     public bool $filtersOutside = false;
 
