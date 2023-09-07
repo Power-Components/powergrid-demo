@@ -11,7 +11,6 @@
 
     <wireui:scripts />
     @vite(['resources/css/app.css', 'resources/js/app.js'])
-    @livewireStyles
 </head>
 <body class="antialiased h-screen">
 <div class="h-full flex" x-data="{ sideBarOpen: false }" >
@@ -34,19 +33,19 @@
             </div>
         </div>
         <div class="flex-1 relative z-0 flex overflow-hidden">
-            <main class="flex-1 relative z-0 overflow-y-auto focus:outline-none xl:order-last">
+            <main class="flex-1 relative z-0 overflow-y-auto focus:outline-none xl:order-last dark:bg-slate-900">
                 <!-- Start main area-->
                 <div class="py-6 px-4 sm:px-6 lg:px-8">
 
                     <div class="gap-2 flex m-2">
                         <span class="ml-2 items-center" @click="darkMode = !darkMode; $refs.switch.focus()">
-                          <span class="text-sm font-medium uppercase text-gray-800"
+                          <span class="text-sm font-medium uppercase text-slate-800 dark:text-gray-300"
                                 x-text="darkMode ? 'Dark': 'Light'"></span>
                         </span>
                         <button type="button"
                                 class="relative inline-flex flex-shrink-0 h-6 w-11 border-2 border-transparent rounded-full cursor-pointer transition-colors ease-in-out duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 bg-gray-200"
                                 role="switch" aria-checked="false" x-ref="switch"
-                                :class="{ 'bg-gray-300': !(darkMode), 'bg-gray-400': darkMode }"
+                                :class="{ 'bg-slate-300': !(darkMode), 'bg-slate-400': darkMode }"
                                 aria-labelledby="annual-billing-label"
                                 :aria-checked="darkMode" @click="darkMode = !darkMode">
                             <span aria-hidden="true"
@@ -56,8 +55,8 @@
                         </button>
                     </div>
 
-                    <div class="h-full border-2 border-slate-200 border-dashed rounded-lg p-6">
-                        <div class="font-bold text-lg text-slate-700">@yield('title')</div>
+                    <div class="h-full border-2 border-slate-200 dark:border-slate-800 border-dashed rounded-lg p-6">
+                        <div class="font-bold text-lg text-slate-700 dark:text-slate-300">@yield('title')</div>
                         @yield('main')
                     </div>
                 </div>
@@ -66,8 +65,7 @@
         </div>
     </div>
 </div>
-@livewireScripts
-@livewire('livewire-ui-modal')
+@livewire('wire-elements-modal')
 <x-notifications />
 </body>
 </html>

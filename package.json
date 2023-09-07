@@ -5,17 +5,16 @@
         "build": "vite build"
     },
     "devDependencies": {
-        "autoprefixer": "^10.4.14",
-        "axios": "^1.4.0",
-        "laravel-vite-plugin": "^0.7.8",
-        "postcss": "^8.4.27",
+        "autoprefixer": "^10.4.15",
+        "axios": "^1.5.0",
+        "laravel-vite-plugin": "^0.8.0",
+        "postcss": "^8.4.29",
         "tailwindcss": "^3.3.3",
-        "vite": "^4.4.8"
+        "vite": "^4.4.9"
     },
     "dependencies": {
-        "@tailwindcss/forms": "^0.5.4",
-        "alpinejs": "^3.12.3",
-        "cypress": "^12.17.3",
+        "@tailwindcss/forms": "^0.5.6",
+        "cypress": "^12.9.0",
         "flatpickr": "^4.6.13",
         "flowbite-datepicker": "^1.2.2",
         "moment": "^2.29.4",

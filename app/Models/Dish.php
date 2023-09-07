@@ -63,6 +63,11 @@ class Dish extends Model
         return $this->belongsTo(Kitchen::class);
     }
 
+    public function chef(): BelongsTo
+    {
+        return $this->belongsTo(Chef::class);
+    }
+
     public static function servedAt()
     {
         return self::select('serving_at')->distinct('serving_at')->get();
