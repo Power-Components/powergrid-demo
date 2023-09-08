@@ -26,6 +26,8 @@ class DishesTable extends PowerGridComponent
 
     public bool $ableToLoad = false;
 
+    public string $loadingComponent = 'components.my-custom-loading';
+
     public function onUpdatedToggleable($id, $field, $value): void
     {
         Dish::query()->find($id)->update([
@@ -76,10 +78,6 @@ class DishesTable extends PowerGridComponent
 
     public function datasource()
     {
-        if ($this->filtersOutside) {
-            config(['livewire-powergrid.filter' => 'outside']);
-        }
-
         return Dish::with(['category:id,name', 'kitchen']);
     }
 

@@ -19,7 +19,7 @@ use PowerComponents\LivewirePowerGrid\PowerGridColumns;
 use PowerComponents\LivewirePowerGrid\PowerGridComponent;
 use PowerComponents\LivewirePowerGrid\Traits\WithExport;
 
-final class FiltersTable extends PowerGridComponent
+class FiltersTable extends PowerGridComponent
 {
     use WithExport;
 

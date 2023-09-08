@@ -33,6 +33,8 @@ final class PersistTable extends PowerGridComponent
 
     public function setUp(): array
     {
+        $this->persist(['columns', 'filters']);
+
         return [
             Exportable::make('export')
                 ->striped()
