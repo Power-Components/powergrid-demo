@@ -77,6 +77,7 @@
                     <!-- Start main area-->
                     <div class="py-6 px-4 sm:px-6 lg:px-8">
 
+                        @persist('toggle-button')
                         <div class="gap-2 flex mb-2">
                             <span
                                 class="items-center"
@@ -106,6 +107,7 @@
                                 </span>
                             </button>
                         </div>
+                        @endpersist
 
                         <div
                             class="h-full border-2 border-slate-200 dark:border-slate-800 border-dashed rounded-lg p-6">

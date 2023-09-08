@@ -17,6 +17,8 @@ class SimpleTable extends PowerGridComponent
 {
     public string $tableName = 'simpleTable';
 
+    public $test = null;
+
     public function setUp(): array
     {
         return [
