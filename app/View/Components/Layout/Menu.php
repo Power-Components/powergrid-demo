@@ -23,9 +23,9 @@ class Menu extends Component
                 'name' => '/striped',
             ],
             [
-                'label' => 'Header Fixed',
-                'route' => route('default', ['table' => 'header-fixed']),
-                'name' => '/header-fixed',
+                'label' => 'Fixed Header',
+                'route' => route('default', ['table' => 'fixed-header']),
+                'name' => '/fixed-header',
             ],
             [
                 'label' => 'Filters',

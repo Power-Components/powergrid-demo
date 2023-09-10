@@ -6,7 +6,7 @@ use App\Helpers\PowerGridThemes\TailwindHeaderFixed;
 use PowerComponents\LivewirePowerGrid\Footer;
 use PowerComponents\LivewirePowerGrid\Header;
 
-final class HeaderFixedTable extends SimpleTable
+final class FixedHeaderTable extends SimpleTable
 {
     public array $perPageValues = [0];
 

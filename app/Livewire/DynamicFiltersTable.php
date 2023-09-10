@@ -183,13 +183,13 @@ HTML);
             Filter::dynamic('category_name', 'category_id')
                 ->component('select')
                 ->attributes([
-                    'class' => 'min-w-[170px]',
+                    'class' => '!min-w-[170px]',
                     'async-data' => route('category.index'),
                     'option-label' => 'name',
                     'multiselect' => false,
                     'option-value' => 'id',
                     'placeholder' => 'Test',
-                    'wire:model.lazy' => 'filters.select.category_id',
+                    'wire:model.live' => 'filters.select.category_id',
                 ]),
         ];
     }

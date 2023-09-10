@@ -31,6 +31,8 @@ class FiltersTable extends PowerGridComponent
 
     public string $loadingComponent = 'components.my-custom-loading';
 
+    protected $queryString = ['filters'];
+
     public function setUp(): array
     {
         if ($this->filtersOutside) {
