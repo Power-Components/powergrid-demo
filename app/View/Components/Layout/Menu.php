@@ -119,6 +119,12 @@ class Menu extends Component
                 'route' => route('default', ['table' => 'wire-elements-modal']),
                 'name' => '/wire-elements-modal',
             ],
+            [
+                'label' => 'Extending Button',
+                'route' => route('default', ['table' => 'extend-button']),
+                'name' => '/extend-button',
+            ],
+
         ]);
     }
 

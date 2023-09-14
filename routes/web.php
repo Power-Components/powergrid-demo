@@ -16,3 +16,5 @@ Route::get('/{table}', fn (string $table) => view('table', [
     'component' => $table.'-table',
 ]))
     ->name('default');
+
+Route::get('/advices/edit', fn () => 'work')->name('advices.edit');

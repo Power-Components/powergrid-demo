@@ -17,7 +17,7 @@
         "power-components/livewire-powergrid": "5.x-dev",
         "predis/predis": "^2",
         "wire-elements/modal": "^2.0.7",
-        "wireui/wireui": "^1.18.1"
+        "wireui/wireui": "dev-main"
     },
     "require-dev": {
         "barryvdh/laravel-ide-helper": "^2.13",
