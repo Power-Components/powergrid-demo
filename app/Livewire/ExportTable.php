@@ -94,14 +94,4 @@ final class ExportTable extends PowerGridComponent
             Column::make('Created At', 'created_at_formatted'),
         ];
     }
-
-    public function actions(): array
-    {
-        return [
-            Button::add('edit-stock')
-                ->slot('<div id="edit">Edit</div>')
-                ->class('text-center')
-                ->openModal('edit-stock', ['dishId' => 'id']),
-        ];
-    }
 }
