@@ -185,23 +185,6 @@ final class BulkActionTable extends PowerGridComponent
         ];
     }
 
-    public function actions(): array
-    {
-        return [
-            Button::add('edit')
-                ->slot('Edit')
-                ->class('bg-indigo-500 cursor-pointer text-white px-3 py-2 m-1 rounded text-sm')
-                ->dispatch('edit-dish', [
-                    'dishId' => 'id',
-                    'custom' => __METHOD__,
-                ]),
-
-            Button::add('destroy')
-                ->slot(__('Delete'))
-                ->class('bg-red-500 text-white px-3 py-2 m-1 rounded text-sm'),
-        ];
-    }
-
     public function filters(): array
     {
         return [
