@@ -73,6 +73,8 @@ final class PowerGridTable extends PowerGridComponent
             Column::make('Created at', 'created_at_formatted', 'created_at')
                 ->sortable(),
 
+            Column::action('Action'),
+
         ];
     }
 

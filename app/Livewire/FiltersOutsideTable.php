@@ -10,10 +10,10 @@ use PowerComponents\LivewirePowerGrid\Header;
 
 final class FiltersOutsideTable extends FiltersTable
 {
+    public bool $showFilters = true;
+
     public function setUp(): array
     {
-        $this->dispatch('toggle-filters-'.$this->tableName);
-
         return [
             Exportable::make('export')
                 ->striped()
@@ -33,8 +33,6 @@ final class FiltersOutsideTable extends FiltersTable
     public function datasource(): Builder
     {
         config(['livewire-powergrid.filter' => 'outside']);
-
-        $this->dispatch('toggle-filters-'.$this->tableName);
 
         return Dish::query()
             ->when(

@@ -68,6 +68,7 @@ class SimpleTable extends PowerGridComponent
     public function columns(): array
     {
         return [
+
             Column::make('ID', 'id')
                 ->searchable()
                 ->sortable(),

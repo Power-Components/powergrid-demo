@@ -20,7 +20,7 @@ final class ResponsiveTable extends DishesTable
                 ->showRecordCount(),
 
             Responsive::make()
-                ->fixedColumns('dishes.id', 'dishes.name', Responsive::ACTIONS_COLUMN_NAME),
+                ->fixedColumns('dishes.name', Responsive::ACTIONS_COLUMN_NAME),
         ];
     }
 }

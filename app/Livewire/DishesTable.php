@@ -22,8 +22,6 @@ class DishesTable extends PowerGridComponent
 
     public string $sortField = 'dishes.id';
 
-    public bool $withResponsive = false;
-
     public bool $ableToLoad = false;
 
     public string $loadingComponent = 'components.my-custom-loading';
@@ -45,19 +43,9 @@ class DishesTable extends PowerGridComponent
         ]);
     }
 
-    public function editDish(array $data): void
-    {
-        dd('You are editing', $data);
-    }
-
     public function setUp(): array
     {
         $this->showCheckBox();
-
-        $responsive = $this->withResponsive ? [
-            Responsive::make()
-                ->fixedColumns('dishes.id', 'dishes.name', Responsive::ACTIONS_COLUMN_NAME),
-        ] : [];
 
         return [
             Exportable::make('export')
@@ -71,8 +59,6 @@ class DishesTable extends PowerGridComponent
             Footer::make()
                 ->showPerPage()
                 ->showRecordCount(),
-
-            ...$responsive,
         ];
     }
 
@@ -161,7 +147,7 @@ class DishesTable extends PowerGridComponent
                 ->title(__('Dish'))
                 ->field('dish_name', 'dishes.name')
                 ->searchable()
-                ->editOnClick(true)
+                ->contentClasses('!whitespace-normal')
                 ->placeholder('Dish placeholder')
                 ->sortable(),
 

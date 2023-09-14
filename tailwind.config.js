@@ -4,7 +4,7 @@ module.exports = {
         './resources/**/*.blade.php',
         './resources/**/*.js',
         // powergrid
-        './app/Http/Livewire/**/*Table.php',
+        './app/Livewire/**/*Table.php',
         './app/Helpers/PowerGridThemes/*.php',
         './vendor/power-components/livewire-powergrid/resources/views/**/*.php',
         './vendor/power-components/livewire-powergrid/src/Themes/Tailwind.php',
