@@ -129,7 +129,11 @@ class Menu extends Component
                 'route' => route('default', ['table' => 'radio-button']),
                 'name' => '/radio-button',
             ],
-
+            [
+                'label' => 'Cypress',
+                'route' => route('default', ['table' => 'cypress']),
+                'name' => '/cypress',
+            ],
         ]);
     }
 
