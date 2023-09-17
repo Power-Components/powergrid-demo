@@ -124,6 +124,11 @@ class Menu extends Component
                 'route' => route('default', ['table' => 'extend-button']),
                 'name' => '/extend-button',
             ],
+            [
+                'label' => 'Radio Button',
+                'route' => route('default', ['table' => 'radio-button']),
+                'name' => '/radio-button',
+            ],
 
         ]);
     }
