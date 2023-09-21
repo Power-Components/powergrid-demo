@@ -13,7 +13,7 @@
         "laravel/sanctum": "^3",
         "laravel/tinker": "^2",
         "livewire/livewire": "^3.0.2",
-        "openspout/openspout": "^4",
+        "openspout/openspout": "4.x-dev",
         "power-components/livewire-powergrid": "5.x-dev",
         "predis/predis": "^2",
         "wire-elements/modal": "^2.0.7",
@@ -21,6 +21,7 @@
     },
     "require-dev": {
         "barryvdh/laravel-ide-helper": "^2.13",
+        "composer/composer": "^2.6@dev",
         "fakerphp/faker": "^1.23.0",
         "laradumps/laradumps": "^2.1",
         "laradumps/laradumps-core": "^0.2.0",

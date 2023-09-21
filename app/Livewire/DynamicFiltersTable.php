@@ -145,38 +145,6 @@ final class DynamicFiltersTable extends PowerGridComponent
         ];
     }
 
-    public function actions($dish): array
-    {
-        return [
-            Button::make('edit')
-                ->render(function (Dish $dish) {
-                    return Blade::render(<<<HTML
-<x-button.circle primary icon="pencil" wire:click="editDish('$dish->id')" />
-HTML);
-                }),
-
-            Button::make('delete')
-                ->bladeComponent('button.circle', [
-                    'negative' => true,
-                    'icon' => 'trash',
-                    'wire:click' => 'editDish(\''.$dish->id.'\')',
-                ]
-                ),
-        ];
-    }
-
-    public function editDish(int $dishId): void
-    {
-        $this->notification()
-            ->info('Edit DishId: '.$dishId);
-    }
-
-    public function deleteDish(int $dishId): void
-    {
-        $this->notification()
-            ->success('Edit DishId: '.$dishId);
-    }
-
     public function filters(): array
     {
         return [

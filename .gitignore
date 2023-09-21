@@ -21,3 +21,4 @@ yarn-error.log
 /tests/cypress/cypress/screenshots/*
 _ide_helper.php
 composer.lock
+app/Livewire/CypressTable.php

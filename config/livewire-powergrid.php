@@ -102,5 +102,5 @@ return [
     |
     */
 
-    'check_version' => false,
+    'check_version' => true,
 ];

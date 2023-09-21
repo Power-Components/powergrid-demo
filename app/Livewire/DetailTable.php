@@ -69,6 +69,8 @@ final class DetailTable extends PowerGridComponent
             Column::make('Created At', 'created_at_formatted', 'created_at')
                 ->searchable()
                 ->sortable(),
+
+            Column::action('Action'),
         ];
     }
 

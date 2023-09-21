@@ -2,13 +2,13 @@
 
 namespace App\Livewire;
 
-use App\Models\User;
+use App\Models\Dish;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Carbon;
 use PowerComponents\LivewirePowerGrid\Button;
 use PowerComponents\LivewirePowerGrid\Column;
 use PowerComponents\LivewirePowerGrid\Exportable;
-use PowerComponents\LivewirePowerGrid\Facades\Rule;
+use PowerComponents\LivewirePowerGrid\Facades\Filter;
 use PowerComponents\LivewirePowerGrid\Footer;
 use PowerComponents\LivewirePowerGrid\Header;
 use PowerComponents\LivewirePowerGrid\PowerGrid;
@@ -16,20 +16,19 @@ use PowerComponents\LivewirePowerGrid\PowerGridColumns;
 use PowerComponents\LivewirePowerGrid\PowerGridComponent;
 use PowerComponents\LivewirePowerGrid\Traits\WithExport;
 
-final class RadioButtonTable extends PowerGridComponent
+final class UserTable extends PowerGridComponent
 {
     use WithExport;
 
     public function setUp(): array
     {
-        $this->showRadioButton();
+        $this->showCheckBox();
 
         return [
             Exportable::make('export')
                 ->striped()
                 ->type(Exportable::TYPE_XLS, Exportable::TYPE_CSV),
-            Header::make()
-                ->showSearchInput(),
+            Header::make()->showSearchInput(),
             Footer::make()
                 ->showPerPage()
                 ->showRecordCount(),
@@ -38,7 +37,7 @@ final class RadioButtonTable extends PowerGridComponent
 
     public function datasource(): Builder
     {
-        return User::query();
+        return Dish::query();
     }
 
     public function relationSearch(): array
@@ -50,30 +49,60 @@ final class RadioButtonTable extends PowerGridComponent
     {
         return PowerGrid::columns()
             ->addColumn('id')
+            ->addColumn('kitchen_id')
+            ->addColumn('category_id')
             ->addColumn('name')
+
             /** Example of custom column using a closure **/
-            ->addColumn('name_lower', fn (User $model) => strtolower(e($model->name)))
-            ->addColumn('email')
-            ->addColumn('created_at_formatted', fn (User $model) => Carbon::parse($model->created_at)->format('d/m/Y H:i:s'));
+            ->addColumn('name_lower', fn (Dish $model) => strtolower(e($model->name)))
+
+            ->addColumn('price')
+            ->addColumn('calories')
+            ->addColumn('in_stock')
+            ->addColumn('created_at_formatted', fn (Dish $model) => Carbon::parse($model->created_at)->format('d/m/Y H:i:s'));
     }
 
     public function columns(): array
     {
         return [
             Column::make('Id', 'id'),
+            Column::make('Kitchen id', 'kitchen_id'),
+            Column::make('Category id', 'category_id'),
             Column::make('Name', 'name')
                 ->sortable()
                 ->searchable(),
 
-            Column::make('Email', 'email')
+            Column::make('Price', 'price')
                 ->sortable()
                 ->searchable(),
+
+            Column::make('Calories', 'calories'),
+            Column::make('In stock', 'in_stock')
+                ->toggleable(),
+
+            Column::make('Created at', 'created_at_formatted', 'created_at')
+                ->sortable(),
 
             Column::action('Action'),
         ];
     }
 
-    public function actions(User $row): array
+    public function filters(): array
+    {
+        return [
+            Filter::inputText('name')->operators(['contains']),
+            Filter::boolean('in_stock'),
+            Filter::datetimepicker('created_at'),
+        ];
+    }
+
+    #[\Livewire\Attributes\On('edit')]
+    public function edit($rowId): void
+    {
+        $this->js('alert('.$rowId.')');
+    }
+
+    public function actions(Dish $row): array
     {
         return [
             Button::add('edit')
@@ -84,19 +113,15 @@ final class RadioButtonTable extends PowerGridComponent
         ];
     }
 
+    /*
     public function actionRules($row): array
     {
-        return [
-            Rule::radio()
-                ->when(fn ($row) => $row->id == $this->selectedRow)
-                ->setAttribute('class', '!border-2 !border-fuchsia-500 bg-fuchsia-100 hover:!bg-fuchsia-100 dark:bg-fuchsia-800 dark:hover:bg-fuchsia-800'),
-
-            Rule::rows()
-                ->setAttribute('wire:click', '$set(\'selectedRow\', '.$row->id.')'),
-
-            Rule::rows()
-                ->setAttribute('class', '!cursor-pointer'),
-
+       return [
+            // Hide button edit for ID 1
+            Rule::button('edit')
+                ->when(fn($row) => $row->id === 1)
+                ->hide(),
         ];
     }
+    */
 }

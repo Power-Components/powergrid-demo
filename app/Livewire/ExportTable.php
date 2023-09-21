@@ -4,7 +4,6 @@ namespace App\Livewire;
 
 use App\Models\Dish;
 use Illuminate\Support\Carbon;
-use PowerComponents\LivewirePowerGrid\Button;
 use PowerComponents\LivewirePowerGrid\Column;
 use PowerComponents\LivewirePowerGrid\Exportable;
 use PowerComponents\LivewirePowerGrid\Footer;
