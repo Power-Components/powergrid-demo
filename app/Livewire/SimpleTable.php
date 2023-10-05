@@ -4,7 +4,6 @@ namespace App\Livewire;
 
 use App\Models\Dish;
 use Illuminate\Support\Carbon;
-use Illuminate\Support\Facades\Blade;
 use PowerComponents\LivewirePowerGrid\Button;
 use PowerComponents\LivewirePowerGrid\Column;
 use PowerComponents\LivewirePowerGrid\Footer;
@@ -49,18 +48,25 @@ class SimpleTable extends PowerGridComponent
                 return (new \NumberFormatter('en_US', \NumberFormatter::CURRENCY))
                     ->formatCurrency($dish->price, 'USD');
             })
-            ->addColumn('in_stock')
-            ->addColumn('in_stock_label', function (Dish $dish) {
-                if ($dish->in_stock) {
-                    return Blade::render('Yes');
-                }
-
-                return Blade::render('No');
+            ->addColumn('in_stock', function (Dish $dish) {
+                return $dish->in_stock ? 'Yes' : 'No';
             })
             ->addColumn('created_at_formatted', function (Dish $dish) {
                 return Carbon::parse($dish->created_at)
                     ->timezone('America/Sao_Paulo')->format('d/m/Y');
             });
+    }
+
+    public function beforeSearch(string $field = null, string $search = null): ?string
+    {
+        if ($field === 'in_stock') {
+            return str(strtolower($search))
+                ->replace('no', '0')
+                ->replace('yes', '1')
+                ->toString();
+        }
+
+        return $search;
     }
 
     public function columns(): array
@@ -78,17 +84,12 @@ class SimpleTable extends PowerGridComponent
 
             Column::make('Category', 'category_name'),
 
-            Column::make('Chef', 'chef_name')
+            Column::make('Price', 'price_fmt', 'price')
                 ->searchable()
                 ->sortable(),
 
-            Column::make('Price', 'price')
-                ->sortable(),
-
-            Column::make('Price', 'price_fmt')
-                ->sortable(),
-
-            Column::make('In Stock', 'in_stock_label'),
+            Column::make('In Stock', 'in_stock')
+                ->searchable(),
 
             Column::make('Created At', 'created_at_formatted'),
 

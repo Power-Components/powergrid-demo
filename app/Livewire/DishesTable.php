@@ -27,9 +27,11 @@ class DishesTable extends PowerGridComponent
 
     public function onUpdatedToggleable($id, $field, $value): void
     {
-        Dish::query()->find($id)->update([
+        Dish::query()->where('id', $id)->update([
             $field => $value,
         ]);
+
+        $this->skipRender();
     }
 
     #[On('bulkDelete')]
@@ -151,27 +153,18 @@ class DishesTable extends PowerGridComponent
                 ->sortable(),
 
             Column::add()
-                ->title(__('Chef'))
-                ->field('chef_name', 'dishes.chef_name')
-                ->searchable()
-                ->placeholder('Chef placeholder')
-                ->sortable(),
-
-            Column::add()
                 ->field('diet', 'dishes.diet')
                 ->title(__('Diet')),
 
             Column::add()
                 ->title(__('Category'))
                 ->field('category_name', 'categories.name')
-                ->placeholder('Category placeholder')
-                ->sortable(),
+                ->placeholder('Category placeholder'),
 
             Column::add()
                 ->title(__('Price'))
                 ->field('price_BRL')
                 ->editOnClick(true),
-            // ->withSum('Total', true, true),
 
             Column::add()
                 ->title(__('Sales price'))

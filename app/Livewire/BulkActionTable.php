@@ -22,7 +22,7 @@ final class BulkActionTable extends PowerGridComponent
     #[On('bulkDelete.{tableName}')]
     public function bulkDelete(): void
     {
-
+        $this->js('alert(window.pgBulkActions.get(\''.$this->tableName.'\'))');
     }
 
     public function editDish(array $data): void
@@ -40,7 +40,6 @@ final class BulkActionTable extends PowerGridComponent
 
             Footer::make()
                 ->showPerPage()
-                ->pagination('livewire::tailwind')
                 ->showRecordCount(),
         ];
     }
@@ -178,9 +177,8 @@ final class BulkActionTable extends PowerGridComponent
     {
         return [
             Button::add('bulk-delete')
-                ->class('hidden')
                 ->slot(__('Bulk delete (<span x-text="window.pgBulkActions.count(\''.$this->tableName.'\')"></span>)'))
-                ->class('cursor-pointer block bg-white-200 text-gray-700 border border-gray-300 rounded py-2 px-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-600 dark:border-gray-500 dark:bg-gray-500 2xl:dark:placeholder-gray-300 dark:text-gray-200 dark:text-gray-300')
+                ->class('pg-btn-white dark:ring-pg-primary-600 dark:border-pg-primary-600 dark:hover:bg-pg-primary-700 dark:ring-offset-pg-primary-800 dark:text-pg-primary-300 dark:bg-pg-primary-700')
                 ->dispatch('bulkDelete.'.$this->tableName, []),
         ];
     }

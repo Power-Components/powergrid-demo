@@ -4,7 +4,6 @@ namespace App\Livewire;
 
 use App\Models\User;
 use Illuminate\Database\Eloquent\Builder;
-use PowerComponents\LivewirePowerGrid\Cache;
 use PowerComponents\LivewirePowerGrid\Column;
 use PowerComponents\LivewirePowerGrid\Footer;
 use PowerComponents\LivewirePowerGrid\Header;
@@ -30,9 +29,6 @@ final class ValidationTable extends PowerGridComponent
     public function setUp(): array
     {
         return [
-            Cache::make()
-                ->forever(),
-
             Header::make()
                 ->showSearchInput(),
 
@@ -46,9 +42,9 @@ final class ValidationTable extends PowerGridComponent
     {
         $this->validate();
 
-        //          User::query()->find($id)->update([
-        //             $field => $value,
-        //          ]);
+        User::query()->find($id)->update([
+            $field => $value,
+        ]);
 
         $this->notification([
             'title' => 'Profile saved!',
@@ -58,30 +54,20 @@ final class ValidationTable extends PowerGridComponent
         ]);
     }
 
-    /*
-    |--------------------------------------------------------------------------
-    |  Datasource
-    |--------------------------------------------------------------------------
-    | Provides data to your Table using a Model or Collection
-    |
-    */
+    public function onUpdatedToggleable(string|int $id, string $field, string $value): void
+    {
+        User::query()->where('id', $id)->update([
+            $field => $value,
+        ]);
 
-    /**
-     * PowerGrid datasource.
-     */
+        $this->skipRender();
+    }
+
     public function datasource(): ?Builder
     {
         return User::query();
     }
 
-    /*
-    |--------------------------------------------------------------------------
-    |  Add Column
-    |--------------------------------------------------------------------------
-    | Make Datasource fields available to be used as columns.
-    | You can pass a closure to transform/modify the data.
-    |
-    */
     public function addColumns(): PowerGridColumns
     {
         return PowerGrid::columns()
@@ -91,20 +77,6 @@ final class ValidationTable extends PowerGridComponent
             ->addColumn('email');
     }
 
-    /*
-    |--------------------------------------------------------------------------
-    |  Include Columns
-    |--------------------------------------------------------------------------
-    | Include the columns added columns, making them visible on the Table.
-    | Each column can be configured with properties, filters, actions...
-    |
-    */
-
-    /**
-     * PowerGrid Columns.
-     *
-     * @return array<int, Column>
-     */
     public function columns(): array
     {
         return [
@@ -119,7 +91,8 @@ final class ValidationTable extends PowerGridComponent
                 ->sortable()
                 ->searchable(),
 
-            Column::make('Active', 'active'),
+            Column::make('Active', 'active')
+                ->toggleable(),
         ];
     }
 }

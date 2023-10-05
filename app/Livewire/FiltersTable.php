@@ -10,19 +10,15 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Carbon;
 use NumberFormatter;
 use PowerComponents\LivewirePowerGrid\Column;
-use PowerComponents\LivewirePowerGrid\Exportable;
 use PowerComponents\LivewirePowerGrid\Facades\Filter;
 use PowerComponents\LivewirePowerGrid\Footer;
 use PowerComponents\LivewirePowerGrid\Header;
 use PowerComponents\LivewirePowerGrid\PowerGrid;
 use PowerComponents\LivewirePowerGrid\PowerGridColumns;
 use PowerComponents\LivewirePowerGrid\PowerGridComponent;
-use PowerComponents\LivewirePowerGrid\Traits\WithExport;
 
 class FiltersTable extends PowerGridComponent
 {
-    use WithExport;
-
     public bool $filtersOutside = false;
 
     public int $categoryId = 0;
@@ -40,10 +36,6 @@ class FiltersTable extends PowerGridComponent
         }
 
         return [
-            Exportable::make('export')
-                ->striped()
-                ->type(Exportable::TYPE_XLS, Exportable::TYPE_CSV),
-
             Header::make()
                 ->showToggleColumns()
                 ->withoutLoading()
@@ -78,6 +70,9 @@ class FiltersTable extends PowerGridComponent
     {
         return [
             'category' => [
+                'name',
+            ],
+            'chef' => [
                 'name',
             ],
         ];
@@ -155,8 +150,7 @@ class FiltersTable extends PowerGridComponent
             Column::make('Category', 'category_name'),
 
             Column::make('Chef', 'chef_name')
-                ->searchable()
-                ->sortable(),
+                ->searchable(),
 
             Column::add()
                 ->title(__('Price'))
@@ -170,12 +164,24 @@ class FiltersTable extends PowerGridComponent
             Column::make('Diet', 'diet', 'dishes.diet'),
 
             Column::make('In Stock', 'in_stock_label', 'in_stock'),
-            Column::make('Produced At', 'produced_at_formatted')
+            Column::make('Produced At', 'produced_at_formatted', 'produced_at')
                 ->sortable(),
 
-            Column::make('Created At', 'created_at_formatted')
+            Column::make('Created At', 'created_at_formatted', 'created_at')
                 ->sortable(),
         ];
+    }
+
+    public function beforeSearch(string $field = null, string $search = null): ?string
+    {
+        if ($field === 'in_stock') {
+            return str(strtolower($search))
+                ->replace('no', '0')
+                ->replace('yes', '1')
+                ->toString();
+        }
+
+        return $search;
     }
 
     public function filters(): array

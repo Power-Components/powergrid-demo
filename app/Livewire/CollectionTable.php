@@ -90,9 +90,8 @@ final class CollectionTable extends PowerGridComponent
             ->addColumn('name')
             ->addColumn('chef_name')
             ->addColumn('price')
-            ->addColumn('in_stock')
-            ->addColumn('in_stock_label', function ($entry) {
-                return $entry->in_stock ? 'sim' : 'não';
+            ->addColumn('in_stock', function ($entry) {
+                return $entry->in_stock ? 'Yes' : 'No';
             })
             ->addColumn('created_at', function ($entry) {
                 return Carbon::parse($entry->created_at);
@@ -130,7 +129,6 @@ final class CollectionTable extends PowerGridComponent
 
             Column::add()
                 ->title(__('In Stock'))
-                ->toggleable(true, 'yes', 'no')
                 ->field('in_stock'),
 
             Column::add()
