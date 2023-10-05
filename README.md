@@ -1,6 +1,6 @@
 # Demo Project
 
-_PowerGrid version 4 demo_
+_PowerGrid version 5 demo_
 
 This repository provides a fully configured PowerGrid implementation on a [Laravel 10](https://laravel.com/) project.
 
