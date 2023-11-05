@@ -2,6 +2,7 @@
 
 namespace App\View\Components\Layout;
 
+use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
 use Illuminate\View\Component;
 
@@ -9,8 +10,18 @@ class Menu extends Component
 {
     public Collection $menu;
 
-    public function __construct()
+    public function __construct(Request $request)
     {
+        $cypress = [];
+
+        if (! str($request->url())->contains('demo.livewire-powergrid.com')) {
+            $cypress = [[
+                'label' => 'Cypress',
+                'route' => route('default', ['table' => 'cypress']),
+                'name' => '/cypress',
+            ]];
+        }
+
         $this->menu = collect([
             [
                 'label' => 'Simple',
@@ -129,11 +140,7 @@ class Menu extends Component
                 'route' => route('default', ['table' => 'radio-button']),
                 'name' => '/radio-button',
             ],
-            [
-                'label' => 'Cypress',
-                'route' => route('default', ['table' => 'cypress']),
-                'name' => '/cypress',
-            ],
+            ...$cypress,
         ]);
     }
 
