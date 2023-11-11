@@ -8,6 +8,7 @@ use App\Models\Chef;
 use App\Models\Dish;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Carbon;
+use Livewire\Attributes\Url;
 use NumberFormatter;
 use PowerComponents\LivewirePowerGrid\Column;
 use PowerComponents\LivewirePowerGrid\Facades\Filter;
@@ -28,6 +29,19 @@ class FiltersTable extends PowerGridComponent
     public string $loadingComponent = 'components.my-custom-loading';
 
     protected $queryString = ['filters'];
+
+    #[Url]
+    public string|int $page = 1;
+
+    public function updatedPaginators($value): void
+    {
+        $this->page = $value;
+    }
+
+    public function hydratePage(): void
+    {
+        $this->paginators['page'] = $this->page;
+    }
 
     public function setUp(): array
     {
