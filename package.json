@@ -14,7 +14,7 @@
     },
     "dependencies": {
         "@tailwindcss/forms": "^0.5.6",
-        "cypress": "^12.9.0",
+        "cypress": "^13.5.1",
         "flatpickr": "^4.6.13",
         "flowbite-datepicker": "^1.2.2",
         "moment": "^2.29.4",
