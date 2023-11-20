@@ -12,7 +12,7 @@
         "laravel/sanctum": "^3.3.2",
         "laravel/tinker": "^2.8.2",
         "livewire/livewire": "^3.2.1",
-        "openspout/openspout": "^4.21.0",
+        "openspout/openspout": "4.20",
         "power-components/livewire-powergrid": "5.x-dev",
         "predis/predis": "^2.2.2",
         "wire-elements/modal": "^2.0.8",
