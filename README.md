@@ -2,6 +2,12 @@
 	<p><img src="header.jpg" alt="PowerGrid Logo"></p>
 </div>
 
+---
+
+# Demo Project Migrate to https://github.com/Power-Components/powergrid-demo-misc
+
+---
+
 # Demo Project
 
 This repository provides a fully configured PowerGrid implementation on a [Laravel 9](https://laravel.com/) project.
