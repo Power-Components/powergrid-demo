@@ -35,7 +35,7 @@ The PowerGrid Demo Project runs in Laravel 10.
 Clone this repository and enter the project's directory:
 
 ```shell
-git clone https://github.com/Power-Components/powergrid-demo.git && cd powergrid-demo
+git clone https://github.com/Power-Components/powergrid-demo-misc.git && cd powergrid-demo-misc
 ```
 
 ### Install
