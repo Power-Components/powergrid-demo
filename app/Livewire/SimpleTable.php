@@ -3,6 +3,7 @@
 namespace App\Livewire;
 
 use App\Models\Dish;
+use Illuminate\Database\Query\Builder;
 use Illuminate\Support\Carbon;
 use PowerComponents\LivewirePowerGrid\Button;
 use PowerComponents\LivewirePowerGrid\Column;
@@ -28,9 +29,14 @@ class SimpleTable extends PowerGridComponent
         ];
     }
 
-    public function datasource()
+    public function datasource(): ?Builder
     {
-        return Dish::with('category');
+        return Dish::query()
+            ->join('categories as newCategories', function ($categories) {
+                $categories->on('dishes.category_id', '=', 'newCategories.id');
+            })
+            ->select('dishes.*', 'newCategories.name as category_name')
+            ->toBase();
     }
 
     public function addColumns(): PowerGridColumns
@@ -41,17 +47,17 @@ class SimpleTable extends PowerGridComponent
             ->addColumn('category_id', function ($dish) {
                 return $dish->category_id;
             })
-            ->addColumn('category_name', function (Dish $dish) {
-                return $dish->category->name;
+            ->addColumn('category_name', function ($dish) {
+                return $dish->category_name;
             })
-            ->addColumn('price_fmt', function (Dish $dish) {
+            ->addColumn('price_fmt', function ($dish) {
                 return (new \NumberFormatter('en_US', \NumberFormatter::CURRENCY))
                     ->formatCurrency($dish->price, 'USD');
             })
-            ->addColumn('in_stock', function (Dish $dish) {
+            ->addColumn('in_stock', function ($dish) {
                 return $dish->in_stock ? 'Yes' : 'No';
             })
-            ->addColumn('created_at_formatted', function (Dish $dish) {
+            ->addColumn('created_at_formatted', function ($dish) {
                 return Carbon::parse($dish->created_at)
                     ->timezone('America/Sao_Paulo')->format('d/m/Y');
             });
@@ -78,7 +84,7 @@ class SimpleTable extends PowerGridComponent
                 ->sortable(),
 
             Column::make('Name', 'name')
-                ->bodyAttribute('!text-wrap') // <--- add "!"
+                ->bodyAttribute('!text-wrap')
                 ->searchable()
                 ->sortable(),
 
@@ -103,7 +109,7 @@ class SimpleTable extends PowerGridComponent
         $this->js('alert('.$dishId.')');
     }
 
-    public function actions(Dish $dish): array
+    public function actions($dish): array
     {
         return [
             Button::add('edit')
