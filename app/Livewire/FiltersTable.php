@@ -201,7 +201,7 @@ class FiltersTable extends PowerGridComponent
     public function filters(): array
     {
         return [
-            Filter::inputText('name')->operators(['contains']),
+            Filter::inputText('name'),
 
             Filter::boolean('in_stock', 'in_stock')
                 ->label('In stock', 'Out of stock')
@@ -238,7 +238,9 @@ class FiltersTable extends PowerGridComponent
                 ->optionLabel('name')
                 ->optionValue('id'),
 
-            Filter::number('price_BRL', 'price'),
+            Filter::number('price_BRL', 'price')
+                ->thousands('.')
+                ->decimal(','),
 
             Filter::datetimepicker('created_at_formatted', 'created_at')
                 ->params([

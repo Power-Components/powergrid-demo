@@ -3,17 +3,11 @@
 namespace Database\Seeders;
 
 use App\Models\Chef;
-use App\Models\User;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
 {
-    /**
-     * Seed the application's database.
-     *
-     * @return void
-     */
-    public function run()
+    public function run(): void
     {
         $this->call([
             KitchenSeeder::class,
@@ -21,9 +15,8 @@ class DatabaseSeeder extends Seeder
             RestaurantSeeder::class,
             ChefSeeder::class,
             DishSeeder::class,
+            UserSeeder::class,
         ]);
-
-        User::factory(30)->create();
 
         $chefCategories = [
             'Luan' => [1, 3, 4],
