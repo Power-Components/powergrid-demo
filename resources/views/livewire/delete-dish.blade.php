@@ -10,8 +10,8 @@
         @endif
         <div class="font-normal text-gray-600">{{ $confirmationDescription }}</div>
             <div class="space-x-2 flex justify-end mt-3">
-                <x-button flat label="Cancel" wire:click="cancel"/>
-                <x-button primary label="Save" wire:click="confirm"/>
+                <button wire:click="cancel"> Cancel </button>
+                <button wire:click="confirm"> Save </button>
             </div>
     </div>
 

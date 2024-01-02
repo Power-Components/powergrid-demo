@@ -51,11 +51,6 @@ class Menu extends Component
                 'name' => '/filters-outside',
             ],
             [
-                'label' => 'Dynamic Filters',
-                'route' => route('default', ['table' => 'dynamic-filters']),
-                'name' => '/dynamic-filters',
-            ],
-            [
                 'label' => 'Validation',
                 'route' => route('default', ['table' => 'validation']),
                 'name' => '/validation',
@@ -124,11 +119,6 @@ class Menu extends Component
                 'label' => 'Summarize',
                 'route' => route('default', ['table' => 'summarize']),
                 'name' => '/summarize',
-            ],
-            [
-                'label' => 'Wire Elements Modal',
-                'route' => route('default', ['table' => 'wire-elements-modal']),
-                'name' => '/wire-elements-modal',
             ],
             [
                 'label' => 'Extending Button',

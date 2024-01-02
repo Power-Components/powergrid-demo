@@ -186,7 +186,7 @@ class FiltersTable extends PowerGridComponent
         ];
     }
 
-    public function beforeSearch(string $field = null, string $search = null): ?string
+    public function beforeSearch(?string $field = null, ?string $search = null): ?string
     {
         if ($field === 'in_stock') {
             return str(strtolower($search))

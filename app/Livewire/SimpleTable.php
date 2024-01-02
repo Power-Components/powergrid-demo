@@ -5,7 +5,6 @@ namespace App\Livewire;
 use App\Models\Dish;
 use Illuminate\Database\Query\Builder;
 use Illuminate\Support\Carbon;
-use PowerComponents\LivewirePowerGrid\Button;
 use PowerComponents\LivewirePowerGrid\Column;
 use PowerComponents\LivewirePowerGrid\Footer;
 use PowerComponents\LivewirePowerGrid\Header;
@@ -63,7 +62,7 @@ class SimpleTable extends PowerGridComponent
             });
     }
 
-    public function beforeSearch(string $field = null, string $search = null): ?string
+    public function beforeSearch(?string $field = null, ?string $search = null): ?string
     {
         if ($field === 'in_stock') {
             return str(strtolower($search))
@@ -98,8 +97,6 @@ class SimpleTable extends PowerGridComponent
                 ->searchable(),
 
             Column::make('Created At', 'created_at_formatted'),
-
-            Column::action('Action'),
         ];
     }
 
@@ -107,18 +104,5 @@ class SimpleTable extends PowerGridComponent
     public function edit(int $dishId): void
     {
         $this->js('alert('.$dishId.')');
-    }
-
-    public function actions($dish): array
-    {
-        return [
-            Button::add('edit')
-                ->bladeComponent('button.circle', [
-                    'primary' => true,
-                    'icon' => 'pencil',
-                ])
-                ->id()
-                ->dispatch('edit', ['dishId' => $dish->id]),
-        ];
     }
 }
