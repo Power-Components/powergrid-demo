@@ -118,6 +118,7 @@
             </div>
         </div>
     </div>
+    @livewireScriptConfig
 </body>
 
 </html>
