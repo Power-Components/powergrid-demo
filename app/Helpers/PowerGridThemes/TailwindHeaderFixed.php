@@ -3,18 +3,17 @@
 namespace App\Helpers\PowerGridThemes;
 
 use PowerComponents\LivewirePowerGrid\Themes\Components\Table;
+use PowerComponents\LivewirePowerGrid\Themes\Tailwind;
 use PowerComponents\LivewirePowerGrid\Themes\Theme;
 
-class TailwindHeaderFixed extends \PowerComponents\LivewirePowerGrid\Themes\Tailwind
+class TailwindHeaderFixed extends Tailwind
 {
     public function table(): Table
     {
         return Theme::table('min-w-full')
-            ->div('max-h-[29rem] my-3 rounded-lg relative border border-pg-primary-200 dark:bg-pg-primary-700 dark:border-pg-primary-600')
-            ->thead('sticky -top-[0.3px] relative shadow-sm rounded-t-lg bg-pg-primary-200 dark:bg-gray-900')
+            ->div('max-h-[29rem]  relative border border-pg-primary-200 dark:bg-pg-primary-700 dark:border-pg-primary-600')
+            ->thead('sticky -top-[0.3px] relative bg-pg-primary-200 dark:bg-gray-900')
             ->thAction('!font-bold')
-            ->tdAction('')
-            ->tr('')
             ->trFilters('sticky top-[39px] bg-white shadow-sm dark:bg-pg-primary-800')
             ->th('font-semibold px-2 pr-4 py-3 text-left text-xs font-semibold text-pg-primary-700 tracking-wider whitespace-nowrap dark:text-pg-primary-300')
             ->tbody('text-pg-primary-800')

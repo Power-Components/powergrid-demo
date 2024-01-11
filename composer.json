@@ -8,19 +8,20 @@
     "require": {
         "php": "^8.1",
         "guzzlehttp/guzzle": "^7.8.1",
-        "laravel/framework": "^10.36.0",
-        "laravel/tinker": "^2.8.2",
-        "livewire/livewire": "^3.2.6",
+        "laravel/framework": "^10.40.0",
+        "laravel/tinker": "^2.9.0",
+        "livewire/livewire": "^3.3.5",
+        "openspout/openspout": "^4",
         "power-components/livewire-powergrid": "5.x-dev",
         "predis/predis": "^2.2.2"
     },
     "require-dev": {
-        "fakerphp/faker": "^1.23.0",
-        "laravel/pint": "^1.13.6",
-        "laravel/sail": "^1.26.2",
-        "mockery/mockery": "^1.6.6",
+        "fakerphp/faker": "^1.23.1",
+        "laravel/pint": "^1.13.8",
+        "laravel/sail": "^1.27.0",
+        "mockery/mockery": "^1.6.7",
         "nunomaduro/collision": "^7.10.0",
-        "phpunit/phpunit": "^10.5.2"
+        "phpunit/phpunit": "^10.5.5"
     },
     "autoload": {
         "psr-4": {

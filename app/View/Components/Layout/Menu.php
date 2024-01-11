@@ -29,6 +29,11 @@ class Menu extends Component
                 'name' => '/simple',
             ],
             [
+                'label' => 'Lazy',
+                'route' => route('default', ['table' => 'lazy-load']),
+                'name' => '/lazy-load',
+            ],
+            [
                 'label' => 'Striped',
                 'route' => route('default', ['table' => 'striped']),
                 'name' => '/striped',
