@@ -53,6 +53,9 @@ final class BulkActionTable extends PowerGridComponent
             ->leftJoin('kitchens', function ($categories) {
                 $categories->on('dishes.kitchen_id', '=', 'kitchens.id');
             })
+            ->leftJoin('chefs', function ($categories) {
+                $categories->on('dishes.chef_id', '=', 'chefs.id');
+            })
             ->select('dishes.*', 'categories.name as category_name', DB::raw('DATE_FORMAT(dishes.produced_at, "%d/%m/%Y") as produced_at_formatted'));
     }
 
@@ -70,7 +73,9 @@ final class BulkActionTable extends PowerGridComponent
         return PowerGrid::columns()
             ->addColumn('id')
             ->addColumn('serving_at')
-            ->addColumn('chef_name')
+            ->addColumn('chef_name', function (Dish $dish) {
+                return $dish->chef?->name ?? '-';
+            })
             ->addColumn('dish_name', function (Dish $dish) {
                 return $dish->name;
             })
@@ -125,7 +130,7 @@ final class BulkActionTable extends PowerGridComponent
 
             Column::add()
                 ->title(__('Chef'))
-                ->field('chef_name', 'dishes.chef_name')
+                ->field('chef_name', 'chefs.name')
                 ->searchable()
                 ->placeholder('Chef placeholder')
                 ->sortable(),

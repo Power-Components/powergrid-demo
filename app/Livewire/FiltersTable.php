@@ -101,7 +101,7 @@ class FiltersTable extends PowerGridComponent
             ->addColumn('name')
             ->addColumn('storage_room')
             ->addColumn('chef_name', function (Dish $dish) {
-                return $dish->chef->name;
+                return $dish->chef->name ?? '-';
             })
             ->addColumn('serving_at')
             ->addColumn('calories')

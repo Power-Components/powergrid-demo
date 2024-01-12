@@ -28,7 +28,7 @@ class Dish extends Model
     use HasFactory;
     use SoftDeletes;
 
-    protected $with = ['category', 'kitchen'];
+    protected $with = ['category', 'kitchen', 'chef'];
 
     protected $fillable = [
         'kitchen_id',
