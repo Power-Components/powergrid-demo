@@ -43,3 +43,9 @@ function something()
 {
     // ..
 }
+
+dataset('valid_component_candidates', [
+    'foo-bar',
+    'FooBarTable',
+    'FooBar',
+]);
