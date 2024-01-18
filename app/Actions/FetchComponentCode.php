@@ -12,7 +12,7 @@ final class FetchComponentCode
     {
         $componentName = ParseComponentName::handle($componentName);
 
-        $path = app_path('/Livewire/' . $componentName . '.php');
+        $path = app_path('/Livewire/'.$componentName.'.php');
         $content = File::get($path);
 
         return ParseComponentCode::handle(strval($content));

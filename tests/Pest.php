@@ -45,6 +45,7 @@ function something()
 }
 
 dataset('valid_component_candidates', [
+    'foo_bar',
     'foo-bar',
     'FooBarTable',
     'FooBar',

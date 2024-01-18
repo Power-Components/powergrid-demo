@@ -4,6 +4,9 @@ use Illuminate\Support\Facades\Facade;
 
 return [
 
+    'repository_url' => 'https://github.com/Power-Components/powergrid-demo-misc/',
+    'repository_default_branch' => 'main',
+
     /*
     |--------------------------------------------------------------------------
     | Application Name
