@@ -13,7 +13,8 @@
         "livewire/livewire": "^3.3.5",
         "openspout/openspout": "^4",
         "power-components/livewire-powergrid": "5.x-dev",
-        "predis/predis": "^2.2.2"
+        "predis/predis": "^2.2.2",
+        "torchlight/torchlight-laravel": "^0.5.14"
     },
     "require-dev": {
         "fakerphp/faker": "^1.23.1",
@@ -21,6 +22,7 @@
         "laravel/sail": "^1.27.0",
         "mockery/mockery": "^1.6.7",
         "nunomaduro/collision": "^7.10.0",
+        "pestphp/pest": "^2.31",
         "phpunit/phpunit": "^10.5.5"
     },
     "autoload": {
