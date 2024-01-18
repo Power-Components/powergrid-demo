@@ -11,6 +11,7 @@
         "laravel/framework": "10.39.0",
         "laravel/tinker": "^2.9.0",
         "livewire/livewire": "^3.3.5",
+        "mews/purifier": "^3.4",
         "openspout/openspout": "^4",
         "power-components/livewire-powergrid": "5.x-dev",
         "predis/predis": "^2.2.2",

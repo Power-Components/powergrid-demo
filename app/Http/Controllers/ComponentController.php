@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Actions\FetchComponentAbout;
 use App\Actions\FetchComponentCode;
 use App\Actions\MakeComponentTitle;
 use Illuminate\View\View;
@@ -19,6 +20,7 @@ class ComponentController extends Controller
             'title' => MakeComponentTitle::handle($componentName),
             'component' => $componentName.'-table',
             'source_code' => FetchComponentCode::handle($componentName),
+            'about' => FetchComponentAbout::handle($componentName),
         ]);
     }
 }
