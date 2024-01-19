@@ -10,7 +10,6 @@ class LazyLoadTable extends SimpleTable
 {
     public string $tableName = 'simpleTable';
 
-
     public function setUp(): array
     {
         return [

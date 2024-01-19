@@ -8,4 +8,4 @@ Route::redirect('/examples', '/');
 
 Route::view('/examples/{component}', 'table')->name('default');
 
-Route::get('/advices/edit', fn() => 'work')->name('advices.edit');
+Route::get('/advices/edit', fn () => 'work')->name('advices.edit');
