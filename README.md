@@ -1,26 +1,23 @@
-# Demo Project
+# PowerGrid Demo
 
-_PowerGrid version 5 demo_
+## About
 
-This repository provides a collection ully configured PowerGrid implementation on a [Laravel 10](https://laravel.com/) project.
+This repository is a catalog of code examples using [Livewire PowerGrid v5](https://livewire-powergrid.com/) in a Laravel application.
 
-⚡ Check the PowerGrid Table: [app/Http/Livewire/DishesTable.php](https://github.com/Power-Components/powergrid-demo/blob/main/app/Http/Livewire/DishesTable.php).
+The resources available here are aimed at helping the user get up and running as fast as possible, and also allow everyone to stay up-to-date with the latest PowerGrid features.
 
-<br/>
+`🌎` See all examples live [here](https://demo.livewire-powergrid.com/).
 
-😎 This repository is kept up-to-date so you can use it as reference for your projects.
+`📚` Read the [PowerGrid Documentation](https://livewire-powergrid.com/) for more information about configuration and features.
 
-📚 See the [Documentation](https://livewire-powergrid.com/) for more information about configuration and features.
+`📦` Visit the [PowerGrid](https://github.com/Power-Components/livewire-powergrid) main repository to see the latest package features.
 
-❇️ Visit [PowerGrid](https://github.com/Power-Components/livewire-powergrid) main repository to see the latest changes on the package.
+## Stack
 
-<sup><b>Notice of Non-Affiliation and Disclaimer:</b> Livewire PowerGrid is not affiliated, associated, endorsed by, or in any way officially connected with the Laravel Livewire - copyright by Caleb Porzio.</sup>
+- [Laravel 10](https://laravel.com/)
+- [Livewire v3](https://laravel-livewire.com)
 
-<br/>
-
-## How to use
-
-The PowerGrid Demo Project runs in Laravel 10.
+## Get Started
 
 ### Requirements
 
@@ -95,12 +92,10 @@ php artisan serve
 
 ## Support
 
-For questions, issues, bug reports and feature requests, please use [PowerGrid](https://github.com/Power-Components/livewire-powergrid) official GitHub Repository.
-
-Please look into our previous issues to verify if your bug/question or feature request has been previously submitted.
-
-📣 Submit a [new issue](https://github.com/Power-Components/livewire-powergrid/issues).
+For questions, technical inquiries, bug reports and feature requests, please use the [PowerGrid](https://github.com/Power-Components/livewire-powergrid) official GitHub Repository.
 
 <br/>
 
-<h1><code>💓 Thank you for downloading!</code></h1>
+<hr>
+
+<sup><b>Notice of Non-Affiliation and Disclaimer:</b> Livewire PowerGrid is not affiliated with, associated with, endorsed by, or in any way officially connected with the <a href="https://laravel-livewire.com" target="_blank">Laravel Livewire</a> - copyright by Caleb Porzio. Laravel is a trademark of Taylor Otwell.</sup>

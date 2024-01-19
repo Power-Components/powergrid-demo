@@ -1,4 +1,3 @@
-
-This component demonstrates how to use [Action Rules](https://livewire-powergrid.com/table/action-rules.html) to alter the behavior of certain rows based on configured conditions.
+This example illustrates the use of Action Rules to alter rows matching predefined conditions.
 <br/><br/>
-In this example, a rule is configured to NOT display the "edit button" on rows where the _"ID is equal `5`"_.
+The component below has a rule to replace the "edit button" when the _"ID is equal 5"_.
