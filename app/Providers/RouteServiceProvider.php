@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Support\ExampleComponent;
 use Illuminate\Cache\RateLimiting\Limit;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
 use Illuminate\Http\Request;
@@ -33,6 +34,15 @@ class RouteServiceProvider extends ServiceProvider
 
             Route::middleware('web')
                 ->group(base_path('routes/web.php'));
+        });
+
+        Route::bind('component', function ($componentName) {
+
+            try {
+                return ExampleComponent::discover($componentName);
+            } catch (\Exception) {
+                abort(404, 'Example not available.');
+            }
         });
     }
 

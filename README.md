@@ -2,7 +2,7 @@
 
 _PowerGrid version 5 demo_
 
-This repository provides a fully configured PowerGrid implementation on a [Laravel 10](https://laravel.com/) project.
+This repository provides a collection ully configured PowerGrid implementation on a [Laravel 10](https://laravel.com/) project.
 
 ⚡ Check the PowerGrid Table: [app/Http/Livewire/DishesTable.php](https://github.com/Power-Components/powergrid-demo/blob/main/app/Http/Livewire/DishesTable.php).
 

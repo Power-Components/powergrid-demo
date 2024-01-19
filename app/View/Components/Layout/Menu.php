@@ -19,7 +19,7 @@ class Menu extends Component
         if (! str($request->url())->contains('demo.livewire-powergrid.com')) {
             $cypress = [[
                 'label' => 'Cypress',
-                'route' => route('default', ['table' => 'cypress']),
+                'route' => route('default', ['component' => 'cypress']),
                 'name' => '/cypress',
             ]];
         }
@@ -29,7 +29,7 @@ class Menu extends Component
             ->map(function ($item) {
                 return [
                     'label' => MakeComponentTitle::handle($item),
-                    'route' => route('default', ['table' => $item]),
+                    'route' => route('default', ['component' => $item]),
                     'name' => '/'.$item,
                 ];
             });
