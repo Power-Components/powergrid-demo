@@ -28,7 +28,7 @@
                 @livewire($component->name)
             </div>
             <div x-show="openTab === 2">
-                <x-code :example=$component/>
+                <x-code :example="$component"/>
             </div>
         </div>
     </div>
