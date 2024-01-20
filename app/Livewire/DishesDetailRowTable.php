@@ -71,6 +71,8 @@ class DishesDetailRowTable extends PowerGridComponent
             Column::make('Name', 'name')
                 ->searchable()
                 ->sortable(),
+
+            Column::action('Action'),
         ];
     }
 
