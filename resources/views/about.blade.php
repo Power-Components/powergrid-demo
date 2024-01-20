@@ -6,7 +6,7 @@
 
 @section('main')
     <div class="dark:text-gray-300">
-        <h2>Welcome to the Livewire Powergrid Demo!</h2>
+        <h2>Welcome to the Livewire PowerGrid Demo!</h2>
         <br />
         <p>This website is a catalog of code examples using
             <a

@@ -16,11 +16,11 @@
                 id="code"
                 class="text-gray-300"
             >
-                @if (empty(env('TORCHLIGHT_TOKEN')))
-                    <code>{{ $example->source_code }}</code>
-                @else
-                    <x-torchlight-code language="php" theme="material-theme-darker">{!! $example->source_code !!}</x-torchlight-code>
-                @endif
+@if (empty(env('TORCHLIGHT_TOKEN')))
+<code>{{ $example->source_code }}</code>
+@else
+<x-torchlight-code language="php" theme="material-theme-darker">{!! $example->source_code !!}</x-torchlight-code>
+@endif
             </pre>
         </div>
     </div>
