@@ -98,7 +98,7 @@
                                 wire:navigate
                                 @class([
                                     'bg-slate-200 border-l border-slate-400 text-slate-800 dark:text-slate-200 dark:bg-slate-700 !dark:text-slate-300 transition duration-300' =>
-                                        request()->getRequestUri() === data_get($item, 'name'),
+                                        str(request()->getRequestUri())->endsWith(data_get($item, 'name'))  ,
                                     'text-slate-600 font-semibold hover:bg-slate-300 dark:text-slate-300 hover:text-slate-900 dark:hover:bg-slate-600 group flex items-center px-2 py-2 text-base font-medium rounded-md',
                                 ])
                                 href="{{ data_get($item, 'route') }}"

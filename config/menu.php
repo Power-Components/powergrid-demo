@@ -5,7 +5,7 @@ return [
         [
             'label' => '⚡ Welcome',
             'route' => '/',
-            'name' => 'Welcome!',
+            'name' => '/',
         ],
     ],
 
