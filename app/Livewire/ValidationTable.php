@@ -20,7 +20,7 @@ final class ValidationTable extends PowerGridComponent
     public string $tableName = 'validationTable';
 
     protected array $rules = [
-        'name.*' => ['required', 'min:6'],
+        'name.*' => ['required', 'min:2', 'max:10'],
     ];
 
     public function setUp(): array
