@@ -15,8 +15,10 @@ final class FetchComponentAbout
         $path = resource_path('/markdown/Components/'.$componentName.'.md');
 
         try {
-            return clean(str(strval(File::get($path)))->markdown()->toString());
-
+            return str(strval(File::get($path)))->markdown()
+                ->safeHTML()
+                ->forceTargetBlank()
+                ->toString();
         } catch (\Exception) {
         }
 
