@@ -14,16 +14,6 @@ class Menu extends Component
 
     public function __construct(Request $request)
     {
-        $cypress = [];
-
-        if (! str($request->url())->contains('demo.livewire-powergrid.com')) {
-            $cypress = [[
-                'label' => 'Cypress',
-                'route' => route('default', ['component' => 'cypress']),
-                'name' => '/cypress',
-            ]];
-        }
-
         $components = ListComponents::handle()
             ->map(fn ($component) => str($component)->before('Table')->kebab()->toString())
             ->map(function ($item) {
@@ -35,8 +25,15 @@ class Menu extends Component
             });
 
         $this->menu = collect(config('menu.items', []))
-            ->merge($components)
-            ->merge($cypress);
+            ->merge($components);
+
+        if (app()->isProduction() === false) {
+            $this->menu = $this->menu->prepend([
+                'label' => ' ** Cypress **',
+                'route' => route('default', ['component' => 'cypress']),
+                'name' => '/cypress',
+            ]);
+        }
     }
 
     public function render()
