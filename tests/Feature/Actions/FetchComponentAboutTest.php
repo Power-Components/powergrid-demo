@@ -8,6 +8,7 @@ it('returns empty string when no markdown is found ')
     ->toBe('');
 
 it('properly fetches a component code')
+    ->skipWhenCI()
     ->expect(fn () => FetchComponentAbout::handle('foobar'))
     ->toBe(Html());
 

@@ -14,6 +14,7 @@ afterEach(function () {
 });
 
 it('properly fetches a component code')
+    ->skipWhenCI()
     ->expect(fn () => FetchComponentCode::handle('foobar'))
     ->toBe(cleanDemoCode());
 

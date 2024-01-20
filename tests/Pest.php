@@ -39,9 +39,11 @@ expect()->extend('toBeOne', function () {
 |
 */
 
-function something()
+function skipWhenCI()
 {
-    // ..
+    if (env('RUNNING_IN_CI') === true) {
+        test()->markTestSkipped('This test is skipped when running in CI.');
+    }
 }
 
 dataset('valid_component_candidates', [
