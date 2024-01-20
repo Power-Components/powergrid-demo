@@ -5,39 +5,32 @@
 @endsection
 
 @section('main')
-    <div class="dark:text-gray-300">
-        <h2>Welcome to the Livewire PowerGrid Demo!</h2>
+    <div class="p-4 dark:text-gray-200">
+        <h2>Welcome to the Livewire Powergrid Demo!</h2>
         <br />
-        <p>This website is a catalog of code examples using
-            <a
+        <p>This website is a catalog of code examples using <a
                 class="text-yellow-600 underline hover:text-yellow-400"
                 target="_blank"
                 href="https://livewire-powergrid.com/"
-            >Livewire PowerGrid v5</a>, currently running on
-            <a
+            >Livewire PowerGrid v5</a>, currently running on <a
                 class="text-yellow-600 underline hover:text-yellow-400"
                 target="_blank"
                 href="https://laravel.com/"
-            >Laravel 10</a>.
-        </p>
+            >Laravel 10</a>.</p>
         <br />
-        <p>The source code is available at
-            <a
-                class="text-yellow-600 underline hover:text-yellow-400"
-                target="_blank"
-                href="https://github.com/Power-Components/powergrid-demo"
-            >Power-Components/powergrid-demo</a> GitHub repository.
-        </p>
+        </p>The source code is available at <a
+            class="text-yellow-600 underline hover:text-yellow-400"
+            target="_blank"
+            href="https://github.com/Power-Components/powergrid-demo"
+        >Power-Components/powergrid-demo</a> GitHub repository.</p>
 
         <br />
 
-        <p>For questions, technical inquiries, bug reports and feature requests, please use the official
-            <a
+        <p>For questions, technical inquiries, bug reports and feature requests, please use the official <a
                 class="text-yellow-600 underline hover:text-yellow-400"
                 target="_blank"
                 href="https://github.com/Power-Components/livewire-powergrid"
-            >PowerGrid</a> GitHub Repository.
-        </p>
+            >PowerGrid</a> GitHub Repository.</p>
         <br />
 
         <hr>

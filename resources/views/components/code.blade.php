@@ -1,4 +1,4 @@
-<div class="relative mx-auto mt-12">
+<div class="relative mx-auto">
     <div class="bg-gray-900 text-white p-4 rounded-md">
         <div class="flex justify-between items-center mb-4">
             <a
