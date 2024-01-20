@@ -5,7 +5,8 @@ use Illuminate\Support\Facades\Facade;
 return [
 
     'repository_url' => 'https://github.com/Power-Components/powergrid-demo-misc/',
-    'repository_default_branch' => 'main',
+
+    'repository_default_branch' => 'powergrid_v5',
 
     'redirect_to_new_url' => [
         //   'action-rules' => 'examples/action-rules',
