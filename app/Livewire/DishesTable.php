@@ -174,11 +174,6 @@ class DishesTable extends PowerGridComponent
                 ->sortable(),
 
             Column::add()
-                ->title(__('Kitchen'))
-                ->field('kitchen_name', 'kitchen_id')
-                ->sortable(),
-
-            Column::add()
                 ->title(__('Production date'))
                 ->field('produced_at_formatted'),
 
