@@ -24,8 +24,8 @@ final class ExampleComponent
         return new self(
             name: ParseComponentName::handle($componentName),
             title: MakeComponentTitle::handle($componentName),
-            source_code: FetchComponentCode::handle($componentName),
             about: FetchComponentAbout::handle($componentName),
+            source_code: FetchComponentCode::handle($componentName),
             github_url: GenerateComponentLink::handle($componentName),
         );
     }
