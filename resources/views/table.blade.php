@@ -3,8 +3,9 @@
     {{ $component->title }}
 @endsection
 @section('main')
-    {!! $component->about !!}
-
+    <div class="about-example">
+        {!! $component->about !!}
+    </div>
     <!-- based on: https://tailwindflex.com/@mr-robot/tab-navigation-with-alpine-js -->
     <div
         x-data="{
