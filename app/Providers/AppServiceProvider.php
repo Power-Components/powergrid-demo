@@ -2,7 +2,6 @@
 
 namespace App\Providers;
 
-use App\Actions\ForceAllLinksTargetBlank;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Stringable;
@@ -18,7 +17,11 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         if (! Stringable::hasMacro('forceTargetBlank')) {
-            Stringable::macro('forceTargetBlank', fn (): Stringable => new Stringable(ForceAllLinksTargetBlank::handle(strval($this->value))));
+            Stringable::macro(
+                'forceTargetBlank',
+                fn (): Stringable => str($this->value)->replace('target="_blank"', '')->replaceMatches('/<(a.*?href=\"[http])([^>]+)>/is', '<\\1\\2 target="_blank">')
+            );
+
         }
 
         if (! Stringable::hasMacro('safeHTML')) {

@@ -1,9 +1,8 @@
 <?php
 
-use App\Actions\ForceAllLinksTargetBlank;
-
 it('properly change external links to target="_blank"', function () {
-    expect(ForceAllLinksTargetBlank::handle($this->html))->toBe($this->cleanHtml);
+    $this->html = str($this->html)->forceTargetBlank()->toString();
+    expect($this->html)->toBe($this->cleanHtml);
 });
 
 beforeEach(function () {

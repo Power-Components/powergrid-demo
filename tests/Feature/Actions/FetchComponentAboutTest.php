@@ -35,7 +35,7 @@ MD;
 function Html()
 {
     return <<<'HTML'
-<p>This component demonstrates how to use a <em>Special</em> <a href="https://livewire-powergrid.com/">Feature</a>.
+<p>This component demonstrates how to use a <em>Special</em> <a href="https://livewire-powergrid.com/" target="_blank">Feature</a>.
 <br><br>
 Cool!</p>
 
