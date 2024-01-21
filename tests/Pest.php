@@ -1,5 +1,9 @@
 <?php
 
+use Illuminate\Support\Facades\Http;
+
+use function Pest\Laravel\withoutVite;
+
 /*
 |--------------------------------------------------------------------------
 | Test Case
@@ -11,7 +15,14 @@
 |
 */
 
-uses(Tests\TestCase::class)->in('Feature');
+uses(Tests\TestCase::class)->beforeEach(function () {
+    Http::fake([
+        'api.torchlight.dev/highlight' => Http::response(),
+    ]);
+
+    withoutVite();
+})
+    ->in('Feature');
 
 /*
 |--------------------------------------------------------------------------
