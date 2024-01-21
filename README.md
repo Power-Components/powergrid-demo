@@ -1,3 +1,7 @@
+<div align="center">
+	<p><img  src="https://raw.githubusercontent.com/Power-Components/livewire-powergrid/main/art/header.jpg" alt="PowerGrid Header"></p>
+</div>
+
 # PowerGrid Demo
 
 ## About
@@ -29,21 +33,21 @@ The resources available here are aimed at helping the user get up and running as
 
 ### Clone
 
-Clone this repository and enter the project's directory:
+Clone this repository and enter the project's directory.
 
 ```shell
-git clone https://github.com/Power-Components/powergrid-demo-misc.git && cd powergrid-demo-misc
+git clone https://github.com/Power-Components/powergrid-demo.git && cd powergrid-demo
 ```
 
 ### Install
 
-Install dependencies with Composer:
+Install dependencies with Composer.
 
 ```shell
 composer install
 ```
 
-Compile the project assets:
+Compile the project assets.
 
 ```shell
 npm install && npm run dev
@@ -51,13 +55,13 @@ npm install && npm run dev
 
 ## Configure your .env
 
-Copy the `.env.example` into `.env`
+Copy the `.env.example` into `.env`.
 
 ```shell
 cp .env.example .env 
 ```
 
-Set up the database credentials in `.env` file:
+Set up the database credentials in `.env` file.
 
 ```shell
 DB_CONNECTION=mysql
