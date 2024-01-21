@@ -27,6 +27,7 @@
         <div class="w-full py-3">
             <div x-show="openTab === 1">
                 @livewire($component->name)
+                <div class="mt-2"><sup><b>Disclaimer: </b>Table data is randomly generated for illustrative purposes only. The information here is not a reflection of the actual market and does not constitute business, financial, or medical advice.</sup></div>
             </div>
             <div x-show="openTab === 2">
                 <x-code :example="$component"/>

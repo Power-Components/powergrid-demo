@@ -48,11 +48,10 @@ final class ExportTable extends PowerGridComponent
         return PowerGrid::columns()
             ->addColumn('id')
             ->addColumn('name')
-            ->addColumn('html_name', function ($dish) {
-                return '<b>'.$dish->name.'</b>';
+            ->addColumn('serving_at')
+            ->addColumn('chef_name', function (Dish $dish) {
+                return $dish->chef->name ?? '-';
             })
-            ->addColumn('chef_name')
-            ->addColumn('price')
             ->addColumn('in_stock')
             ->addColumn('in_stock_label', function ($entry) {
                 return $entry->in_stock ? 'sim' : 'não';
@@ -75,13 +74,14 @@ final class ExportTable extends PowerGridComponent
                 ->visibleInExport(true)
                 ->sortable(),
 
-            Column::make('Name', 'html_name')
+            Column::make('Name', 'name')
                 ->searchable()
                 ->visibleInExport(false)
                 ->sortable(),
 
-            Column::make('Chef', 'chef_name')
+            Column::make(__('Chef'), 'chef_name', 'dishes.chef_name')
                 ->searchable()
+                ->placeholder('Chef placeholder')
                 ->sortable(),
 
             Column::make('Price', 'price')

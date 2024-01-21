@@ -102,7 +102,7 @@ final class BulkActionTable extends PowerGridComponent
             })
             ->addColumn('in_stock')
             ->addColumn('in_stock_label', function (Dish $dish) {
-                return $dish->in_stock ? 'sim' : 'não';
+                return $dish->in_stock ? 'yes' : 'no';
             })
             ->addColumn('diet', function (Dish $dish) {
                 return Diet::from($dish->diet)->labels();

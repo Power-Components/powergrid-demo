@@ -40,7 +40,7 @@ final class SoftDeleteTable extends PowerGridComponent
             ->addColumn('price')
             ->addColumn('in_stock')
             ->addColumn('in_stock_label', function ($entry) {
-                return $entry->in_stock ? 'sim' : 'não';
+                return $entry->in_stock ? 'yes' : 'no';
             })
             ->addColumn('created_at_formatted', function ($entry) {
                 return Carbon::parse($entry->created_at)->format('d/m/Y');

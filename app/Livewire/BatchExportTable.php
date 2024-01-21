@@ -51,7 +51,9 @@ final class BatchExportTable extends PowerGridComponent
         return PowerGrid::columns()
             ->addColumn('id')
             ->addColumn('serving_at')
-            ->addColumn('chef_name')
+            ->addColumn('chef_name', function (Dish $dish) {
+                return $dish->chef->name ?? '-';
+            })
             ->addColumn('dish_name', function (Dish $dish) {
                 return $dish->name;
             })
@@ -78,7 +80,7 @@ final class BatchExportTable extends PowerGridComponent
             })
             ->addColumn('in_stock')
             ->addColumn('in_stock_label', function (Dish $dish) {
-                return $dish->in_stock ? 'sim' : 'não';
+                return $dish->in_stock ? 'yes' : 'no';
             })
 
             ->addColumn('diet', function (Dish $dish) {

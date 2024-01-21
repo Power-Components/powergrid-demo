@@ -113,7 +113,7 @@ class DishesTable extends PowerGridComponent
             /*** STOCK ***/
             ->addColumn('in_stock')
             ->addColumn('in_stock_label', function ($dish) {
-                return $dish->in_stock ? 'sim' : 'não';
+                return $dish->in_stock ? 'yes' : 'no';
             })
 
             ->addColumn('diet', function ($dish) {

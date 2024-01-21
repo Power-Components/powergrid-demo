@@ -10,18 +10,18 @@ describe('simple', () => {
         cy.visit('/examples/simple')
         cy.contains('Source Code')
         cy.contains('Simple')
-        cy.contains('Pastel de Nata')
+        cy.contains('борщ')
 
-        cy.get('input').should('have.attr', 'placeholder', 'Search...').type('Bife')
+        cy.get('input').should('have.attr', 'placeholder', 'Search...').type('Pas')
 
         cy.wait(1000) // wait for livewire debounce 700
 
-        cy.contains('Bife à Rolê')
-        cy.contains('Bife à Parmegiana')
-        cy.contains('Bife à Milanesa')
-        cy.contains('Pastel de Nata').should('not.exist');
+        cy.contains('Pasta salad')
+        cy.contains('Pastel de Nata')
+        cy.contains('Pastrami')
+        cy.contains('борщ').should('not.exist');
 
-        cy.contains('Showing 1 to 3 of 3 Results')
+        cy.contains('Showing 1 to 4 of 4 Results')
         
         cy.get('a:contains("Source Code")').click()
     })
