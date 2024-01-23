@@ -8,4 +8,4 @@ Route::get('/advices/edit', fn () => 'work')->name('advices.edit');
 
 Route::view('/', 'about');
 
-Route::view('/{any}', 'about');
+Route::fallback(fn () => redirect('/'));
