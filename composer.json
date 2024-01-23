@@ -13,6 +13,7 @@
         "livewire/livewire": "^3.3.5",
         "mews/purifier": "^3.4",
         "openspout/openspout": "^4",
+        "picqer/php-barcode-generator": "^2.4",
         "power-components/livewire-powergrid": "5.x-dev",
         "predis/predis": "^2.2.2",
         "torchlight/torchlight-laravel": "^0.5.14"
