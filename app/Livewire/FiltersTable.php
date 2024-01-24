@@ -28,19 +28,19 @@ class FiltersTable extends PowerGridComponent
 
     public string $loadingComponent = 'components.my-custom-loading';
 
-    protected $queryString = ['filters'];
-
-    #[Url]
-    public string|int $page = 1;
-
-    public function updatedPaginators($value): void
+    protected function queryString(): array
     {
-        $this->page = $value;
-    }
-
-    public function hydratePage(): void
-    {
-        $this->paginators['page'] = $this->page;
+        return [
+            'search' => ['except' => ''],
+            'page' => ['except' => 1],
+            'filters.input_text.name' => ['as' => 'name', 'except' => ''],
+            'filters.input_text_options.name' => ['as' => 'name_options', 'except' => ''],
+            'filters.select.category_id' => ['as' => 'category', 'except' => ''],
+            'filters.number.price.start' => ['as' => 'price_start', 'except' => ''],
+            'filters.number.price.end' => ['as' => 'price_end', 'except' => ''],
+            'filters.select.dishes.diet' => ['as' => 'diet', 'except' => ''],
+            'filters.boolean.in_stock' => ['as' => 'in_stock', 'except' => ''],
+        ];
     }
 
     public function setUp(): array
@@ -63,6 +63,7 @@ class FiltersTable extends PowerGridComponent
 
     public function datasource(): Builder
     {
+        ds($this->filters);
         if ($this->filtersOutside) {
             config(['livewire-powergrid.filter' => 'outside']);
 
