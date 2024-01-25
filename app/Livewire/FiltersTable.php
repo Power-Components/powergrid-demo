@@ -63,7 +63,6 @@ class FiltersTable extends PowerGridComponent
 
     public function datasource(): Builder
     {
-        ds($this->filters);
         if ($this->filtersOutside) {
             config(['livewire-powergrid.filter' => 'outside']);
 
