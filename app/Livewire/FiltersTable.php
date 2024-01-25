@@ -8,7 +8,6 @@ use App\Models\Chef;
 use App\Models\Dish;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Carbon;
-use Livewire\Attributes\Url;
 use NumberFormatter;
 use PowerComponents\LivewirePowerGrid\Column;
 use PowerComponents\LivewirePowerGrid\Facades\Filter;
@@ -27,21 +26,21 @@ class FiltersTable extends PowerGridComponent
     public bool $deferLoading = true;
 
     public string $loadingComponent = 'components.my-custom-loading';
-
-    protected function queryString(): array
-    {
-        return [
-            'search' => ['except' => ''],
-            'page' => ['except' => 1],
-            'filters.input_text.name' => ['as' => 'dish', 'except' => ''],
-            'filters.input_text_options.name' => ['as' => 'dish_operator', 'except' => ''],
-            'filters.select.category_id' => ['as' => 'category', 'except' => ''],
-            'filters.number.price.start' => ['as' => 'price_start', 'except' => ''],
-            'filters.number.price.end' => ['as' => 'price_end', 'except' => ''],
-            'filters.select.dishes.diet' => ['as' => 'diet', 'except' => ''],
-            'filters.boolean.in_stock' => ['as' => 'in_stock', 'except' => ''],
-        ];
-    }
+    //
+    //    protected function queryString(): array
+    //    {
+    //        return [
+    //            'search' => ['except' => ''],
+    //            'page' => ['except' => 1],
+    //            'filters.input_text.name' => ['as' => 'dish', 'except' => ''],
+    //            'filters.input_text_options.name' => ['as' => 'dish_operator', 'except' => ''],
+    //            'filters.select.category_id' => ['as' => 'category', 'except' => ''],
+    //            'filters.number.price.start' => ['as' => 'price_start', 'except' => ''],
+    //            'filters.number.price.end' => ['as' => 'price_end', 'except' => ''],
+    //            'filters.select.dishes.diet' => ['as' => 'diet', 'except' => ''],
+    //            'filters.boolean.in_stock' => ['as' => 'in_stock', 'except' => ''],
+    //        ];
+    //    }
 
     public function setUp(): array
     {
