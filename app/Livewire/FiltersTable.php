@@ -33,8 +33,8 @@ class FiltersTable extends PowerGridComponent
         return [
             'search' => ['except' => ''],
             'page' => ['except' => 1],
-            'filters.input_text.name' => ['as' => 'name', 'except' => ''],
-            'filters.input_text_options.name' => ['as' => 'name_options', 'except' => ''],
+            'filters.input_text.name' => ['as' => 'dish', 'except' => ''],
+            'filters.input_text_options.name' => ['as' => 'dish_operator', 'except' => ''],
             'filters.select.category_id' => ['as' => 'category', 'except' => ''],
             'filters.number.price.start' => ['as' => 'price_start', 'except' => ''],
             'filters.number.price.end' => ['as' => 'price_end', 'except' => ''],

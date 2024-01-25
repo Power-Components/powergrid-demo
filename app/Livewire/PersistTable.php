@@ -10,12 +10,9 @@ use PowerComponents\LivewirePowerGrid\Exportable;
 use PowerComponents\LivewirePowerGrid\Facades\Filter;
 use PowerComponents\LivewirePowerGrid\Footer;
 use PowerComponents\LivewirePowerGrid\Header;
-use PowerComponents\LivewirePowerGrid\Traits\WithExport;
 
 final class PersistTable extends DishesTable
 {
-    use WithExport;
-
     public function setUp(): array
     {
         $this->persist(['columns', 'filters']);
@@ -34,6 +31,11 @@ final class PersistTable extends DishesTable
                 ->showPerPage()
                 ->showRecordCount(),
         ];
+    }
+
+    public function header(): array
+    {
+        return [];
     }
 
     public function filters(): array
