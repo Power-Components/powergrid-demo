@@ -14,7 +14,7 @@ use PowerComponents\LivewirePowerGrid\PowerGrid;
 use PowerComponents\LivewirePowerGrid\PowerGridColumns;
 use PowerComponents\LivewirePowerGrid\PowerGridComponent;
 
-class ActionViewTable extends PowerGridComponent
+class ActionFromViewTable extends PowerGridComponent
 {
     public string $tableName = 'actionView';
 
@@ -45,9 +45,6 @@ class ActionViewTable extends PowerGridComponent
         return PowerGrid::columns()
             ->addColumn('id')
             ->addColumn('name')
-            ->addColumn('search_dish_name', function ($dish) {
-                return '<a href="https://www.google.com/search?q=' . urlencode(e($dish->name)) . '">Search ' . e($dish->name) . '</a>';
-            })
             ->addColumn('category_id', function ($dish) {
                 return $dish->category_id;
             })
@@ -86,10 +83,7 @@ class ActionViewTable extends PowerGridComponent
     public function columns(): array
     {
         return [
-
-
-
-            Column::make('search_dish_name', 'search_dish_name')
+            Column::make('Dish Name', 'name')
                 ->bodyAttribute('!text-wrap')
                 ->searchable()
                 ->sortable(),
