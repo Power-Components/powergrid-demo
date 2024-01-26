@@ -5,12 +5,6 @@
     "homepage": "https://demo.livewire-powergrid.com",
     "keywords": ["framework", "laravel"],
     "license": "MIT",
-    "repositories": [
-        {
-            "type": "path",
-            "url": "/Users/luan.freitas/Documents/powergrid_5x"
-        }
-    ],
     "require": {
         "php": "^8.1",
         "guzzlehttp/guzzle": "^7.8.1",
@@ -20,7 +14,7 @@
         "mews/purifier": "^3.4",
         "openspout/openspout": "^4",
         "picqer/php-barcode-generator": "^2.4",
-        "power-components/livewire-powergrid": "5.x-dev",
+        "power-components/livewire-powergrid": "^5.3",
         "predis/predis": "^2.2.2",
         "torchlight/torchlight-laravel": "^0.5.14"
     },
