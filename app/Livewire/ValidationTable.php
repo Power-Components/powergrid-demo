@@ -8,8 +8,8 @@ use PowerComponents\LivewirePowerGrid\Column;
 use PowerComponents\LivewirePowerGrid\Footer;
 use PowerComponents\LivewirePowerGrid\Header;
 use PowerComponents\LivewirePowerGrid\PowerGrid;
-use PowerComponents\LivewirePowerGrid\PowerGridColumns;
 use PowerComponents\LivewirePowerGrid\PowerGridComponent;
+use PowerComponents\LivewirePowerGrid\PowerGridFields;
 
 final class ValidationTable extends PowerGridComponent
 {
@@ -58,13 +58,13 @@ final class ValidationTable extends PowerGridComponent
         return User::query();
     }
 
-    public function addColumns(): PowerGridColumns
+    public function fields(): PowerGridFields
     {
-        return PowerGrid::columns()
-            ->addColumn('id')
-            ->addColumn('active')
-            ->addColumn('name')
-            ->addColumn('email');
+        return PowerGrid::fields()
+            ->add('id')
+            ->add('active')
+            ->add('name')
+            ->add('email');
     }
 
     public function columns(): array

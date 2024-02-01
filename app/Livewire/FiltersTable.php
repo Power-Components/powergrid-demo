@@ -14,8 +14,8 @@ use PowerComponents\LivewirePowerGrid\Facades\Filter;
 use PowerComponents\LivewirePowerGrid\Footer;
 use PowerComponents\LivewirePowerGrid\Header;
 use PowerComponents\LivewirePowerGrid\PowerGrid;
-use PowerComponents\LivewirePowerGrid\PowerGridColumns;
 use PowerComponents\LivewirePowerGrid\PowerGridComponent;
+use PowerComponents\LivewirePowerGrid\PowerGridFields;
 
 class FiltersTable extends PowerGridComponent
 {
@@ -91,53 +91,53 @@ class FiltersTable extends PowerGridComponent
         ];
     }
 
-    public function addColumns(): PowerGridColumns
+    public function fields(): PowerGridFields
     {
         $fmt = new NumberFormatter('ca_ES', NumberFormatter::CURRENCY);
 
-        return PowerGrid::columns()
-            ->addColumn('id')
-            ->addColumn('name')
-            ->addColumn('storage_room')
-            ->addColumn('chef_name', function (Dish $dish) {
+        return PowerGrid::fields()
+            ->add('id')
+            ->add('name')
+            ->add('storage_room')
+            ->add('chef_name', function (Dish $dish) {
                 return $dish->chef->name ?? '-';
             })
-            ->addColumn('serving_at')
-            ->addColumn('calories')
-            ->addColumn('calories', function (Dish $dish) {
+            ->add('serving_at')
+            ->add('calories')
+            ->add('calories', function (Dish $dish) {
                 return $dish->calories.' kcal';
             })
-            ->addColumn('category_id', function ($dish) {
+            ->add('category_id', function ($dish) {
                 return $dish->category_id;
             })
-            ->addColumn('category_name', function ($dish) {
+            ->add('category_name', function ($dish) {
                 return $dish->category->name;
             })
-            ->addColumn('price')
-            ->addColumn('price_EUR', function (Dish $dish) use ($fmt) {
+            ->add('price')
+            ->add('price_EUR', function (Dish $dish) use ($fmt) {
                 return $fmt->formatCurrency($dish->price, 'EUR');
             })
-            ->addColumn('diet', function (Dish $dish) {
+            ->add('diet', function (Dish $dish) {
                 return \App\Enums\Diet::from($dish->diet)->labels();
             })
-            ->addColumn('price_BRL', function (Dish $dish) {
+            ->add('price_BRL', function (Dish $dish) {
                 return 'R$ '.number_format($dish->price, 2, ',', '.'); //R$ 1.000,00
             })
-            ->addColumn('sales_price')
-            ->addColumn('sales_price_BRL', function (Dish $dish) {
+            ->add('sales_price')
+            ->add('sales_price_BRL', function (Dish $dish) {
                 $sales_price = $dish->price + ($dish->price * 0.15);
 
                 return 'R$ '.number_format($sales_price, 2, ',', '.'); //R$ 1.000,00
             })
-            ->addColumn('in_stock')
-            ->addColumn('in_stock_label', function ($entry) {
+            ->add('in_stock')
+            ->add('in_stock_label', function ($entry) {
                 return $entry->in_stock ? 'Yes' : 'No';
             })
-            ->addColumn('produced_at_formatted', function (Dish $dish) {
+            ->add('produced_at_formatted', function (Dish $dish) {
                 return Carbon::parse($dish->produced_at)
                     ->format('d/m/Y');
             })
-            ->addColumn('created_at_formatted', function (Dish $dish) {
+            ->add('created_at_formatted', function (Dish $dish) {
                 return Carbon::parse($dish->created_at)
                     ->timezone('America/Sao_Paulo')
                     ->format('d/m/Y H:i');

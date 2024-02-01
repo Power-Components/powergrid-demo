@@ -12,8 +12,8 @@ use PowerComponents\LivewirePowerGrid\Facades\Filter;
 use PowerComponents\LivewirePowerGrid\Footer;
 use PowerComponents\LivewirePowerGrid\Header;
 use PowerComponents\LivewirePowerGrid\PowerGrid;
-use PowerComponents\LivewirePowerGrid\PowerGridColumns;
 use PowerComponents\LivewirePowerGrid\PowerGridComponent;
+use PowerComponents\LivewirePowerGrid\PowerGridFields;
 use PowerComponents\LivewirePowerGrid\Traits\WithExport;
 
 final class UserTable extends PowerGridComponent
@@ -45,21 +45,21 @@ final class UserTable extends PowerGridComponent
         return [];
     }
 
-    public function addColumns(): PowerGridColumns
+    public function fields(): PowerGridFields
     {
-        return PowerGrid::columns()
-            ->addColumn('id')
-            ->addColumn('kitchen_id')
-            ->addColumn('category_id')
-            ->addColumn('name')
+        return PowerGrid::fields()
+            ->add('id')
+            ->add('kitchen_id')
+            ->add('category_id')
+            ->add('name')
 
             /** Example of custom column using a closure **/
-            ->addColumn('name_lower', fn (Dish $model) => strtolower(e($model->name)))
+            ->add('name_lower', fn (Dish $model) => strtolower(e($model->name)))
 
-            ->addColumn('price')
-            ->addColumn('calories')
-            ->addColumn('in_stock')
-            ->addColumn('created_at_formatted', fn (Dish $model) => Carbon::parse($model->created_at)->format('d/m/Y H:i:s'));
+            ->add('price')
+            ->add('calories')
+            ->add('in_stock')
+            ->add('created_at_formatted', fn (Dish $model) => Carbon::parse($model->created_at)->format('d/m/Y H:i:s'));
     }
 
     public function columns(): array

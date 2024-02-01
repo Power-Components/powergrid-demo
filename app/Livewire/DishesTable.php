@@ -12,8 +12,8 @@ use PowerComponents\LivewirePowerGrid\Facades\Rule;
 use PowerComponents\LivewirePowerGrid\Footer;
 use PowerComponents\LivewirePowerGrid\Header;
 use PowerComponents\LivewirePowerGrid\PowerGrid;
-use PowerComponents\LivewirePowerGrid\PowerGridColumns;
 use PowerComponents\LivewirePowerGrid\PowerGridComponent;
+use PowerComponents\LivewirePowerGrid\PowerGridFields;
 
 class DishesTable extends PowerGridComponent
 {
@@ -84,22 +84,22 @@ class DishesTable extends PowerGridComponent
         ];
     }
 
-    public function addColumns(): PowerGridColumns
+    public function fields(): PowerGridFields
     {
-        return PowerGrid::columns()
-            ->addColumn('id')
-            ->addColumn('serving_at')
-            ->addColumn('chef_name')
-            ->addColumn('dish_name', fn ($dish) => $dish->name)
-            ->addColumn('calories', fn ($dish) => $dish->calories.' kcal')
-            ->addColumn('category_id')
-            ->addColumn('category_name')
-            ->addColumn('price')
-            ->addColumn('in_stock')
-            ->addColumn('in_stock_label', fn ($dish) => $dish->in_stock ? 'sim' : 'não')
-            ->addColumn('diet', fn ($dish) => \App\Enums\Diet::from($dish->diet)->labels())
-            ->addColumn('produced_at')
-            ->addColumn('produced_at_formatted', fn ($dish) => Carbon::parse($dish->produced_at)->format('d/m/Y'));
+        return PowerGrid::fields()
+            ->add('id')
+            ->add('serving_at')
+            ->add('chef_name')
+            ->add('dish_name', fn ($dish) => $dish->name)
+            ->add('calories', fn ($dish) => $dish->calories.' kcal')
+            ->add('category_id')
+            ->add('category_name')
+            ->add('price')
+            ->add('in_stock')
+            ->add('in_stock_label', fn ($dish) => $dish->in_stock ? 'sim' : 'não')
+            ->add('diet', fn ($dish) => \App\Enums\Diet::from($dish->diet)->labels())
+            ->add('produced_at')
+            ->add('produced_at_formatted', fn ($dish) => Carbon::parse($dish->produced_at)->format('d/m/Y'));
     }
 
     public function columns(): array

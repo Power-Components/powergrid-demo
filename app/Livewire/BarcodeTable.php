@@ -9,8 +9,8 @@ use PowerComponents\LivewirePowerGrid\Column;
 use PowerComponents\LivewirePowerGrid\Footer;
 use PowerComponents\LivewirePowerGrid\Header;
 use PowerComponents\LivewirePowerGrid\PowerGrid;
-use PowerComponents\LivewirePowerGrid\PowerGridColumns;
 use PowerComponents\LivewirePowerGrid\PowerGridComponent;
+use PowerComponents\LivewirePowerGrid\PowerGridFields;
 
 class BarcodeTable extends PowerGridComponent
 {
@@ -38,29 +38,29 @@ class BarcodeTable extends PowerGridComponent
             ->toBase();
     }
 
-    public function addColumns(): PowerGridColumns
+    public function fields(): PowerGridFields
     {
 
         $barcodeGenerator = new \Picqer\Barcode\BarcodeGeneratorPNG;
 
-        return PowerGrid::columns()
-            ->addColumn('id')
-            ->addColumn('name')
-            ->addColumn('category_id', function ($dish) {
+        return PowerGrid::fields()
+            ->add('id')
+            ->add('name')
+            ->add('category_id', function ($dish) {
                 return $dish->category_id;
             })
-            ->addColumn('category_name', function ($dish) {
+            ->add('category_name', function ($dish) {
                 return $dish->category_name;
             })
-            ->addColumn('barcode', function ($dish) use ($barcodeGenerator) {
+            ->add('barcode', function ($dish) use ($barcodeGenerator) {
 
                 return '<img src="data:image/png;base64,'.base64_encode($barcodeGenerator->getBarcode($dish->id, $barcodeGenerator::TYPE_CODE_128)).'">';
 
             })
-            ->addColumn('in_stock', function ($dish) {
+            ->add('in_stock', function ($dish) {
                 return $dish->in_stock ? 'Yes' : 'No';
             })
-            ->addColumn('created_at_formatted', function ($dish) {
+            ->add('created_at_formatted', function ($dish) {
                 return Carbon::parse($dish->created_at)
                     ->timezone('America/Sao_Paulo')->format('d/m/Y');
             });

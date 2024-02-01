@@ -9,8 +9,8 @@ use PowerComponents\LivewirePowerGrid\Exportable;
 use PowerComponents\LivewirePowerGrid\Footer;
 use PowerComponents\LivewirePowerGrid\Header;
 use PowerComponents\LivewirePowerGrid\PowerGrid;
-use PowerComponents\LivewirePowerGrid\PowerGridColumns;
 use PowerComponents\LivewirePowerGrid\PowerGridComponent;
+use PowerComponents\LivewirePowerGrid\PowerGridFields;
 use PowerComponents\LivewirePowerGrid\Traits\WithExport;
 
 final class ExportTable extends PowerGridComponent
@@ -43,20 +43,20 @@ final class ExportTable extends PowerGridComponent
         return Dish::with('category');
     }
 
-    public function addColumns(): PowerGridColumns
+    public function fields(): PowerGridFields
     {
-        return PowerGrid::columns()
-            ->addColumn('id')
-            ->addColumn('name')
-            ->addColumn('serving_at')
-            ->addColumn('chef_name', function (Dish $dish) {
+        return PowerGrid::fields()
+            ->add('id')
+            ->add('name')
+            ->add('serving_at')
+            ->add('chef_name', function (Dish $dish) {
                 return $dish->chef->name ?? '-';
             })
-            ->addColumn('in_stock')
-            ->addColumn('in_stock_label', function ($entry) {
+            ->add('in_stock')
+            ->add('in_stock_label', function ($entry) {
                 return $entry->in_stock ? 'sim' : 'não';
             })
-            ->addColumn('created_at_formatted', function ($entry) {
+            ->add('created_at_formatted', function ($entry) {
                 return Carbon::parse($entry->created_at)->format('d/m/Y');
             });
     }

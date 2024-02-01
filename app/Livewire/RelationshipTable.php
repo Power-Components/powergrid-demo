@@ -6,8 +6,8 @@ use App\Models\Dish;
 use Illuminate\Database\Eloquent\Builder;
 use PowerComponents\LivewirePowerGrid\Column;
 use PowerComponents\LivewirePowerGrid\PowerGrid;
-use PowerComponents\LivewirePowerGrid\PowerGridColumns;
 use PowerComponents\LivewirePowerGrid\PowerGridComponent;
+use PowerComponents\LivewirePowerGrid\PowerGridFields;
 
 final class RelationshipTable extends PowerGridComponent
 {
@@ -16,12 +16,12 @@ final class RelationshipTable extends PowerGridComponent
         return Dish::query()->with('Kitchen');
     }
 
-    public function addColumns(): PowerGridColumns
+    public function fields(): PowerGridFields
     {
-        return PowerGrid::columns()
-            ->addColumn('id')
-            ->addColumn('name')
-            ->addColumn('kitchen_description', fn (Dish $dish) => $dish->kitchen->description);
+        return PowerGrid::fields()
+            ->add('id')
+            ->add('name')
+            ->add('kitchen_description', fn (Dish $dish) => $dish->kitchen->description);
     }
 
     public function columns(): array

@@ -12,8 +12,8 @@ use PowerComponents\LivewirePowerGrid\Facades\Filter;
 use PowerComponents\LivewirePowerGrid\Footer;
 use PowerComponents\LivewirePowerGrid\Header;
 use PowerComponents\LivewirePowerGrid\PowerGrid;
-use PowerComponents\LivewirePowerGrid\PowerGridColumns;
 use PowerComponents\LivewirePowerGrid\PowerGridComponent;
+use PowerComponents\LivewirePowerGrid\PowerGridFields;
 
 final class BulkActionTable extends PowerGridComponent
 {
@@ -68,47 +68,47 @@ final class BulkActionTable extends PowerGridComponent
         ];
     }
 
-    public function addColumns(): PowerGridColumns
+    public function fields(): PowerGridFields
     {
-        return PowerGrid::columns()
-            ->addColumn('id')
-            ->addColumn('serving_at')
-            ->addColumn('chef_name', function (Dish $dish) {
+        return PowerGrid::fields()
+            ->add('id')
+            ->add('serving_at')
+            ->add('chef_name', function (Dish $dish) {
                 return $dish->chef?->name ?? '-';
             })
-            ->addColumn('dish_name', function (Dish $dish) {
+            ->add('dish_name', function (Dish $dish) {
                 return $dish->name;
             })
-            ->addColumn('calories', function (Dish $dish) {
+            ->add('calories', function (Dish $dish) {
                 return $dish->calories.' kcal';
             })
-            ->addColumn('category_id', function (Dish $dish) {
+            ->add('category_id', function (Dish $dish) {
                 return $dish->category_id;
             })
-            ->addColumn('category.name')
-            ->addColumn('kitchen_id', function (Dish $dish) {
+            ->add('category.name')
+            ->add('kitchen_id', function (Dish $dish) {
                 return $dish->kitchen_id;
             })
-            ->addColumn('kitchen.description')
-            ->addColumn('price')
-            ->addColumn('price_BRL', function (Dish $dish) {
+            ->add('kitchen.description')
+            ->add('price')
+            ->add('price_BRL', function (Dish $dish) {
                 return 'R$ '.number_format($dish->price, 2, ',', '.'); //R$ 1.000,00
             })
-            ->addColumn('sales_price')
-            ->addColumn('sales_price_BRL', function (Dish $dish) {
+            ->add('sales_price')
+            ->add('sales_price_BRL', function (Dish $dish) {
                 $sales_price = $dish->price + ($dish->price * 0.15);
 
                 return 'R$ '.number_format($sales_price, 2, ',', '.'); //R$ 1.000,00
             })
-            ->addColumn('in_stock')
-            ->addColumn('in_stock_label', function (Dish $dish) {
+            ->add('in_stock')
+            ->add('in_stock_label', function (Dish $dish) {
                 return $dish->in_stock ? 'yes' : 'no';
             })
-            ->addColumn('diet', function (Dish $dish) {
+            ->add('diet', function (Dish $dish) {
                 return Diet::from($dish->diet)->labels();
             })
-            ->addColumn('produced_at')
-            ->addColumn('produced_at_formatted');
+            ->add('produced_at')
+            ->add('produced_at_formatted');
     }
 
     public function columns(): array

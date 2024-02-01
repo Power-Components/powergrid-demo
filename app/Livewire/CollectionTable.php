@@ -10,8 +10,8 @@ use PowerComponents\LivewirePowerGrid\Facades\Filter;
 use PowerComponents\LivewirePowerGrid\Footer;
 use PowerComponents\LivewirePowerGrid\Header;
 use PowerComponents\LivewirePowerGrid\PowerGrid;
-use PowerComponents\LivewirePowerGrid\PowerGridColumns;
 use PowerComponents\LivewirePowerGrid\PowerGridComponent;
+use PowerComponents\LivewirePowerGrid\PowerGridFields;
 use PowerComponents\LivewirePowerGrid\Traits\WithExport;
 
 final class CollectionTable extends PowerGridComponent
@@ -83,20 +83,20 @@ final class CollectionTable extends PowerGridComponent
         ]);
     }
 
-    public function addColumns(): PowerGridColumns
+    public function fields(): PowerGridFields
     {
-        return PowerGrid::columns()
-            ->addColumn('id')
-            ->addColumn('name')
-            ->addColumn('chef_name')
-            ->addColumn('price')
-            ->addColumn('in_stock', function ($entry) {
+        return PowerGrid::fields()
+            ->add('id')
+            ->add('name')
+            ->add('chef_name')
+            ->add('price')
+            ->add('in_stock', function ($entry) {
                 return $entry->in_stock ? 'Yes' : 'No';
             })
-            ->addColumn('created_at', function ($entry) {
+            ->add('created_at', function ($entry) {
                 return Carbon::parse($entry->created_at);
             })
-            ->addColumn('created_at_formatted', function ($entry) {
+            ->add('created_at_formatted', function ($entry) {
                 return Carbon::parse($entry->created_at)->format('d/m/Y');
             });
     }
