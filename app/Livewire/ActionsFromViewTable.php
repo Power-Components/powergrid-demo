@@ -14,7 +14,7 @@ use PowerComponents\LivewirePowerGrid\PowerGrid;
 use PowerComponents\LivewirePowerGrid\PowerGridComponent;
 use PowerComponents\LivewirePowerGrid\PowerGridFields;
 
-class ActionFromViewTable extends PowerGridComponent
+class ActionsFromViewTable extends PowerGridComponent
 {
     public string $tableName = 'actionView';
 
