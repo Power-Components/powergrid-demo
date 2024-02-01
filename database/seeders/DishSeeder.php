@@ -2,6 +2,9 @@
 
 namespace Database\Seeders;
 
+use App\Enums\CookingMethod;
+use App\Enums\Diet;
+use App\Enums\NutriScore;
 use App\Models\Category;
 use App\Models\Dish;
 use App\Models\Kitchen;
@@ -24,7 +27,9 @@ class DishSeeder extends Seeder
                     'price' => $dish['price'] = fake()->numberBetween(50, 280),
                     'calories' => fake()->biasedNumberBetween(40, 890, 'sqrt'),
                     'produced_at' => fake()->dateTimeBetween('-1 months', now())->format('Y-m-d'),
-                    'diet' => fake()->randomElement([0, 1, 2]), //Diet::cases()
+                    'diet' => fake()->randomElement(Diet::cases())->value,
+                    'nutri_score' => fake()->randomElement(NutriScore::cases())->name,
+                    'cooking_method' => fake()->randomElement(CookingMethod::cases())->value,
                     'in_stock' => fake()->boolean(),
                     'serving_at' => fake()->randomElement(['restaurant', 'room service', 'pool bar']),
                 ]]);
