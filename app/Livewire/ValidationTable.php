@@ -38,18 +38,10 @@ final class ValidationTable extends PowerGridComponent
     public function onUpdatedEditable(string|int $id, string $field, string $value): void
     {
         $this->validate();
-
-        //        User::query()->find($id)->update([
-        //            $field => $value,
-        //        ]);
     }
 
     public function onUpdatedToggleable(string|int $id, string $field, string $value): void
     {
-        //        User::query()->where('id', $id)->update([
-        //            $field => $value,
-        //        ]);
-
         $this->skipRender();
     }
 

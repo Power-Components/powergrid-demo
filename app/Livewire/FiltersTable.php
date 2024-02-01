@@ -19,35 +19,19 @@ use PowerComponents\LivewirePowerGrid\PowerGridFields;
 
 class FiltersTable extends PowerGridComponent
 {
-    public bool $filtersOutside = false;
-
     public int $categoryId = 0;
 
     public bool $deferLoading = true;
 
     public string $loadingComponent = 'components.my-custom-loading';
-    //
-    //    protected function queryString(): array
-    //    {
-    //        return [
-    //            'search' => ['except' => ''],
-    //            'page' => ['except' => 1],
-    //            'filters.input_text.name' => ['as' => 'dish', 'except' => ''],
-    //            'filters.input_text_options.name' => ['as' => 'dish_operator', 'except' => ''],
-    //            'filters.select.category_id' => ['as' => 'category', 'except' => ''],
-    //            'filters.number.price.start' => ['as' => 'price_start', 'except' => ''],
-    //            'filters.number.price.end' => ['as' => 'price_end', 'except' => ''],
-    //            'filters.select.dishes.diet' => ['as' => 'diet', 'except' => ''],
-    //            'filters.boolean.in_stock' => ['as' => 'in_stock', 'except' => ''],
-    //        ];
-    //    }
+
+    protected function queryString()
+    {
+        return $this->powerGridQueryString();
+    }
 
     public function setUp(): array
     {
-        if ($this->filtersOutside) {
-            $this->dispatch('toggle-filters-'.$this->tableName);
-        }
-
         return [
             Header::make()
                 ->showToggleColumns()
@@ -62,12 +46,6 @@ class FiltersTable extends PowerGridComponent
 
     public function datasource(): Builder
     {
-        if ($this->filtersOutside) {
-            config(['livewire-powergrid.filter' => 'outside']);
-
-            $this->dispatch('toggle-filters-'.$this->tableName);
-        }
-
         return Dish::query()
             ->when(
                 $this->categoryId,
@@ -211,13 +189,6 @@ class FiltersTable extends PowerGridComponent
             Filter::enumSelect('diet', 'dishes.diet')
                 ->dataSource(Diet::cases())
                 ->optionLabel('dishes.diet'),
-
-            //            Filter::multiSelectAsync('category_name', 'category_id')
-            //                ->url(route('category.index'))
-            //                ->method('POST')
-            //                ->parameters([0 => 'Luan'])
-            //                ->optionValue('id')
-            //                ->optionLabel('name'),
 
             Filter::select('category_name', 'category_id')
                 ->dataSource(Category::all())

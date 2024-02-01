@@ -18,8 +18,6 @@ class DishesDetailRowTable extends PowerGridComponent
 {
     public function setUp(): array
     {
-        $this->showCheckBox();
-
         return [
             Header::make()
                 ->showSearchInput(),
