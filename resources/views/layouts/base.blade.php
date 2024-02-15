@@ -72,7 +72,7 @@
             </div>
             <div class="flex-1 relative z-0 flex overflow-hidden">
                 <main class="flex-1 relative z-0 overflow-y-auto focus:outline-none xl:order-last dark:bg-slate-900">
-                    
+
                     <!-- Start main area-->
                     <div class="py-6 px-4 sm:px-6 lg:px-8">
                         @persist('toggle-button')
@@ -112,7 +112,7 @@
                             class="h-full border-2 border-slate-200 dark:border-slate-800 border-dashed rounded-lg p-6">
                             <div class="font-bold text-lg text-slate-700 dark:text-slate-300">@yield('title')</div>
 
-                            <div class="mt-8">
+                            <div>
                                 @yield('about')
                             </div>
 

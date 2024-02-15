@@ -48,10 +48,10 @@ body {
 }
 
 .about-example a:link, .about-example a:visited {
-    color: #D97706; 
-    text-decoration: underline; 
+    color: #D97706;
+    text-decoration: underline;
 }
 
 .about-example a:hover {
-    color: #FBBF24; 
+    color: #FBBF24;
 }
