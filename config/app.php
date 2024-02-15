@@ -4,6 +4,36 @@ use Illuminate\Support\Facades\Facade;
 
 return [
 
+    'repository_url' => 'https://github.com/Power-Components/powergrid-demo/',
+
+    'repository_default_branch' => 'powergrid_v5',
+
+    'redirect_to_new_url' => [
+        //   'action-rules' => 'examples/action-rules',
+        'batch-export' => 'examples/batch-export',
+        'bulk-action' => 'examples/bulk-action',
+        'collection' => 'examples/collection',
+        'custom-layout' => 'examples/custom-layout',
+        'detail' => 'examples/detail',
+        'dishes' => 'examples/dishes',
+        'export' => 'examples/export',
+        'filters-outside' => 'examples/filters-outside',
+        'filters' => 'examples/filters',
+        'fixed-header' => 'examples/fixed-header',
+        'join' => 'examples/join',
+        'lazy-load' => 'examples/lazy-load',
+        'persist' => 'examples/persist',
+        'power-grid' => 'examples/power-grid',
+        'query-builder' => 'examples/query-builder',
+        'radio-button' => 'examples/radio-button',
+        'responsive' => 'examples/responsive',
+        'simple' => 'examples/simple',
+        'soft-delete' => 'examples/soft-delete',
+        'striped' => 'examples/striped',
+        'summarize' => 'examples/summarize',
+        'user' => 'examples/user',
+    ],
+
     /*
     |--------------------------------------------------------------------------
     | Application Name

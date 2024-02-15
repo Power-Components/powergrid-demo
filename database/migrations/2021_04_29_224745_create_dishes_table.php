@@ -18,6 +18,8 @@ class CreateDishesTable extends Migration
             $table->double('price');
             $table->integer('calories');
             $table->smallInteger('diet');
+            $table->smallInteger('cooking_method');
+            $table->char('nutri_score', 1);
             $table->boolean('in_stock')->default(false);
             $table->date('produced_at');
             $table->timestamps();

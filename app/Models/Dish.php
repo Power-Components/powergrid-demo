@@ -2,6 +2,8 @@
 
 namespace App\Models;
 
+use App\Enums\CookingMethod;
+use App\Enums\NutriScore;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -37,6 +39,11 @@ class Dish extends Model
         'price',
         'calories',
         'in_stock',
+    ];
+
+    protected $casts = [
+        'nutri_score' => NutriScore::class,
+        'cooking_method' => CookingMethod::class,
     ];
 
     protected static function booted(): void

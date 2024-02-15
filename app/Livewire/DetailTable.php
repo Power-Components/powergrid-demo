@@ -12,8 +12,8 @@ use PowerComponents\LivewirePowerGrid\Facades\Rule;
 use PowerComponents\LivewirePowerGrid\Footer;
 use PowerComponents\LivewirePowerGrid\Header;
 use PowerComponents\LivewirePowerGrid\PowerGrid;
-use PowerComponents\LivewirePowerGrid\PowerGridColumns;
 use PowerComponents\LivewirePowerGrid\PowerGridComponent;
+use PowerComponents\LivewirePowerGrid\PowerGridFields;
 
 final class DetailTable extends PowerGridComponent
 {
@@ -40,13 +40,13 @@ final class DetailTable extends PowerGridComponent
         return User::query();
     }
 
-    public function addColumns(): PowerGridColumns
+    public function fields(): PowerGridFields
     {
-        return PowerGrid::columns()
-            ->addColumn('id')
-            ->addColumn('name')
-            ->addColumn('email')
-            ->addColumn(
+        return PowerGrid::fields()
+            ->add('id')
+            ->add('name')
+            ->add('email')
+            ->add(
                 'created_at_formatted',
                 fn (User $model) => Carbon::parse($model->created_at)
                     ->format('d/m/Y H:i:s')

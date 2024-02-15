@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\Stringable;
 use Illuminate\View\ComponentAttributeBag;
 use PowerComponents\LivewirePowerGrid\Button;
 
@@ -15,6 +16,18 @@ class AppServiceProvider extends ServiceProvider
 
     public function boot(): void
     {
+        if (! Stringable::hasMacro('forceTargetBlank')) {
+            Stringable::macro(
+                'forceTargetBlank',
+                fn (): Stringable => str($this->value)->replace('target="_blank"', '')->replaceMatches('/<(a.*?href=\"[http])([^>]+)>/is', '<\\1\\2 target="_blank">')
+            );
+
+        }
+
+        if (! Stringable::hasMacro('safeHTML')) {
+            Stringable::macro('safeHTML', fn (): Stringable => new Stringable(clean(strval($this->value))));
+        }
+
         Button::macro('icon', function (string $icon, array $attributes = []) {
             $this->dynamicProperties['icon'] = [
                 'component' => 'a',

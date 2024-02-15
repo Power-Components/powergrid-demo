@@ -1,26 +1,27 @@
-# Demo Project
+<div align="center">
+	<p><img  src="https://raw.githubusercontent.com/Power-Components/livewire-powergrid/main/art/header.jpg" alt="PowerGrid Header"></p>
+</div>
 
-_PowerGrid version 5 demo_
+# PowerGrid Demo
 
-This repository provides a fully configured PowerGrid implementation on a [Laravel 10](https://laravel.com/) project.
+## About
 
-⚡ Check the PowerGrid Table: [app/Http/Livewire/DishesTable.php](https://github.com/Power-Components/powergrid-demo/blob/main/app/Http/Livewire/DishesTable.php).
+This repository is a catalog of code examples using [Livewire PowerGrid v5](https://livewire-powergrid.com/) in a Laravel application.
 
-<br/>
+The resources available here are aimed at helping the user get up and running as fast as possible, and also allow everyone to stay up-to-date with the latest PowerGrid features.
 
-😎 This repository is kept up-to-date so you can use it as reference for your projects.
+`🌎` See all examples live [here](https://demo.livewire-powergrid.com/).
 
-📚 See the [Documentation](https://livewire-powergrid.com/) for more information about configuration and features.
+`📚` Read the [PowerGrid Documentation](https://livewire-powergrid.com/) for more information about configuration and features.
 
-❇️ Visit [PowerGrid](https://github.com/Power-Components/livewire-powergrid) main repository to see the latest changes on the package.
+`📦` Visit the [PowerGrid](https://github.com/Power-Components/livewire-powergrid) main repository to see the latest package features.
 
-<sup><b>Notice of Non-Affiliation and Disclaimer:</b> Livewire PowerGrid is not affiliated, associated, endorsed by, or in any way officially connected with the Laravel Livewire - copyright by Caleb Porzio.</sup>
+## Stack
 
-<br/>
+- [Laravel 10](https://laravel.com/)
+- [Livewire v3](https://laravel-livewire.com)
 
-## How to use
-
-The PowerGrid Demo Project runs in Laravel 10.
+## Get Started
 
 ### Requirements
 
@@ -32,21 +33,21 @@ The PowerGrid Demo Project runs in Laravel 10.
 
 ### Clone
 
-Clone this repository and enter the project's directory:
+Clone this repository and enter the project's directory.
 
 ```shell
-git clone https://github.com/Power-Components/powergrid-demo-misc.git && cd powergrid-demo-misc
+git clone https://github.com/Power-Components/powergrid-demo.git && cd powergrid-demo
 ```
 
 ### Install
 
-Install dependencies with Composer:
+Install dependencies with Composer.
 
 ```shell
 composer install
 ```
 
-Compile the project assets:
+Compile the project assets.
 
 ```shell
 npm install && npm run dev
@@ -54,13 +55,13 @@ npm install && npm run dev
 
 ## Configure your .env
 
-Copy the `.env.example` into `.env`
+Copy the `.env.example` into `.env`.
 
 ```shell
 cp .env.example .env 
 ```
 
-Set up the database credentials in `.env` file:
+Set up the database credentials in `.env` file.
 
 ```shell
 DB_CONNECTION=mysql
@@ -95,12 +96,10 @@ php artisan serve
 
 ## Support
 
-For questions, issues, bug reports and feature requests, please use [PowerGrid](https://github.com/Power-Components/livewire-powergrid) official GitHub Repository.
-
-Please look into our previous issues to verify if your bug/question or feature request has been previously submitted.
-
-📣 Submit a [new issue](https://github.com/Power-Components/livewire-powergrid/issues).
+For questions, technical inquiries, bug reports and feature requests, please use the [PowerGrid](https://github.com/Power-Components/livewire-powergrid) official GitHub Repository.
 
 <br/>
 
-<h1><code>💓 Thank you for downloading!</code></h1>
+<hr>
+
+<sup><b>Notice of Non-Affiliation and Disclaimer:</b> Livewire PowerGrid is not affiliated with, associated with, endorsed by, or in any way officially connected with the <a href="https://laravel-livewire.com" target="_blank">Laravel Livewire</a> - copyright by Caleb Porzio. Laravel is a trademark of Taylor Otwell.</sup>

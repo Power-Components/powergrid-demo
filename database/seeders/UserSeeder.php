@@ -27,7 +27,7 @@ class UserSeeder extends Seeder
             ],
             [
                 'nome' => 'Vitor',
-                'email' => 'vitaocareca@fakemail.com',
+                'email' => 'vitao@fakemail.com',
                 'password' => 'password',
             ],
             [

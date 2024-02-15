@@ -12,8 +12,8 @@ use PowerComponents\LivewirePowerGrid\Facades\Rule;
 use PowerComponents\LivewirePowerGrid\Footer;
 use PowerComponents\LivewirePowerGrid\Header;
 use PowerComponents\LivewirePowerGrid\PowerGrid;
-use PowerComponents\LivewirePowerGrid\PowerGridColumns;
 use PowerComponents\LivewirePowerGrid\PowerGridComponent;
+use PowerComponents\LivewirePowerGrid\PowerGridFields;
 use PowerComponents\LivewirePowerGrid\Traits\WithExport;
 
 final class RadioButtonTable extends PowerGridComponent
@@ -46,15 +46,15 @@ final class RadioButtonTable extends PowerGridComponent
         return [];
     }
 
-    public function addColumns(): PowerGridColumns
+    public function fields(): PowerGridFields
     {
-        return PowerGrid::columns()
-            ->addColumn('id')
-            ->addColumn('name')
+        return PowerGrid::fields()
+            ->add('id')
+            ->add('name')
             /** Example of custom column using a closure **/
-            ->addColumn('name_lower', fn (User $model) => strtolower(e($model->name)))
-            ->addColumn('email')
-            ->addColumn('created_at_formatted', fn (User $model) => Carbon::parse($model->created_at)->format('d/m/Y H:i:s'));
+            ->add('name_lower', fn (User $model) => strtolower(e($model->name)))
+            ->add('email')
+            ->add('created_at_formatted', fn (User $model) => Carbon::parse($model->created_at)->format('d/m/Y H:i:s'));
     }
 
     public function columns(): array

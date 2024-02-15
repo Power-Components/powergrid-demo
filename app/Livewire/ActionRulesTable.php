@@ -10,8 +10,8 @@ use PowerComponents\LivewirePowerGrid\Facades\Rule;
 use PowerComponents\LivewirePowerGrid\Footer;
 use PowerComponents\LivewirePowerGrid\Header;
 use PowerComponents\LivewirePowerGrid\PowerGrid;
-use PowerComponents\LivewirePowerGrid\PowerGridColumns;
 use PowerComponents\LivewirePowerGrid\PowerGridComponent;
+use PowerComponents\LivewirePowerGrid\PowerGridFields;
 
 class ActionRulesTable extends PowerGridComponent
 {
@@ -34,25 +34,25 @@ class ActionRulesTable extends PowerGridComponent
         return Dish::with('category');
     }
 
-    public function addColumns(): PowerGridColumns
+    public function fields(): PowerGridFields
     {
-        return PowerGrid::columns()
-            ->addColumn('id')
-            ->addColumn('name')
-            ->addColumn('category_id', function ($dish) {
+        return PowerGrid::fields()
+            ->add('id')
+            ->add('name')
+            ->add('category_id', function ($dish) {
                 return $dish->category_id;
             })
-            ->addColumn('category_name', function (Dish $dish) {
+            ->add('category_name', function (Dish $dish) {
                 return $dish->category->name;
             })
-            ->addColumn('price_fmt', function (Dish $dish) {
+            ->add('price_fmt', function (Dish $dish) {
                 return (new \NumberFormatter('en_US', \NumberFormatter::CURRENCY))
                     ->formatCurrency($dish->price, 'USD');
             })
-            ->addColumn('in_stock', function (Dish $dish) {
+            ->add('in_stock', function (Dish $dish) {
                 return $dish->in_stock ? 'Yes' : 'No';
             })
-            ->addColumn('created_at_formatted', function (Dish $dish) {
+            ->add('created_at_formatted', function (Dish $dish) {
                 return Carbon::parse($dish->created_at)
                     ->timezone('America/Sao_Paulo')->format('d/m/Y');
             });

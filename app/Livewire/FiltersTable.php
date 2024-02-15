@@ -8,47 +8,30 @@ use App\Models\Chef;
 use App\Models\Dish;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Carbon;
-use Livewire\Attributes\Url;
 use NumberFormatter;
 use PowerComponents\LivewirePowerGrid\Column;
 use PowerComponents\LivewirePowerGrid\Facades\Filter;
 use PowerComponents\LivewirePowerGrid\Footer;
 use PowerComponents\LivewirePowerGrid\Header;
 use PowerComponents\LivewirePowerGrid\PowerGrid;
-use PowerComponents\LivewirePowerGrid\PowerGridColumns;
 use PowerComponents\LivewirePowerGrid\PowerGridComponent;
+use PowerComponents\LivewirePowerGrid\PowerGridFields;
 
 class FiltersTable extends PowerGridComponent
 {
-    public bool $filtersOutside = false;
-
     public int $categoryId = 0;
 
     public bool $deferLoading = true;
 
     public string $loadingComponent = 'components.my-custom-loading';
 
-    protected $queryString = ['filters'];
-
-    #[Url]
-    public string|int $page = 1;
-
-    public function updatedPaginators($value): void
+    protected function queryString()
     {
-        $this->page = $value;
-    }
-
-    public function hydratePage(): void
-    {
-        $this->paginators['page'] = $this->page;
+        return $this->powerGridQueryString();
     }
 
     public function setUp(): array
     {
-        if ($this->filtersOutside) {
-            $this->dispatch('toggle-filters-'.$this->tableName);
-        }
-
         return [
             Header::make()
                 ->showToggleColumns()
@@ -63,12 +46,6 @@ class FiltersTable extends PowerGridComponent
 
     public function datasource(): Builder
     {
-        if ($this->filtersOutside) {
-            config(['livewire-powergrid.filter' => 'outside']);
-
-            $this->dispatch('toggle-filters-'.$this->tableName);
-        }
-
         return Dish::query()
             ->when(
                 $this->categoryId,
@@ -92,53 +69,53 @@ class FiltersTable extends PowerGridComponent
         ];
     }
 
-    public function addColumns(): PowerGridColumns
+    public function fields(): PowerGridFields
     {
         $fmt = new NumberFormatter('ca_ES', NumberFormatter::CURRENCY);
 
-        return PowerGrid::columns()
-            ->addColumn('id')
-            ->addColumn('name')
-            ->addColumn('storage_room')
-            ->addColumn('chef_name', function (Dish $dish) {
+        return PowerGrid::fields()
+            ->add('id')
+            ->add('name')
+            ->add('storage_room')
+            ->add('chef_name', function (Dish $dish) {
                 return $dish->chef->name ?? '-';
             })
-            ->addColumn('serving_at')
-            ->addColumn('calories')
-            ->addColumn('calories', function (Dish $dish) {
+            ->add('serving_at')
+            ->add('calories')
+            ->add('calories', function (Dish $dish) {
                 return $dish->calories.' kcal';
             })
-            ->addColumn('category_id', function ($dish) {
+            ->add('category_id', function ($dish) {
                 return $dish->category_id;
             })
-            ->addColumn('category_name', function ($dish) {
+            ->add('category_name', function ($dish) {
                 return $dish->category->name;
             })
-            ->addColumn('price')
-            ->addColumn('price_EUR', function (Dish $dish) use ($fmt) {
+            ->add('price')
+            ->add('price_EUR', function (Dish $dish) use ($fmt) {
                 return $fmt->formatCurrency($dish->price, 'EUR');
             })
-            ->addColumn('diet', function (Dish $dish) {
+            ->add('diet', function (Dish $dish) {
                 return \App\Enums\Diet::from($dish->diet)->labels();
             })
-            ->addColumn('price_BRL', function (Dish $dish) {
+            ->add('price_BRL', function (Dish $dish) {
                 return 'R$ '.number_format($dish->price, 2, ',', '.'); //R$ 1.000,00
             })
-            ->addColumn('sales_price')
-            ->addColumn('sales_price_BRL', function (Dish $dish) {
+            ->add('sales_price')
+            ->add('sales_price_BRL', function (Dish $dish) {
                 $sales_price = $dish->price + ($dish->price * 0.15);
 
                 return 'R$ '.number_format($sales_price, 2, ',', '.'); //R$ 1.000,00
             })
-            ->addColumn('in_stock')
-            ->addColumn('in_stock_label', function ($entry) {
+            ->add('in_stock')
+            ->add('in_stock_label', function ($entry) {
                 return $entry->in_stock ? 'Yes' : 'No';
             })
-            ->addColumn('produced_at_formatted', function (Dish $dish) {
+            ->add('produced_at_formatted', function (Dish $dish) {
                 return Carbon::parse($dish->produced_at)
                     ->format('d/m/Y');
             })
-            ->addColumn('created_at_formatted', function (Dish $dish) {
+            ->add('created_at_formatted', function (Dish $dish) {
                 return Carbon::parse($dish->created_at)
                     ->timezone('America/Sao_Paulo')
                     ->format('d/m/Y H:i');
@@ -212,13 +189,6 @@ class FiltersTable extends PowerGridComponent
             Filter::enumSelect('diet', 'dishes.diet')
                 ->dataSource(Diet::cases())
                 ->optionLabel('dishes.diet'),
-
-            //            Filter::multiSelectAsync('category_name', 'category_id')
-            //                ->url(route('category.index'))
-            //                ->method('POST')
-            //                ->parameters([0 => 'Luan'])
-            //                ->optionValue('id')
-            //                ->optionLabel('name'),
 
             Filter::select('category_name', 'category_id')
                 ->dataSource(Category::all())

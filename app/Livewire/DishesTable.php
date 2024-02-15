@@ -12,8 +12,8 @@ use PowerComponents\LivewirePowerGrid\Facades\Rule;
 use PowerComponents\LivewirePowerGrid\Footer;
 use PowerComponents\LivewirePowerGrid\Header;
 use PowerComponents\LivewirePowerGrid\PowerGrid;
-use PowerComponents\LivewirePowerGrid\PowerGridColumns;
 use PowerComponents\LivewirePowerGrid\PowerGridComponent;
+use PowerComponents\LivewirePowerGrid\PowerGridFields;
 
 class DishesTable extends PowerGridComponent
 {
@@ -34,10 +34,16 @@ class DishesTable extends PowerGridComponent
         $this->skipRender();
     }
 
+    #[On('openModal')]
+    public function openModal(string $component, array $arguments)
+    {
+        dd(get_defined_vars());
+    }
+
     #[On('bulkDelete')]
     public function bulkDelete(): void
     {
-        $this->dispatch('openModal', 'delete-dish', [
+        dd([
             'dishIds' => $this->checkboxValues,
             'confirmationTitle' => 'Delete dish',
             'confirmationDescription' => 'Are you sure you want to delete this dish?',
@@ -78,53 +84,22 @@ class DishesTable extends PowerGridComponent
         ];
     }
 
-    public function addColumns(): PowerGridColumns
+    public function fields(): PowerGridFields
     {
-        return PowerGrid::columns()
-            ->addColumn('id')
-            ->addColumn('serving_at')
-            ->addColumn('chef_name')
-            ->addColumn('dish_name', function ($dish) {
-                return $dish->name;
-            })
-            ->addColumn('calories', function ($dish) {
-                return $dish->calories.' kcal';
-            })
-            ->addColumn('category_id', function ($dish) {
-                return $dish->category_id;
-            })
-            ->addColumn('category_name', function ($dish) {
-                return $dish->category_name;
-            })
-            /*** PRICE ***/
-            ->addColumn('price')
-            ->addColumn('price_BRL', function ($dish) {
-                return 'R$ '.number_format($dish->price, 2, ',', '.'); //R$ 1.000,00
-            })
-
-            /*** SALE'S PRICE ***/
-            ->addColumn('sales_price')
-            ->addColumn('sales_price_BRL', function ($dish) {
-                $sales_price = $dish->price + ($dish->price * 0.15);
-
-                return 'R$ '.number_format($sales_price, 2, ',', '.'); //R$ 1.000,00
-            })
-
-            /*** STOCK ***/
-            ->addColumn('in_stock')
-            ->addColumn('in_stock_label', function ($dish) {
-                return $dish->in_stock ? 'sim' : 'não';
-            })
-
-            ->addColumn('diet', function ($dish) {
-                return \App\Enums\Diet::from($dish->diet)->labels();
-            })
-
-            /*** Produced At ***/
-            ->addColumn('produced_at')
-            ->addColumn('produced_at_formatted', function ($dish) {
-                return Carbon::parse($dish->produced_at)->format('d/m/Y');
-            });
+        return PowerGrid::fields()
+            ->add('id')
+            ->add('serving_at')
+            ->add('chef_name')
+            ->add('dish_name', fn ($dish) => $dish->name)
+            ->add('calories', fn ($dish) => $dish->calories.' kcal')
+            ->add('category_id')
+            ->add('category_name')
+            ->add('price')
+            ->add('in_stock')
+            ->add('in_stock_label', fn ($dish) => $dish->in_stock ? 'sim' : 'não')
+            ->add('diet', fn ($dish) => \App\Enums\Diet::from($dish->diet)->labels())
+            ->add('produced_at')
+            ->add('produced_at_formatted', fn ($dish) => Carbon::parse($dish->produced_at)->format('d/m/Y'));
     }
 
     public function columns(): array
@@ -155,12 +130,8 @@ class DishesTable extends PowerGridComponent
 
             Column::add()
                 ->title(__('Price'))
-                ->field('price_BRL')
+                ->field('price')
                 ->editOnClick(true),
-
-            Column::add()
-                ->title(__('Sales price'))
-                ->field('sales_price_BRL'),
 
             Column::add()
                 ->title(__('Calories'))
@@ -171,11 +142,6 @@ class DishesTable extends PowerGridComponent
                 ->title(__('In Stock'))
                 ->field('in_stock')
                 ->toggleable(true, 'yes', 'no')
-                ->sortable(),
-
-            Column::add()
-                ->title(__('Kitchen'))
-                ->field('kitchen_name', 'kitchen_id')
                 ->sortable(),
 
             Column::add()

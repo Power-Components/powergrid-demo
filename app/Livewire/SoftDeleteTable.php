@@ -8,8 +8,8 @@ use PowerComponents\LivewirePowerGrid\Column;
 use PowerComponents\LivewirePowerGrid\Footer;
 use PowerComponents\LivewirePowerGrid\Header;
 use PowerComponents\LivewirePowerGrid\PowerGrid;
-use PowerComponents\LivewirePowerGrid\PowerGridColumns;
 use PowerComponents\LivewirePowerGrid\PowerGridComponent;
+use PowerComponents\LivewirePowerGrid\PowerGridFields;
 
 final class SoftDeleteTable extends PowerGridComponent
 {
@@ -31,18 +31,18 @@ final class SoftDeleteTable extends PowerGridComponent
         return Dish::with('category');
     }
 
-    public function addColumns(): PowerGridColumns
+    public function fields(): PowerGridFields
     {
-        return PowerGrid::columns()
-            ->addColumn('id')
-            ->addColumn('name')
-            ->addColumn('chef_name')
-            ->addColumn('price')
-            ->addColumn('in_stock')
-            ->addColumn('in_stock_label', function ($entry) {
-                return $entry->in_stock ? 'sim' : 'não';
+        return PowerGrid::fields()
+            ->add('id')
+            ->add('name')
+            ->add('chef_name')
+            ->add('price')
+            ->add('in_stock')
+            ->add('in_stock_label', function ($entry) {
+                return $entry->in_stock ? 'yes' : 'no';
             })
-            ->addColumn('created_at_formatted', function ($entry) {
+            ->add('created_at_formatted', function ($entry) {
                 return Carbon::parse($entry->created_at)->format('d/m/Y');
             });
     }
