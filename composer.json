@@ -55,13 +55,7 @@
         ],
         "pint:fix": "./vendor/bin/pint",
         "test:pint": "./vendor/bin/pint --test",
-        "test":   "./vendor/bin/pest --order-by random",
-        "cypress": [
-            "cd tests/cypress && npx cypress run"
-        ],
-        "cypress:open": [
-            "cd tests/cypress && npx cypress open"
-        ]
+        "test":   "./vendor/bin/pest --order-by random"
     },
     "extra": {
         "laravel": {

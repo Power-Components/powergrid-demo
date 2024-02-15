@@ -57,28 +57,8 @@ class EnumTable extends PowerGridComponent
     {
         return PowerGrid::fields()
             ->add('id')
-            ->add('serving_at')
-            ->add('chef_name')
             ->add('dish_name', fn ($dish) => $dish->name)
-            ->add('calories', fn ($dish) => $dish->calories.' kcal')
-            ->add('category_id')
-            ->add('category_name')
-            ->add('price')
-            ->add('in_stock')
-            ->add('in_stock_label', fn ($dish) => $dish->in_stock ? 'sim' : 'não')
-            ->add('diet', fn ($dish) => \App\Enums\Diet::from($dish->diet)->labels())
-            ->add('cooking_method', function (Dish $dish) {
-                return 'a';
-
-                return $dish->cooking_method->name;
-            })
-            ->add('nutri_score', function (Dish $dish) {
-                return 'b';
-
-                return $dish->nutri_score->name;
-            })
-            ->add('produced_at')
-            ->add('produced_at_formatted', fn ($dish) => Carbon::parse($dish->produced_at)->format('d/m/Y'));
+            ->add('diet', fn ($dish) => \App\Enums\Diet::from($dish->diet)->labels());
     }
 
     public function columns(): array
@@ -101,14 +81,6 @@ class EnumTable extends PowerGridComponent
             Column::add()
                 ->field('diet', 'dishes.diet')
                 ->title(__('Diet')),
-
-            Column::add()
-                ->field('cooking_method', 'dishes.cooking_method')
-                ->title(__('Cooking Method')),
-
-            Column::add()
-                ->field('nutri_score', 'dishes.nutri_score')
-                ->title(__('Nutri-score')),
         ];
     }
 

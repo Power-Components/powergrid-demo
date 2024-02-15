@@ -26,14 +26,6 @@ class Menu extends Component
 
         $this->menu = collect(config('menu.items', []))
             ->merge($components);
-
-        if (app()->isProduction() === false) {
-            $this->menu = $this->menu->prepend([
-                'label' => ' ** Cypress **',
-                'route' => route('default', ['component' => 'cypress']),
-                'name' => '/cypress',
-            ]);
-        }
     }
 
     public function render()
