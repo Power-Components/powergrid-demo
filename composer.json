@@ -22,6 +22,7 @@
         "fakerphp/faker": "^1.23.1",
         "laradumps/laradumps": "^2.4.0",
         "laravel/pint": "^1.13.11",
+        "laravel/pulse": "^1.0@beta",
         "laravel/sail": "^1.27.4",
         "mockery/mockery": "^1.6.7",
         "nunomaduro/collision": "^7.10.0",
