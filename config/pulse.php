@@ -229,7 +229,7 @@ return [
             ],
         ],
 
-        \PowerComponents\LivewirePowerGrid\Recorders\PowerGridRecorder::class => [
+        \PowerComponents\LivewirePowerGrid\Recorders\PowerGridPerformanceRecorder::class => [
             'enabled' => true,
         ],
     ],

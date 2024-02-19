@@ -9,5 +9,5 @@
 
     <livewire:pulse.slow-requests cols="6" />
 
-    <livewire:powergrid-measurement-card cols="6" />
+    <livewire:powergrid-performance-card />
 </x-pulse>
