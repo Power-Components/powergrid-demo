@@ -5,10 +5,6 @@
     "homepage": "https://demo.livewire-powergrid.com",
     "keywords": ["framework", "laravel"],
     "license": "MIT",
-    "repositories": [{
-        "type": "path",
-        "url": "/Users/luan.freitas/Documents/powergrid_5x"
-    }],
     "require": {
         "php": "^8.1",
         "guzzlehttp/guzzle": "^7.8.1",
