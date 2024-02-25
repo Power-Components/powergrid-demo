@@ -7,11 +7,11 @@
 >
 
     <div
-        class="fixed inset-0 bg-slate-600 bg-opacity-75"
+        class="fixed inset-0 bg-neutral-600 bg-opacity-75"
         aria-hidden="true"
     ></div>
 
-    <div class="relative flex-1 flex flex-col max-w-xs w-full bg-white dark:bg-slate-900 focus:outline-none">
+    <div class="relative flex-1 flex flex-col max-w-xs w-full bg-white dark:bg-neutral-900 focus:outline-none">
 
         <div class="absolute top-0 right-0 -mr-12 pt-2">
             <button
@@ -54,7 +54,7 @@
                 <div class="px-2 space-y-1">
                     @foreach ($menu as $item)
                         <a href="{{ data_get($item, 'route') }}"
-                            class="text-slate-600 hover:bg-slate-50 hover:text-slate-900 dark:text-slate-300 dark:hover:bg-slate-600 group flex items-center px-2 py-2 text-base font-medium rounded-md"
+                            class="text-neutral-600 hover:bg-neutral-50 hover:text-neutral-900 dark:text-neutral-300 dark:hover:bg-neutral-600 group flex items-center px-2 py-2 text-base font-medium rounded-md"
                         >
                             {{ data_get($item, 'label') }}
                         </a>
@@ -77,7 +77,7 @@
 <div class="hidden lg:flex lg:flex-shrink-0">
     <div class="flex flex-col w-64">
         <div
-            class="flex-1 flex flex-col min-h-0 border-r border-slate-200 dark:border-gray-600 bg-slate-100 dark:bg-slate-900">
+            class="flex-1 flex flex-col min-h-0 border-r border-neutral-200 dark:border-gray-600 bg-neutral-100 dark:bg-neutral-900">
             <div class="flex-1 flex flex-col pt-5 pb-4 overflow-y-auto">
                 <div class="flex items-center flex-shrink-0 px-4">
                     <img
@@ -93,9 +93,9 @@
                     <div class="px-2 space-y-1 text-sm">
                         @foreach ($menu as $item)
                             <a @class([
-                                    'bg-slate-200 border-l border-slate-400 text-slate-800 dark:text-slate-200 dark:bg-slate-700 !dark:text-slate-300 transition duration-300' =>
+                                    'bg-neutral-200 border-l border-neutral-400 text-neutral-800 dark:text-neutral-200 dark:bg-neutral-700 !dark:text-neutral-300 transition duration-300' =>
                                         str(request()->getRequestUri())->endsWith(data_get($item, 'name'))  ,
-                                    'text-slate-600 font-semibold hover:bg-slate-300 dark:text-slate-300 hover:text-slate-900 dark:hover:bg-slate-600 group flex items-center px-2 py-2 text-base font-medium rounded-md',
+                                    'text-neutral-600 font-semibold hover:bg-neutral-300 dark:text-neutral-300 hover:text-neutral-900 dark:hover:bg-neutral-600 group flex items-center px-2 py-2 text-base font-medium rounded-md',
                                 ])
                                 href="{{ data_get($item, 'route') }}"
                             >

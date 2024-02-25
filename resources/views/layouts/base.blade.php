@@ -35,7 +35,7 @@
         <div class="flex flex-col min-w-0 flex-1 overflow-hidden">
             <div class="lg:hidden">
                 <div
-                    class="flex items-center justify-between bg-slate-50 dark:bg-slate-900 border-b border-slate-200 dark:border-slate-700 px-4 py-1.5">
+                    class="flex items-center justify-between bg-neutral-50 dark:bg-neutral-900 border-b border-neutral-200 dark:border-neutral-700 px-4 py-1.5">
                     <div>
                         <img
                             class="h-8 w-auto"
@@ -47,7 +47,7 @@
                         <button
                             x-on:click="sideBarOpen = true"
                             type="button"
-                            class="-mr-3 h-12 w-12 inline-flex items-center justify-center rounded-md text-slate-500 hover:text-slate-900"
+                            class="-mr-3 h-12 w-12 inline-flex items-center justify-center rounded-md text-neutral-500 hover:text-neutral-900"
                         >
                             <span class="sr-only">Open sidebar</span>
                             <!-- Heroicon name: outline/menu -->
@@ -71,7 +71,7 @@
                 </div>
             </div>
             <div class="flex-1 relative z-0 flex overflow-hidden">
-                <main class="flex-1 relative z-0 overflow-y-auto focus:outline-none xl:order-last dark:bg-slate-900">
+                <main class="flex-1 relative z-0 overflow-y-auto focus:outline-none xl:order-last dark:bg-neutral-900">
 
                     <!-- Start main area-->
                     <div class="py-6 px-4 sm:px-6 lg:px-8">
@@ -82,7 +82,7 @@
                                 @click="$refs.switch.focus()"
                             >
                                 <span
-                                    class="text-sm font-medium uppercase text-slate-800 dark:text-gray-300"
+                                    class="text-sm font-medium uppercase text-neutral-800 dark:text-gray-300"
                                     x-text="darkMode ? 'Dark': 'Light'"
                                 ></span>
                             </span>
@@ -92,7 +92,7 @@
                                 role="switch"
                                 aria-checked="false"
                                 x-ref="switch"
-                                :class="{ 'bg-slate-300': !(darkMode), 'bg-slate-400': darkMode }"
+                                :class="{ 'bg-neutral-300': !(darkMode), 'bg-neutral-400': darkMode }"
                                 aria-labelledby="annual-billing-label"
                                 :aria-checked="darkMode"
                                 @click="toggleDark"
@@ -109,8 +109,8 @@
                         @yield('source_code')
 
                         <div
-                            class="h-full border-2 border-slate-200 dark:border-slate-800 border-dashed rounded-lg p-6">
-                            <div class="font-bold text-lg text-slate-700 dark:text-slate-300">@yield('title')</div>
+                            class="h-full dark:border-neutral-800 border-dashed rounded-lg py-6">
+                            <div class="font-bold text-lg text-neutral-700 dark:text-neutral-300">@yield('title')</div>
 
                             <div>
                                 @yield('about')

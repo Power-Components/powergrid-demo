@@ -1,4 +1,5 @@
 /** @type {import('tailwindcss').Config} */
+const colors = require("tailwindcss/colors");
 module.exports = {
     content: [
         './resources/**/*.blade.php',
@@ -19,4 +20,12 @@ module.exports = {
     presets: [
         require('./vendor/power-components/livewire-powergrid/tailwind.config.js'),
     ],
+    theme: {
+        extend: {
+            colors: {
+                'pg-primary': colors.neutral,
+                'pg-secondary': colors.blue,
+            }
+        }
+    }
 }

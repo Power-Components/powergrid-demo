@@ -1,6 +1,6 @@
 <div
     wire:loading.flex
-    class="absolute z-[90] w-full h-full inset-0 items-center justify-center bg-white dark:bg-slate-800 bg-opacity-70"
+    class="absolute z-[90] w-full h-full inset-0 items-center justify-center bg-white dark:bg-neutral-800 bg-opacity-70"
 >
     <svg
         class="w-10 h-10 animate-spin text-green-600"
@@ -28,8 +28,8 @@
         @for ($i = 0; $i < 10; $i++)
             {{-- # Row --}}
             <div>
-                <div class="h-2.5 bg-gray-300 rounded-full dark:bg-slate-500 w-40 mb-2.5"></div>
-                <div class="h-2.5 bg-gray-300 rounded-full dark:bg-slate-500 w-48 mb-2.5"></div>
+                <div class="h-2.5 bg-gray-300 rounded-full dark:bg-neutral-500 w-40 mb-2.5"></div>
+                <div class="h-2.5 bg-gray-300 rounded-full dark:bg-neutral-500 w-48 mb-2.5"></div>
             </div>
         @endfor
     </div>
@@ -38,8 +38,8 @@
         @for ($i = 0; $i < 10; $i++)
             {{-- # Row --}}
             <div>
-                <div class="h-2.5 bg-gray-300 rounded-full dark:bg-slate-500 w-40 mb-2.5"></div>
-                <div class="h-2.5 bg-gray-300 rounded-full dark:bg-slate-500 w-48 mb-2.5"></div>
+                <div class="h-2.5 bg-gray-300 rounded-full dark:bg-neutral-500 w-40 mb-2.5"></div>
+                <div class="h-2.5 bg-gray-300 rounded-full dark:bg-neutral-500 w-48 mb-2.5"></div>
             </div>
         @endfor
     </div>
@@ -48,8 +48,8 @@
         @for ($i = 0; $i < 10; $i++)
             {{-- # Row --}}
             <div>
-                <div class="h-2.5 bg-gray-300 rounded-full dark:bg-slate-500 w-40 mb-2.5"></div>
-                <div class="h-2.5 bg-gray-300 rounded-full dark:bg-slate-500 w-48 mb-2.5"></div>
+                <div class="h-2.5 bg-gray-300 rounded-full dark:bg-neutral-500 w-40 mb-2.5"></div>
+                <div class="h-2.5 bg-gray-300 rounded-full dark:bg-neutral-500 w-48 mb-2.5"></div>
             </div>
         @endfor
     </div>

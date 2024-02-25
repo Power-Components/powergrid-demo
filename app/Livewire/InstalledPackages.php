@@ -20,7 +20,7 @@ final class InstalledPackages extends PowerGridComponent
                 'openspout/openspout',
             ]
         )
-            ->map(fn($package, $key) => ['id' => $key, ...$package]);
+            ->map(fn ($package, $key) => ['id' => $key, ...$package]);
     }
 
     public function setUp(): array
@@ -35,7 +35,7 @@ final class InstalledPackages extends PowerGridComponent
             ->add('id')
             ->add('name')
             ->add('description')
-            ->add('version', fn(object $item): string => $item->name === 'laravel/framework' ? $item->major_version : $item->version);
+            ->add('version', fn (object $item): string => $item->name === 'laravel/framework' ? $item->major_version : $item->version);
 
     }
 
@@ -45,7 +45,8 @@ final class InstalledPackages extends PowerGridComponent
             Column::make('ID', 'id')->hidden(),
             Column::make('Name', 'name'),
             Column::make('Version', 'version'),
-            Column::make('Description', 'description'),
+            Column::make('Description', 'description')
+                ->contentClasses('!whitespace-normal')
         ];
     }
 }
