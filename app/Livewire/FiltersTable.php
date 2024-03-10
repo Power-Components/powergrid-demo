@@ -10,15 +10,19 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Carbon;
 use NumberFormatter;
 use PowerComponents\LivewirePowerGrid\Column;
+use PowerComponents\LivewirePowerGrid\Exportable;
 use PowerComponents\LivewirePowerGrid\Facades\Filter;
 use PowerComponents\LivewirePowerGrid\Footer;
 use PowerComponents\LivewirePowerGrid\Header;
 use PowerComponents\LivewirePowerGrid\PowerGrid;
 use PowerComponents\LivewirePowerGrid\PowerGridComponent;
 use PowerComponents\LivewirePowerGrid\PowerGridFields;
+use PowerComponents\LivewirePowerGrid\Traits\WithExport;
 
 class FiltersTable extends PowerGridComponent
 {
+    use WithExport;
+
     public int $categoryId = 0;
 
     public bool $deferLoading = true;
@@ -32,7 +36,16 @@ class FiltersTable extends PowerGridComponent
 
     public function setUp(): array
     {
+        $this->showCheckBox('id');
+
         return [
+            Exportable::make('export')
+                ->striped()
+                ->columnWidth([
+                    2 => 30,
+                ])
+                ->type(Exportable::TYPE_XLS, Exportable::TYPE_CSV),
+
             Header::make()
                 ->showToggleColumns()
                 ->withoutLoading()
