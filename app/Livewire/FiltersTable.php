@@ -216,6 +216,16 @@ class FiltersTable extends PowerGridComponent
                 ->params([
                     'timezone' => 'America/Sao_Paulo',
                 ]),
+
+            Filter::dynamic('category_name', 'category_id')
+                ->component('select')
+                ->attributes([
+                    'async-data' => route('category.index'),
+                    'option-label' => 'name',
+                    'multiselect' => false,
+                    'option-value' => 'id',
+                    'wire:model.blur' => 'filters.select.category_id',
+                ]),
         ];
     }
 }
