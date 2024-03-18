@@ -93,7 +93,7 @@
                 >
                     <div class="px-2 space-y-1 text-sm">
                         @foreach ($menu as $item)
-                            <a @class([
+                            <a wire:navigate @class([
                                     'bg-neutral-200 border-l border-neutral-400 text-neutral-800 dark:text-neutral-200 dark:bg-neutral-700 !dark:text-neutral-300 transition duration-300' =>
                                         str(request()->getRequestUri())->endsWith(data_get($item, 'name'))  ,
                                     'text-neutral-600 font-semibold hover:bg-neutral-300 dark:text-neutral-300 hover:text-neutral-900 dark:hover:bg-neutral-600 group flex items-center px-2 py-2 text-base font-medium rounded-md',
