@@ -8,28 +8,28 @@
     "require": {
         "php": "^8.1",
         "guzzlehttp/guzzle": "^7.8.1",
-        "laravel/framework": "^10.46.0",
-        "laravel/octane": "^2.3.4",
+        "laravel/framework": "^10.48.4",
+        "laravel/octane": "^2.3.7",
         "laravel/tinker": "^2.9.0",
-        "livewire/livewire": "dev-main",
-        "mews/purifier": "^3.4.1",
+        "livewire/livewire": "^3.4.10",
+        "mews/purifier": "^3.4.2",
         "openspout/openspout": "^4.23",
         "picqer/php-barcode-generator": "^2.4",
-        "power-components/livewire-powergrid": "dev-livewire-main",
+        "power-components/livewire-powergrid": "5.x-dev",
         "predis/predis": "^2.2.2",
         "torchlight/torchlight-laravel": "^0.5.14"
     },
     "require-dev": {
         "fakerphp/faker": "^1.23.1",
-        "laradumps/laradumps": "^2.5.0",
-        "laravel/pint": "^1.14.0",
-        "laravel/sail": "^1.28.1",
-        "mockery/mockery": "^1.6.7",
+        "laradumps/laradumps": "^3.0",
+        "laravel/pint": "^1.15.1",
+        "laravel/sail": "^1.29.1",
+        "mockery/mockery": "^1.6.11",
         "nunomaduro/collision": "^7.10.0",
-        "pestphp/pest": "^2.34.1",
+        "pestphp/pest": "^2.34.6",
         "pestphp/pest-plugin-laravel": "^2.3",
-        "phpunit/phpunit": "^10.5.11",
-        "spatie/laravel-ignition": "^2.4.2"
+        "phpunit/phpunit": "^10.5.16",
+        "spatie/laravel-ignition": "^2.5.1"
     },
     "autoload": {
         "psr-4": {
@@ -72,6 +72,6 @@
             "php-http/discovery": true
         }
     },
-    "minimum-stability": "dev",
+    "minimum-stability": "stable",
     "prefer-stable": false
 }
