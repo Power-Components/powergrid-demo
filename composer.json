@@ -3,33 +3,36 @@
     "type": "project",
     "description": "Livewire PowerGrid demo",
     "homepage": "https://demo.livewire-powergrid.com",
-    "keywords": ["framework", "laravel"],
+    "keywords": ["laravel", "livewire", "powergrid"],
     "license": "MIT",
+    "repositories": [
+      {
+        "type": "path",
+        "url": "./_packages/torchlight-laravel"
+      }
+    ],
     "require": {
-        "php": "^8.1",
-        "guzzlehttp/guzzle": "^7.8.1",
-        "laravel/framework": "^10.48.4",
-        "laravel/octane": "^2.3.7",
-        "laravel/tinker": "^2.9.0",
-        "livewire/livewire": "^3.4.10",
+        "php": "^8.2",
+        "laravel/framework": "^11.0",
+        "laravel/tinker": "^2.9",
         "mews/purifier": "^3.4.2",
         "openspout/openspout": "^4.23",
         "picqer/php-barcode-generator": "^2.4",
-        "power-components/livewire-powergrid": "5.x-dev",
+        "power-components/livewire-powergrid": "^5.4",
         "predis/predis": "^2.2.2",
-        "torchlight/torchlight-laravel": "^0.5.14"
+        "torchlight/torchlight-laravel": "*"
     },
     "require-dev": {
-        "fakerphp/faker": "^1.23.1",
-        "laradumps/laradumps": "^3.0",
-        "laravel/pint": "^1.15.1",
-        "laravel/sail": "^1.29.1",
-        "mockery/mockery": "^1.6.11",
-        "nunomaduro/collision": "^7.10.0",
-        "pestphp/pest": "^2.34.6",
-        "pestphp/pest-plugin-laravel": "^2.3",
-        "phpunit/phpunit": "^10.5.16",
-        "spatie/laravel-ignition": "^2.5.1"
+        "fakerphp/faker": "^1.23",
+        "laravel/pint": "^1.13",
+        "laravel/sail": "^1.26",
+        "mockery/mockery": "^1.6",
+        "nunomaduro/collision": "^8.0",
+        "pestphp/pest": "^2.34",
+        "pestphp/pest-plugin-laravel": "^2.4",
+        "spatie/laravel-ignition": "^2.4",
+        "laradumps/laradumps": "^3.0"
+
     },
     "autoload": {
         "psr-4": {
@@ -44,19 +47,24 @@
         }
     },
     "scripts": {
+        "pint:fix": "./vendor/bin/pint",
+        "test:pint": "./vendor/bin/pint --test",
+        "test":   "./vendor/bin/pest --order-by random",
         "post-autoload-dump": [
             "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
             "@php artisan package:discover --ansi"
+        ],
+        "post-update-cmd": [
+            "@php artisan vendor:publish --tag=laravel-assets --ansi --force"
         ],
         "post-root-package-install": [
             "@php -r \"file_exists('.env') || copy('.env.example', '.env');\""
         ],
         "post-create-project-cmd": [
-            "@php artisan key:generate --ansi"
-        ],
-        "pint:fix": "./vendor/bin/pint",
-        "test:pint": "./vendor/bin/pint --test",
-        "test":   "./vendor/bin/pest --order-by random"
+            "@php artisan key:generate --ansi",
+            "@php -r \"file_exists('database/database.sqlite') || touch('database/database.sqlite');\"",
+            "@php artisan migrate --graceful --ansi"
+        ]
     },
     "extra": {
         "laravel": {
@@ -72,6 +80,6 @@
             "php-http/discovery": true
         }
     },
-    "minimum-stability": "stable",
-    "prefer-stable": false
+    "minimum-stability": "dev",
+    "prefer-stable": true
 }

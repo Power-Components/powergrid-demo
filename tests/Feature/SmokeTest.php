@@ -15,6 +15,6 @@ test('All components are accessible', function () {
 });
 
 it('redirects old example links', function () {
-    collect(config('app.redirect_to_new_url', []))
+    collect(config('redirect.old_links', []))
         ->each(fn ($route) => get($route)->AssertOk()->assertSeeText('Source Code'));
 });

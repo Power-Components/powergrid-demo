@@ -4,6 +4,7 @@ namespace App\Livewire;
 
 use App\Enums\Diet;
 use App\Models\Dish;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\DB;
 use Livewire\Attributes\On;
 use PowerComponents\LivewirePowerGrid\Button;
@@ -56,7 +57,9 @@ final class BulkActionTable extends PowerGridComponent
             ->leftJoin('chefs', function ($categories) {
                 $categories->on('dishes.chef_id', '=', 'chefs.id');
             })
-            ->select('dishes.*', 'categories.name as category_name', DB::raw('DATE_FORMAT(dishes.produced_at, "%d/%m/%Y") as produced_at_formatted'));
+            ->select('dishes.*', 'categories.name as category_name');
+        //Not available with SQLite:
+        //DB::raw('DATE_FORMAT(dishes.produced_at, "%d/%m/%Y") as produced_at_formatted')
     }
 
     public function relationSearch(): array
@@ -108,7 +111,7 @@ final class BulkActionTable extends PowerGridComponent
                 return Diet::from($dish->diet)->labels();
             })
             ->add('produced_at')
-            ->add('produced_at_formatted');
+            ->add('produced_at_formatted', fn (Dish $model) => Carbon::parse($model->created_at)->format('d/m/Y'));
     }
 
     public function columns(): array

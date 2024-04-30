@@ -13,9 +13,9 @@ final class GenerateComponentLink
     {
         $componentName = ParseComponentName::handle($componentName);
 
-        return str('')->append(config('app.repository_url', ''))
+        return str('')->append(config('github.repository_url', ''))
             ->append('//blob//')
-            ->append(config('app.repository_default_branch', ''))
+            ->append(config('github.repository_default_branch', ''))
             ->append("/app/Livewire/{$componentName}.php")
             ->replaceMatches('#(?<!:)/+#im', '/')
             ->toString();

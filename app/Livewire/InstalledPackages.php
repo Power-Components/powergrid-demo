@@ -46,7 +46,7 @@ final class InstalledPackages extends PowerGridComponent
             Column::make('Name', 'name'),
             Column::make('Version', 'version'),
             Column::make('Description', 'description')
-                ->contentClasses('!whitespace-normal')
+                ->contentClasses('!whitespace-normal'),
         ];
     }
 }

@@ -2,7 +2,9 @@
 
 namespace App\Providers;
 
+use App\Support\ExampleComponent;
 use Illuminate\Support\Facades\Blade;
+use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Stringable;
 use Illuminate\View\ComponentAttributeBag;
@@ -10,12 +12,29 @@ use PowerComponents\LivewirePowerGrid\Button;
 
 class AppServiceProvider extends ServiceProvider
 {
+    /**
+     * Register any application services.
+     */
     public function register(): void
     {
+        //
     }
 
+    /**
+     * Bootstrap any application services.
+     */
     public function boot(): void
     {
+
+        Route::bind('component', function ($componentName) {
+
+            try {
+                return ExampleComponent::discover($componentName);
+            } catch (\Exception) {
+                abort(404, 'Example not available.');
+            }
+        });
+
         if (! Stringable::hasMacro('forceTargetBlank')) {
             Stringable::macro(
                 'forceTargetBlank',
