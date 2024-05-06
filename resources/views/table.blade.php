@@ -1,10 +1,10 @@
 @extends('layouts.base')
 @section('title')
-    {{ $component->title }}
+    {{ $component->title() }}
 @endsection
 @section('main')
-    <div class="mt-6 about-example dark:text-neutral-200">
-        {!! $component->about !!}
+    <div class="mt-6 mb-5 about-example dark:text-neutral-200 leading-10">
+        {!! $component->about() !!}
     </div>
     <!-- based on: https://tailwindflex.com/@mr-robot/tab-navigation-with-alpine-js -->
     <div x-data="{
@@ -32,7 +32,7 @@
         </ul>
         <div class="w-full py-3">
             <div x-cloak x-show="openTab === 1">
-                @livewire($component->name)
+                @livewire($component->livewireTag())
                 <div class="mt-2 dark:text-slate-200"><sup><b>Disclaimer: </b>Table data is randomly generated for
                         illustrative purposes only. The information here is not a reflection of the actual market and does
                         not constitute business, financial, or medical advice.</sup></div>
@@ -42,7 +42,7 @@
             </div>
             <div x-cloak x-show="openTab === 3" class="dark:text-pg-primary-300">
                 <p>Here you can find all relevant packages installed on this demo.</p>
-                <livewire:installed-packages />
+                <livewire:installed-packages-table :packages="$component->packages()" />
             </div>
         </div>
     </div>
