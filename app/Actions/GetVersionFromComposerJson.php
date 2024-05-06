@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 namespace App\Actions;
 
 use Illuminate\Support\Collection;
@@ -15,7 +13,6 @@ final class GetVersionFromComposerJson
      */
     public static function handle(string|array $packages): Collection
     {
-
         $file = json_decode((string) File::get(base_path('composer.lock')));
 
         if (is_string($packages)) {

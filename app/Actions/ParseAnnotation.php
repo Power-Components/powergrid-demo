@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 namespace App\Actions;
 
 use Illuminate\Support\Collection;
@@ -10,7 +8,7 @@ final class ParseAnnotation
 {
     public static function handle(string $class): Collection
     {
-        $rc = new \ReflectionClass($class);
+        $rc  = new \ReflectionClass($class);
         $doc = $rc->getDocComment();
 
         $pattern = "/@([a-z]+[a-z0–9_]*)(.*)\s{1,}/i";
