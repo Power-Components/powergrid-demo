@@ -1,0 +1,1 @@
+This example demonstrates a Relationship with a [Datasource](https://livewire-powergrid.com/table-component/data-source.html).

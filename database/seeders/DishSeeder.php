@@ -23,25 +23,24 @@ class DishSeeder extends Seeder
 
         $this->dishes()->each(function ($dish) use ($kitchens, $categories, $chefs) {
             Dish::create([
+                'chef_id'        => Lottery::odds(1, 3)->winner(fn () => $chefs->random()->id)->loser(fn () => null)->choose(),
+                'rating'         => fake()->numberBetween(1, 5),
+                'kitchen_id'     => $kitchens->random()->id,
+                'category_id'    => $categories->random()->id,
+                'price'          => $dish['price'] ?? fake()->randomFloat(2, 50, 280),
+                'calories'       => fake()->biasedNumberBetween(40, 890, 'sqrt'),
+                'produced_at'    => fake()->dateTimeBetween('-1 months', now())->format('Y-m-d'),
+                'diet'           => fake()->randomElement(Diet::cases())->value,
+                'nutri_score'    => fake()->randomElement(NutriScore::cases())->name,
+                'cooking_method' => fake()->randomElement(CookingMethod::cases())->value,
+                'in_stock'       => fake()->boolean(),
+                'serving_at'     => fake()->randomElement(['restaurant', 'room service', 'pool bar']),
+                'created_at'     => fake()->dateTimeBetween('-2 months', now()),
                 ...$dish,
-                ...[
-                    'chef_id'        => Lottery::odds(1, 3)->winner(fn () => $chefs->random()->id)->loser(fn () => null)->choose(),
-                    'rating'         => fake()->numberBetween(1, 5),
-                    'kitchen_id'     => $kitchens->random()->id,
-                    'category_id'    => $categories->random()->id,
-                    'price'          => $dish['price'] = fake()->numberBetween(50, 280),
-                    'calories'       => fake()->biasedNumberBetween(40, 890, 'sqrt'),
-                    'produced_at'    => fake()->dateTimeBetween('-1 months', now())->format('Y-m-d'),
-                    'diet'           => fake()->randomElement(Diet::cases())->value,
-                    'nutri_score'    => fake()->randomElement(NutriScore::cases())->name,
-                    'cooking_method' => fake()->randomElement(CookingMethod::cases())->value,
-                    'in_stock'       => fake()->boolean(),
-                    'serving_at'     => fake()->randomElement(['restaurant', 'room service', 'pool bar']),
-                    'created_at'     => fake()->dateTimeBetween('-2 months', now()),
-                ]]);
+            ]);
         });
 
-        Dish::find(40)->delete();
+        rescue(fn () => Dish::findOrFail(40)->delete(), report: false);
     }
 
     /**

@@ -1,0 +1,1 @@
+This example enables [Filters](https://livewire-powergrid.com/table-features/filters.html).

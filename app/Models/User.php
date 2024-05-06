@@ -49,9 +49,9 @@ class User extends Authenticatable
 
     protected static function booted(): void
     {
-        static::created(fn (User $user) => self::clearCache());
-        static::updated(fn (User $user) => self::clearCache());
-        static::deleted(fn (User $user) => self::clearCache());
+        static::created(fn ($user) => self::clearCache());
+        static::updated(fn ($user) => self::clearCache());
+        static::deleted(fn ($user) => self::clearCache());
     }
 
     private static function clearCache(): void

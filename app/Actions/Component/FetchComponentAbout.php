@@ -12,8 +12,9 @@ final class FetchComponentAbout
         $path = str($component->path)->beforeLast(DIRECTORY_SEPARATOR)->append(DIRECTORY_SEPARATOR . 'about.md');
 
         return rescue(
-            fn () => str(strval(File::get($path)))->markdown()->safeHTML()->forceTargetBlank()->toString(),
-            ''
+            fn () => str(strval(File::get($path)))->markdown()->toString(),
+            //fn () => str(strval(File::get($path)))->markdown()->safeHTML()->forceTargetBlank()->toString(),
+            '', report: false
         );
     }
 }
