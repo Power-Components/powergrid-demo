@@ -42,7 +42,7 @@ class Tailwind extends TailwindBase
     public function footer(): Footer
     {
         return Theme::footer()
-            ->view($this->root().'.footer')
+            ->view($this->root() . '.footer')
             ->select('block appearance-none bg-pg-primary-50 border border-pg-primary-300 text-pg-primary-700 py-2 px-3 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-pg-primary-500 dark:bg-pg-primary-700 dark:text-pg-primary-200 dark:placeholder-pg-primary-200 dark:border-pg-primary-500');
     }
 
@@ -63,7 +63,7 @@ class Tailwind extends TailwindBase
     public function editable(): Editable
     {
         return Theme::editable()
-            ->view($this->root().'.editable')
+            ->view($this->root() . '.editable')
             ->span('flex justify-between')
             ->input('dark:bg-pg-primary-800 bg-pg-primary-50 text-black-700 border border-pg-primary-200 rounded py-2 px-3 leading-tight focus:outline-none focus:bg-white focus:border-pg-primary-200 dark:bg-pg-primary-600 dark:bg-pg-primary-800 dark:text-pg-primary-200 dark:placeholder-pg-primary-300 dark:border-pg-primary-600 shadow-md');
     }
@@ -87,7 +87,7 @@ class Tailwind extends TailwindBase
     public function filterBoolean(): FilterBoolean
     {
         return Theme::filterBoolean()
-            ->view($this->root().'.filters.boolean')
+            ->view($this->root() . '.filters.boolean')
             ->base('min-w-[5rem]')
             ->select('appearance-none block mt-1 mb-1 bg-white border border-pg-primary-300 text-pg-primary-700 py-2 px-3 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-pg-primary-500 w-full dark:bg-pg-primary-800 dark:text-pg-primary-200 dark:placeholder-pg-primary-300 dark:border-pg-primary-600', 'max-width: 370px');
     }
@@ -96,7 +96,7 @@ class Tailwind extends TailwindBase
     {
         return Theme::filterDatePicker()
             ->base()
-            ->view($this->root().'.filters.date-picker')
+            ->view($this->root() . '.filters.date-picker')
             ->input('flatpickr flatpickr-input block my-1 bg-white border border-pg-primary-300 text-pg-primary-700 py-2 px-3 rounded leading-tight focus:outline-none focus:bg-white focus:border-pg-primary-500 w-full placeholder-pg-primary-400 dark:bg-pg-primary-800 dark:text-pg-primary-200 dark:placeholder-pg-primary-300 dark:border-pg-primary-600');
     }
 
@@ -105,20 +105,20 @@ class Tailwind extends TailwindBase
         return Theme::filterMultiSelect()
             ->base('inline-block relative w-full')
             ->select('mt-1')
-            ->view($this->root().'.filters.multi-select');
+            ->view($this->root() . '.filters.multi-select');
     }
 
     public function filterNumber(): FilterNumber
     {
         return Theme::filterNumber()
-            ->view($this->root().'.filters.number')
+            ->view($this->root() . '.filters.number')
             ->input('block bg-white border border-pg-primary-300 text-pg-primary-700 py-2 px-3 rounded leading-tight focus:outline-none focus:bg-white focus:border-pg-primary-500 w-full min-w-[5rem] placeholder-pg-primary-400 dark:bg-pg-primary-800 dark:text-pg-primary-200 dark:placeholder-pg-primary-300 dark:border-pg-primary-600');
     }
 
     public function filterSelect(): FilterSelect
     {
         return Theme::filterSelect()
-            ->view($this->root().'.filters.select')
+            ->view($this->root() . '.filters.select')
             ->base('min-w-[9.5rem]')
             ->select('appearance-none block bg-white border border-pg-primary-300 text-pg-primary-700 py-2 px-3 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-pg-primary-500 w-full dark:bg-pg-primary-800 dark:text-pg-primary-200 dark:placeholder-pg-primary-300 dark:border-pg-primary-600');
     }
@@ -126,7 +126,7 @@ class Tailwind extends TailwindBase
     public function filterInputText(): FilterInputText
     {
         return Theme::filterInputText()
-            ->view($this->root().'.filters.input-text')
+            ->view($this->root() . '.filters.input-text')
             ->base('min-w-[9.5rem]')
             ->select('appearance-none block bg-white border border-pg-primary-300 text-pg-primary-700 py-2 px-3 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-pg-primary-500 w-full placeholder-pg-primary-400 dark:bg-pg-primary-800 dark:text-pg-primary-200 dark:placeholder-pg-primary-300 dark:border-pg-primary-600')
             ->input('w-full block bg-white text-pg-primary-700 border border-pg-primary-300 rounded py-2 px-3 leading-tight focus:outline-none focus:bg-white focus:border-pg-primary-500 placeholder-pg-primary-400 dark:bg-pg-primary-800 dark:text-pg-primary-200 dark:placeholder-pg-primary-300 dark:border-pg-primary-600');
