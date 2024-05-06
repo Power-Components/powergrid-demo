@@ -15,7 +15,7 @@ class RedirectOldUrl
      */
     public function handle(Request $request, Closure $next): Response
     {
-        $path = collect(config('redirect.old_links', []))->get($request->path());
+        $path = collect(config('powergrid-demo.redirect_old_links', []))->get($request->path());
 
         if ($path) {
             return redirect()->to($path, 301);
