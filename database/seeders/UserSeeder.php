@@ -11,28 +11,28 @@ class UserSeeder extends Seeder
     {
         User::query()->insert([
             [
-                'name' => 'Luan',
-                'email' => 'luanfreitasdev@fakemail.com',
+                'name'     => 'Luan',
+                'email'    => 'luanfreitasdev@fakemail.com',
                 'password' => 'password',
             ],
             [
-                'name' => 'Daniel',
-                'email' => 'dansysanalyst@fakemail.com',
+                'name'     => 'Daniel',
+                'email'    => 'dansysanalyst@fakemail.com',
                 'password' => 'password',
             ],
             [
-                'nome' => 'Claudio',
-                'email' => 'claudio@fakemail.com',
+                'nome'     => 'Claudio',
+                'email'    => 'claudio@fakemail.com',
                 'password' => 'password',
             ],
             [
-                'nome' => 'Vitor',
-                'email' => 'vitao@fakemail.com',
+                'nome'     => 'Vitor',
+                'email'    => 'vitao@fakemail.com',
                 'password' => 'password',
             ],
             [
-                'nome' => 'Tio Jobs',
-                'email' => 'tiojobs@fakemail.com',
+                'nome'     => 'Tio Jobs',
+                'email'    => 'tiojobs@fakemail.com',
                 'password' => 'password',
             ],
         ]);

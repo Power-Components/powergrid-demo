@@ -2,8 +2,8 @@
 
 namespace Database\Seeders;
 
-use App\Models\Category;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\Category;
 use App\Models\Chef;
 use App\Models\User;
 use Illuminate\Database\Seeder;
@@ -18,7 +18,7 @@ class DatabaseSeeder extends Seeder
         // User::factory(10)->create();
 
         User::factory()->create([
-            'name' => 'Test User',
+            'name'  => 'Test User',
             'email' => 'test@example.com',
         ]);
 
@@ -29,6 +29,7 @@ class DatabaseSeeder extends Seeder
             ChefSeeder::class,
             DishSeeder::class,
             UserSeeder::class,
+            IcecreamSeeder::class,
         ]);
 
         $chefCategories = Category::all();
@@ -36,6 +37,5 @@ class DatabaseSeeder extends Seeder
         Chef::query()->get()->each(function (Chef $chef) use ($chefCategories) {
             $chef->categories()->attach($chefCategories->shuffle()->take(rand(1, 4)));
         });
-
     }
 }

@@ -42,7 +42,7 @@ class Dish extends Model
     ];
 
     protected $casts = [
-        'nutri_score' => NutriScore::class,
+        'nutri_score'    => NutriScore::class,
         'cooking_method' => CookingMethod::class,
     ];
 

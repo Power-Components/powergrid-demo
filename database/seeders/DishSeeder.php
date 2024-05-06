@@ -6,34 +6,42 @@ use App\Enums\CookingMethod;
 use App\Enums\Diet;
 use App\Enums\NutriScore;
 use App\Models\Category;
+use App\Models\Chef;
 use App\Models\Dish;
 use App\Models\Kitchen;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Lottery;
 
 class DishSeeder extends Seeder
 {
     public function run()
     {
-        $kitchens = Kitchen::all();
+        $kitchens   = Kitchen::all();
         $categories = Category::all();
+        $chefs      = Chef::all();
 
-        $this->dishes()->each(function ($dish) use ($kitchens, $categories) {
+        $this->dishes()->each(function ($dish) use ($kitchens, $categories, $chefs) {
             Dish::create([
                 ...$dish,
                 ...[
-                    'kitchen_id' => $kitchens->random()->id,
-                    'category_id' => $categories->random()->id,
-                    'price' => $dish['price'] = fake()->numberBetween(50, 280),
-                    'calories' => fake()->biasedNumberBetween(40, 890, 'sqrt'),
-                    'produced_at' => fake()->dateTimeBetween('-1 months', now())->format('Y-m-d'),
-                    'diet' => fake()->randomElement(Diet::cases())->value,
-                    'nutri_score' => fake()->randomElement(NutriScore::cases())->name,
+                    'chef_id'        => Lottery::odds(1, 3)->winner(fn () => $chefs->random()->id)->loser(fn () => null)->choose(),
+                    'rating'         => fake()->numberBetween(1, 5),
+                    'kitchen_id'     => $kitchens->random()->id,
+                    'category_id'    => $categories->random()->id,
+                    'price'          => $dish['price'] = fake()->numberBetween(50, 280),
+                    'calories'       => fake()->biasedNumberBetween(40, 890, 'sqrt'),
+                    'produced_at'    => fake()->dateTimeBetween('-1 months', now())->format('Y-m-d'),
+                    'diet'           => fake()->randomElement(Diet::cases())->value,
+                    'nutri_score'    => fake()->randomElement(NutriScore::cases())->name,
                     'cooking_method' => fake()->randomElement(CookingMethod::cases())->value,
-                    'in_stock' => fake()->boolean(),
-                    'serving_at' => fake()->randomElement(['restaurant', 'room service', 'pool bar']),
+                    'in_stock'       => fake()->boolean(),
+                    'serving_at'     => fake()->randomElement(['restaurant', 'room service', 'pool bar']),
+                    'created_at'     => fake()->dateTimeBetween('-2 months', now()),
                 ]]);
         });
+
+        Dish::find(40)->delete();
     }
 
     /**
@@ -83,7 +91,7 @@ class DishSeeder extends Seeder
             ['name' => 'Chips and dip'],
             ['name' => 'Choco pie'],
             ['name' => 'Chocolate Brownie'],
-            ['name' => 'Chocolate Chip Cookie'],
+            ['name' => '-- Soft Deleted --'],
             ['name' => 'Chocolate cheesecake'],
             ['name' => 'Chowder'],
             ['name' => 'Churrasco'],
