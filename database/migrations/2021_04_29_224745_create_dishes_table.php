@@ -15,6 +15,7 @@ return new class() extends Migration
             $table->string('name');
             $table->foreignId('chef_id')->nullable()->constrained();
             $table->string('serving_at')->default('restaurant');
+            $table->string('image')->default('dish.png');
             $table->double('price');
             $table->integer('calories');
             $table->smallInteger('rating');
