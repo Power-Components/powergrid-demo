@@ -1,11 +1,15 @@
 <?php
 
-namespace App\Livewire\Examples\DishTable;
+namespace App\Livewire\Examples\DemoDishTable;
 
 use App\Enums\Diet;
+use App\Models\Category;
 use App\Models\Dish;
 use Illuminate\Database\Query\Builder;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\Blade;
+use Illuminate\Support\Number;
 use Livewire\Attributes\On;
 use PowerComponents\LivewirePowerGrid\Button;
 use PowerComponents\LivewirePowerGrid\Column;
@@ -16,7 +20,7 @@ use PowerComponents\LivewirePowerGrid\PowerGrid;
 use PowerComponents\LivewirePowerGrid\PowerGridComponent;
 use PowerComponents\LivewirePowerGrid\PowerGridFields;
 
-class DishTable extends PowerGridComponent
+class DemoDishTable extends PowerGridComponent
 {
     public bool $filtersOutside = false;
 
@@ -68,20 +72,25 @@ class DishTable extends PowerGridComponent
 
     public function fields(): PowerGridFields
     {
+        $options = $this->categorySelectOptions();
+
         return PowerGrid::fields()
             ->add('id')
             ->add('serving_at')
             ->add('chef_name')
             ->add('dish_name', fn ($dish) => $dish->name)
             ->add('calories', fn ($dish) => $dish->calories . ' kcal')
+            ->add('preview', fn ($dish) => '<img class="w-12 h-12 shrink-0 grow-0 rounded-full" src="' . asset("images/dishes/".e($dish->image)) . '">')
             ->add('category_id')
             ->add('category_name')
             ->add('price')
+            ->add('price_in_eur', fn ($dish) => Number::currency($dish->price, in: 'EUR', locale: 'pt_PT'))
             ->add('in_stock')
             ->add('in_stock_label', fn ($dish) => $dish->in_stock ? 'Yes' : 'No')
             ->add('diet', fn ($dish) => Diet::from($dish->diet)->labels())
             ->add('produced_at')
-            ->add('produced_at_formatted', fn ($dish) => Carbon::parse($dish->produced_at)->format('d/m/Y'));
+            ->add('produced_at_formatted', fn ($dish) => Carbon::parse($dish->produced_at)->format('d/m/Y'))
+            ->add('category_name', fn ($dish) => Blade::render('<x-select-category type="occurrence" :options=$options  :dishId=$dishId  :selected=$selected/>', ['options' => $options, 'dishId' => intval($dish->id), 'selected' => intval($dish->category_id)]));
     }
 
     public function columns(): array
@@ -93,6 +102,8 @@ class DishTable extends PowerGridComponent
                 ->field('id', 'dishes.id')
                 ->searchable()
                 ->sortable(),
+
+            Column::make('', 'preview'),
 
             Column::add()
                 ->title('Dish')
@@ -111,10 +122,8 @@ class DishTable extends PowerGridComponent
                 ->field('category_name', 'categories.name')
                 ->placeholder('Category placeholder'),
 
-            Column::add()
-                ->title('Price')
-                ->field('price')
-                ->editOnClick(hasPermission: true),
+            Column::make('Price', 'price_in_eur', 'price')
+                ->editOnClick(hasPermission: true, dataField: 'price_in_eur'),
 
             Column::add()
                 ->title('Calories')
@@ -141,6 +150,7 @@ class DishTable extends PowerGridComponent
         return [
             Button::add('edit-stock')
                 ->slot('edit')
+                ->class('bg-blue-500 text-white font-bold py-2 px-2 rounded')
                 ->openModal('edit-stock', ['dishId' => $dish->id]),
         ];
     }
@@ -148,6 +158,7 @@ class DishTable extends PowerGridComponent
     public function actionRules(): array
     {
         return [
+
             Rule::button('edit')
                 ->when(fn ($dish) => $dish->id == 2)
                 ->setAttribute('class', 'bg-green-200')
@@ -162,7 +173,7 @@ class DishTable extends PowerGridComponent
                 ->hide(),
 
             Rule::rows()
-                ->when(fn ($dish) => (bool) $dish->in_stock === false)
+                ->when(fn ($dish) => $dish->in_stock == false)
                 ->setAttribute('class', 'bg-yellow-50 hover:bg-yellow-100'),
         ];
     }
@@ -190,5 +201,22 @@ class DishTable extends PowerGridComponent
             'confirmationTitle'       => 'Delete dish',
             'confirmationDescription' => 'Are you sure you want to delete this dish?',
         ]);
+    }
+
+    public function categorySelectOptions(): Collection
+    {
+        return Category::all(['id', 'name'])->mapWithKeys(function ($item) {
+            return [
+                $item->id => match (strtolower($item->name)) {
+                    'meat'    => '🍖 ',
+                    'fish'    => '🐟 ',
+                    'pie'     => '🍰 ',
+                    'garnish' => '🥗 ',
+                    'pasta'   => '🍝 ',
+                    'dessert' => '🍧 ',
+                    'soup'    => '🍲 ',
+                } . $item->name,
+            ];
+        });
     }
 }

@@ -5,7 +5,6 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Support\Carbon;
-use PowerComponents\LivewirePowerGrid\Tests\Models\Chef;
 
 /**
  * @property int $id

@@ -51,15 +51,15 @@ class DishSeeder extends Seeder
     public function dishes(): Collection
     {
         return collect([
-            ['name' => 'Arkansas Possum Pie'],
+            ['name' => 'Arkansas Possum Pie', 'image' => '1.jpg'],
             ['name' => 'Albacore Tuna Melt'],
-            ['name' => 'борщ', 'category_id' => 7, 'chef_id' => 2, 'price' => 100.19],
-            ['name' => 'Bacalhau com natas'],
-            ['name' => 'Baba Ghanoush'],
+            ['name' => 'борщ', 'category_id' => 7, 'chef_id' => 2, 'price' => 100.19, 'image' => '3.jpg'],
+            ['name' => 'Bacalhau com natas', 'image' => '4.jpg'],
+            ['name' => 'Baba Ghanoush', 'image' => '5.jpg'],
             ['name' => 'Bacon Cheeseburger'],
             ['name' => 'Baked potato'],
             ['name' => 'Baklava'],
-            ['name' => 'Bangers and mash'],
+            ['name' => 'Bangers and mash', 'image' => '9.jpg'],
             ['name' => 'Black Pudding'],
             ['name' => 'Blue cheese dressing'],
             ['name' => 'Boulliabaise'],
