@@ -20,6 +20,7 @@ final class AutoRefreshTable extends PowerGridComponent
     {
         return [
             Header::make()
+                ->withoutLoading()
                 ->includeViewOnTop('components.header.last-update'),
 
             Footer::make()
