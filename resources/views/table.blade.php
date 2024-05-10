@@ -32,7 +32,7 @@
         </ul>
         <div class="w-full py-3">
             <div x-cloak x-show="openTab === 1">
-                @livewire($component->livewireTag())
+                {!! $component->render() !!}
                 <div class="mt-2 dark:text-slate-200"><sup><b>Disclaimer: </b>Table data is randomly generated for
                         illustrative purposes only. The information here is not a reflection of the actual market and does
                         not constitute business, financial, or medical advice.</sup></div>

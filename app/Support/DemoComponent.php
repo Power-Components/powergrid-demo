@@ -11,6 +11,7 @@ use App\Actions\Component\ParseComponentName;
 use App\Actions\Component\ParseComponentPath;
 use App\Actions\Component\ParseComponentTag;
 use App\Exceptions\DemoComponentException;
+use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\Facades\File;
 
 final class DemoComponent
@@ -59,9 +60,11 @@ final class DemoComponent
         return GenerateComponentLink::handle($this);
     }
 
-    public function livewireTag(): string
+    public function render(): string
     {
-        return ParseComponentTag::handle($this);
+        $componentTag = data_get($this->config, 'component_tag', '<livewire:' . ParseComponentTag::handle($this) . ' />');
+
+        return Blade::render($componentTag);
     }
 
     public function packages(): array
