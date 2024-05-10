@@ -3,16 +3,16 @@
 namespace App\Livewire\Examples\PersistTable;
 
 use App\Enums\Diet;
-use App\Livewire\Examples\DishTable\DishTable;
-use App\Models\Category;
 use App\Models\Chef;
+use App\Models\Category;
 use Illuminate\Database\Eloquent\Builder;
-use PowerComponents\LivewirePowerGrid\Exportable;
-use PowerComponents\LivewirePowerGrid\Facades\Filter;
 use PowerComponents\LivewirePowerGrid\Footer;
 use PowerComponents\LivewirePowerGrid\Header;
+use PowerComponents\LivewirePowerGrid\Exportable;
+use PowerComponents\LivewirePowerGrid\Facades\Filter;
+use App\Livewire\Examples\DemoDishTable\DemoDishTable;
 
-final class PersistTable extends DishTable
+final class PersistTable extends DemoDishTable
 {
     public function setUp(): array
     {
