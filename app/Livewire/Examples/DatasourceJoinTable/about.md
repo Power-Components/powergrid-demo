@@ -1,0 +1,1 @@
+This example demonstrates the use of a Join Relationship in a [Datasource](https://livewire-powergrid.com/table-component/data-source.html).

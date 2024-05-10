@@ -7,15 +7,15 @@ namespace App\Enums;
  */
 enum Diet: int
 {
-    case ALL = 0;
-    case VEGAN = 1;
+    case ALL    = 0;
+    case VEGAN  = 1;
     case CELIAC = 2;
 
     public function labels(): string
     {
         return match ($this) {
-            self::ALL => '🍽️ All diets',
-            self::VEGAN => '🌱 Suitable for Vegans',
+            self::ALL    => '🍽️ All diets',
+            self::VEGAN  => '🌱 Suitable for Vegans',
             self::CELIAC => '🥜 Suitable for Celiacs',
         };
     }

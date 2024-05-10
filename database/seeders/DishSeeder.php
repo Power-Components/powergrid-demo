@@ -6,34 +6,41 @@ use App\Enums\CookingMethod;
 use App\Enums\Diet;
 use App\Enums\NutriScore;
 use App\Models\Category;
+use App\Models\Chef;
 use App\Models\Dish;
 use App\Models\Kitchen;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Lottery;
 
 class DishSeeder extends Seeder
 {
     public function run()
     {
-        $kitchens = Kitchen::all();
+        $kitchens   = Kitchen::all();
         $categories = Category::all();
+        $chefs      = Chef::all();
 
-        $this->dishes()->each(function ($dish) use ($kitchens, $categories) {
+        $this->dishes()->each(function ($dish) use ($kitchens, $categories, $chefs) {
             Dish::create([
+                'chef_id'        => Lottery::odds(1, 3)->winner(fn () => $chefs->random()->id)->loser(fn () => null)->choose(),
+                'rating'         => fake()->numberBetween(1, 5),
+                'kitchen_id'     => $kitchens->random()->id,
+                'category_id'    => $categories->random()->id,
+                'price'          => $dish['price'] ?? fake()->randomFloat(2, 50, 280),
+                'calories'       => fake()->biasedNumberBetween(40, 890, 'sqrt'),
+                'produced_at'    => fake()->dateTimeBetween('-1 months', now())->format('Y-m-d'),
+                'diet'           => fake()->randomElement(Diet::cases())->value,
+                'nutri_score'    => fake()->randomElement(NutriScore::cases())->name,
+                'cooking_method' => fake()->randomElement(CookingMethod::cases())->value,
+                'in_stock'       => fake()->boolean(),
+                'serving_at'     => fake()->randomElement(['restaurant', 'room service', 'pool bar']),
+                'created_at'     => fake()->dateTimeBetween('-2 months', now()),
                 ...$dish,
-                ...[
-                    'kitchen_id' => $kitchens->random()->id,
-                    'category_id' => $categories->random()->id,
-                    'price' => $dish['price'] = fake()->numberBetween(50, 280),
-                    'calories' => fake()->biasedNumberBetween(40, 890, 'sqrt'),
-                    'produced_at' => fake()->dateTimeBetween('-1 months', now())->format('Y-m-d'),
-                    'diet' => fake()->randomElement(Diet::cases())->value,
-                    'nutri_score' => fake()->randomElement(NutriScore::cases())->name,
-                    'cooking_method' => fake()->randomElement(CookingMethod::cases())->value,
-                    'in_stock' => fake()->boolean(),
-                    'serving_at' => fake()->randomElement(['restaurant', 'room service', 'pool bar']),
-                ]]);
+            ]);
         });
+
+        rescue(fn () => Dish::findOrFail(40)->delete(), report: false);
     }
 
     /**
@@ -44,15 +51,15 @@ class DishSeeder extends Seeder
     public function dishes(): Collection
     {
         return collect([
-            ['name' => 'Arkansas Possum Pie'],
+            ['name' => 'Arkansas Possum Pie', 'image' => '1.jpg'],
             ['name' => 'Albacore Tuna Melt'],
-            ['name' => 'борщ', 'category_id' => 7, 'chef_id' => 2, 'price' => 100.19],
-            ['name' => 'Bacalhau com natas'],
-            ['name' => 'Baba Ghanoush'],
+            ['name' => 'борщ', 'category_id' => 7, 'chef_id' => 2, 'price' => 100.19, 'image' => '3.jpg'],
+            ['name' => 'Bacalhau com natas', 'image' => '4.jpg'],
+            ['name' => 'Baba Ghanoush', 'image' => '5.jpg'],
             ['name' => 'Bacon Cheeseburger'],
             ['name' => 'Baked potato'],
             ['name' => 'Baklava'],
-            ['name' => 'Bangers and mash'],
+            ['name' => 'Bangers and mash', 'image' => '9.jpg'],
             ['name' => 'Black Pudding'],
             ['name' => 'Blue cheese dressing'],
             ['name' => 'Boulliabaise'],
@@ -83,7 +90,7 @@ class DishSeeder extends Seeder
             ['name' => 'Chips and dip'],
             ['name' => 'Choco pie'],
             ['name' => 'Chocolate Brownie'],
-            ['name' => 'Chocolate Chip Cookie'],
+            ['name' => '-- Soft Deleted --'],
             ['name' => 'Chocolate cheesecake'],
             ['name' => 'Chowder'],
             ['name' => 'Churrasco'],

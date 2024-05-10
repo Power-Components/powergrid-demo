@@ -1,0 +1,1 @@
+This example enable Multi-row [Bulk Actions](https://livewire-powergrid.com/table-features/bulk-actions.html).

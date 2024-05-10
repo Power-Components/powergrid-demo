@@ -3,9 +3,9 @@
         <div class="flex justify-between items-center mb-4">
             <a
                 target="_blank"
-                href="{{ $example->github_url }}"
+                href="{{ $example->link() }}"
                 class="code bg-gray-800 hover:bg-gray-700 text-gray-300 px-3 py-1 rounded-md"
-            >open in GitHub</a>
+            >🔎  View on GitHub</a>
             <button
                 class="code bg-gray-800 hover:bg-gray-700 text-gray-300 px-3 py-1 rounded-md"
                 data-clipboard-target="#code"
@@ -17,9 +17,9 @@
                 class="text-gray-300 text-sm"
             >
 @if (empty(env('TORCHLIGHT_TOKEN')))
-<code>{{ $example->source_code }}</code>
+<code>{{ $example->sourceCode() }}</code>
 @else
-<x-torchlight-code language="php" theme="material-theme-darker">{!! $example->source_code !!}</x-torchlight-code>
+<x-torchlight-code language="php" theme="material-theme-darker">{!! $example->sourceCode() !!}</x-torchlight-code>
 @endif
             </pre>
         </div>

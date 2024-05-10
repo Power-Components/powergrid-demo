@@ -11,6 +11,8 @@ return [
     | Configure here the theme of your choice.
     */
 
+    //'theme' => \PowerComponents\LivewirePowerGrid\Themes\Tailwind::class,
+    //'theme' => \PowerComponents\LivewirePowerGrid\Themes\Bootstrap5::class,
     'theme' => \App\Helpers\PowerGridThemes\Tailwind::class,
 
     /*
@@ -18,7 +20,7 @@ return [
     | Plugins
     |--------------------------------------------------------------------------
     |
-    | Plugins used: bootstrap-select when bootstrap, flatpickr.js to datepicker.
+    | Plugins used: flatpickr.js to datepicker.
     |
     */
 
@@ -29,10 +31,10 @@ return [
         'flatpickr' => [
             'locales' => [
                 'pt_BR' => [
-                    'locale' => 'pt',
+                    'locale'     => 'pt',
                     'dateFormat' => 'd/m/Y H:i',
                     'enableTime' => true,
-                    'time_24hr' => true,
+                    'time_24hr'  => true,
                 ],
             ],
         ],
@@ -102,5 +104,40 @@ return [
     |
     */
 
-    'check_version' => true,
+    'check_version' => false,
+
+    /*
+    |--------------------------------------------------------------------------
+    | Exportable class
+    |--------------------------------------------------------------------------
+    |
+    |
+    */
+
+    'exportable' => [
+        'default'      => 'openspout_v4',
+        'openspout_v4' => [
+            'xlsx' => \PowerComponents\LivewirePowerGrid\Components\Exports\OpenSpout\v4\ExportToXLS::class,
+            'csv'  => \PowerComponents\LivewirePowerGrid\Components\Exports\OpenSpout\v4\ExportToCsv::class,
+        ],
+        'openspout_v3' => [
+            'xlsx' => \PowerComponents\LivewirePowerGrid\Components\Exports\OpenSpout\v3\ExportToXLS::class,
+            'csv'  => \PowerComponents\LivewirePowerGrid\Components\Exports\OpenSpout\v3\ExportToCsv::class,
+        ],
+    ],
+
+    /*
+    |--------------------------------------------------------------------------
+    | Auto-Discover Models
+    |--------------------------------------------------------------------------
+    |
+    | PowerGrid will search for Models in the directories listed below.
+    | These Models be listed as options when you run the
+    | "artisan powergrid:create" command.
+    |
+    */
+
+    'auto_discover_models_paths' => [
+        app_path('Models'),
+    ],
 ];

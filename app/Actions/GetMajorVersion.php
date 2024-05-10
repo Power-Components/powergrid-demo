@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 namespace App\Actions;
 
 final class GetMajorVersion
@@ -11,6 +9,5 @@ final class GetMajorVersion
         return str($version)->append('.')
             ->before('.')
             ->toString();
-
     }
 }

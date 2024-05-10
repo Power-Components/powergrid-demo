@@ -53,8 +53,8 @@
             >
                 <div class="px-2 space-y-1">
                     @foreach ($menu as $item)
-                        <a wire:navigate
-                           href="{{ data_get($item, 'route') }}"
+                        <a {{ data_get($item, 'target', 'wire:navigate') }}
+                           href="{{ data_get($item, 'url') }}"
                             class="text-neutral-600 hover:bg-neutral-50 hover:text-neutral-900 dark:text-neutral-300 dark:hover:bg-neutral-600 group flex items-center px-2 py-2 text-base font-medium rounded-md"
                         >
                             {{ data_get($item, 'label') }}
@@ -93,12 +93,12 @@
                 >
                     <div class="px-2 space-y-1 text-sm">
                         @foreach ($menu as $item)
-                            <a wire:navigate @class([
+                            <a {{ data_get($item, 'target', 'wire:navigate') }} @class([
                                     'bg-neutral-200 border-l border-neutral-400 text-neutral-800 dark:text-neutral-200 dark:bg-neutral-700 !dark:text-neutral-300 transition duration-300' =>
                                         str(request()->getRequestUri())->endsWith(data_get($item, 'name'))  ,
                                     'text-neutral-600 font-semibold hover:bg-neutral-300 dark:text-neutral-300 hover:text-neutral-900 dark:hover:bg-neutral-600 group flex items-center px-2 py-2 text-base font-medium rounded-md',
                                 ])
-                                href="{{ data_get($item, 'route') }}"
+                                href="{{ data_get($item, 'url') }}"
                             >
                                 {{ data_get($item, 'label') }}
                             </a>

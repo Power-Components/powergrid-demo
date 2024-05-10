@@ -1,0 +1,1 @@
+Example from the documentation combining a variety of features.

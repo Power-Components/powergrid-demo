@@ -1,0 +1,1 @@
+This example uses a Collection as [Datasource](https://livewire-powergrid.com/table-component/data-source.html).

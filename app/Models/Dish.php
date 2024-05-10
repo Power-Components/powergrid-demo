@@ -42,15 +42,15 @@ class Dish extends Model
     ];
 
     protected $casts = [
-        'nutri_score' => NutriScore::class,
+        'nutri_score'    => NutriScore::class,
         'cooking_method' => CookingMethod::class,
     ];
 
     protected static function booted(): void
     {
-        static::created(fn (Dish $dish) => self::clearCache());
-        static::updated(fn (Dish $dish) => self::clearCache());
-        static::deleted(fn (Dish $dish) => self::clearCache());
+        static::created(fn ($dish) => self::clearCache());
+        static::updated(fn ($dish) => self::clearCache());
+        static::deleted(fn ($dish) => self::clearCache());
     }
 
     private static function clearCache(): void

@@ -1,0 +1,1 @@
+This example demonstrates a Query Builder [Datasource](https://livewire-powergrid.com/table-component/data-source.html).

@@ -1,0 +1,1 @@
+This example enables [Lazy Loading](https://livewire-powergrid.com/table-component/component-configuration.html#lazy-loading).

@@ -1,0 +1,1 @@
+This example enables [Checkboxes](https://livewire-powergrid.com/table-features/rows.html#checkboxes) in Table rows.

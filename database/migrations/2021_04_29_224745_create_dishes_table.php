@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateDishesTable extends Migration
+return new class() extends Migration
 {
     public function up()
     {
@@ -15,8 +15,10 @@ class CreateDishesTable extends Migration
             $table->string('name');
             $table->foreignId('chef_id')->nullable()->constrained();
             $table->string('serving_at')->default('restaurant');
+            $table->string('image')->default('dish.png');
             $table->double('price');
             $table->integer('calories');
+            $table->smallInteger('rating');
             $table->smallInteger('diet');
             $table->smallInteger('cooking_method');
             $table->char('nutri_score', 1);
@@ -31,4 +33,4 @@ class CreateDishesTable extends Migration
     {
         Schema::dropIfExists('dishes');
     }
-}
+};

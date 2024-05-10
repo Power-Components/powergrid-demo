@@ -16,7 +16,7 @@
                 class="text-yellow-600 underline hover:text-yellow-400"
                 target="_blank"
                 href="https://laravel.com/"
-            >Laravel 10</a>.</p>
+            >Laravel 11</a>.</p>
         <br />
         </p>The source code is available at <a
             class="text-yellow-600 underline hover:text-yellow-400"
