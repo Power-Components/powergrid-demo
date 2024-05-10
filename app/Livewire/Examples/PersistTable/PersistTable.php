@@ -3,14 +3,14 @@
 namespace App\Livewire\Examples\PersistTable;
 
 use App\Enums\Diet;
-use App\Models\Chef;
+use App\Livewire\Examples\DemoDishTable\DemoDishTable;
 use App\Models\Category;
+use App\Models\Chef;
 use Illuminate\Database\Eloquent\Builder;
-use PowerComponents\LivewirePowerGrid\Footer;
-use PowerComponents\LivewirePowerGrid\Header;
 use PowerComponents\LivewirePowerGrid\Exportable;
 use PowerComponents\LivewirePowerGrid\Facades\Filter;
-use App\Livewire\Examples\DemoDishTable\DemoDishTable;
+use PowerComponents\LivewirePowerGrid\Footer;
+use PowerComponents\LivewirePowerGrid\Header;
 
 final class PersistTable extends DemoDishTable
 {

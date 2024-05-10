@@ -16,6 +16,7 @@ final class GenerateComponentLink
             ->append(config('powergrid-demo-github.repository_default_branch', ''))
             ->append('/' . path_to_namespace($component->path))
             ->replace('\\', '/')
+            ->replace('/App/Livewire/', '/app/Livewire/')
             ->replaceMatches('#(?<!:)/+#im', '/')
             ->toString();
     }
