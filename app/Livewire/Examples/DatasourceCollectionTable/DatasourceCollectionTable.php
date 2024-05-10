@@ -75,7 +75,6 @@ final class DatasourceCollectionTable extends PowerGridComponent
         return PowerGrid::fields()
             ->add('id')
             ->add('name')
-            ->add('chef_name')
             ->add('balance', fn ($item) => Number::currency($item->balance, in: 'BRL', locale: 'pt-BR'))
             ->add('is_online', fn ($item) => $item->is_online ? '✅' : '❌')
             ->add('created_at', fn ($item) => Carbon::parse($item->created_at))
