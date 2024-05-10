@@ -1,0 +1,1 @@
+This example demonstrates how to use a [Custom Field](https://livewire-powergrid.com/data-source-fields.html#custom-fields) to display an image.
