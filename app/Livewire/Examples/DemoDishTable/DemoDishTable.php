@@ -80,7 +80,7 @@ class DemoDishTable extends PowerGridComponent
             ->add('chef_name')
             ->add('dish_name', fn ($dish) => $dish->name)
             ->add('calories', fn ($dish) => $dish->calories . ' kcal')
-            ->add('preview', fn ($dish) => '<img class="w-12 h-12 shrink-0 grow-0 rounded-full" src="' . asset("images/dishes/{$dish->image}") . '">')
+            ->add('preview', fn ($dish) => '<img class="w-12 h-12 shrink-0 grow-0 rounded-full" src="' . asset("images/dishes/".e($dish->image)) . '">')
             ->add('category_id')
             ->add('category_name')
             ->add('price')
