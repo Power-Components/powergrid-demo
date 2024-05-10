@@ -2,12 +2,12 @@
 
 namespace App\Livewire\Examples\ResponsiveTable;
 
-use App\Livewire\Examples\DishTable\DishTable;
+use App\Livewire\Examples\DemoDishTable\DemoDishTable;
 use PowerComponents\LivewirePowerGrid\Footer;
 use PowerComponents\LivewirePowerGrid\Header;
 use PowerComponents\LivewirePowerGrid\Responsive;
 
-final class ResponsiveTable extends DishTable
+final class ResponsiveTable extends DemoDishTable
 {
     public function setUp(): array
     {

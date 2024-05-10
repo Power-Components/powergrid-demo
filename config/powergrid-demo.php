@@ -25,7 +25,7 @@ return [
         'collection'      => 'examples/collection',
         'custom-layout'   => 'examples/custom-layout',
         'detail'          => 'examples/detail',
-        'dishes'          => 'examples/dishes',
+        'dishes'          => 'examples/demo-dish',
         'export'          => 'examples/export',
         'filters-outside' => 'examples/filters-outside',
         'filters'         => 'examples/filters',
