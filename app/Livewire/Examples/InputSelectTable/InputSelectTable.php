@@ -52,7 +52,13 @@ class InputSelectTable extends PowerGridComponent
             ->add('price_in_eur', fn ($dish) => Number::currency($dish->price, in: 'EUR', locale: 'pt_PT'))
             ->add('in_stock', fn ($dish) => $dish->in_stock ? 'Yes' : 'No')
             ->add('created_at_formatted', fn ($dish) => Carbon::parse($dish->created_at)->format('d/m/Y'))
-            ->add('category_name', fn ($dish) => Blade::render('<x-select-category type="occurrence" :options=$options  :dishId=$dishId  :selected=$selected/>', ['options' => $options, 'dishId' => intval($dish->id), 'selected' => intval($dish->category_id)]));
+            ->add('category_name', function ($dish) use ($options) {
+                if (is_null($dish->category_id)) {
+                    dd($dish);
+                }
+
+                return Blade::render('<x-select-category type="occurrence" :options=$options  :dishId=$dishId  :selected=$selected/>', ['options' => $options, 'dishId' => intval($dish->id), 'selected' => intval($dish->category_id)]);
+            });
     }
 
     public function columns(): array
@@ -92,8 +98,8 @@ class InputSelectTable extends PowerGridComponent
         });
     }
 
-    #[On('change')]
-    public function categoryChanged(string $categoryId, string $dishId): void
+    #[On('categoryChanged')]
+    public function categoryChanged($categoryId, $dishId): void
     {
         dd("category Id: {$categoryId} for Dish id: {$dishId}");
     }

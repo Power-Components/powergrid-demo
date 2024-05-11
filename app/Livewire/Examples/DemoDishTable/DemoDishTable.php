@@ -13,15 +13,21 @@ use Illuminate\Support\Number;
 use Livewire\Attributes\On;
 use PowerComponents\LivewirePowerGrid\Button;
 use PowerComponents\LivewirePowerGrid\Column;
+use PowerComponents\LivewirePowerGrid\Detail;
+use PowerComponents\LivewirePowerGrid\Exportable;
+use PowerComponents\LivewirePowerGrid\Facades\Filter;
 use PowerComponents\LivewirePowerGrid\Facades\Rule;
 use PowerComponents\LivewirePowerGrid\Footer;
 use PowerComponents\LivewirePowerGrid\Header;
 use PowerComponents\LivewirePowerGrid\PowerGrid;
 use PowerComponents\LivewirePowerGrid\PowerGridComponent;
 use PowerComponents\LivewirePowerGrid\PowerGridFields;
+use PowerComponents\LivewirePowerGrid\Traits\WithExport;
 
 class DemoDishTable extends PowerGridComponent
 {
+    use WithExport;
+
     public bool $filtersOutside = false;
 
     public string $sortField = 'dishes.id';
@@ -31,6 +37,13 @@ class DemoDishTable extends PowerGridComponent
         $this->showCheckBox();
 
         return [
+            Exportable::make('export')
+                ->striped()
+                ->columnWidth([
+                    2 => 30,
+                ])
+                ->type(Exportable::TYPE_XLS, Exportable::TYPE_CSV),
+
             Header::make()
                 ->showToggleColumns()
                 ->showSearchInput(),
@@ -38,6 +51,10 @@ class DemoDishTable extends PowerGridComponent
             Footer::make()
                 ->showPerPage()
                 ->showRecordCount(),
+
+            Detail::make()
+                ->view('components.dish-detail')
+                ->showCollapseIcon(),
         ];
     }
 
@@ -78,8 +95,9 @@ class DemoDishTable extends PowerGridComponent
             ->add('id')
             ->add('serving_at')
             ->add('chef_name')
+            ->add('calories')
             ->add('dish_name', fn ($dish) => $dish->name)
-            ->add('calories', fn ($dish) => $dish->calories . ' kcal')
+            ->add('calories_formatted', fn ($dish) => $dish->calories . ' kcal')
             ->add('preview', fn ($dish) => '<div class="w-12 h-12"><img class="h-full w-full shrink-0 grow-0 rounded-full" src="' . asset('images/dishes/' . e($dish->image)) . '"></div>')
             ->add('category_id')
             ->add('category_name')
@@ -90,7 +108,10 @@ class DemoDishTable extends PowerGridComponent
             ->add('diet', fn ($dish) => Diet::from($dish->diet)->labels())
             ->add('produced_at')
             ->add('produced_at_formatted', fn ($dish) => Carbon::parse($dish->produced_at)->format('d/m/Y'))
-            ->add('category_name', fn ($dish) => Blade::render('<x-select-category type="occurrence" :options=$options  :dishId=$dishId  :selected=$selected/>', ['options' => $options, 'dishId' => intval($dish->id), 'selected' => intval($dish->category_id)]));
+            ->add('category_name', function ($dish) use ($options) {
+                return $dish->in_stock == false ? $dish->category_name :
+                 Blade::render('<x-select-category type="occurrence" :options=$options  :dishId=$dishId  :selected=$selected/>', ['options' => $options, 'dishId' => intval($dish->id), 'selected' => intval($dish->category_id)]);
+            });
     }
 
     public function columns(): array
@@ -103,7 +124,8 @@ class DemoDishTable extends PowerGridComponent
                 ->searchable()
                 ->sortable(),
 
-            Column::make('', 'preview'),
+            Column::make('', 'preview')
+                ->visibleInExport(visible: false),
 
             Column::add()
                 ->title('Dish')
@@ -119,26 +141,31 @@ class DemoDishTable extends PowerGridComponent
 
             Column::add()
                 ->title('Category')
+                ->visibleInExport(visible: false)
+
                 ->field('category_name', 'categories.name')
                 ->placeholder('Category placeholder'),
 
             Column::make('Price', 'price_in_eur', 'price')
+                ->visibleInExport(visible: false)
+
                 ->editOnClick(hasPermission: true, dataField: 'price_in_eur'),
 
             Column::add()
                 ->title('Calories')
-                ->field('calories')
+                ->field('calories_formatted', 'calories')
+                ->visibleInExport(visible: false)
                 ->sortable(),
+
+            Column::add()
+                ->title('Production date')
+                ->field('produced_at_formatted'),
 
             Column::add()
                 ->title('In Stock')
                 ->field('in_stock')
                 ->toggleable(hasPermission: true, trueLabel: 'yes', falseLabel: 'no')
                 ->sortable(),
-
-            Column::add()
-                ->title('Production date')
-                ->field('produced_at_formatted'),
 
             Column::action('Action')
                 ->fixedOnResponsive(),
@@ -148,33 +175,49 @@ class DemoDishTable extends PowerGridComponent
     public function actions($dish): array
     {
         return [
-            Button::add('edit-stock')
-                ->slot('edit')
+            Button::add('order-now')
+                ->slot('order now')
                 ->class('bg-blue-500 text-white font-bold py-2 px-2 rounded')
-                ->openModal('edit-stock', ['dishId' => $dish->id]),
+                ->openModal('order-now', ['dishId' => $dish->id]),
         ];
     }
 
     public function actionRules(): array
     {
         return [
-
-            Rule::button('edit')
-                ->when(fn ($dish) => $dish->id == 2)
-                ->setAttribute('class', 'bg-green-200')
-                ->setAttribute('wire:click', ['test', ['param1' => 1, 'dishId' => 'id']]),
+            Rule::button('order-now')
+                ->when(fn ($dish) => $dish->in_stock == false)
+                ->slot('- not in stock -')
+                ->setAttribute('class', '!bg-blue-100')
+                ->disable(),
 
             Rule::button('destroy')
                 ->when(fn ($dish) => $dish->id == 1)
                 ->slot('Delete #1'),
 
             Rule::checkbox()
-                ->when(fn ($dish) => $dish->id == 2)
+                ->when(fn ($dish) => $dish->in_stock == false)
                 ->hide(),
 
             Rule::rows()
                 ->when(fn ($dish) => $dish->in_stock == false)
-                ->setAttribute('class', 'bg-yellow-50 hover:bg-yellow-100'),
+                ->setAttribute('class', 'bg-red-50 hover:bg-red-100'),
+        ];
+    }
+
+    public function filters(): array
+    {
+        return [
+            Filter::inputText('dish_name', 'dishes.name')->placeholder('Dish Name'),
+
+            Filter::boolean('in_stock', 'in_stock')
+                ->label('In Stock', 'Out of Stock'),
+
+            Filter::number('price_BRL', 'price')
+                ->thousands('.')
+                ->decimal(',')
+                ->placeholder('lowest', 'highest'),
+
         ];
     }
 
@@ -184,7 +227,7 @@ class DemoDishTable extends PowerGridComponent
             $field => $value,
         ]);
 
-        $this->skipRender();
+        //$this->skipRender();
     }
 
     #[On('openModal')]
@@ -201,6 +244,13 @@ class DemoDishTable extends PowerGridComponent
             'confirmationTitle'       => 'Delete dish',
             'confirmationDescription' => 'Are you sure you want to delete this dish?',
         ]);
+    }
+
+    public function summarizeFormat(): array
+    {
+        return [
+            'calories.{avg}' => fn ($value) => Number::format($value, locale: 'br', precision: 2) . ' kcal',
+        ];
     }
 
     public function categorySelectOptions(): Collection
