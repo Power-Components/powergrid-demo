@@ -226,8 +226,12 @@ class DemoDishTable extends PowerGridComponent
         Dish::query()->where('id', $id)->update([
             $field => $value,
         ]);
+    }
 
-        //$this->skipRender();
+    #[On('categoryChanged')]
+    public function categoryChanged($categoryId, $dishId): void
+    {
+        dd("category Id: {$categoryId} for Dish id: {$dishId}");
     }
 
     #[On('openModal')]
