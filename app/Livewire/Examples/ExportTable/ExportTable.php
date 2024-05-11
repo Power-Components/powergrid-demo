@@ -78,7 +78,6 @@ final class ExportTable extends PowerGridComponent
 
             //Displayed on the grid, but no in the exported file
             Column::make('Name', 'link', 'name')
-                ->searchable()
                 ->visibleInExport(visible: true)
                 ->sortable(),
 
@@ -86,8 +85,7 @@ final class ExportTable extends PowerGridComponent
             Column::make('Name', 'name')
                 ->searchable()
                 ->hidden()
-                ->visibleInExport(visible: true)
-                ->sortable(),
+                ->visibleInExport(visible: true),
 
             Column::make('Chef', 'chef_name', 'dishes.chef_name')
                 ->searchable()
