@@ -4,7 +4,6 @@ namespace App\Livewire\Examples\FiltersInlineTable;
 
 use App\Enums\Diet;
 use App\Models\Category;
-use App\Models\Chef;
 use App\Models\Dish;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Carbon;
@@ -162,22 +161,6 @@ class FiltersInlineTable extends PowerGridComponent
                 ->optionLabel('name')
                 ->optionValue('id'),
 
-            Filter::select('chef_name', 'chef_id')
-                ->depends(['category_id'])
-                ->dataSource(
-                    fn ($depends) => Chef::query()
-                        ->when(
-                            isset($depends['category_id']),
-                            fn (Builder $query) => $query->whereRelation(
-                                'categories',
-                                fn (Builder $builder) => $builder->where('id', $depends['category_id'])
-                            )
-                        )
-                        ->get()
-                )
-                ->optionLabel('name')
-                ->optionValue('id'),
-
             Filter::number('price_BRL', 'price')
                 ->thousands('.')
                 ->decimal(',')
@@ -187,17 +170,6 @@ class FiltersInlineTable extends PowerGridComponent
                 ->params([
                     'timezone' => 'America/Sao_Paulo',
                 ]),
-            /*
-            Filter::dynamic('category_name', 'category_id')
-                ->component('select')
-                ->attributes([
-                    'async-data'      => route('category.index'),
-                    'option-label'    => 'name',
-                    'multiselect'     => false,
-                    'option-value'    => 'id',
-                    'wire:model.blur' => 'filters.select.category_id',
-                ]),
-            */
         ];
     }
 }
