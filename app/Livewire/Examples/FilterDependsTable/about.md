@@ -1,0 +1,1 @@
+This example demonstrates the implementation of a [Interdependent Filter](https://livewire-powergrid.com/table-features/filters.html#interdependent-filters).
