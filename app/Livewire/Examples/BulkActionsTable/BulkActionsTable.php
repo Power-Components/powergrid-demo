@@ -122,7 +122,7 @@ final class BulkActionsTable extends PowerGridComponent
 
             Column::add()
                 ->title('Category')
-                ->field('category.name')
+                ->field('category_name')
                 ->placeholder('Category placeholder')
                 ->sortable(),
 
@@ -148,7 +148,7 @@ final class BulkActionsTable extends PowerGridComponent
 
             Column::add()
                 ->title('Kitchen')
-                ->field('kitchen.description')
+                ->field('kitchen.description', 'kitchens.description')
                 ->sortable(),
 
             Column::add()
