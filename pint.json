@@ -1,7 +1,8 @@
 {
   "preset": "laravel",
   "exclude": [
-    "_packages"
+    "_packages",
+    "database/migrations/2024_05_12_125404_create_states_table.php"
   ],
   "rules": {
     "single_space_after_construct": true,
