@@ -13,19 +13,9 @@ use PowerComponents\LivewirePowerGrid\PowerGridFields;
 
 class FilterDynamicTable extends PowerGridComponent
 {
-    public int $categoryId = 0;
-
-    protected function queryString()
-    {
-        return $this->powerGridQueryString();
-    }
-
     public function setUp(): array
     {
-        $this->showCheckBox('id');
-
         return [
-
             Footer::make()
                 ->showPerPage()
                 ->showRecordCount(),
@@ -34,25 +24,13 @@ class FilterDynamicTable extends PowerGridComponent
 
     public function datasource(): Builder
     {
-        return Dish::query()
-            ->when(
-                $this->categoryId,
-                fn ($builder) => $builder->whereHas(
-                    'category',
-                    fn ($builder) => $builder->where('category_id', $this->categoryId)
-                )
-                    ->with(['category', 'kitchen'])
-            );
+        return Dish::with(['category', 'kitchen']);
     }
 
     public function relationSearch(): array
     {
         return [
             'category' => [
-                'name',
-            ],
-
-            'chef' => [
                 'name',
             ],
         ];
@@ -94,6 +72,7 @@ class FilterDynamicTable extends PowerGridComponent
                     'multiselect'     => false,
                     'option-value'    => 'id',
                     'wire:model.blur' => 'filters.select.category_id',
+                    'placeholder'     => 'Select a category',
                 ]),
         ];
     }
