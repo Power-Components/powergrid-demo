@@ -2,14 +2,14 @@
 
 namespace App\Livewire\Examples\FiltersOutsideTable;
 
-use App\Livewire\Examples\FiltersInLineTable\FiltersInLineTable;
+use App\Livewire\Examples\FiltersInlineTable\FiltersInlineTable;
 use App\Models\Dish;
 use Illuminate\Database\Eloquent\Builder;
 use PowerComponents\LivewirePowerGrid\Exportable;
 use PowerComponents\LivewirePowerGrid\Footer;
 use PowerComponents\LivewirePowerGrid\Header;
 
-final class FiltersOutsideTable extends FiltersInLineTable
+final class FiltersOutsideTable extends FiltersInlineTable
 {
     public bool $showFilters = true;
 
