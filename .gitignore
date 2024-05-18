@@ -19,8 +19,6 @@ yarn-error.log
 /.vscode
 /storage/*.xlsx
 _ide_helper.php
-composer.lock
-
 /caddy
 frankenphp
 frankenphp-worker.php
