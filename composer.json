@@ -21,10 +21,10 @@
         "power-components/livewire-powergrid": "5.x-dev",
         "predis/predis": "^2.2.2",
         "torchlight/torchlight-laravel": "*",
-        "wireui/wireui": "^1.19"
+        "wireui/wireui": "^1.19",
+        "fakerphp/faker": "^1.23"
     },
     "require-dev": {
-        "fakerphp/faker": "^1.23",
         "laradumps/laradumps": "^3.0",
         "laravel/pint": "^1.13",
         "laravel/sail": "^1.26",
