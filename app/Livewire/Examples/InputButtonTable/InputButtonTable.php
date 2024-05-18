@@ -78,7 +78,7 @@ class InputButtonTable extends PowerGridComponent
         return [
             Button::add('edit')
                 ->slot("&#9889; Edit {$row->name}")
-                ->class('bg-indigo-500 rounded-md cursor-pointer text-white px-3 py-2 m-1 text-sm')
+                ->class('bg-blue-500 text-white font-bold py-2 px-2 rounded')
                 ->dispatch('clickToEdit', ['dishId' => $row->id, 'dishName' => $row->name]),
         ];
     }

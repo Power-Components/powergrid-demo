@@ -75,7 +75,7 @@ final class DetailTable extends PowerGridComponent
         return [
             Button::add('detail')
                 ->slot('Detail')
-                ->class('bg-indigo-500 rounded-md cursor-pointer text-white px-3 py-2 m-1 text-sm')
+                ->class('bg-blue-500 text-white font-bold py-2 px-2 rounded')
                 ->toggleDetail(),
         ];
     }

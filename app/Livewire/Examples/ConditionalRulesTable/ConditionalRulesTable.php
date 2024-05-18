@@ -86,7 +86,8 @@ class ConditionalRulesTable extends PowerGridComponent
     {
         return [
             Button::add('edit')
-                ->slot("Click to edit <strong>{$row->name}</strong>")
+                ->slot("edit <strong>{$row->name}</strong>")
+                ->class('bg-blue-500 text-white font-bold py-2 px-2 rounded')
                 ->dispatch('clickToEdit', ['dishId' => $row->id, 'dishName' => $row->name]),
         ];
     }

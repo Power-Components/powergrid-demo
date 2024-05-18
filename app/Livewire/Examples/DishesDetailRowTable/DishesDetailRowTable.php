@@ -78,7 +78,7 @@ class DishesDetailRowTable extends PowerGridComponent
     {
         return [
             Button::make('toggleDetail', 'Click to Toggle Detail')
-                ->class('text-center')
+                ->class('bg-blue-500 text-white font-bold py-2 px-2 rounded')
                 ->toggleDetail(),
         ];
     }
