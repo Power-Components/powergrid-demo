@@ -18,7 +18,7 @@
         "mews/purifier": "^3.4.2",
         "openspout/openspout": "^4.23",
         "picqer/php-barcode-generator": "^2.4",
-        "power-components/livewire-powergrid": "5.x-dev",
+        "power-components/livewire-powergrid": "^5.6"
         "predis/predis": "^2.2.2",
         "torchlight/torchlight-laravel": "*",
         "wireui/wireui": "^1.19",
@@ -83,6 +83,6 @@
             "php-http/discovery": true
         }
     },
-    "minimum-stability": "dev",
+    "minimum-stability": "stable",
     "prefer-stable": true
 }
