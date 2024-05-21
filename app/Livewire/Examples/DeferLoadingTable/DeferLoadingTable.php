@@ -27,7 +27,6 @@ final class DeferLoadingTable extends PowerGridComponent
                 ->showSearchInput(),
 
             Footer::make()
-                ->showPerPage()
                 ->showRecordCount(),
         ];
     }
