@@ -114,14 +114,14 @@ class FiltersInlineTable extends PowerGridComponent
                 ->field('calories_formatted', 'calories')
                 ->sortable(),
 
-            Column::make('Category', 'category_name'),
+            Column::make('Category', 'category_name', 'category_id'),
 
             Column::make('Chef', 'chef_name')
                 ->searchable(),
 
             Column::add()
                 ->title('Price')
-                ->field('price_BRL'),
+                ->field('price_BRL', 'price'),
 
             Column::make('Diet', 'diet', 'dishes.diet'),
 

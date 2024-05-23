@@ -66,14 +66,14 @@ class BeforesearchHookTable extends PowerGridComponent
     public function beforeSearch(?string $field = null, ?string $search = null): ?string
     {
         if ($field === 'in_stock') {
-            $search = match (strtolower(trim($search))) {
-                'available'   => '1',
+            return match (strtolower(trim($search))) {
                 'unavailable' => '0',
+                'available'   => '1',
                 default       => $search,
             };
         }
 
-        if ($field === 'price') {
+        if ($field === 'price' && preg_match('/(\d{1,3}(\ \d{3})*|(\d+))(\,\d{2})/', $search)) {
             $parsedCurrency = (new \NumberFormatter('pt-PT', \NumberFormatter::CURRENCY))
                 ->parse(preg_replace('/\s+/', "\u{A0}", $search));
 
