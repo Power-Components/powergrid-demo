@@ -11,9 +11,8 @@ return [
     | Configure here the theme of your choice.
     */
 
-    //'theme' => \PowerComponents\LivewirePowerGrid\Themes\Tailwind::class,
+    'theme' => \PowerComponents\LivewirePowerGrid\Themes\Tailwind::class,
     //'theme' => \PowerComponents\LivewirePowerGrid\Themes\Bootstrap5::class,
-    'theme' => \App\Helpers\PowerGridThemes\Tailwind::class,
 
     /*
     |--------------------------------------------------------------------------

@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "fd1294c993cabb976b4766dbef634c67",
+    "content-hash": "8d6897eaed0faed10b219a8ac0fa29b4",
     "packages": [
         {
             "name": "brick/math",
@@ -2851,16 +2851,16 @@
         },
         {
             "name": "power-components/livewire-powergrid",
-            "version": "v5.6.4",
+            "version": "5.x-dev",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Power-Components/livewire-powergrid.git",
-                "reference": "8499b461032447a905152fc6af9b422a83e9dc10"
+                "reference": "7b187b81c8009bcb2ea924343d912ca965cc778e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Power-Components/livewire-powergrid/zipball/8499b461032447a905152fc6af9b422a83e9dc10",
-                "reference": "8499b461032447a905152fc6af9b422a83e9dc10",
+                "url": "https://api.github.com/repos/Power-Components/livewire-powergrid/zipball/7b187b81c8009bcb2ea924343d912ca965cc778e",
+                "reference": "7b187b81c8009bcb2ea924343d912ca965cc778e",
                 "shasum": ""
             },
             "require": {
@@ -2883,6 +2883,7 @@
             "suggest": {
                 "openspout/openspout": "Required to export XLS and CSV"
             },
+            "default-branch": true,
             "type": "library",
             "extra": {
                 "laravel": {
@@ -2919,7 +2920,7 @@
             "homepage": "https://github.com/power-components/livewire-powergrid",
             "support": {
                 "issues": "https://github.com/Power-Components/livewire-powergrid/issues",
-                "source": "https://github.com/Power-Components/livewire-powergrid/tree/v5.6.4"
+                "source": "https://github.com/Power-Components/livewire-powergrid/tree/5.x"
             },
             "funding": [
                 {
@@ -2927,7 +2928,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2024-05-20T19:12:08+00:00"
+            "time": "2024-05-24T22:52:36+00:00"
         },
         {
             "name": "predis/predis",
@@ -6337,16 +6338,16 @@
         },
         {
             "name": "wireui/wireui",
-            "version": "v1.19.0",
+            "version": "v1.19.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/wireui/wireui.git",
-                "reference": "d50d5e8d5f8d8d610701f6f638accb8d21398bbb"
+                "reference": "6995c73738b8bb811939ab5e1903cc26283083cd"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/wireui/wireui/zipball/d50d5e8d5f8d8d610701f6f638accb8d21398bbb",
-                "reference": "d50d5e8d5f8d8d610701f6f638accb8d21398bbb",
+                "url": "https://api.github.com/repos/wireui/wireui/zipball/6995c73738b8bb811939ab5e1903cc26283083cd",
+                "reference": "6995c73738b8bb811939ab5e1903cc26283083cd",
                 "shasum": ""
             },
             "require": {
@@ -6397,15 +6398,9 @@
             ],
             "support": {
                 "issues": "https://github.com/wireui/wireui/issues",
-                "source": "https://github.com/wireui/wireui/tree/v1.19.0"
+                "source": "https://github.com/wireui/wireui/tree/v1.19.1"
             },
-            "funding": [
-                {
-                    "url": "https://github.com/PH7-Jack",
-                    "type": "github"
-                }
-            ],
-            "time": "2024-03-13T13:34:59+00:00"
+            "time": "2024-05-24T20:06:47+00:00"
         }
     ],
     "packages-dev": [
@@ -9792,7 +9787,9 @@
     ],
     "aliases": [],
     "minimum-stability": "dev",
-    "stability-flags": [],
+    "stability-flags": {
+        "power-components/livewire-powergrid": 20
+    },
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {

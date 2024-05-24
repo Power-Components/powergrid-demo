@@ -13,16 +13,16 @@
     ],
     "require": {
         "php": "^8.2",
+        "fakerphp/faker": "^1.23",
         "laravel/framework": "^11.0",
         "laravel/tinker": "^2.9",
         "mews/purifier": "^3.4.2",
         "openspout/openspout": "^4.23",
         "picqer/php-barcode-generator": "^2.4",
-        "power-components/livewire-powergrid": "^5.6",
+        "power-components/livewire-powergrid": "5.x-dev",
         "predis/predis": "^2.2.2",
         "torchlight/torchlight-laravel": "*",
-        "wireui/wireui": "^1.19",
-        "fakerphp/faker": "^1.23"
+        "wireui/wireui": "^1.19"
     },
     "require-dev": {
         "laradumps/laradumps": "^3.0",
