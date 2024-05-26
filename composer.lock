@@ -2196,16 +2196,16 @@
         },
         {
             "name": "nesbot/carbon",
-            "version": "3.3.1",
+            "version": "3.4.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/briannesbitt/Carbon.git",
-                "reference": "8ff64b92c1b1ec84fcde9f8bb9ff2ca34cb8a77a"
+                "reference": "8eab8983c83c30e0bacbef8d311e3f3b8172727f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/briannesbitt/Carbon/zipball/8ff64b92c1b1ec84fcde9f8bb9ff2ca34cb8a77a",
-                "reference": "8ff64b92c1b1ec84fcde9f8bb9ff2ca34cb8a77a",
+                "url": "https://api.github.com/repos/briannesbitt/Carbon/zipball/8eab8983c83c30e0bacbef8d311e3f3b8172727f",
+                "reference": "8eab8983c83c30e0bacbef8d311e3f3b8172727f",
                 "shasum": ""
             },
             "require": {
@@ -2298,7 +2298,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2024-05-01T06:54:22+00:00"
+            "time": "2024-05-24T14:26:34+00:00"
         },
         {
             "name": "nette/schema",
@@ -2855,12 +2855,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Power-Components/livewire-powergrid.git",
-                "reference": "7b187b81c8009bcb2ea924343d912ca965cc778e"
+                "reference": "52ab655493f38296336dcd0c0b9bc36e158cb2c4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Power-Components/livewire-powergrid/zipball/7b187b81c8009bcb2ea924343d912ca965cc778e",
-                "reference": "7b187b81c8009bcb2ea924343d912ca965cc778e",
+                "url": "https://api.github.com/repos/Power-Components/livewire-powergrid/zipball/52ab655493f38296336dcd0c0b9bc36e158cb2c4",
+                "reference": "52ab655493f38296336dcd0c0b9bc36e158cb2c4",
                 "shasum": ""
             },
             "require": {
@@ -2928,7 +2928,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2024-05-24T22:52:36+00:00"
+            "time": "2024-05-26T14:11:33+00:00"
         },
         {
             "name": "predis/predis",
