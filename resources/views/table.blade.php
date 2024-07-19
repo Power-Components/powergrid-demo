@@ -23,12 +23,6 @@
                     Source Code
                 </a>
             </li>
-            <li @click="openTab = 3" :class="{ '-mb-px': openTab === 3 }" class="mr-1">
-                <a href="#" :class="openTab === 3 ? activeClasses : inactiveClasses"
-                    class="bg-white dark:bg-pg-primary-900 dark:text-pg-primary-200 inline-block py-2 px-4 font-semibold">
-                    Details
-                </a>
-            </li>
         </ul>
         <div class="w-full py-3">
             <div x-cloak x-show="openTab === 1">
@@ -39,10 +33,6 @@
             </div>
             <div x-cloak x-show="openTab === 2">
                 <x-code :example="$component" />
-            </div>
-            <div x-cloak x-show="openTab === 3" class="dark:text-pg-primary-300">
-                <p>Here you can find all relevant packages installed on this demo.</p>
-                <livewire:installed-packages-table :packages="$component->packages()" />
             </div>
         </div>
     </div>
