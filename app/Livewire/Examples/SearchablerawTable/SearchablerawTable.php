@@ -49,13 +49,13 @@ final class SearchablerawTable extends PowerGridComponent
         return [
             Column::add()
                 ->title('ID')
-                ->field('id', 'dishes.id')
+                ->field('id', 'id')
                 ->searchable()
                 ->sortable(),
 
             Column::add()
                 ->title('Dish')
-                ->field('dish_name', 'dishes.name')
+                ->field('dish_name', )
                 ->searchable()
                 ->sortable(),
 

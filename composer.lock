@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "18c681f57da6c7982f687b475b1a72a1",
+    "content-hash": "727faf05bb464d2aed2d5133f05af0bd",
     "packages": [
         {
             "name": "brick/math",
@@ -2852,25 +2852,16 @@
         },
         {
             "name": "power-components/livewire-powergrid",
-            "version": "5.x-dev",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/Power-Components/livewire-powergrid.git",
-                "reference": "d9ff65d2cb1b43a85310ca16ceafaf9f108bcf4b"
-            },
+            "version": "6.x-dev",
             "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/Power-Components/livewire-powergrid/zipball/d9ff65d2cb1b43a85310ca16ceafaf9f108bcf4b",
-                "reference": "d9ff65d2cb1b43a85310ca16ceafaf9f108bcf4b",
-                "shasum": ""
+                "type": "path",
+                "url": "/Users/luan.freitas/Documents/powergrid-5x",
+                "reference": "918d72d7010a409936d2abbf93a7a2cf8ea04109"
             },
             "require": {
                 "laravel/prompts": "^0.1.15",
-                "livewire/livewire": "^3.4.6",
-                "php": "^8.1"
-            },
-            "conflict": {
-                "laravel/framework": "10.40.0"
+                "livewire/livewire": "^3.5.0",
+                "php": "^8.2"
             },
             "require-dev": {
                 "composer/composer": "^2.7.1",
@@ -2879,13 +2870,12 @@
                 "larastan/larastan": "^2.9.0",
                 "laravel/pint": "^1.14.0",
                 "laravel/scout": "^10.9",
-                "orchestra/testbench": "8.19|^9.0",
+                "orchestra/testbench": "^9.0",
                 "pestphp/pest": "^2.34.0"
             },
             "suggest": {
                 "openspout/openspout": "Required to export XLS and CSV"
             },
-            "default-branch": true,
             "type": "library",
             "extra": {
                 "laravel": {
@@ -2895,14 +2885,64 @@
                 }
             },
             "autoload": {
-                "files": [
-                    "src/functions.php"
-                ],
                 "psr-4": {
                     "PowerComponents\\LivewirePowerGrid\\": "src"
-                }
+                },
+                "files": [
+                    "src/functions.php"
+                ]
             },
-            "notification-url": "https://packagist.org/downloads/",
+            "autoload-dev": {
+                "psr-4": {
+                    "PowerComponents\\LivewirePowerGrid\\Tests\\": "tests"
+                },
+                "files": [
+                    "tests/Plugins/Autoload.php"
+                ]
+            },
+            "scripts": {
+                "pint:fix": [
+                    "./vendor/bin/pint"
+                ],
+                "test": [
+                    "@test:sqlite"
+                ],
+                "test:pint": [
+                    "./vendor/bin/pint --test"
+                ],
+                "test:sqlite": [
+                    "./vendor/bin/pest --compact"
+                ],
+                "test:mysql": [
+                    "./vendor/bin/pest --compact --configuration phpunit.mysql.xml"
+                ],
+                "test:pgsql": [
+                    "./vendor/bin/pest --compact --configuration phpunit.pgsql.xml"
+                ],
+                "test:sqlsrv": [
+                    "./vendor/bin/pest --configuration phpunit.sqlsrv.xml"
+                ],
+                "test:typesense": [
+                    "curl http://localhost:8108/health"
+                ],
+                "test:types": [
+                    "./vendor/bin/phpstan analyse --ansi --memory-limit=-1"
+                ],
+                "test:dbs": [
+                    "@test:sqlite",
+                    "@test:mysql",
+                    "@test:pgsql"
+                ],
+                "ds:check": [
+                    "@php vendor/bin/laradumps check --dir=src,resources,tests --text=dump,dd --ignore=dumpTo,Dump stop-on-failure"
+                ],
+                "verify": [
+                    "@ds:check",
+                    "@test:pint",
+                    "@test:types",
+                    "@test"
+                ]
+            },
             "license": [
                 "MIT"
             ],
@@ -2920,17 +2960,9 @@
             ],
             "description": "PowerGrid generates Advanced Datatables using Laravel Livewire.",
             "homepage": "https://github.com/power-components/livewire-powergrid",
-            "support": {
-                "issues": "https://github.com/Power-Components/livewire-powergrid/issues",
-                "source": "https://github.com/Power-Components/livewire-powergrid/tree/v5.9.0"
-            },
-            "funding": [
-                {
-                    "url": "https://github.com/luanfreitasdev",
-                    "type": "github"
-                }
-            ],
-            "time": "2024-07-04T18:08:29+00:00"
+            "transport-options": {
+                "relative": false
+            }
         },
         {
             "name": "predis/predis",
@@ -6475,6 +6507,90 @@
     ],
     "packages-dev": [
         {
+            "name": "barryvdh/laravel-debugbar",
+            "version": "v3.13.5",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/barryvdh/laravel-debugbar.git",
+                "reference": "92d86be45ee54edff735e46856f64f14b6a8bb07"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/barryvdh/laravel-debugbar/zipball/92d86be45ee54edff735e46856f64f14b6a8bb07",
+                "reference": "92d86be45ee54edff735e46856f64f14b6a8bb07",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/routing": "^9|^10|^11",
+                "illuminate/session": "^9|^10|^11",
+                "illuminate/support": "^9|^10|^11",
+                "maximebf/debugbar": "~1.22.0",
+                "php": "^8.0",
+                "symfony/finder": "^6|^7"
+            },
+            "require-dev": {
+                "mockery/mockery": "^1.3.3",
+                "orchestra/testbench-dusk": "^5|^6|^7|^8|^9",
+                "phpunit/phpunit": "^9.6|^10.5",
+                "squizlabs/php_codesniffer": "^3.5"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "3.13-dev"
+                },
+                "laravel": {
+                    "providers": [
+                        "Barryvdh\\Debugbar\\ServiceProvider"
+                    ],
+                    "aliases": {
+                        "Debugbar": "Barryvdh\\Debugbar\\Facades\\Debugbar"
+                    }
+                }
+            },
+            "autoload": {
+                "files": [
+                    "src/helpers.php"
+                ],
+                "psr-4": {
+                    "Barryvdh\\Debugbar\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Barry vd. Heuvel",
+                    "email": "barryvdh@gmail.com"
+                }
+            ],
+            "description": "PHP Debugbar integration for Laravel",
+            "keywords": [
+                "debug",
+                "debugbar",
+                "laravel",
+                "profiler",
+                "webprofiler"
+            ],
+            "support": {
+                "issues": "https://github.com/barryvdh/laravel-debugbar/issues",
+                "source": "https://github.com/barryvdh/laravel-debugbar/tree/v3.13.5"
+            },
+            "funding": [
+                {
+                    "url": "https://fruitcake.nl",
+                    "type": "custom"
+                },
+                {
+                    "url": "https://github.com/barryvdh",
+                    "type": "github"
+                }
+            ],
+            "time": "2024-04-12T11:20:37+00:00"
+        },
+        {
             "name": "brianium/paratest",
             "version": "v7.4.3",
             "source": {
@@ -7126,6 +7242,74 @@
                 "source": "https://github.com/laravel/sail"
             },
             "time": "2024-07-05T16:01:51+00:00"
+        },
+        {
+            "name": "maximebf/debugbar",
+            "version": "v1.22.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/maximebf/php-debugbar.git",
+                "reference": "7aa9a27a0b1158ed5ad4e7175e8d3aee9a818b96"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/maximebf/php-debugbar/zipball/7aa9a27a0b1158ed5ad4e7175e8d3aee9a818b96",
+                "reference": "7aa9a27a0b1158ed5ad4e7175e8d3aee9a818b96",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^7.2|^8",
+                "psr/log": "^1|^2|^3",
+                "symfony/var-dumper": "^4|^5|^6|^7"
+            },
+            "require-dev": {
+                "dbrekelmans/bdi": "^1",
+                "phpunit/phpunit": "^8|^9",
+                "symfony/panther": "^1|^2.1",
+                "twig/twig": "^1.38|^2.7|^3.0"
+            },
+            "suggest": {
+                "kriswallsmith/assetic": "The best way to manage assets",
+                "monolog/monolog": "Log using Monolog",
+                "predis/predis": "Redis storage"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.22-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "DebugBar\\": "src/DebugBar/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Maxime Bouroumeau-Fuseau",
+                    "email": "maxime.bouroumeau@gmail.com",
+                    "homepage": "http://maximebf.com"
+                },
+                {
+                    "name": "Barry vd. Heuvel",
+                    "email": "barryvdh@gmail.com"
+                }
+            ],
+            "description": "Debug bar in the browser for php application",
+            "homepage": "https://github.com/maximebf/php-debugbar",
+            "keywords": [
+                "debug",
+                "debugbar"
+            ],
+            "support": {
+                "issues": "https://github.com/maximebf/php-debugbar/issues",
+                "source": "https://github.com/maximebf/php-debugbar/tree/v1.22.3"
+            },
+            "time": "2024-04-03T19:39:26+00:00"
         },
         {
             "name": "mockery/mockery",

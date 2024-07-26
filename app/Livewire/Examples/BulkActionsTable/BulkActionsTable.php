@@ -19,6 +19,8 @@ use PowerComponents\LivewirePowerGrid\PowerGridFields;
 
 final class BulkActionsTable extends PowerGridComponent
 {
+    public ?string $primaryKeyAlias = 'id';
+
     public string $sortField = 'dishes.id';
 
     public function setUp(): array
@@ -73,18 +75,7 @@ final class BulkActionsTable extends PowerGridComponent
     {
         return PowerGrid::fields()
             ->add('id')
-            ->add('serving_at')
-            ->add('chef_name', fn ($dish) => e($dish->chef?->name))
-            ->add('dish_name', fn ($dish) => e($dish->name))
-            ->add('calories', fn ($dish) => e($dish->calories) . ' kcal')
-            ->add('category_id', fn ($dish) => intval($dish->category_id))
-            ->add('category.name')
-            ->add('kitchen_id', fn ($dish) => intval($dish->kitchen_id))
-            ->add('kitchen.description')
-            ->add('price')
-            ->add('price_BRL', fn ($dish) => Number::currency($dish->price, in: 'BRL'))
-            ->add('sales_price')
-            ->add('sales_price_BRL', fn ($dish) => Number::currency($dish->price + ($dish->price * 0.15), in: 'BRL'))
+            ->add('name')
             ->add('in_stock')
             ->add('in_stock_label', fn ($dish) => $dish->in_stock ? 'Yes' : 'No')
             ->add('diet', fn ($dish) => Diet::from($dish->diet)->labels())
@@ -97,7 +88,7 @@ final class BulkActionsTable extends PowerGridComponent
         return [
             Column::add()
                 ->title('ID')
-                ->field('id', 'dishes.id')
+                ->field('id')
                 ->searchable()
                 ->sortable(),
 
@@ -110,45 +101,9 @@ final class BulkActionsTable extends PowerGridComponent
                 ->sortable(),
 
             Column::add()
-                ->title('Chef')
-                ->field('chef_name', 'chefs.name')
-                ->searchable()
-                ->placeholder('Chef placeholder')
-                ->sortable(),
-
-            Column::add()
-                ->field('diet', 'dishes.diet')
-                ->title('Diet'),
-
-            Column::add()
-                ->title('Category')
-                ->field('category_name')
-                ->placeholder('Category placeholder')
-                ->sortable(),
-
-            Column::add()
-                ->title('Price')
-                ->field('price')
-                ->editOnClick(hasPermission: true),
-
-            Column::add()
-                ->title('Sales price')
-                ->field('sales_price_BRL'),
-
-            Column::add()
-                ->title('Calories')
-                ->field('calories')
-                ->sortable(),
-
-            Column::add()
                 ->title('In Stock')
                 ->field('in_stock')
                 ->toggleable(hasPermission: true, trueLabel: 'yes', falseLabel: 'no')
-                ->sortable(),
-
-            Column::add()
-                ->title('Kitchen')
-                ->field('kitchen.description', 'kitchens.description')
                 ->sortable(),
 
             Column::add()

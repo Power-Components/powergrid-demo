@@ -6,6 +6,7 @@ use App\Models\Dish;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Number;
+use Livewire\Attributes\Lazy;
 use Livewire\Attributes\On;
 use PowerComponents\LivewirePowerGrid\Button;
 use PowerComponents\LivewirePowerGrid\Column;
@@ -15,6 +16,7 @@ use PowerComponents\LivewirePowerGrid\PowerGrid;
 use PowerComponents\LivewirePowerGrid\PowerGridComponent;
 use PowerComponents\LivewirePowerGrid\PowerGridFields;
 
+#[Lazy]
 class InputButtonTable extends PowerGridComponent
 {
     public function setUp(): array
@@ -24,7 +26,7 @@ class InputButtonTable extends PowerGridComponent
                 ->showSearchInput(),
 
             Footer::make()
-                ->showPerPage()
+                ->showPerPage(100)
                 ->showRecordCount(),
         ];
     }
@@ -55,6 +57,7 @@ class InputButtonTable extends PowerGridComponent
                 ->sortable(),
 
             Column::make('Name', 'name')
+
                 ->bodyAttribute('!text-wrap') // <--- Must add "!" to override style
                 ->searchable()
                 ->sortable(),
@@ -73,12 +76,13 @@ class InputButtonTable extends PowerGridComponent
         ];
     }
 
-    public function actions(Dish $row): array
+    public function actions($row): array
     {
         return [
             Button::add('edit')
-                ->slot("&#9889; Edit {$row->name}")
-                ->class('bg-blue-500 text-white font-bold py-2 px-2 rounded')
+                ->icon('pause')
+                ->slot("Edit {$row->name}")
+                ->class('bg-blue-500 flex gap-3 text-white font-bold py-2 px-2 rounded')
                 ->dispatch('clickToEdit', ['dishId' => $row->id, 'dishName' => $row->name]),
         ];
     }

@@ -13,6 +13,10 @@ use PowerComponents\LivewirePowerGrid\PowerGridFields;
 
 class DatasourceJoinTable extends PowerGridComponent
 {
+    public ?string $primaryKeyAlias = 'id';
+
+    public string $primaryKey = 'dishes.id';
+
     public function setUp(): array
     {
         return [
@@ -37,8 +41,9 @@ class DatasourceJoinTable extends PowerGridComponent
     {
         return PowerGrid::fields()
             ->add('id')
-            ->add('dish_name', fn ($dish) => e($dish->name))
-            ->add('category_name', fn ($dish) => e($dish->category->name));
+            ->add('category')
+            ->add('name')
+            ->add('category_name');
     }
 
     public function columns(): array
@@ -48,11 +53,11 @@ class DatasourceJoinTable extends PowerGridComponent
                 ->searchable()
                 ->sortable(),
 
-            Column::make('Dish', 'dish_name', 'dishes.name')
+            Column::make('Dish', 'name')
                 ->searchable()
                 ->sortable(),
 
-            Column::make('Category', 'category_name', 'newCategories.name')
+            Column::make('Category', 'category_name', 'category_name')
                 ->searchable()
                 ->sortable(),
         ];

@@ -46,6 +46,7 @@ final class DetailTable extends PowerGridComponent
             ->add('id')
             ->add('name')
             ->add('email')
+            ->add('created_at')
             ->add('created_at_formatted', fn ($user) => Carbon::parse($user->created_at)->format('d/m/Y H:i:s'));
     }
 
@@ -70,13 +71,13 @@ final class DetailTable extends PowerGridComponent
         ];
     }
 
-    public function actions(): array
+    public function actions($row): array
     {
         return [
             Button::add('detail')
                 ->slot('Detail')
                 ->class('bg-blue-500 text-white font-bold py-2 px-2 rounded')
-                ->toggleDetail(),
+                ->toggleDetail($row->id),
         ];
     }
 

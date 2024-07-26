@@ -5,6 +5,7 @@ namespace App\Livewire\Examples\ConditionalRulesTable;
 use App\Models\Dish;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Js;
 use Illuminate\Support\Number;
 use Livewire\Attributes\On;
 use PowerComponents\LivewirePowerGrid\Button;
@@ -60,6 +61,7 @@ class ConditionalRulesTable extends PowerGridComponent
                 ->sortable(),
 
             Column::make('Name', 'name')
+                ->editOnClick(true)
                 ->bodyAttribute('!text-wrap') // <--- Must add "!" to override style
                 ->searchable()
                 ->sortable(),
@@ -82,7 +84,7 @@ class ConditionalRulesTable extends PowerGridComponent
         ];
     }
 
-    public function actions(Dish $row): array
+    public function actions($row): array
     {
         return [
             Button::add('edit')

@@ -38,7 +38,6 @@ final class ShowSoftDeleteTable extends PowerGridComponent
         return PowerGrid::fields()
             ->add('id')
             ->add('name')
-            ->add('chef_name')
             ->add('price')
             ->add('in_stock')
             ->add('in_stock_label', fn ($entry) => $entry->in_stock ? 'Yes' : 'No')
@@ -54,10 +53,6 @@ final class ShowSoftDeleteTable extends PowerGridComponent
                 ->sortable(),
 
             Column::make('Name', 'name')
-                ->searchable()
-                ->sortable(),
-
-            Column::make('Chef', 'chef_name')
                 ->searchable()
                 ->sortable(),
 

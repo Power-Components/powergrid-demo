@@ -43,6 +43,7 @@ class ActionsFromViewTable extends PowerGridComponent
         return PowerGrid::fields()
             ->add('id')
             ->add('name')
+            ->add('price')
             ->add('category_id', fn ($dish) => intval($dish->category_id))
             ->add('category_name', fn ($dish) => e($dish->category_name))
             ->add('price_in_eur', fn ($dish) => Number::currency($dish->price, in: 'EUR', locale: 'pt_PT'))

@@ -14,6 +14,28 @@ return [
     'theme' => \PowerComponents\LivewirePowerGrid\Themes\Tailwind::class,
     //'theme' => \PowerComponents\LivewirePowerGrid\Themes\Bootstrap5::class,
 
+    'icon_resources' => [
+        'paths' => [
+            'resources/views/components/icons',
+//
+//            'default' => 'resources/views/components/icons',
+//            // 1.x
+//            //  'vendor/wireui/wireui/resources/views/components/icons/outline',
+//            //  'vendor/wireui/wireui/resources/views/components/icons/solid',
+//
+//            // 2.x
+//
+//            'mini'    => 'vendor/wireui/heroicons/src/views/components/mini',
+//            'outline' => 'vendor/wireui/heroicons/src/views/components/outline',
+//            'solid'   => 'vendor/wireui/heroicons/src/views/components/solid',
+        ],
+
+        'allowed' => [
+            // 'pencil','eye'
+        ],
+
+        'attributes' => ['class' => 'w-5 text-red-600'],
+    ],
     /*
     |--------------------------------------------------------------------------
     | Plugins

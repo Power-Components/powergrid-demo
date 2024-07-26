@@ -68,14 +68,13 @@ class DemoDishTable extends PowerGridComponent
         ];
     }
 
-    public function datasource(): ?Builder
+    public function datasource(): \Illuminate\Database\Eloquent\Builder
     {
         return Dish::query()
             ->join('categories as newCategories', function ($categories) {
                 $categories->on('dishes.category_id', '=', 'newCategories.id');
             })
-            ->select('dishes.*', 'newCategories.name as category_name')
-            ->toBase();
+            ->select('dishes.*', 'newCategories.name as category_name');
     }
 
     public function relationSearch(): array
