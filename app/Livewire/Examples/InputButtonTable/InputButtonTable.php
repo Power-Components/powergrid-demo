@@ -84,6 +84,17 @@ class InputButtonTable extends PowerGridComponent
                 ->slot("Edit {$row->name}")
                 ->class('bg-blue-500 flex gap-3 text-white font-bold py-2 px-2 rounded')
                 ->dispatch('clickToEdit', ['dishId' => $row->id, 'dishName' => $row->name]),
+            Button::add('edit-1')
+                ->icon('pause')
+                ->slot("Edit {$row->name}")
+                ->class('bg-blue-500 flex gap-3 text-white font-bold py-2 px-2 rounded')
+                ->dispatch('clickToEdit', ['dishId' => $row->id, 'dishName' => $row->name]),
+            Button::add('edit-2')
+                ->icon('pause')
+                ->slot("Edit {$row->name}")
+                ->class('bg-blue-500 flex gap-3 text-white font-bold py-2 px-2 rounded')
+                ->dispatch('clickToEdit', ['dishId' => $row->id, 'dishName' => $row->name]),
+
         ];
     }
 
