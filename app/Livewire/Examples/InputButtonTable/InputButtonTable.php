@@ -5,7 +5,10 @@ namespace App\Livewire\Examples\InputButtonTable;
 use App\Models\Dish;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\Blade;
+use Illuminate\Support\Facades\View;
 use Illuminate\Support\Number;
+use Illuminate\View\ComponentAttributeBag;
 use Livewire\Attributes\On;
 use PowerComponents\LivewirePowerGrid\Button;
 use PowerComponents\LivewirePowerGrid\Column;
@@ -24,7 +27,7 @@ class InputButtonTable extends PowerGridComponent
                 ->showSearchInput(),
 
             Footer::make()
-                ->showPerPage()
+                ->showPerPage(100)
                 ->showRecordCount(),
         ];
     }
@@ -73,12 +76,28 @@ class InputButtonTable extends PowerGridComponent
         ];
     }
 
-    public function actions(Dish $row): array
+    public function actions($row): array
     {
         return [
+            Button::add('view')
+                ->slot(View::make('components.icons.eye', ['attributes' => new ComponentAttributeBag(['class' => 'w-5'])]))
+                ->class('text-slate-500 hover:text-slate-700 font-bold p-1 rounded')
+                ->dispatch('clickToEdit', ['dishId' => $row->id, 'dishName' => $row->name]),
             Button::add('edit')
-                ->slot("&#9889; Edit {$row->name}")
-                ->class('bg-blue-500 text-white font-bold py-2 px-2 rounded')
+                ->slot(View::make('components.icons.pencil', ['attributes' => new ComponentAttributeBag(['class' => 'w-5'])]))
+                ->class('text-slate-500 hover:text-slate-700 font-bold p-1 rounded')
+                ->dispatch('clickToEdit', ['dishId' => $row->id, 'dishName' => $row->name]),
+            Button::add('download')
+                ->slot(View::make('components.icons.download', ['attributes' => new ComponentAttributeBag(['class' => 'w-5'])]))
+                ->class('text-slate-500 hover:text-slate-700 font-bold p-1 rounded')
+                ->dispatch('clickToEdit', ['dishId' => $row->id, 'dishName' => $row->name]),
+            Button::add('link')
+                ->slot(View::make('components.icons.external-link', ['attributes' => new ComponentAttributeBag(['class' => 'w-5'])]))
+                ->class('text-slate-500 hover:text-slate-700 font-bold p-1 rounded')
+                ->dispatch('clickToEdit', ['dishId' => $row->id, 'dishName' => $row->name]),
+            Button::add('delete')
+                ->slot(View::make('components.icons.trash', ['attributes' => new ComponentAttributeBag(['class' => 'w-5'])]))
+                ->class('text-red-500 hover:text-red-700 font-bold p-1 rounded')
                 ->dispatch('clickToEdit', ['dishId' => $row->id, 'dishName' => $row->name]),
         ];
     }
