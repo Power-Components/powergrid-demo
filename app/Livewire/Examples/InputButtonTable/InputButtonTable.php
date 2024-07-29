@@ -78,23 +78,100 @@ class InputButtonTable extends PowerGridComponent
 
     public function actions($row): array
     {
-        return [
-            Button::add('edit')
-                ->icon('pause')
-                ->slot("Edit {$row->name}")
-                ->class('bg-blue-500 flex gap-3 text-white font-bold py-2 px-2 rounded')
-                ->dispatch('clickToEdit', ['dishId' => $row->id, 'dishName' => $row->name]),
-            Button::add('edit-1')
-                ->icon('pause')
-                ->slot("Edit {$row->name}")
-                ->class('bg-blue-500 flex gap-3 text-white font-bold py-2 px-2 rounded')
-                ->dispatch('clickToEdit', ['dishId' => $row->id, 'dishName' => $row->name]),
-            Button::add('edit-2')
-                ->icon('pause')
-                ->slot("Edit {$row->name}")
-                ->class('bg-blue-500 flex gap-3 text-white font-bold py-2 px-2 rounded')
-                ->dispatch('clickToEdit', ['dishId' => $row->id, 'dishName' => $row->name]),
+        // return [];
 
+        return [
+            Button::add('view')
+               // ->slot('View')
+                ->icon('default-eye', [
+                    'class' => $row?->id == 1 ? 'text-red-500' : 'text-blue-800',
+                ])
+                ->class('text-slate-500 flex gap-2 hover:text-slate-700 hover:bg-slate-100 shadow font-bold p-1 rounded')
+                ->dispatch('clickToEdit', ['dishId' => $row?->id, 'dishName' => $row?->name]),
+            Button::add('edit')
+                ->icon('default-pencil')
+                ->class('text-slate-500 flex gap-2 hover:text-slate-700 hover:bg-slate-100 shadow font-bold p-1 rounded')
+                ->dispatch('clickToEdit', ['dishId' => $row?->id, 'dishName' => $row?->name]),
+            Button::add('download')
+                ->icon('default-download')
+                ->class('text-slate-500 flex gap-2 hover:text-slate-700 hover:bg-slate-100 shadow font-bold p-1 rounded')
+                ->dispatch('clickToEdit', ['dishId' => $row?->id, 'dishName' => $row?->name]),
+            Button::add('link')
+                ->icon('default-external-link')
+                ->class('text-slate-500 flex gap-2 hover:text-slate-700 hover:bg-slate-100 shadow font-bold p-1 rounded')
+                ->dispatch('clickToEdit', ['dishId' => $row?->id, 'dishName' => $row?->name]),
+            Button::add('delete')
+                ->icon('default-trash')
+                ->class('text-slate-500 flex gap-2 hover:text-slate-700 hover:bg-slate-100 shadow font-bold p-1 rounded')
+                ->dispatch('clickToEdit', ['dishId' => $row?->id, 'dishName' => $row?->name]),
+
+            Button::add('edit')
+                ->icon('default-pencil')
+                ->class('text-slate-500 flex gap-2 hover:text-slate-700 hover:bg-slate-100 shadow font-bold p-1 rounded')
+                ->dispatch('clickToEdit', ['dishId' => $row?->id, 'dishName' => $row?->name]),
+            Button::add('download')
+                ->icon('default-download')
+                ->class('text-slate-500 flex gap-2 hover:text-slate-700 hover:bg-slate-100 shadow font-bold p-1 rounded')
+                ->dispatch('clickToEdit', ['dishId' => $row?->id, 'dishName' => $row?->name]),
+            Button::add('link')
+                ->icon('default-external-link')
+                ->class('text-slate-500 flex gap-2 hover:text-slate-700 hover:bg-slate-100 shadow font-bold p-1 rounded')
+                ->dispatch('clickToEdit', ['dishId' => $row?->id, 'dishName' => $row?->name]),
+            Button::add('delete')
+                ->icon('default-trash')
+                ->class('text-slate-500 flex gap-2 hover:text-slate-700 hover:bg-slate-100 shadow font-bold p-1 rounded')
+                ->dispatch('clickToEdit', ['dishId' => $row?->id, 'dishName' => $row?->name]),
+
+            Button::add('edit')
+                ->icon('default-pencil')
+                ->class('text-slate-500 flex gap-2 hover:text-slate-700 hover:bg-slate-100 shadow font-bold p-1 rounded')
+                ->dispatch('clickToEdit', ['dishId' => $row?->id, 'dishName' => $row?->name]),
+            Button::add('download')
+                ->icon('default-download')
+                ->class('text-slate-500 flex gap-2 hover:text-slate-700 hover:bg-slate-100 shadow font-bold p-1 rounded')
+                ->dispatch('clickToEdit', ['dishId' => $row?->id, 'dishName' => $row?->name]),
+            Button::add('link')
+                ->icon('default-external-link')
+                ->class('text-slate-500 flex gap-2 hover:text-slate-700 hover:bg-slate-100 shadow font-bold p-1 rounded')
+                ->dispatch('clickToEdit', ['dishId' => $row?->id, 'dishName' => $row?->name]),
+            Button::add('delete')
+                ->icon('default-trash')
+                ->class('text-slate-500 flex gap-2 hover:text-slate-700 hover:bg-slate-100 shadow font-bold p-1 rounded')
+                ->dispatch('clickToEdit', ['dishId' => $row?->id, 'dishName' => $row?->name]),
+
+            Button::add('edit')
+                ->icon('default-pencil')
+                ->class('text-slate-500 flex gap-2 hover:text-slate-700 hover:bg-slate-100 shadow font-bold p-1 rounded')
+                ->dispatch('clickToEdit', ['dishId' => $row?->id, 'dishName' => $row?->name]),
+            Button::add('download')
+                ->icon('default-download')
+                ->class('text-slate-500 flex gap-2 hover:text-slate-700 hover:bg-slate-100 shadow font-bold p-1 rounded')
+                ->dispatch('clickToEdit', ['dishId' => $row?->id, 'dishName' => $row?->name]),
+            Button::add('link')
+                ->icon('default-external-link')
+                ->class('text-slate-500 flex gap-2 hover:text-slate-700 hover:bg-slate-100 shadow font-bold p-1 rounded')
+                ->dispatch('clickToEdit', ['dishId' => $row?->id, 'dishName' => $row?->name]),
+            Button::add('delete')
+                ->icon('default-trash')
+                ->class('text-slate-500 flex gap-2 hover:text-slate-700 hover:bg-slate-100 shadow font-bold p-1 rounded')
+                ->dispatch('clickToEdit', ['dishId' => $row?->id, 'dishName' => $row?->name]),
+
+            Button::add('edit')
+                ->icon('default-pencil')
+                ->class('text-slate-500 flex gap-2 hover:text-slate-700 hover:bg-slate-100 shadow font-bold p-1 rounded')
+                ->dispatch('clickToEdit', ['dishId' => $row?->id, 'dishName' => $row?->name]),
+            Button::add('download')
+                ->icon('default-download')
+                ->class('text-slate-500 flex gap-2 hover:text-slate-700 hover:bg-slate-100 shadow font-bold p-1 rounded')
+                ->dispatch('clickToEdit', ['dishId' => $row?->id, 'dishName' => $row?->name]),
+            Button::add('link')
+                ->icon('default-external-link')
+                ->class('text-slate-500 flex gap-2 hover:text-slate-700 hover:bg-slate-100 shadow font-bold p-1 rounded')
+                ->dispatch('clickToEdit', ['dishId' => $row?->id, 'dishName' => $row?->name]),
+            Button::add('delete')
+                ->icon('default-trash')
+                ->class('text-slate-500 flex gap-2 hover:text-slate-700 hover:bg-slate-100 shadow font-bold p-1 rounded')
+                ->dispatch('clickToEdit', ['dishId' => $row?->id, 'dishName' => $row?->name]),
         ];
     }
 

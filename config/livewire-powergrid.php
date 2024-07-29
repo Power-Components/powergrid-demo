@@ -16,9 +16,8 @@ return [
 
     'icon_resources' => [
         'paths' => [
-            'resources/views/components/icons',
-//
-//            'default' => 'resources/views/components/icons',
+
+           'default' => 'resources/views/components/icons',
 //            // 1.x
 //            //  'vendor/wireui/wireui/resources/views/components/icons/outline',
 //            //  'vendor/wireui/wireui/resources/views/components/icons/solid',
