@@ -20,6 +20,8 @@ use PowerComponents\LivewirePowerGrid\PowerGridFields;
 
 class InputButtonTable extends PowerGridComponent
 {
+    public bool $deferLoading = true;
+
     public function setUp(): array
     {
         return [
@@ -82,23 +84,103 @@ class InputButtonTable extends PowerGridComponent
             Button::add('view')
                 ->slot(View::make('components.icons.eye', ['attributes' => new ComponentAttributeBag(['class' => 'w-5'])]))
                 ->class('text-slate-500 hover:text-slate-700 font-bold p-1 rounded')
-                ->dispatch('clickToEdit', ['dishId' => $row->id, 'dishName' => $row->name]),
+                ->dispatch('clickToEdit', ['dishId' => $row?->id, 'dishName' => $row->name]),
             Button::add('edit')
                 ->slot(View::make('components.icons.pencil', ['attributes' => new ComponentAttributeBag(['class' => 'w-5'])]))
                 ->class('text-slate-500 hover:text-slate-700 font-bold p-1 rounded')
-                ->dispatch('clickToEdit', ['dishId' => $row->id, 'dishName' => $row->name]),
+                ->dispatch('clickToEdit', ['dishId' => $row?->id, 'dishName' => $row->name]),
             Button::add('download')
                 ->slot(View::make('components.icons.download', ['attributes' => new ComponentAttributeBag(['class' => 'w-5'])]))
                 ->class('text-slate-500 hover:text-slate-700 font-bold p-1 rounded')
-                ->dispatch('clickToEdit', ['dishId' => $row->id, 'dishName' => $row->name]),
+                ->dispatch('clickToEdit', ['dishId' => $row?->id, 'dishName' => $row->name]),
             Button::add('link')
                 ->slot(View::make('components.icons.external-link', ['attributes' => new ComponentAttributeBag(['class' => 'w-5'])]))
                 ->class('text-slate-500 hover:text-slate-700 font-bold p-1 rounded')
-                ->dispatch('clickToEdit', ['dishId' => $row->id, 'dishName' => $row->name]),
+                ->dispatch('clickToEdit', ['dishId' => $row?->id, 'dishName' => $row->name]),
             Button::add('delete')
                 ->slot(View::make('components.icons.trash', ['attributes' => new ComponentAttributeBag(['class' => 'w-5'])]))
                 ->class('text-red-500 hover:text-red-700 font-bold p-1 rounded')
-                ->dispatch('clickToEdit', ['dishId' => $row->id, 'dishName' => $row->name]),
+                ->dispatch('clickToEdit', ['dishId' => $row?->id, 'dishName' => $row->name]),
+            Button::add('view')
+                ->slot(View::make('components.icons.eye', ['attributes' => new ComponentAttributeBag(['class' => 'w-5'])]))
+                ->class('text-slate-500 hover:text-slate-700 font-bold p-1 rounded')
+                ->dispatch('clickToEdit', ['dishId' => $row?->id, 'dishName' => $row->name]),
+            Button::add('edit')
+                ->slot(View::make('components.icons.pencil', ['attributes' => new ComponentAttributeBag(['class' => 'w-5'])]))
+                ->class('text-slate-500 hover:text-slate-700 font-bold p-1 rounded')
+                ->dispatch('clickToEdit', ['dishId' => $row?->id, 'dishName' => $row->name]),
+            Button::add('download')
+                ->slot(View::make('components.icons.download', ['attributes' => new ComponentAttributeBag(['class' => 'w-5'])]))
+                ->class('text-slate-500 hover:text-slate-700 font-bold p-1 rounded')
+                ->dispatch('clickToEdit', ['dishId' => $row?->id, 'dishName' => $row->name]),
+            Button::add('link')
+                ->slot(View::make('components.icons.external-link', ['attributes' => new ComponentAttributeBag(['class' => 'w-5'])]))
+                ->class('text-slate-500 hover:text-slate-700 font-bold p-1 rounded')
+                ->dispatch('clickToEdit', ['dishId' => $row?->id, 'dishName' => $row->name]),
+            Button::add('delete')
+                ->slot(View::make('components.icons.trash', ['attributes' => new ComponentAttributeBag(['class' => 'w-5'])]))
+                ->class('text-red-500 hover:text-red-700 font-bold p-1 rounded')
+                ->dispatch('clickToEdit', ['dishId' => $row?->id, 'dishName' => $row->name]),
+            Button::add('view')
+                ->slot(View::make('components.icons.eye', ['attributes' => new ComponentAttributeBag(['class' => 'w-5'])]))
+                ->class('text-slate-500 hover:text-slate-700 font-bold p-1 rounded')
+                ->dispatch('clickToEdit', ['dishId' => $row?->id, 'dishName' => $row->name]),
+            Button::add('edit')
+                ->slot(View::make('components.icons.pencil', ['attributes' => new ComponentAttributeBag(['class' => 'w-5'])]))
+                ->class('text-slate-500 hover:text-slate-700 font-bold p-1 rounded')
+                ->dispatch('clickToEdit', ['dishId' => $row?->id, 'dishName' => $row->name]),
+            Button::add('download')
+                ->slot(View::make('components.icons.download', ['attributes' => new ComponentAttributeBag(['class' => 'w-5'])]))
+                ->class('text-slate-500 hover:text-slate-700 font-bold p-1 rounded')
+                ->dispatch('clickToEdit', ['dishId' => $row?->id, 'dishName' => $row->name]),
+            Button::add('link')
+                ->slot(View::make('components.icons.external-link', ['attributes' => new ComponentAttributeBag(['class' => 'w-5'])]))
+                ->class('text-slate-500 hover:text-slate-700 font-bold p-1 rounded')
+                ->dispatch('clickToEdit', ['dishId' => $row?->id, 'dishName' => $row->name]),
+            Button::add('delete')
+                ->slot(View::make('components.icons.trash', ['attributes' => new ComponentAttributeBag(['class' => 'w-5'])]))
+                ->class('text-red-500 hover:text-red-700 font-bold p-1 rounded')
+                ->dispatch('clickToEdit', ['dishId' => $row?->id, 'dishName' => $row->name]),
+            Button::add('view')
+                ->slot(View::make('components.icons.eye', ['attributes' => new ComponentAttributeBag(['class' => 'w-5'])]))
+                ->class('text-slate-500 hover:text-slate-700 font-bold p-1 rounded')
+                ->dispatch('clickToEdit', ['dishId' => $row?->id, 'dishName' => $row->name]),
+            Button::add('edit')
+                ->slot(View::make('components.icons.pencil', ['attributes' => new ComponentAttributeBag(['class' => 'w-5'])]))
+                ->class('text-slate-500 hover:text-slate-700 font-bold p-1 rounded')
+                ->dispatch('clickToEdit', ['dishId' => $row?->id, 'dishName' => $row->name]),
+            Button::add('download')
+                ->slot(View::make('components.icons.download', ['attributes' => new ComponentAttributeBag(['class' => 'w-5'])]))
+                ->class('text-slate-500 hover:text-slate-700 font-bold p-1 rounded')
+                ->dispatch('clickToEdit', ['dishId' => $row?->id, 'dishName' => $row->name]),
+            Button::add('link')
+                ->slot(View::make('components.icons.external-link', ['attributes' => new ComponentAttributeBag(['class' => 'w-5'])]))
+                ->class('text-slate-500 hover:text-slate-700 font-bold p-1 rounded')
+                ->dispatch('clickToEdit', ['dishId' => $row?->id, 'dishName' => $row->name]),
+            Button::add('delete')
+                ->slot(View::make('components.icons.trash', ['attributes' => new ComponentAttributeBag(['class' => 'w-5'])]))
+                ->class('text-red-500 hover:text-red-700 font-bold p-1 rounded')
+                ->dispatch('clickToEdit', ['dishId' => $row?->id, 'dishName' => $row->name]),
+            Button::add('view')
+                ->slot(View::make('components.icons.eye', ['attributes' => new ComponentAttributeBag(['class' => 'w-5'])]))
+                ->class('text-slate-500 hover:text-slate-700 font-bold p-1 rounded')
+                ->dispatch('clickToEdit', ['dishId' => $row?->id, 'dishName' => $row->name]),
+            Button::add('edit')
+                ->slot(View::make('components.icons.pencil', ['attributes' => new ComponentAttributeBag(['class' => 'w-5'])]))
+                ->class('text-slate-500 hover:text-slate-700 font-bold p-1 rounded')
+                ->dispatch('clickToEdit', ['dishId' => $row?->id, 'dishName' => $row->name]),
+            Button::add('download')
+                ->slot(View::make('components.icons.download', ['attributes' => new ComponentAttributeBag(['class' => 'w-5'])]))
+                ->class('text-slate-500 hover:text-slate-700 font-bold p-1 rounded')
+                ->dispatch('clickToEdit', ['dishId' => $row?->id, 'dishName' => $row->name]),
+            Button::add('link')
+                ->slot(View::make('components.icons.external-link', ['attributes' => new ComponentAttributeBag(['class' => 'w-5'])]))
+                ->class('text-slate-500 hover:text-slate-700 font-bold p-1 rounded')
+                ->dispatch('clickToEdit', ['dishId' => $row?->id, 'dishName' => $row->name]),
+            Button::add('delete')
+                ->slot(View::make('components.icons.trash', ['attributes' => new ComponentAttributeBag(['class' => 'w-5'])]))
+                ->class('text-red-500 hover:text-red-700 font-bold p-1 rounded')
+                ->dispatch('clickToEdit', ['dishId' => $row?->id, 'dishName' => $row->name]),
         ];
     }
 
