@@ -2,8 +2,8 @@ import { Livewire, Alpine } from '../../vendor/livewire/livewire/dist/livewire.e
 
 import flatpickr from "flatpickr";
 
-import TomSelect from "tom-select";
-window.TomSelect = TomSelect
+// import TomSelect from "tom-select";
+// window.TomSelect = TomSelect
 
 import ClipboardJS from "clipboard";
 

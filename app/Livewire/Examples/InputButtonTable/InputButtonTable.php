@@ -5,15 +5,11 @@ namespace App\Livewire\Examples\InputButtonTable;
 use App\Models\Dish;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Carbon;
-use Illuminate\Support\Facades\Blade;
-use Illuminate\Support\Facades\View;
 use Illuminate\Support\Number;
-use Illuminate\View\ComponentAttributeBag;
 use Livewire\Attributes\On;
 use PowerComponents\LivewirePowerGrid\Button;
 use PowerComponents\LivewirePowerGrid\Column;
-use PowerComponents\LivewirePowerGrid\Footer;
-use PowerComponents\LivewirePowerGrid\Header;
+
 use PowerComponents\LivewirePowerGrid\PowerGrid;
 use PowerComponents\LivewirePowerGrid\PowerGridComponent;
 use PowerComponents\LivewirePowerGrid\PowerGridFields;
@@ -25,10 +21,10 @@ class InputButtonTable extends PowerGridComponent
     public function setUp(): array
     {
         return [
-            Header::make()
+            PowerGrid::header()
                 ->showSearchInput(),
 
-            Footer::make()
+            PowerGrid::footer()
                 ->showPerPage(25)
                 ->showRecordCount(),
         ];
@@ -82,25 +78,27 @@ class InputButtonTable extends PowerGridComponent
     {
         return [
             Button::add('view')
-                ->slot(View::make('components.icons.eye', ['attributes' => new ComponentAttributeBag(['class' => 'w-5'])]))
-                ->class('text-slate-500 hover:text-slate-700 font-bold p-1 rounded')
-                ->dispatch('clickToEdit', ['dishId' => $row?->id, 'dishName' => $row->name]),
+                ->icon('default-eye', [
+                    'class' => 'text-red-500',
+                ])
+                ->class('text-slate-500 flex gap-2 hover:text-slate-700 hover:bg-slate-100 shadow font-bold p-1 rounded')
+                ->dispatch('clickToEdit', ['dishId' => $row?->id, 'dishName' => $row?->name]),
             Button::add('edit')
-                ->slot(View::make('components.icons.pencil', ['attributes' => new ComponentAttributeBag(['class' => 'w-5'])]))
-                ->class('text-slate-500 hover:text-slate-700 font-bold p-1 rounded')
-                ->dispatch('clickToEdit', ['dishId' => $row?->id, 'dishName' => $row->name]),
+                ->icon('default-pencil')
+                ->class('text-slate-500 flex gap-2 hover:text-slate-700 hover:bg-slate-100 shadow font-bold p-1 rounded')
+                ->dispatch('clickToEdit', ['dishId' => $row?->id, 'dishName' => $row?->name]),
             Button::add('download')
-                ->slot(View::make('components.icons.download', ['attributes' => new ComponentAttributeBag(['class' => 'w-5'])]))
-                ->class('text-slate-500 hover:text-slate-700 font-bold p-1 rounded')
-                ->dispatch('clickToEdit', ['dishId' => $row?->id, 'dishName' => $row->name]),
+                ->icon('default-download')
+                ->class('text-slate-500 flex gap-2 hover:text-slate-700 hover:bg-slate-100 shadow font-bold p-1 rounded')
+                ->dispatch('clickToEdit', ['dishId' => $row?->id, 'dishName' => $row?->name]),
             Button::add('link')
-                ->slot(View::make('components.icons.external-link', ['attributes' => new ComponentAttributeBag(['class' => 'w-5'])]))
-                ->class('text-slate-500 hover:text-slate-700 font-bold p-1 rounded')
-                ->dispatch('clickToEdit', ['dishId' => $row?->id, 'dishName' => $row->name]),
+                ->icon('default-external-link')
+                ->class('text-slate-500 flex gap-2 hover:text-slate-700 hover:bg-slate-100 shadow font-bold p-1 rounded')
+                ->dispatch('clickToEdit', ['dishId' => $row?->id, 'dishName' => $row?->name]),
             Button::add('delete')
-                ->slot(View::make('components.icons.trash', ['attributes' => new ComponentAttributeBag(['class' => 'w-5'])]))
-                ->class('text-red-500 hover:text-red-700 font-bold p-1 rounded')
-                ->dispatch('clickToEdit', ['dishId' => $row?->id, 'dishName' => $row->name]),
+                ->icon('default-trash')
+                ->class('text-slate-500 flex gap-2 hover:text-slate-700 hover:bg-slate-100 shadow font-bold p-1 rounded')
+                ->dispatch('clickToEdit', ['dishId' => $row?->id, 'dishName' => $row?->name]),
         ];
     }
 

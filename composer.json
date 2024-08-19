@@ -9,7 +9,11 @@
       {
         "type": "path",
         "url": "./_packages/torchlight-laravel"
-      }
+      },
+        {
+            "type": "path",
+            "url": "/Users/luan.freitas/Documents/powergrid-5x"
+        }
     ],
     "require": {
         "php": "^8.2",
@@ -19,7 +23,7 @@
         "mews/purifier": "^3.4.2",
         "openspout/openspout": "^4.24.3",
         "picqer/php-barcode-generator": "^2.4",
-        "power-components/livewire-powergrid": "5.x-dev",
+        "power-components/livewire-powergrid": "6.x-dev",
         "predis/predis": "^2.2.2",
         "torchlight/torchlight-laravel": "*",
         "wireui/wireui": "^2.0.5"
@@ -28,7 +32,7 @@
         "barryvdh/laravel-debugbar": "^3.13",
         "laradumps/laradumps": "^3.1.3",
         "laravel/pint": "^1.16.2",
-        "laravel/sail": "^1.30.2",
+        "laravel/sail": "^1.31",
         "mockery/mockery": "^1.6.12",
         "nunomaduro/collision": "^8.3",
         "pestphp/pest": "^2.34.9",

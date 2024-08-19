@@ -6,7 +6,7 @@ use App\Models\Dish;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Carbon;
 use PowerComponents\LivewirePowerGrid\Column;
-use PowerComponents\LivewirePowerGrid\Footer;
+
 use PowerComponents\LivewirePowerGrid\PowerGrid;
 use PowerComponents\LivewirePowerGrid\PowerGridComponent;
 use PowerComponents\LivewirePowerGrid\PowerGridFields;
@@ -17,7 +17,7 @@ final class CustomFieldHtmlLinkTable extends PowerGridComponent
     {
         return [
 
-            Footer::make()
+            PowerGrid::footer()
                 ->showPerPage()
                 ->showRecordCount(),
         ];
@@ -35,9 +35,9 @@ final class CustomFieldHtmlLinkTable extends PowerGridComponent
             ->add('name')
             ->add('link', function ($dish) {
                 return sprintf(
-                    'Click to Search 
+                    'Click to Search
                     "<a target="_blank"
-                    class="underline text-blue-600 hover:text-blue-800 visited:text-purple-600" 
+                    class="underline text-blue-600 hover:text-blue-800 visited:text-purple-600"
                     href="https://www.google.com/search?q=%s">%s</a>"',
                     urlencode(e($dish->name)),
                     e($dish->name)

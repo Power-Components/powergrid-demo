@@ -7,9 +7,8 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Number;
 use PowerComponents\LivewirePowerGrid\Column;
-use PowerComponents\LivewirePowerGrid\Exportable;
-use PowerComponents\LivewirePowerGrid\Footer;
-use PowerComponents\LivewirePowerGrid\Header;
+
+use PowerComponents\LivewirePowerGrid\Components\SetUp\Exportable;
 use PowerComponents\LivewirePowerGrid\PowerGrid;
 use PowerComponents\LivewirePowerGrid\PowerGridComponent;
 use PowerComponents\LivewirePowerGrid\PowerGridFields;
@@ -24,17 +23,17 @@ final class ExportTable extends PowerGridComponent
         $this->showCheckBox();
 
         return [
-            Exportable::make('export')
+            PowerGrid::exportable('export')
                 ->striped()
                 ->columnWidth([
                     2 => 30,
                 ])
                 ->type(Exportable::TYPE_XLS, Exportable::TYPE_CSV),
 
-            Header::make()
+            PowerGrid::header()
                 ->showSearchInput(),
 
-            Footer::make()
+            PowerGrid::footer()
                 ->showPerPage()
                 ->showRecordCount(),
         ];
@@ -52,9 +51,9 @@ final class ExportTable extends PowerGridComponent
             ->add('name')
             ->add('link', function (Dish $dish) {
                 return sprintf(
-                    'Click to Search 
+                    'Click to Search
                     "<a target="_blank"
-                    class="underline text-blue-600 hover:text-blue-800 visited:text-purple-600" 
+                    class="underline text-blue-600 hover:text-blue-800 visited:text-purple-600"
                     href="https://www.google.com/search?q=%s">%s</a>"',
                     urlencode(e($dish->name)),
                     e($dish->name)

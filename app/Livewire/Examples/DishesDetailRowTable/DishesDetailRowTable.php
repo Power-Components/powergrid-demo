@@ -6,10 +6,8 @@ use App\Models\Dish;
 use Illuminate\Database\Eloquent\Builder;
 use PowerComponents\LivewirePowerGrid\Button;
 use PowerComponents\LivewirePowerGrid\Column;
-use PowerComponents\LivewirePowerGrid\Detail;
 use PowerComponents\LivewirePowerGrid\Facades\Rule;
-use PowerComponents\LivewirePowerGrid\Footer;
-use PowerComponents\LivewirePowerGrid\Header;
+
 use PowerComponents\LivewirePowerGrid\PowerGrid;
 use PowerComponents\LivewirePowerGrid\PowerGridComponent;
 use PowerComponents\LivewirePowerGrid\PowerGridFields;
@@ -19,14 +17,14 @@ class DishesDetailRowTable extends PowerGridComponent
     public function setUp(): array
     {
         return [
-            Header::make()
+            PowerGrid::header()
                 ->showSearchInput(),
 
-            Footer::make()
+            PowerGrid::footer()
                 ->showPerPage(5)
                 ->showRecordCount(),
 
-            Detail::make()
+            PowerGrid::detail()
                 ->view('components.detail')
                 ->params(['name' => 'Luan'])
                 ->showCollapseIcon(),
@@ -74,12 +72,12 @@ class DishesDetailRowTable extends PowerGridComponent
         ];
     }
 
-    public function actions(): array
+    public function actions($row): array
     {
         return [
             Button::make('toggleDetail', 'Click to Toggle Detail')
                 ->class('bg-blue-500 text-white font-bold py-2 px-2 rounded')
-                ->toggleDetail(),
+                ->toggleDetail($row->id),
         ];
     }
 

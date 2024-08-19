@@ -6,8 +6,7 @@ use App\Models\Dish;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Carbon;
 use PowerComponents\LivewirePowerGrid\Column;
-use PowerComponents\LivewirePowerGrid\Footer;
-use PowerComponents\LivewirePowerGrid\Header;
+
 use PowerComponents\LivewirePowerGrid\PowerGrid;
 use PowerComponents\LivewirePowerGrid\PowerGridComponent;
 use PowerComponents\LivewirePowerGrid\PowerGridFields;
@@ -22,11 +21,11 @@ final class DeferLoadingTable extends PowerGridComponent
     {
         return [
 
-            Header::make()
+            PowerGrid::header()
                 ->withoutLoading()
                 ->showSearchInput(),
 
-            Footer::make()
+            PowerGrid::footer()
                 ->showRecordCount(),
         ];
     }
