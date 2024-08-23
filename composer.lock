@@ -2857,7 +2857,7 @@
             "dist": {
                 "type": "path",
                 "url": "/Users/luan.freitas/Documents/powergrid-5x",
-                "reference": "9bffbf1143816f5a02df536d29d1a1ee7db50a70"
+                "reference": "e64ef116fcb5577cabc4eb4e5a2731aaf2850032"
             },
             "require": {
                 "laravel/prompts": "^0.1.24",
@@ -2866,7 +2866,7 @@
             },
             "require-dev": {
                 "composer/composer": "^2.7.7",
-                "laradumps/laradumps": "^3.1.5",
+                "laradumps/laradumps": "^3.1",
                 "laradumps/laradumps-core": "^2.1.1",
                 "larastan/larastan": "^2.9.8",
                 "laravel/pint": "1.17",

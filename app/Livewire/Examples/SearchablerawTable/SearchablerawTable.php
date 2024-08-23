@@ -61,7 +61,7 @@ final class SearchablerawTable extends PowerGridComponent
             Column::add()
                 ->title('Production date')
                 ->field('produced_at_formatted')
-                ->searchableRaw('DATE_FORMAT(dishes.produced_at, "%d/%m/%Y")'),
+                ->searchableRaw('DATE_FORMAT(dishes.produced_at, "%d/%m/%Y") like ?'),
         ];
     }
 }
