@@ -7,7 +7,9 @@ use App\Livewire\Examples\DemoDishTable\DemoDishTable;
 use App\Models\Category;
 use App\Models\Chef;
 use Illuminate\Database\Eloquent\Builder;
+use PowerComponents\LivewirePowerGrid\Components\SetUp\Exportable;
 use PowerComponents\LivewirePowerGrid\Facades\Filter;
+use PowerComponents\LivewirePowerGrid\Facades\PowerGrid;
 
 final class PersistTable extends DemoDishTable
 {

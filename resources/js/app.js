@@ -7,7 +7,6 @@ import flatpickr from "flatpickr";
 
 import ClipboardJS from "clipboard";
 
-
 var clipboard = new ClipboardJS('.code')
 
 clipboard.on('success', function(e) {

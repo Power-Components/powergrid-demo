@@ -4,7 +4,7 @@ namespace App\Livewire\Examples\ResponsiveTable;
 
 use App\Livewire\Examples\DemoDishTable\DemoDishTable;
 use PowerComponents\LivewirePowerGrid\Components\SetUp\Responsive;
-use PowerComponents\LivewirePowerGrid\PowerGrid;
+use PowerComponents\LivewirePowerGrid\Facades\PowerGrid;
 
 final class ResponsiveTable extends DemoDishTable
 {

@@ -10,7 +10,7 @@ use Illuminate\Support\Number;
 use Livewire\Attributes\On;
 use PowerComponents\LivewirePowerGrid\Column;
 
-use PowerComponents\LivewirePowerGrid\PowerGrid;
+use PowerComponents\LivewirePowerGrid\Facades\PowerGrid;
 use PowerComponents\LivewirePowerGrid\PowerGridComponent;
 use PowerComponents\LivewirePowerGrid\PowerGridFields;
 
@@ -80,7 +80,7 @@ class CustomThemeFixedHeaderTable extends PowerGridComponent
         $this->js('alert(' . $dishId . ')');
     }
 
-    public function template(): ?string
+    public function customThemeClass(): ?string
     {
         return TailwindHeaderFixed::class;
     }

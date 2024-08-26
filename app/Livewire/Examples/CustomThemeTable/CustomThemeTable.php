@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Carbon;
 use PowerComponents\LivewirePowerGrid\Column;
 
-use PowerComponents\LivewirePowerGrid\PowerGrid;
+use PowerComponents\LivewirePowerGrid\Facades\PowerGrid;
 use PowerComponents\LivewirePowerGrid\PowerGridComponent;
 use PowerComponents\LivewirePowerGrid\PowerGridFields;
 
@@ -77,7 +77,7 @@ final class CustomThemeTable extends PowerGridComponent
         ];
     }
 
-    public function template(): ?string
+    public function customThemeClass(): ?string
     {
         return TailwindStriped::class;
     }

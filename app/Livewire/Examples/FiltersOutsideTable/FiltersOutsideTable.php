@@ -5,6 +5,8 @@ namespace App\Livewire\Examples\FiltersOutsideTable;
 use App\Livewire\Examples\FiltersInlineTable\FiltersInlineTable;
 use App\Models\Dish;
 use Illuminate\Database\Eloquent\Builder;
+use PowerComponents\LivewirePowerGrid\Components\SetUp\Exportable;
+use PowerComponents\LivewirePowerGrid\Facades\PowerGrid;
 
 final class FiltersOutsideTable extends FiltersInlineTable
 {
