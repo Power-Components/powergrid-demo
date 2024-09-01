@@ -19,7 +19,7 @@
         "mews/purifier": "^3.4.2",
         "openspout/openspout": "^4.24.3",
         "picqer/php-barcode-generator": "^2.4",
-        "power-components/livewire-powergrid": "dev-improve-actions",
+        "power-components/livewire-powergrid": "6.x-dev",
         "predis/predis": "^2.2.2",
         "torchlight/torchlight-laravel": "*",
         "wireui/wireui": "^2.0.5"

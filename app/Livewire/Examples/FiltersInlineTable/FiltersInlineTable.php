@@ -9,11 +9,8 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Number;
 use PowerComponents\LivewirePowerGrid\Column;
-use PowerComponents\LivewirePowerGrid\Exportable;
 use PowerComponents\LivewirePowerGrid\Facades\Filter;
-use PowerComponents\LivewirePowerGrid\Footer;
-use PowerComponents\LivewirePowerGrid\Header;
-use PowerComponents\LivewirePowerGrid\PowerGrid;
+use PowerComponents\LivewirePowerGrid\Facades\PowerGrid;
 use PowerComponents\LivewirePowerGrid\PowerGridComponent;
 use PowerComponents\LivewirePowerGrid\PowerGridFields;
 use PowerComponents\LivewirePowerGrid\Traits\WithExport;
@@ -34,19 +31,12 @@ class FiltersInlineTable extends PowerGridComponent
         $this->showCheckBox('id');
 
         return [
-            Exportable::make('export')
-                ->striped()
-                ->columnWidth([
-                    2 => 30,
-                ])
-                ->type(Exportable::TYPE_XLS, Exportable::TYPE_CSV),
-
-            Header::make()
+            PowerGrid::header()
                 ->showToggleColumns()
                 ->withoutLoading()
                 ->showSearchInput(),
 
-            Footer::make()
+            PowerGrid::footer()
                 ->showPerPage()
                 ->showRecordCount(),
         ];

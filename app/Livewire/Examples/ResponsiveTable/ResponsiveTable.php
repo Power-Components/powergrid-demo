@@ -3,25 +3,23 @@
 namespace App\Livewire\Examples\ResponsiveTable;
 
 use App\Livewire\Examples\DemoDishTable\DemoDishTable;
-use PowerComponents\LivewirePowerGrid\Footer;
-use PowerComponents\LivewirePowerGrid\Header;
-use PowerComponents\LivewirePowerGrid\Responsive;
+use PowerComponents\LivewirePowerGrid\Facades\PowerGrid;
 
 final class ResponsiveTable extends DemoDishTable
 {
     public function setUp(): array
     {
         return [
-            Header::make()
+            PowerGrid::header()
                 ->showToggleColumns()
                 ->showSearchInput(),
 
-            Footer::make()
+            PowerGrid::footer()
                 ->showPerPage()
                 ->showRecordCount(),
 
-            Responsive::make()
-                ->fixedColumns('dishes.name', Responsive::ACTIONS_COLUMN_NAME),
+            PowerGrid::responsive()
+                ->fixedColumns('dishes.name', 'actions'),
         ];
     }
 }

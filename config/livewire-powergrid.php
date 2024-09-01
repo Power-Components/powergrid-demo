@@ -17,16 +17,16 @@ return [
     'icon_resources' => [
         'paths' => [
 
-           'default' => 'resources/views/components/icons',
-//            // 1.x
-//            //  'vendor/wireui/wireui/resources/views/components/icons/outline',
-//            //  'vendor/wireui/wireui/resources/views/components/icons/solid',
-//
-//            // 2.x
-//
-//            'mini'    => 'vendor/wireui/heroicons/src/views/components/mini',
-//            'outline' => 'vendor/wireui/heroicons/src/views/components/outline',
-//            'solid'   => 'vendor/wireui/heroicons/src/views/components/solid',
+            'default' => 'resources/views/components/icons',
+            //            // 1.x
+            //            //  'vendor/wireui/wireui/resources/views/components/icons/outline',
+            //            //  'vendor/wireui/wireui/resources/views/components/icons/solid',
+            //
+            //            // 2.x
+            //
+            //            'mini'    => 'vendor/wireui/heroicons/src/views/components/mini',
+            //            'outline' => 'vendor/wireui/heroicons/src/views/components/outline',
+            //            'solid'   => 'vendor/wireui/heroicons/src/views/components/solid',
         ],
 
         'allowed' => [

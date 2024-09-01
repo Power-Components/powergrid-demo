@@ -25,5 +25,4 @@ class TailwindStriped extends Tailwind
             ->trBodyClassTotalColumns('')
             ->tdBodyTotalColumns('px-3 py-2 whitespace-nowrap dark:text-pg-primary-200 text-sm text-pg-primary-600 text-right space-y-2');
     }
-
 }
