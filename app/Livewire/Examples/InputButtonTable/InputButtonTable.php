@@ -17,6 +17,8 @@ use PowerComponents\LivewirePowerGrid\PowerGridFields;
 #[Lazy]
 class InputButtonTable extends PowerGridComponent
 {
+    public string $tableName = 'input-button-table';
+
     public function setUp(): array
     {
         $this->showCheckBox();

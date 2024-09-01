@@ -20,6 +20,8 @@ final class BulkActionsTable extends PowerGridComponent
 
     public string $sortField = 'dishes.id';
 
+    public string $tableName = 'bulk-actions-table';
+
     public function setUp(): array
     {
         $this->showCheckBox();
