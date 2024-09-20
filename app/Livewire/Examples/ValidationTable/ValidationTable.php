@@ -13,6 +13,8 @@ use PowerComponents\LivewirePowerGrid\PowerGridFields;
 
 final class ValidationTable extends PowerGridComponent
 {
+    public string $tableName = 'validation-table';
+
     public array $flavor;
 
     public array $price_in_eur;
@@ -80,7 +82,7 @@ final class ValidationTable extends PowerGridComponent
             ],
 
             'price_in_eur.*' => [
-                new EuroCurrencyBetween2and5(),
+                new EuroCurrencyBetween2and5,
             ],
         ];
     }

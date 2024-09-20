@@ -12,6 +12,8 @@ use PowerComponents\LivewirePowerGrid\PowerGridFields;
 
 class NoResultsFoundTable extends PowerGridComponent
 {
+    public string $tableName = 'no-results-found-table';
+
     public function noDataLabel(): string|View
     {
         //return 'We could not find any dish matching your search.';

@@ -21,6 +21,8 @@ use PowerComponents\LivewirePowerGrid\Traits\WithExport;
 
 class DemoDishTable extends PowerGridComponent
 {
+    public string $tableName = 'demo-dish-table';
+
     use WithExport;
 
     public bool $filtersOutside = false;

@@ -13,6 +13,8 @@ use PowerComponents\LivewirePowerGrid\PowerGridFields;
 
 final class ShowSoftDeleteTable extends PowerGridComponent
 {
+    public string $tableName = 'show-soft-delete-table';
+
     public function setUp(): array
     {
         return [

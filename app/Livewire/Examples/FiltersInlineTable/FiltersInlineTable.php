@@ -17,6 +17,8 @@ use PowerComponents\LivewirePowerGrid\Traits\WithExport;
 
 class FiltersInlineTable extends PowerGridComponent
 {
+    public string $tableName = 'filters-inline-table';
+
     use WithExport;
 
     public int $categoryId = 0;
@@ -44,14 +46,13 @@ class FiltersInlineTable extends PowerGridComponent
 
     public function datasource(): Builder
     {
-        return Dish::query()
+        return Dish::with(['category', 'kitchen'])
             ->when(
                 $this->categoryId,
                 fn ($builder) => $builder->whereHas(
                     'category',
                     fn ($builder) => $builder->where('category_id', $this->categoryId)
                 )
-                    ->with(['category', 'kitchen'])
             );
     }
 

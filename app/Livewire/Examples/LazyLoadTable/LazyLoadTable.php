@@ -14,6 +14,8 @@ use PowerComponents\LivewirePowerGrid\PowerGridFields;
 
 class LazyLoadTable extends PowerGridComponent
 {
+    public string $tableName = 'lazy-load-table';
+
     public function setUp(): array
     {
         return [

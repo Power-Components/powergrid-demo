@@ -11,6 +11,8 @@ use PowerComponents\LivewirePowerGrid\PowerGridFields;
 
 class DatasourceJoinTable extends PowerGridComponent
 {
+    public string $tableName = 'datasource-join-table';
+
     public ?string $primaryKeyAlias = 'id';
 
     public string $primaryKey = 'dishes.id';

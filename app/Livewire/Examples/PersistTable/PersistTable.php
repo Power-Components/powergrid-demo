@@ -12,6 +12,8 @@ use PowerComponents\LivewirePowerGrid\Facades\PowerGrid;
 
 final class PersistTable extends DemoDishTable
 {
+    public string $tableName = 'persist-table';
+
     public function setUp(): array
     {
         $this->persist(['columns', 'filters'], prefix: auth()->id ?? '');

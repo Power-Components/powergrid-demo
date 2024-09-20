@@ -14,6 +14,8 @@ use PowerComponents\LivewirePowerGrid\PowerGridFields;
 
 final class DetailTable extends PowerGridComponent
 {
+    public string $tableName = 'detail-table';
+
     public function setUp(): array
     {
         return [

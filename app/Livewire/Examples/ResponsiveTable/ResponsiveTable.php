@@ -7,6 +7,8 @@ use PowerComponents\LivewirePowerGrid\Facades\PowerGrid;
 
 final class ResponsiveTable extends DemoDishTable
 {
+    public string $tableName = 'responsive-table';
+
     public function setUp(): array
     {
         return [

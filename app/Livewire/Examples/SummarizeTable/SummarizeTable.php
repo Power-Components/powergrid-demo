@@ -13,6 +13,8 @@ use PowerComponents\LivewirePowerGrid\PowerGridFields;
 
 class SummarizeTable extends PowerGridComponent
 {
+    public string $tableName = 'summarize-table';
+
     public function setUp(): array
     {
         return [

@@ -13,6 +13,8 @@ use PowerComponents\LivewirePowerGrid\PowerGridFields;
 
 class EnumTable extends PowerGridComponent
 {
+    public string $tableName = 'enum-table';
+
     public bool $filtersOutside = false;
 
     public string $sortField = 'dishes.id';

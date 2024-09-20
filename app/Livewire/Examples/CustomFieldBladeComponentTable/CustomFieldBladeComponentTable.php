@@ -13,6 +13,8 @@ use PowerComponents\LivewirePowerGrid\PowerGridFields;
 
 final class CustomFieldBladeComponentTable extends PowerGridComponent
 {
+    public string $tableName = 'custom-field-blade-table';
+
     public function setUp(): array
     {
         return [

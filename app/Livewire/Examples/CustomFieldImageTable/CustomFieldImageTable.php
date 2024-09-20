@@ -13,6 +13,8 @@ use PowerComponents\LivewirePowerGrid\Traits\WithExport;
 
 final class CustomFieldImageTable extends PowerGridComponent
 {
+    public string $tableName = 'custom-field-image-table';
+
     use WithExport;
 
     public function setUp(): array

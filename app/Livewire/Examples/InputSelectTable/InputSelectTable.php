@@ -17,6 +17,8 @@ use PowerComponents\LivewirePowerGrid\PowerGridFields;
 
 class InputSelectTable extends PowerGridComponent
 {
+    public string $tableName = 'input-select-table';
+
     public function setUp(): array
     {
         return [

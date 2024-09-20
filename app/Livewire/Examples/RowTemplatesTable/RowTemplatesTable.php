@@ -13,6 +13,8 @@ use PowerComponents\LivewirePowerGrid\PowerGridFields;
 #[Lazy]
 class RowTemplatesTable extends PowerGridComponent
 {
+    public string $tableName = 'row-templates-table';
+
     public bool $deferLoading = true;
 
     public function setUp(): array

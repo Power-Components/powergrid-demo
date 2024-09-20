@@ -15,6 +15,8 @@ use PowerComponents\LivewirePowerGrid\PowerGridFields;
 
 class CustomThemeStripedTable extends PowerGridComponent
 {
+    public string $tableName = 'custom-theme-striped-table';
+
     public function setUp(): array
     {
         return [

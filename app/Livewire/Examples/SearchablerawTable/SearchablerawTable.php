@@ -12,6 +12,8 @@ use PowerComponents\LivewirePowerGrid\PowerGridFields;
 
 final class SearchablerawTable extends PowerGridComponent
 {
+    public string $tableName = 'searchable-raw-table';
+
     public string $sortField = 'dishes.id';
 
     public function setUp(): array

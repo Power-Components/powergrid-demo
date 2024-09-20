@@ -13,6 +13,8 @@ use PowerComponents\LivewirePowerGrid\PowerGridFields;
 
 class DishesDetailRowTable extends PowerGridComponent
 {
+    public string $tableName = 'dishes-detail-row-table';
+
     public function setUp(): array
     {
         return [

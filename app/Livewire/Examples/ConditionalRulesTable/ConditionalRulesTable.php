@@ -16,6 +16,8 @@ use PowerComponents\LivewirePowerGrid\PowerGridFields;
 
 class ConditionalRulesTable extends PowerGridComponent
 {
+    public string $tableName = 'conditional-rules-table';
+
     public function setUp(): array
     {
         $this->showCheckBox();
@@ -85,9 +87,14 @@ class ConditionalRulesTable extends PowerGridComponent
     {
         return [
             Button::add('edit')
-                ->slot("edit <strong>{$row->name}</strong>")
+                ->slot('edit')
                 ->class('bg-blue-500 text-white font-bold py-2 px-2 rounded')
                 ->dispatch('clickToEdit', ['dishId' => $row->id, 'dishName' => $row->name]),
+
+            Button::add('delete')
+                ->slot('delete')
+                ->class('bg-red-500 text-white font-bold py-2 px-2 rounded')
+                ->dispatch('clickToDelete', ['dishId' => $row->id, 'dishName' => $row->name]),
         ];
     }
 
@@ -97,21 +104,25 @@ class ConditionalRulesTable extends PowerGridComponent
             Rule::checkbox()
                 ->when(fn ($dish) => $dish->in_stock == false)
                 ->hide(),
+            //
+            //            Rule::rows()
+            //                ->when(fn ($dish) => $dish->in_stock == false)
+            //                ->hideToggleable(),
 
-            Rule::rows()
-                ->when(fn ($dish) => $dish->in_stock == false)
-                ->hideToggleable(),
-
-            Rule::rows()
-                ->loop(fn ($loop) => $loop->index % 2)
-                ->setAttribute('class', '!text-red-500'),
-
-            Rule::button('edit')
-                ->when(fn ($dish) => $dish->id == 5)
-                ->bladeComponent('livewire-powergrid::icons.arrow', [
-                    'dish-id' => 'id',
-                    'class'   => 'w-5 h-5 !text-red-500',
-                ]),
+            Rule::button('delete')
+                ->when(fn ($dish) => $dish->id == 6)
+                ->hide(),
+            //
+            //            Rule::rows()
+            //                ->loop(fn ($loop) => $loop->index % 2)
+            //                ->setAttribute('class', '!text-red-500'),
+            //
+            //            Rule::button('edit')
+            //                ->when(fn ($dish) => $dish->id == 5)
+            //                ->bladeComponent('livewire-powergrid::icons.arrow', [
+            //                    'dish-id' => 'id',
+            //                    'class'   => 'w-5 h-5 !text-red-500',
+            //                ]),
         ];
     }
 

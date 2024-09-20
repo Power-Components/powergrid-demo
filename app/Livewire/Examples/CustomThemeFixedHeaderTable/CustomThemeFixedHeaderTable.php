@@ -15,6 +15,8 @@ use PowerComponents\LivewirePowerGrid\PowerGridFields;
 
 class CustomThemeFixedHeaderTable extends PowerGridComponent
 {
+    public string $tableName = 'custom-theme-fixed-header-table';
+
     public function setUp(): array
     {
         return [

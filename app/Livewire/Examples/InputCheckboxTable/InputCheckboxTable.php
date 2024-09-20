@@ -12,6 +12,8 @@ use PowerComponents\LivewirePowerGrid\PowerGridFields;
 
 final class InputCheckboxTable extends PowerGridComponent
 {
+    public string $tableName = 'input-checkbox-table';
+
     public function setUp(): array
     {
         $this->showCheckBox();

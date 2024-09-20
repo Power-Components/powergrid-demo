@@ -12,6 +12,8 @@ use PowerComponents\LivewirePowerGrid\PowerGridFields;
 
 final class CustomFieldHtmlLinkTable extends PowerGridComponent
 {
+    public string $tableName = 'custom-field-html-link-table';
+
     public function setUp(): array
     {
         return [

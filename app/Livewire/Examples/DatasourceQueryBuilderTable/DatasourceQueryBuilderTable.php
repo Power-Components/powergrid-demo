@@ -15,6 +15,8 @@ use PowerComponents\LivewirePowerGrid\Traits\WithExport;
 
 final class DatasourceQueryBuilderTable extends PowerGridComponent
 {
+    public string $tableName = 'datasource-query-build-table';
+
     use WithExport;
 
     public function setUp(): array

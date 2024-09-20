@@ -12,7 +12,7 @@ use PowerComponents\LivewirePowerGrid\PowerGridFields;
 
 final class AutoRefreshTable extends PowerGridComponent
 {
-    public string $tableName = 'dishTable';
+    public string $tableName = 'auto-refresh-table';
 
     public function setUp(): array
     {

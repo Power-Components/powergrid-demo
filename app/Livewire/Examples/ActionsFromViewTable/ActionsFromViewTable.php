@@ -14,6 +14,8 @@ use PowerComponents\LivewirePowerGrid\PowerGridFields;
 
 class ActionsFromViewTable extends PowerGridComponent
 {
+    public string $tableName = 'actions-from-view-table';
+
     public function setUp(): array
     {
         return [

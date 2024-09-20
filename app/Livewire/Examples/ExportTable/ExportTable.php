@@ -15,6 +15,8 @@ use PowerComponents\LivewirePowerGrid\Traits\WithExport;
 
 final class ExportTable extends PowerGridComponent
 {
+    public string $tableName = 'export-table';
+
     use WithExport;
 
     public function setUp(): array

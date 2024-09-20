@@ -13,6 +13,8 @@ use PowerComponents\LivewirePowerGrid\PowerGridFields;
 
 final class FilterDependsTable extends PowerGridComponent
 {
+    public string $tableName = 'filter-depends-table';
+
     public string $sortField = 'states.id';
 
     public function setUp(): array

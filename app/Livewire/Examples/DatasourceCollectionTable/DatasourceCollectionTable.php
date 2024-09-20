@@ -14,6 +14,8 @@ use PowerComponents\LivewirePowerGrid\Traits\WithExport;
 
 final class DatasourceCollectionTable extends PowerGridComponent
 {
+    public string $tableName = 'datasource-collection-table';
+
     use WithExport;
 
     public function setUp(): array

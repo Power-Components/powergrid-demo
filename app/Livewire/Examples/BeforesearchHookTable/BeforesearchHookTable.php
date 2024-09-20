@@ -13,6 +13,8 @@ use PowerComponents\LivewirePowerGrid\PowerGridFields;
 
 class BeforesearchHookTable extends PowerGridComponent
 {
+    public string $tableName = 'before-search-table';
+
     public function setUp(): array
     {
         return [

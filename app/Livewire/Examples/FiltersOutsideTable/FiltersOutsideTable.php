@@ -9,6 +9,8 @@ use PowerComponents\LivewirePowerGrid\Facades\PowerGrid;
 
 final class FiltersOutsideTable extends FiltersInlineTable
 {
+    public string $tableName = 'filters-outside-table';
+
     public bool $showFilters = true;
 
     public function boot(): void
