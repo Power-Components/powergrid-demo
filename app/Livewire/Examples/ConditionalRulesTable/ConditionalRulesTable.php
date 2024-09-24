@@ -9,13 +9,15 @@ use Illuminate\Support\Number;
 use Livewire\Attributes\On;
 use PowerComponents\LivewirePowerGrid\Button;
 use PowerComponents\LivewirePowerGrid\Column;
-use PowerComponents\LivewirePowerGrid\Facades\Rule;
 use PowerComponents\LivewirePowerGrid\Facades\PowerGrid;
+use PowerComponents\LivewirePowerGrid\Facades\Rule;
 use PowerComponents\LivewirePowerGrid\PowerGridComponent;
 use PowerComponents\LivewirePowerGrid\PowerGridFields;
 
 class ConditionalRulesTable extends PowerGridComponent
 {
+    public string $tableName = 'conditional-rules-table';
+
     public function setUp(): array
     {
         $this->showCheckBox();
@@ -80,13 +82,18 @@ class ConditionalRulesTable extends PowerGridComponent
         ];
     }
 
-    public function actions(Dish $row): array
+    public function actions($row): array
     {
         return [
             Button::add('edit')
-                ->slot("edit <strong>{$row->name}</strong>")
+                ->slot('edit')
                 ->class('bg-blue-500 text-white font-bold py-2 px-2 rounded')
                 ->dispatch('clickToEdit', ['dishId' => $row->id, 'dishName' => $row->name]),
+
+            Button::add('delete')
+                ->slot('delete')
+                ->class('bg-red-500 text-white font-bold py-2 px-2 rounded')
+                ->dispatch('clickToDelete', ['dishId' => $row->id, 'dishName' => $row->name]),
         ];
     }
 

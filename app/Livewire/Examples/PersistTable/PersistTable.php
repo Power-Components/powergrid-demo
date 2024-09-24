@@ -7,21 +7,18 @@ use App\Livewire\Examples\DemoDishTable\DemoDishTable;
 use App\Models\Category;
 use App\Models\Chef;
 use Illuminate\Database\Eloquent\Builder;
-use PowerComponents\LivewirePowerGrid\Components\SetUp\Exportable;
 use PowerComponents\LivewirePowerGrid\Facades\Filter;
 use PowerComponents\LivewirePowerGrid\Facades\PowerGrid;
 
 final class PersistTable extends DemoDishTable
 {
+    public string $tableName = 'persist-table';
+
     public function setUp(): array
     {
         $this->persist(['columns', 'filters'], prefix: auth()->id ?? '');
 
         return [
-            PowerGrid::exportable('export')
-                ->striped()
-                ->type(Exportable::TYPE_XLS, Exportable::TYPE_CSV),
-
             PowerGrid::header()
                 ->showToggleColumns()
                 ->withoutLoading()

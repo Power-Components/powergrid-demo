@@ -6,7 +6,6 @@ use Illuminate\Support\Carbon;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Number;
 use PowerComponents\LivewirePowerGrid\Column;
-use PowerComponents\LivewirePowerGrid\Components\SetUp\Exportable;
 use PowerComponents\LivewirePowerGrid\Facades\Filter;
 use PowerComponents\LivewirePowerGrid\Facades\PowerGrid;
 use PowerComponents\LivewirePowerGrid\PowerGridComponent;
@@ -15,17 +14,13 @@ use PowerComponents\LivewirePowerGrid\Traits\WithExport;
 
 final class DatasourceCollectionTable extends PowerGridComponent
 {
-    use WithExport;
+    public string $tableName = 'datasource-collection-table';
 
-    public bool $withoutResourcesActions = true;
+    use WithExport;
 
     public function setUp(): array
     {
         return [
-            PowerGrid::exportable('export')
-                ->striped()
-                ->type(Exportable::TYPE_XLS, Exportable::TYPE_CSV),
-
             PowerGrid::header()
                 ->showToggleColumns()
                 ->showSearchInput(),

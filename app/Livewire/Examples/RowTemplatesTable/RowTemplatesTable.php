@@ -1,22 +1,21 @@
 <?php
 
-namespace App\Livewire\Examples\DatasourceJoinTable;
+namespace App\Livewire\Examples\RowTemplatesTable;
 
 use App\Models\Dish;
 use Illuminate\Database\Eloquent\Builder;
+use Livewire\Attributes\Lazy;
 use PowerComponents\LivewirePowerGrid\Column;
-
 use PowerComponents\LivewirePowerGrid\Facades\PowerGrid;
 use PowerComponents\LivewirePowerGrid\PowerGridComponent;
 use PowerComponents\LivewirePowerGrid\PowerGridFields;
 
-class DatasourceJoinTable extends PowerGridComponent
+#[Lazy]
+class RowTemplatesTable extends PowerGridComponent
 {
-    public string $tableName = 'datasource-join-table';
+    public string $tableName = 'row-templates-table';
 
-    public ?string $primaryKeyAlias = 'id';
-
-    public string $primaryKey = 'dishes.id';
+    public bool $deferLoading = true;
 
     public function setUp(): array
     {
@@ -25,26 +24,28 @@ class DatasourceJoinTable extends PowerGridComponent
                 ->showSearchInput(),
 
             PowerGrid::footer()
-                ->showPerPage(8, [8, 15, 25]),
+                ->showPerPage(10)
+                ->showRecordCount(),
         ];
     }
 
     public function datasource(): ?Builder
     {
-        return Dish::query()
-            ->join('categories as newCategories', function ($categories) {
-                $categories->on('dishes.category_id', '=', 'newCategories.id');
-            })
-            ->select('dishes.*', 'newCategories.name as category_name');
+        return Dish::query();
     }
 
     public function fields(): PowerGridFields
     {
         return PowerGrid::fields()
             ->add('id')
-            ->add('category')
-            ->add('name')
-            ->add('category_name');
+            ->add('name', function ($row) {
+                return [
+                    'template-name' => [
+                        'id'   => $row->id,
+                        'name' => $row->name,
+                    ],
+                ];
+            });
     }
 
     public function columns(): array
@@ -54,13 +55,17 @@ class DatasourceJoinTable extends PowerGridComponent
                 ->searchable()
                 ->sortable(),
 
-            Column::make('Dish', 'name')
+            Column::make('Name', 'name')
+                ->template()
                 ->searchable()
                 ->sortable(),
+        ];
+    }
 
-            Column::make('Category', 'category_name', 'category_name')
-                ->searchable()
-                ->sortable(),
+    public function rowTemplates(): array
+    {
+        return [
+            'template-name' => '<div id="custom-{{ id }}" class="bg-red-100 py-1 rounded px-3">{{ name }}</div>',
         ];
     }
 }

@@ -13,11 +13,7 @@ use PowerComponents\LivewirePowerGrid\PowerGridFields;
 
 class SummarizeTable extends PowerGridComponent
 {
-    public function start(): void
-    {
-        PowerGrid::start()
-            ->summarize();
-    }
+    public string $tableName = 'summarize-table';
 
     public function setUp(): array
     {
@@ -41,6 +37,8 @@ class SummarizeTable extends PowerGridComponent
         return PowerGrid::fields()
             ->add('id')
             ->add('name')
+            ->add('price')
+            ->add('created_at')
             ->add('calories', fn ($dish) => $dish->calories . ' kcal')
             ->add('price_in_eur', fn ($dish) => Number::currency($dish->price, in: 'EUR', locale: 'pt_PT'))
             ->add('created_at_formatted', fn ($dish) => Carbon::parse($dish->created_at)->format('d/m/Y'));

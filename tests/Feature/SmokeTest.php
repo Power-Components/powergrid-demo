@@ -2,7 +2,7 @@
 
 use App\Actions\ListComponents;
 
-use function Pest\Laravel\{get};
+use function Pest\Laravel\get;
 
 it('opens the about page')
     ->get('/')

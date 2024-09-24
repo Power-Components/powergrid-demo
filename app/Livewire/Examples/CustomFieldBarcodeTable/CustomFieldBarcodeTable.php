@@ -13,6 +13,8 @@ use PowerComponents\LivewirePowerGrid\PowerGridFields;
 
 class CustomFieldBarcodeTable extends PowerGridComponent
 {
+    public string $tableName = 'custom-field-barcode-table';
+
     public function setUp(): array
     {
         return [

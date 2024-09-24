@@ -9,7 +9,6 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Number;
 use PowerComponents\LivewirePowerGrid\Column;
-use PowerComponents\LivewirePowerGrid\Components\SetUp\Exportable;
 use PowerComponents\LivewirePowerGrid\Facades\Filter;
 
 use PowerComponents\LivewirePowerGrid\Facades\PowerGrid;
@@ -19,6 +18,8 @@ use PowerComponents\LivewirePowerGrid\Traits\WithExport;
 
 class FiltersInlineTable extends PowerGridComponent
 {
+    public string $tableName = 'filters-inline-table';
+
     use WithExport;
 
     public int $categoryId = 0;
@@ -33,13 +34,6 @@ class FiltersInlineTable extends PowerGridComponent
         $this->showCheckBox('id');
 
         return [
-            PowerGrid::exportable('export')
-                ->striped()
-                ->columnWidth([
-                    2 => 30,
-                ])
-                ->type(Exportable::TYPE_XLS, Exportable::TYPE_CSV),
-
             PowerGrid::header()
                 ->showToggleColumns()
                 ->withoutLoading()
@@ -53,14 +47,13 @@ class FiltersInlineTable extends PowerGridComponent
 
     public function datasource(): Builder
     {
-        return Dish::query()
+        return Dish::with(['category', 'kitchen'])
             ->when(
                 $this->categoryId,
                 fn ($builder) => $builder->whereHas(
                     'category',
                     fn ($builder) => $builder->where('category_id', $this->categoryId)
                 )
-                    ->with(['category', 'kitchen'])
             );
     }
 

@@ -6,14 +6,16 @@ use App\Models\Dish;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Carbon;
 use PowerComponents\LivewirePowerGrid\Column;
+use PowerComponents\LivewirePowerGrid\Facades\PowerGrid;
 use PowerComponents\LivewirePowerGrid\Facades\Rule;
 
-use PowerComponents\LivewirePowerGrid\Facades\PowerGrid;
 use PowerComponents\LivewirePowerGrid\PowerGridComponent;
 use PowerComponents\LivewirePowerGrid\PowerGridFields;
 
 final class ShowSoftDeleteTable extends PowerGridComponent
 {
+    public string $tableName = 'show-soft-delete-table';
+
     public function setUp(): array
     {
         return [
@@ -37,7 +39,6 @@ final class ShowSoftDeleteTable extends PowerGridComponent
         return PowerGrid::fields()
             ->add('id')
             ->add('name')
-            ->add('chef_name')
             ->add('price')
             ->add('in_stock')
             ->add('in_stock_label', fn ($entry) => $entry->in_stock ? 'Yes' : 'No')
@@ -53,10 +54,6 @@ final class ShowSoftDeleteTable extends PowerGridComponent
                 ->sortable(),
 
             Column::make('Name', 'name')
-                ->searchable()
-                ->sortable(),
-
-            Column::make('Chef', 'chef_name')
                 ->searchable()
                 ->sortable(),
 

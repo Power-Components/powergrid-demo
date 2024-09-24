@@ -3,11 +3,12 @@
 namespace App\Livewire\Examples\ResponsiveTable;
 
 use App\Livewire\Examples\DemoDishTable\DemoDishTable;
-use PowerComponents\LivewirePowerGrid\Components\SetUp\Responsive;
 use PowerComponents\LivewirePowerGrid\Facades\PowerGrid;
 
 final class ResponsiveTable extends DemoDishTable
 {
+    public string $tableName = 'responsive-table';
+
     public function setUp(): array
     {
         return [
@@ -20,7 +21,7 @@ final class ResponsiveTable extends DemoDishTable
                 ->showRecordCount(),
 
             PowerGrid::responsive()
-                ->fixedColumns('dishes.name', Responsive::ACTIONS_COLUMN_NAME),
+                ->fixedColumns('dishes.name', 'actions'),
         ];
     }
 }

@@ -13,6 +13,8 @@ use PowerComponents\LivewirePowerGrid\PowerGridFields;
 
 final class InputRadiobuttonTable extends PowerGridComponent
 {
+    public string $tableName = 'input-radio-button-table';
+
     public function setUp(): array
     {
         $this->showRadioButton();

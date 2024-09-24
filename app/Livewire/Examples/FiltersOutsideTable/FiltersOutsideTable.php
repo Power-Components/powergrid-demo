@@ -5,11 +5,12 @@ namespace App\Livewire\Examples\FiltersOutsideTable;
 use App\Livewire\Examples\FiltersInlineTable\FiltersInlineTable;
 use App\Models\Dish;
 use Illuminate\Database\Eloquent\Builder;
-use PowerComponents\LivewirePowerGrid\Components\SetUp\Exportable;
 use PowerComponents\LivewirePowerGrid\Facades\PowerGrid;
 
 final class FiltersOutsideTable extends FiltersInlineTable
 {
+    public string $tableName = 'filters-outside-table';
+
     public bool $showFilters = true;
 
     public function boot(): void
@@ -20,10 +21,6 @@ final class FiltersOutsideTable extends FiltersInlineTable
     public function setUp(): array
     {
         return [
-            PowerGrid::exportable('export')
-                ->striped()
-                ->type(Exportable::TYPE_XLS, Exportable::TYPE_CSV),
-
             PowerGrid::header()
                 ->showToggleColumns()
                 ->withoutLoading()

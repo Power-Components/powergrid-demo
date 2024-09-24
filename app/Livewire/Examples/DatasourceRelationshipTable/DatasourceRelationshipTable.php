@@ -11,6 +11,8 @@ use PowerComponents\LivewirePowerGrid\PowerGridFields;
 
 final class DatasourceRelationshipTable extends PowerGridComponent
 {
+    public string $tableName = 'datasource-relationship-table';
+
     public function datasource(): ?Builder
     {
         return Dish::query()->with('kitchen');

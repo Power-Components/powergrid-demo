@@ -7,13 +7,15 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Carbon;
 use PowerComponents\LivewirePowerGrid\Button;
 use PowerComponents\LivewirePowerGrid\Column;
-use PowerComponents\LivewirePowerGrid\Facades\Rule;
 use PowerComponents\LivewirePowerGrid\Facades\PowerGrid;
+use PowerComponents\LivewirePowerGrid\Facades\Rule;
 use PowerComponents\LivewirePowerGrid\PowerGridComponent;
 use PowerComponents\LivewirePowerGrid\PowerGridFields;
 
 final class DetailTable extends PowerGridComponent
 {
+    public string $tableName = 'detail-table';
+
     public function setUp(): array
     {
         return [
@@ -43,6 +45,7 @@ final class DetailTable extends PowerGridComponent
             ->add('id')
             ->add('name')
             ->add('email')
+            ->add('created_at')
             ->add('created_at_formatted', fn ($user) => Carbon::parse($user->created_at)->format('d/m/Y H:i:s'));
     }
 

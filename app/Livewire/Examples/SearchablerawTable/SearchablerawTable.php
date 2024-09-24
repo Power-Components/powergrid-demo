@@ -13,6 +13,8 @@ use PowerComponents\LivewirePowerGrid\PowerGridFields;
 
 final class SearchablerawTable extends PowerGridComponent
 {
+    public string $tableName = 'searchable-raw-table';
+
     public string $sortField = 'dishes.id';
 
     public function setUp(): array
@@ -48,13 +50,13 @@ final class SearchablerawTable extends PowerGridComponent
         return [
             Column::add()
                 ->title('ID')
-                ->field('id', 'dishes.id')
+                ->field('id')
                 ->searchable()
                 ->sortable(),
 
             Column::add()
                 ->title('Dish')
-                ->field('dish_name', 'dishes.name')
+                ->field('dish_name')
                 ->searchable()
                 ->sortable(),
 

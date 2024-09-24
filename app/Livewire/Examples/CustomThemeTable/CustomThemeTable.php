@@ -14,6 +14,8 @@ use PowerComponents\LivewirePowerGrid\PowerGridFields;
 
 final class CustomThemeTable extends PowerGridComponent
 {
+    public string $tableName = 'custom-theme-table';
+
     public string $someProperty =  'foobar';
 
     public function setUp(): array

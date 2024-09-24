@@ -13,6 +13,8 @@ use PowerComponents\LivewirePowerGrid\PowerGridFields;
 
 class FilterDynamicTable extends PowerGridComponent
 {
+    public string $tableName = 'filter-dynamic-table';
+
     public function setUp(): array
     {
         return [

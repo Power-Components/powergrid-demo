@@ -13,6 +13,8 @@ use PowerComponents\LivewirePowerGrid\PowerGridFields;
 
 class SearchWithRelationshipTable extends PowerGridComponent
 {
+    public string $tableName = 'search-with-relationship-table';
+
     public int $categoryId = 0;
 
     public function setUp(): array

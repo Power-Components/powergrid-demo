@@ -5,7 +5,6 @@ namespace App\Livewire\Examples\DemoDishTable;
 use App\Enums\Diet;
 use App\Models\Category;
 use App\Models\Dish;
-use Illuminate\Database\Query\Builder;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Blade;
@@ -14,15 +13,16 @@ use Livewire\Attributes\On;
 use PowerComponents\LivewirePowerGrid\Button;
 use PowerComponents\LivewirePowerGrid\Column;
 use PowerComponents\LivewirePowerGrid\Facades\Filter;
-use PowerComponents\LivewirePowerGrid\Facades\Rule;
-
 use PowerComponents\LivewirePowerGrid\Facades\PowerGrid;
+use PowerComponents\LivewirePowerGrid\Facades\Rule;
 use PowerComponents\LivewirePowerGrid\PowerGridComponent;
 use PowerComponents\LivewirePowerGrid\PowerGridFields;
 use PowerComponents\LivewirePowerGrid\Traits\WithExport;
 
 class DemoDishTable extends PowerGridComponent
 {
+    public string $tableName = 'demo-dish-table';
+
     use WithExport;
 
     public bool $filtersOutside = false;
@@ -34,13 +34,6 @@ class DemoDishTable extends PowerGridComponent
         $this->showCheckBox();
 
         return [
-            PowerGrid::exportable('export')
-                ->striped()
-                ->columnWidth([
-                    2 => 30,
-                ])
-                ->type(Exportable::TYPE_XLS, Exportable::TYPE_CSV),
-
             PowerGrid::header()
                 ->showToggleColumns()
                 ->showSearchInput(),
@@ -65,14 +58,13 @@ class DemoDishTable extends PowerGridComponent
         ];
     }
 
-    public function datasource(): ?Builder
+    public function datasource(): \Illuminate\Database\Eloquent\Builder
     {
         return Dish::query()
             ->join('categories as newCategories', function ($categories) {
                 $categories->on('dishes.category_id', '=', 'newCategories.id');
             })
-            ->select('dishes.*', 'newCategories.name as category_name')
-            ->toBase();
+            ->select('dishes.*', 'newCategories.name as category_name');
     }
 
     public function relationSearch(): array

@@ -13,6 +13,8 @@ use PowerComponents\LivewirePowerGrid\PowerGridFields;
 
 class BeforesearchHookTable extends PowerGridComponent
 {
+    public string $tableName = 'before-search-table';
+
     public function setUp(): array
     {
         return [
@@ -35,6 +37,8 @@ class BeforesearchHookTable extends PowerGridComponent
         return PowerGrid::fields()
             ->add('id')
             ->add('name')
+            ->add('price')
+            ->add('created_at')
             ->add('in_stock')
             ->add('in_stock_formatted', fn ($dish) => $dish->in_stock ? 'Available' : 'Unavailable')
             ->add('price_in_eur', fn ($dish) => Number::currency($dish->price, in: 'EUR', locale: 'pt_PT'))

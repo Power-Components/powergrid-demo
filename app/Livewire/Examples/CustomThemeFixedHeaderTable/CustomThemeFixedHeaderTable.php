@@ -16,6 +16,8 @@ use PowerComponents\LivewirePowerGrid\PowerGridFields;
 
 class CustomThemeFixedHeaderTable extends PowerGridComponent
 {
+    public string $tableName = 'custom-theme-fixed-header-table';
+
     public function setUp(): array
     {
         return [
@@ -42,8 +44,7 @@ class CustomThemeFixedHeaderTable extends PowerGridComponent
         return PowerGrid::fields()
             ->add('id')
             ->add('name')
-            ->add('category_id', fn ($dish) => intval($dish->category_id))
-            ->add('category_name', fn ($dish) => e($dish->category_name))
+            ->add('price')
             ->add('price_in_eur', fn ($dish) => Number::currency($dish->price, in: 'EUR', locale: 'pt_PT'))
             ->add('in_stock', fn ($dish) => $dish->in_stock ? 'Yes' : 'No')
             ->add('created_at_formatted', fn ($dish) => Carbon::parse($dish->created_at)->format('d/m/Y'));
@@ -61,8 +62,6 @@ class CustomThemeFixedHeaderTable extends PowerGridComponent
                 ->bodyAttribute('!text-wrap')
                 ->searchable()
                 ->sortable(),
-
-            Column::make('Category', 'category_name'),
 
             Column::make('Price', 'price_in_eur', 'price')
                 ->searchable()

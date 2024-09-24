@@ -13,6 +13,8 @@ use PowerComponents\LivewirePowerGrid\PowerGridFields;
 
 final class DeferLoadingTable extends PowerGridComponent
 {
+    public string $tableName = 'defer-loading-table';
+
     public bool $deferLoading = true;
 
     public string $loadingComponent = 'components.my-custom-loading';

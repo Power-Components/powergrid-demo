@@ -14,6 +14,8 @@ use PowerComponents\LivewirePowerGrid\PowerGridFields;
 
 final class ValidationTable extends PowerGridComponent
 {
+    public string $tableName = 'validation-table';
+
     public array $flavor;
 
     public array $price_in_eur;

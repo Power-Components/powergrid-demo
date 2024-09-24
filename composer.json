@@ -6,37 +6,33 @@
     "keywords": ["laravel", "livewire", "powergrid"],
     "license": "MIT",
     "repositories": [
-      {
-        "type": "path",
-        "url": "./_packages/torchlight-laravel"
-      },
-        {
+          {
             "type": "path",
-            "url": "/Users/luan.freitas/Documents/powergrid-5x"
-        }
+            "url": "./_packages/torchlight-laravel"
+          }
     ],
     "require": {
         "php": "^8.2",
         "fakerphp/faker": "^1.23.1",
-        "laravel/framework": "^11.16",
+        "laravel/framework": "^11.23.5",
         "laravel/tinker": "^2.9",
         "mews/purifier": "^3.4.2",
-        "openspout/openspout": "^4.24.3",
-        "picqer/php-barcode-generator": "^2.4",
+        "openspout/openspout": "^4.25.0",
+        "picqer/php-barcode-generator": "^2.4.2",
         "power-components/livewire-powergrid": "6.x-dev",
         "predis/predis": "^2.2.2",
         "torchlight/torchlight-laravel": "*",
-        "wireui/wireui": "^2.0.5"
+        "wireui/wireui": "^2.1.3"
     },
     "require-dev": {
-        "barryvdh/laravel-debugbar": "^3.13",
-        "composer/composer": "^2.7",
-        "laradumps/laradumps": "^3.1.3",
-        "laravel/pint": "^1.16.2",
-        "laravel/sail": "^1.31",
+        "barryvdh/laravel-debugbar": "^3.14",
+        "composer/composer": "^2.7.9",
+        "laradumps/laradumps": "^3.2.0",
+        "laravel/pint": "^1.17.3",
+        "laravel/sail": "^1.32",
         "mockery/mockery": "^1.6.12",
-        "nunomaduro/collision": "^8.3",
-        "pestphp/pest": "^2.34.9",
+        "nunomaduro/collision": "^8.4",
+        "pestphp/pest": "^2.35.1",
         "pestphp/pest-plugin-laravel": "^2.4",
         "spatie/laravel-ignition": "^2.8"
     },

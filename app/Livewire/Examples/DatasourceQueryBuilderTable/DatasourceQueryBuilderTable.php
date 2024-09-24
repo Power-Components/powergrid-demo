@@ -16,6 +16,8 @@ use PowerComponents\LivewirePowerGrid\Traits\WithExport;
 
 final class DatasourceQueryBuilderTable extends PowerGridComponent
 {
+    public string $tableName = 'datasource-query-build-table';
+
     use WithExport;
 
     public function setUp(): array
@@ -43,7 +45,7 @@ final class DatasourceQueryBuilderTable extends PowerGridComponent
     public function fields(): PowerGridFields
     {
         return PowerGrid::fields()
-            ->add('active')
+            ->add('created_at')
             ->add('created_at_formatted', fn ($model) => Carbon::parse($model->created_at)->format('d/m/Y H:i:s'))
             ->add('email')
             ->add('id')
@@ -62,9 +64,6 @@ final class DatasourceQueryBuilderTable extends PowerGridComponent
             Column::make('Email', 'email')
                 ->sortable()
                 ->searchable(),
-
-            Column::make('Active', 'active')
-                ->toggleable(),
 
             Column::make('Created at', 'created_at_formatted', 'created_at')
                 ->sortable(),

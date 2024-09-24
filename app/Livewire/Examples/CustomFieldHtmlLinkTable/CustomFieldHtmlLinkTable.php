@@ -13,6 +13,8 @@ use PowerComponents\LivewirePowerGrid\PowerGridFields;
 
 final class CustomFieldHtmlLinkTable extends PowerGridComponent
 {
+    public string $tableName = 'custom-field-html-link-table';
+
     public function setUp(): array
     {
         return [
@@ -52,6 +54,8 @@ final class CustomFieldHtmlLinkTable extends PowerGridComponent
             Column::make('ID', 'id'),
 
             Column::make('Name', 'link', 'name'),
+
+            Column::make('Link', 'link', 'link'),
 
             Column::make('Created At', 'created_at_formatted'),
         ];
