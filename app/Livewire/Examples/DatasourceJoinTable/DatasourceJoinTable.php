@@ -58,7 +58,7 @@ class DatasourceJoinTable extends PowerGridComponent
                 ->searchable()
                 ->sortable(),
 
-            Column::make('Category', 'category_name', 'category_name')
+            Column::make('Category', 'category_name', 'newCategories.name')
                 ->searchable()
                 ->sortable(),
         ];
