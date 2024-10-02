@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('icecreams', function (Blueprint $table) {
             $table->id();
-            $table->string('flavor')->unique();
+            $table->string('flavor');
             $table->double('price');
             $table->boolean('in_stock');
             $table->timestamps();

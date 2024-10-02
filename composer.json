@@ -6,10 +6,10 @@
     "keywords": ["laravel", "livewire", "powergrid"],
     "license": "MIT",
     "repositories": [
-          {
-            "type": "path",
-            "url": "./_packages/torchlight-laravel"
-          }
+         {
+           "type": "path",
+           "url": "./_packages/torchlight-laravel"
+         }
     ],
     "require": {
         "php": "^8.2",
