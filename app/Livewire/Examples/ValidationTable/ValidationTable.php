@@ -75,7 +75,6 @@ final class ValidationTable extends PowerGridComponent
             'flavor.*' => [
                 'required',
                 'in:chocolate,vanilla,strawberry,coconut,mint,caramel',
-                'unique:icecreams,flavor',
             ],
 
             'in_stock.*' => [
@@ -101,7 +100,6 @@ final class ValidationTable extends PowerGridComponent
     {
         return [
             'flavor.*.in'     => 'Valid flavors: :values',
-            'flavor.*.unique' => 'Flavor already listed.',
         ];
     }
 
