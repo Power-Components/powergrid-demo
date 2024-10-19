@@ -14,7 +14,7 @@
     "require": {
         "php": "^8.2",
         "fakerphp/faker": "^1.23.1",
-        "laravel/framework": "^11.27.2",
+        "laravel/framework": "^11.28.1",
         "laravel/tinker": "^2.10",
         "mews/purifier": "^3.4.2",
         "openspout/openspout": "^4.26.0",
@@ -25,14 +25,14 @@
         "wireui/wireui": "^2.1.4"
     },
     "require-dev": {
-        "barryvdh/laravel-debugbar": "^3.14.3",
+        "barryvdh/laravel-debugbar": "^3.14.6",
         "composer/composer": "^2.8.1",
         "laradumps/laradumps": "^3.2.0",
         "laravel/pint": "^1.18.1",
-        "laravel/sail": "^1.35",
+        "laravel/sail": "^1.36",
         "mockery/mockery": "^1.6.12",
-        "nunomaduro/collision": "^8.4",
-        "pestphp/pest": "^2.35.1",
+        "nunomaduro/collision": "^8.5",
+        "pestphp/pest": "^2.36.0",
         "pestphp/pest-plugin-laravel": "^2.4",
         "spatie/laravel-ignition": "^2.8"
     },
