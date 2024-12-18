@@ -7,7 +7,6 @@ Route::view('/examples/{component}', 'table')->name('default');
 
 Route::view('/', 'about');
 
-
 Route::get('/advices/edit', fn () => 'work')->name('advices.edit');
 
 Route::match([

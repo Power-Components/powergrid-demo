@@ -5,7 +5,6 @@ namespace App\Livewire\Examples\ValidationTable;
 use App\Models\Icecream;
 use App\Rules\EuroCurrencyBetween2and5;
 use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Number;
 use PowerComponents\LivewirePowerGrid\Column;
 
@@ -99,7 +98,7 @@ final class ValidationTable extends PowerGridComponent
     protected function messages()
     {
         return [
-            'flavor.*.in'     => 'Valid flavors: :values',
+            'flavor.*.in' => 'Valid flavors: :values',
         ];
     }
 
@@ -107,7 +106,7 @@ final class ValidationTable extends PowerGridComponent
     {
         $this->withValidator(function (\Illuminate\Validation\Validator $validator) use ($id, $field) {
             if ($validator->errors()->isNotEmpty()) {
-                $this->dispatch('toggle-'.$field.'-'.$id);
+                $this->dispatch('toggle-' . $field . '-' . $id);
             }
         })->validate();
 
