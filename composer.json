@@ -13,28 +13,27 @@
     ],
     "require": {
         "php": "^8.2",
-        "fakerphp/faker": "^1.23.1",
-        "laravel/framework": "^11.30.0",
-        "laravel/tinker": "^2.10",
+        "fakerphp/faker": "^1.24.1",
+        "laravel/framework": "^11.42.1",
+        "laravel/tinker": "^2.10.1",
         "mews/purifier": "^3.4.2",
-        "openspout/openspout": "^4.26.0",
+        "openspout/openspout": "^4.28.5",
         "picqer/php-barcode-generator": "^2.4.2",
         "power-components/livewire-powergrid": "6.x-dev",
-        "predis/predis": "^2.2.2",
+        "predis/predis": "^2.3.0",
         "torchlight/torchlight-laravel": "*",
-        "wireui/wireui": "^2.2.1"
+        "wireui/wireui": "^2.2.2"
     },
     "require-dev": {
-        "barryvdh/laravel-debugbar": "^3.14.6",
-        "composer/composer": "^2.8.2",
-        "laradumps/laradumps": "^3.2.0",
-        "laravel/pint": "^1.18.1",
-        "laravel/sail": "^1.37.1",
+        "composer/composer": "^2.8.5",
+        "laradumps/laradumps": "^3.5.1",
+        "laravel/pint": "^1.20.0",
+        "laravel/sail": "^1.41.0",
         "mockery/mockery": "^1.6.12",
         "nunomaduro/collision": "^8.5",
         "pestphp/pest": "^2.36.0",
         "pestphp/pest-plugin-laravel": "^2.4",
-        "spatie/laravel-ignition": "^2.8"
+        "spatie/laravel-ignition": "^2.9"
     },
     "autoload": {
         "files": [
