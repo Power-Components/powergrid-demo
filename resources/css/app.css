@@ -1,9 +1,52 @@
 @import "../../vendor/power-components/livewire-powergrid/dist/tailwind.css";
 @import "flatpickr/dist/flatpickr.min.css";
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+    --color-pg-primary-50: #fafafa;
+    --color-pg-primary-100: #fafafa;
+    --color-pg-primary-200: #e5e5e5;
+    --color-pg-primary-300: #d4d4d4;
+    --color-pg-primary-400: #a3a3a3;
+    --color-pg-primary-500: #737373;
+    --color-pg-primary-600: #525252;
+    --color-pg-primary-700: #404040;
+    --color-pg-primary-800: #262626;
+    --color-pg-primary-900: #171717;
+    --color-pg-primary-950: #0a0a0a;
+
+    --color-primary-50: #fafafa;
+    --color-primary-100: #fafafa;
+    --color-primary-200: #e5e5e5;
+    --color-primary-300: #d4d4d4;
+    --color-primary-400: #a3a3a3;
+    --color-primary-500: #737373;
+    --color-primary-600: #525252;
+    --color-primary-700: #404040;
+    --color-primary-800: #262626;
+    --color-primary-900: #171717;
+    --color-primary-950: #0a0a0a;
+
+    --color-pg-secondary-50: #f0f9ff;
+    --color-pg-secondary-100: #e0f2fe;
+    --color-pg-secondary-200: #bae6fd;
+    --color-pg-secondary-300: #7dd3fc;
+    --color-pg-secondary-400: #38bdf8;
+    --color-pg-secondary-500: #0ea5e9;
+    --color-pg-secondary-600: #0284c7;
+    --color-pg-secondary-700: #0369a1;
+    --color-pg-secondary-800: #075985;
+    --color-pg-secondary-900: #0c4a6e;
+}
+
+@source '../../app/Livewire/*Table.php';
+@source '../../app/Livewire/**/*Table.php';
+
+@source '../../vendor/power-components/livewire-powergrid/src/Themes/Tailwind.php';
+@source '../../vendor/power-components/livewire-powergrid/resources/views/**/*.php';
 
 body {
     font-family: 'Nunito', sans-serif;

@@ -18,7 +18,7 @@ class TailwindStriped extends Tailwind
 
             'header' => [
                 'thead'    => 'shadow-sm rounded-t-lg bg-pg-primary-100 dark:bg-pg-primary-900',
-                'tr'       => 'p-',
+                'tr'       => '',
                 'th'       => 'font-extrabold px-3 py-3 text-left text-xs text-pg-primary-700 tracking-wider whitespace-nowrap dark:text-pg-primary-300',
                 'thAction' => '!font-bold',
             ],
