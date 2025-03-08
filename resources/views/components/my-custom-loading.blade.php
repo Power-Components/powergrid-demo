@@ -1,6 +1,6 @@
 <div
     wire:loading.flex
-    class="absolute z-[90] w-full h-full inset-0 items-center justify-center bg-white dark:bg-neutral-800 bg-opacity-70"
+    class="absolute z-[90] w-full h-full inset-0 items-center justify-center bg-white/60 dark:bg-neutral-800"
 >
     <svg
         class="w-10 h-10 animate-spin text-green-600"
