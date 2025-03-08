@@ -20,10 +20,6 @@ export default {
           variants: ['sm', 'md', 'lg', 'xl', '2xl'],
       },
   ],
-  presets: [
-    require('./vendor/wireui/wireui/tailwind.config.js'),
-    require('./vendor/power-components/livewire-powergrid/tailwind.config.js'),
-  ],
   theme: {
     extend: {
       colors: {

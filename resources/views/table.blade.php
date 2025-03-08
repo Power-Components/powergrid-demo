@@ -9,10 +9,10 @@
     <!-- based on: https://tailwindflex.com/@mr-robot/tab-navigation-with-alpine-js -->
     <div x-data="{
         openTab: 1,
-        activeClasses: 'border-l border-t border-r dark:border-pg-primary-700 font-bold rounded-t',
+        activeClasses: 'border-l border-t border-r border-pg-primary-200 dark:border-pg-primary-700 font-bold rounded-t',
         inactiveClasses: 'font-light'
     }" class="py-3 tracking-wider text-sm">
-        <ul class="flex items-center border-b dark:border-neutral-600">
+        <ul class="flex items-center border-b border-pg-primary-200 dark:border-neutral-600">
             <li @click="openTab = 1" :class="{ '-mb-px': openTab === 1 }" class="-mb-px mr-1">
                 <a href="#" :class="openTab === 1 ? activeClasses : inactiveClasses"
                     class="bg-white dark:bg-pg-primary-900 dark:text-pg-primary-200 inline-block py-2 px-4 font-semibold"> Example </a>
