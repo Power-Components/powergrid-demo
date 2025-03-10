@@ -17,6 +17,6 @@ clipboard.on('success', function(e) {
 });
 
 
-import './../../vendor/power-components/livewire-powergrid/dist/powergrid'
+import './../../vendor/power-components/livewire-powergrid/dist/powergrid.js'
 
 Livewire.start();
