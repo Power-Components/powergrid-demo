@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "5d55484bde2e3d57250031ebbefdbcaf",
+    "content-hash": "774d458aa0c7edb57c05a5a7452d33ba",
     "packages": [
         {
             "name": "brick/math",
@@ -3044,16 +3044,10 @@
         {
             "name": "power-components/livewire-powergrid",
             "version": "6.x-dev",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/Power-Components/livewire-powergrid.git",
-                "reference": "673b5862a8a7fcbcc65814587c3f6358029e5cca"
-            },
             "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/Power-Components/livewire-powergrid/zipball/673b5862a8a7fcbcc65814587c3f6358029e5cca",
-                "reference": "673b5862a8a7fcbcc65814587c3f6358029e5cca",
-                "shasum": ""
+                "type": "path",
+                "url": "/Users/luan.freitas/Dev/power-components/powergrid",
+                "reference": "673b5862a8a7fcbcc65814587c3f6358029e5cca"
             },
             "require": {
                 "laravel/prompts": "*",
@@ -3073,7 +3067,6 @@
             "suggest": {
                 "openspout/openspout": "Required to export XLS and CSV"
             },
-            "default-branch": true,
             "type": "library",
             "extra": {
                 "laravel": {
@@ -3083,14 +3076,64 @@
                 }
             },
             "autoload": {
-                "files": [
-                    "src/functions.php"
-                ],
                 "psr-4": {
                     "PowerComponents\\LivewirePowerGrid\\": "src"
-                }
+                },
+                "files": [
+                    "src/functions.php"
+                ]
             },
-            "notification-url": "https://packagist.org/downloads/",
+            "autoload-dev": {
+                "psr-4": {
+                    "PowerComponents\\LivewirePowerGrid\\Tests\\": "tests"
+                },
+                "files": [
+                    "tests/Plugins/Autoload.php"
+                ]
+            },
+            "scripts": {
+                "pint:fix": [
+                    "./vendor/bin/pint"
+                ],
+                "test": [
+                    "@test:sqlite"
+                ],
+                "test:pint": [
+                    "./vendor/bin/pint --test"
+                ],
+                "test:sqlite": [
+                    "./vendor/bin/pest --compact"
+                ],
+                "test:mysql": [
+                    "./vendor/bin/pest --compact --configuration phpunit.mysql.xml"
+                ],
+                "test:pgsql": [
+                    "./vendor/bin/pest --compact --configuration phpunit.pgsql.xml"
+                ],
+                "test:sqlsrv": [
+                    "./vendor/bin/pest --configuration phpunit.sqlsrv.xml"
+                ],
+                "test:typesense": [
+                    "curl http://localhost:8108/health"
+                ],
+                "test:types": [
+                    "./vendor/bin/phpstan analyse --ansi --memory-limit=-1"
+                ],
+                "test:dbs": [
+                    "@test:sqlite",
+                    "@test:mysql",
+                    "@test:pgsql"
+                ],
+                "ds:check": [
+                    "@php vendor/bin/laradumps check --dir=src,resources,tests --text=dump,dd --ignore=dumpTo,Dump stop-on-failure"
+                ],
+                "verify": [
+                    "@ds:check",
+                    "@test:pint",
+                    "@test:types",
+                    "@test"
+                ]
+            },
             "license": [
                 "MIT"
             ],
@@ -3108,17 +3151,9 @@
             ],
             "description": "PowerGrid generates Advanced Datatables using Laravel Livewire.",
             "homepage": "https://github.com/power-components/livewire-powergrid",
-            "support": {
-                "issues": "https://github.com/Power-Components/livewire-powergrid/issues",
-                "source": "https://github.com/Power-Components/livewire-powergrid/tree/6.x"
-            },
-            "funding": [
-                {
-                    "url": "https://github.com/luanfreitasdev",
-                    "type": "github"
-                }
-            ],
-            "time": "2025-03-08T18:45:06+00:00"
+            "transport-options": {
+                "relative": false
+            }
         },
         {
             "name": "predis/predis",

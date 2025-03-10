@@ -12,21 +12,20 @@ return [
     */
 
     'theme' => \PowerComponents\LivewirePowerGrid\Themes\Tailwind::class,
-    //'theme' => \PowerComponents\LivewirePowerGrid\Themes\Bootstrap5::class,
+    // 'theme' => \PowerComponents\LivewirePowerGrid\Themes\Bootstrap5::class,
 
     'icon_resources' => [
         'paths' => [
 
             'default' => 'resources/views/components/icons',
-            //            // 1.x
-            //            //  'vendor/wireui/wireui/resources/views/components/icons/outline',
-            //            //  'vendor/wireui/wireui/resources/views/components/icons/solid',
+            // 1.x
+            //  'vendor/wireui/wireui/resources/views/components/icons/outline',
+            //  'vendor/wireui/wireui/resources/views/components/icons/solid',
+            // 2.x
             //
-            //            // 2.x
-            //
-            //            'mini'    => 'vendor/wireui/heroicons/src/views/components/mini',
-            //            'outline' => 'vendor/wireui/heroicons/src/views/components/outline',
-            //            'solid'   => 'vendor/wireui/heroicons/src/views/components/solid',
+            //  'mini'    => 'vendor/wireui/heroicons/src/views/components/mini',
+            //  'outline' => 'vendor/wireui/heroicons/src/views/components/outline',
+            //  'solid'   => 'vendor/wireui/heroicons/src/views/components/solid',
         ],
 
         'allowed' => [
@@ -160,4 +159,15 @@ return [
     'auto_discover_models_paths' => [
         app_path('Models'),
     ],
+
+    /*
+    |--------------------------------------------------------------------------
+    | Auto-Inject Assets
+    |--------------------------------------------------------------------------
+    |
+    | PowerGrid will automatically inject assets if set to "true"
+    |
+    */
+
+    'auto_inject_assets' => true,
 ];

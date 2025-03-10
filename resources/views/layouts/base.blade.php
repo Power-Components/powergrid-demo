@@ -27,8 +27,13 @@
         rel="stylesheet"
     >
     <wireui:scripts />
+    <!--[Livewire PowerGrid]-->
+    <script type="module" defer src="http://127.0.0.1:8000/__powergrid/js"></script>
+    <!--[ENDLivewire PowerGrid]-->
+
     @livewireStyles
     @vite(['resources/css/app.css', 'resources/js/app.js'])
+
 </head>
 
 <body class="antialiased h-screen">
