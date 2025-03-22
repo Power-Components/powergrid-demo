@@ -1,2 +1,0 @@
-@php($p = \Torchlight\PostProcessors\SimpleSwapProcessor::make(['hello' => 'goodbye']))
-this is <x-torchlight-code torchlight-id='component' language='php' :post-processors='$p'>echo "hello world"</x-torchlight-code> inline

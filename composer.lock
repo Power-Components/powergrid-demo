@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "7ad13ba4c772506d6c45df594167af7a",
+    "content-hash": "962e95644505d27029277af8d23d3477",
     "packages": [
         {
             "name": "brick/math",
@@ -445,16 +445,16 @@
         },
         {
             "name": "egulias/email-validator",
-            "version": "4.0.3",
+            "version": "4.0.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/egulias/EmailValidator.git",
-                "reference": "b115554301161fa21467629f1e1391c1936de517"
+                "reference": "d42c8731f0624ad6bdc8d3e5e9a4524f68801cfa"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/egulias/EmailValidator/zipball/b115554301161fa21467629f1e1391c1936de517",
-                "reference": "b115554301161fa21467629f1e1391c1936de517",
+                "url": "https://api.github.com/repos/egulias/EmailValidator/zipball/d42c8731f0624ad6bdc8d3e5e9a4524f68801cfa",
+                "reference": "d42c8731f0624ad6bdc8d3e5e9a4524f68801cfa",
                 "shasum": ""
             },
             "require": {
@@ -500,7 +500,7 @@
             ],
             "support": {
                 "issues": "https://github.com/egulias/EmailValidator/issues",
-                "source": "https://github.com/egulias/EmailValidator/tree/4.0.3"
+                "source": "https://github.com/egulias/EmailValidator/tree/4.0.4"
             },
             "funding": [
                 {
@@ -508,7 +508,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2024-12-27T00:36:43+00:00"
+            "time": "2025-03-06T22:45:56+00:00"
         },
         {
             "name": "ezyang/htmlpurifier",
@@ -3044,16 +3044,10 @@
         {
             "name": "power-components/livewire-powergrid",
             "version": "6.x-dev",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/Power-Components/livewire-powergrid.git",
-                "reference": "4e6d814855e262cb8b37f00d97434720191e36b2"
-            },
             "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/Power-Components/livewire-powergrid/zipball/4e6d814855e262cb8b37f00d97434720191e36b2",
-                "reference": "4e6d814855e262cb8b37f00d97434720191e36b2",
-                "shasum": ""
+                "type": "path",
+                "url": "/Users/luan.freitas/Dev/power-components/powergrid",
+                "reference": "4e6d814855e262cb8b37f00d97434720191e36b2"
             },
             "require": {
                 "laravel/prompts": "*",
@@ -3073,7 +3067,6 @@
             "suggest": {
                 "openspout/openspout": "Required to export XLS and CSV"
             },
-            "default-branch": true,
             "type": "library",
             "extra": {
                 "laravel": {
@@ -3083,14 +3076,64 @@
                 }
             },
             "autoload": {
-                "files": [
-                    "src/functions.php"
-                ],
                 "psr-4": {
                     "PowerComponents\\LivewirePowerGrid\\": "src"
-                }
+                },
+                "files": [
+                    "src/functions.php"
+                ]
             },
-            "notification-url": "https://packagist.org/downloads/",
+            "autoload-dev": {
+                "psr-4": {
+                    "PowerComponents\\LivewirePowerGrid\\Tests\\": "tests"
+                },
+                "files": [
+                    "tests/Plugins/Autoload.php"
+                ]
+            },
+            "scripts": {
+                "pint:fix": [
+                    "./vendor/bin/pint"
+                ],
+                "test": [
+                    "@test:sqlite"
+                ],
+                "test:pint": [
+                    "./vendor/bin/pint --test"
+                ],
+                "test:sqlite": [
+                    "./vendor/bin/pest --compact"
+                ],
+                "test:mysql": [
+                    "./vendor/bin/pest --compact --configuration phpunit.mysql.xml"
+                ],
+                "test:pgsql": [
+                    "./vendor/bin/pest --compact --configuration phpunit.pgsql.xml"
+                ],
+                "test:sqlsrv": [
+                    "./vendor/bin/pest --configuration phpunit.sqlsrv.xml"
+                ],
+                "test:typesense": [
+                    "curl http://localhost:8108/health"
+                ],
+                "test:types": [
+                    "./vendor/bin/phpstan analyse --ansi --memory-limit=-1"
+                ],
+                "test:dbs": [
+                    "@test:sqlite",
+                    "@test:mysql",
+                    "@test:pgsql"
+                ],
+                "ds:check": [
+                    "@php vendor/bin/laradumps check --dir=src,resources,tests --text=dump,dd --ignore=dumpTo,Dump stop-on-failure"
+                ],
+                "verify": [
+                    "@ds:check",
+                    "@test:pint",
+                    "@test:types",
+                    "@test"
+                ]
+            },
             "license": [
                 "MIT"
             ],
@@ -3108,17 +3151,9 @@
             ],
             "description": "PowerGrid generates Advanced Datatables using Laravel Livewire.",
             "homepage": "https://github.com/power-components/livewire-powergrid",
-            "support": {
-                "issues": "https://github.com/Power-Components/livewire-powergrid/issues",
-                "source": "https://github.com/Power-Components/livewire-powergrid/tree/v6.2.2"
-            },
-            "funding": [
-                {
-                    "url": "https://github.com/luanfreitasdev",
-                    "type": "github"
-                }
-            ],
-            "time": "2025-03-18T11:39:07+00:00"
+            "transport-options": {
+                "relative": false
+            }
         },
         {
             "name": "predis/predis",
@@ -6169,22 +6204,32 @@
         },
         {
             "name": "torchlight/torchlight-laravel",
-            "version": "dev-main",
+            "version": "dev-l12-compatibility",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/laravel-shift/torchlight-laravel.git",
+                "reference": "79296de900a15169ae19375d58935bf7dcc96b4a"
+            },
             "dist": {
-                "type": "path",
-                "url": "./_packages/torchlight-laravel",
-                "reference": "1919ad047afc6fdc20e65a3378e727874b336fa5"
+                "type": "zip",
+                "url": "https://api.github.com/repos/laravel-shift/torchlight-laravel/zipball/79296de900a15169ae19375d58935bf7dcc96b4a",
+                "reference": "79296de900a15169ae19375d58935bf7dcc96b4a",
+                "shasum": ""
             },
             "require": {
                 "guzzlehttp/guzzle": "^7.2",
-                "laravel/framework": "^12.0",
-                "php": "^8.0",
+                "illuminate/cache": "^8.0|^9.0|^10.0|^11.0|^12.0",
+                "illuminate/console": "^8.0|^9.0|^10.0|^11.0|^12.0",
+                "illuminate/http": "^8.0|^9.0|^10.0|^11.0|^12.0",
+                "illuminate/support": "^8.0|^9.0|^10.0|^11.0|^12.0",
+                "illuminate/view": "^8.0|^9.0|^10.0|^11.0|^12.0",
+                "php": "^7.3|^8.0",
                 "ramsey/uuid": "^3.7|^4.0"
             },
             "require-dev": {
                 "mockery/mockery": "^1.3.3",
-                "orchestra/testbench": "^5.0|^6.0|^7.0|^9.0",
-                "phpunit/phpunit": "^8.5.23|^9.5|^10.5"
+                "orchestra/testbench": "^5.0|^6.0|^7.0|^9.0|^10.0",
+                "phpunit/phpunit": "^8.5.23|^9.5|^10.5|^11.5.3"
             },
             "type": "library",
             "extra": {
@@ -6220,9 +6265,10 @@
                 "laravel",
                 "syntax highlighting"
             ],
-            "transport-options": {
-                "relative": true
-            }
+            "support": {
+                "source": "https://github.com/laravel-shift/torchlight-laravel/tree/l12-compatibility"
+            },
+            "time": "2025-03-12T21:54:01+00:00"
         },
         {
             "name": "vlucas/phpdotenv",
@@ -6439,135 +6485,6 @@
                 "source": "https://github.com/webmozarts/assert/tree/1.11.0"
             },
             "time": "2022-06-03T18:03:27+00:00"
-        },
-        {
-            "name": "wireui/heroicons",
-            "version": "v2.9.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/wireui/heroicons.git",
-                "reference": "ccd2ab94293d6f231271c0847c1db34305313c6f"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/wireui/heroicons/zipball/ccd2ab94293d6f231271c0847c1db34305313c6f",
-                "reference": "ccd2ab94293d6f231271c0847c1db34305313c6f",
-                "shasum": ""
-            },
-            "require": {
-                "laravel/framework": "^9.16|^10.0|^11.0|^12.0",
-                "php": "^8.1|^8.2|^8.3|^8.4"
-            },
-            "require-dev": {
-                "larastan/larastan": "^3.0",
-                "laravel/pint": "^1.6",
-                "orchestra/testbench": "^10.0",
-                "pestphp/pest": "^3.0"
-            },
-            "type": "library",
-            "extra": {
-                "aliases": [],
-                "laravel": {
-                    "providers": [
-                        "WireUi\\Heroicons\\HeroiconsServiceProvider"
-                    ]
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "WireUi\\Heroicons\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Pedro Oliveira",
-                    "email": "pedrolivertwd@gmail.com"
-                }
-            ],
-            "description": "The Tailwind Heroicons for laravel blade by WireUI",
-            "keywords": [
-                "blade components",
-                "blade heroicons",
-                "laravel components",
-                "livewire icons",
-                "livewire icons components",
-                "wireui"
-            ],
-            "support": {
-                "issues": "https://github.com/wireui/heroicons/issues",
-                "source": "https://github.com/wireui/heroicons/tree/v2.9.0"
-            },
-            "time": "2025-03-02T22:06:22+00:00"
-        },
-        {
-            "name": "wireui/wireui",
-            "version": "v2.4.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/wireui/wireui.git",
-                "reference": "3268b65ba129f898c4ece35304b53eb77b4e7530"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/wireui/wireui/zipball/3268b65ba129f898c4ece35304b53eb77b4e7530",
-                "reference": "3268b65ba129f898c4ece35304b53eb77b4e7530",
-                "shasum": ""
-            },
-            "require": {
-                "laravel/framework": "^10.0|^11.0|^12.0",
-                "php": "^8.2|^8.3|^8.4",
-                "wireui/heroicons": "^2.8"
-            },
-            "require-dev": {
-                "laravel/pint": "^1.19",
-                "livewire/livewire": "^3.6",
-                "orchestra/testbench": "^10.0",
-                "orchestra/testbench-dusk": "^10.0",
-                "pestphp/pest": "^3.0",
-                "pestphp/pest-plugin-laravel": "^3.0",
-                "pestphp/pest-plugin-livewire": "^3.0"
-            },
-            "type": "library",
-            "extra": {
-                "laravel": {
-                    "aliases": [],
-                    "providers": [
-                        "WireUi\\ServiceProvider"
-                    ]
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "WireUi\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Pedro Oliveira",
-                    "email": "pedrolivertwd@gmail.com"
-                }
-            ],
-            "description": "TallStack components",
-            "keywords": [
-                "blade components",
-                "laravel components",
-                "livewire components",
-                "livewire-ui",
-                "wireui"
-            ],
-            "support": {
-                "issues": "https://github.com/wireui/wireui/issues",
-                "source": "https://github.com/wireui/wireui/tree/v2.4.0"
-            },
-            "time": "2025-03-09T00:05:18+00:00"
         }
     ],
     "packages-dev": [
@@ -7532,16 +7449,16 @@
         },
         {
             "name": "jean85/pretty-package-versions",
-            "version": "2.1.0",
+            "version": "2.1.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Jean85/pretty-package-versions.git",
-                "reference": "3c4e5f62ba8d7de1734312e4fff32f67a8daaf10"
+                "reference": "4d7aa5dab42e2a76d99559706022885de0e18e1a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Jean85/pretty-package-versions/zipball/3c4e5f62ba8d7de1734312e4fff32f67a8daaf10",
-                "reference": "3c4e5f62ba8d7de1734312e4fff32f67a8daaf10",
+                "url": "https://api.github.com/repos/Jean85/pretty-package-versions/zipball/4d7aa5dab42e2a76d99559706022885de0e18e1a",
+                "reference": "4d7aa5dab42e2a76d99559706022885de0e18e1a",
                 "shasum": ""
             },
             "require": {
@@ -7551,8 +7468,9 @@
             "require-dev": {
                 "friendsofphp/php-cs-fixer": "^3.2",
                 "jean85/composer-provided-replaced-stub-package": "^1.0",
-                "phpstan/phpstan": "^1.4",
+                "phpstan/phpstan": "^2.0",
                 "phpunit/phpunit": "^7.5|^8.5|^9.6",
+                "rector/rector": "^2.0",
                 "vimeo/psalm": "^4.3 || ^5.0"
             },
             "type": "library",
@@ -7585,9 +7503,9 @@
             ],
             "support": {
                 "issues": "https://github.com/Jean85/pretty-package-versions/issues",
-                "source": "https://github.com/Jean85/pretty-package-versions/tree/2.1.0"
+                "source": "https://github.com/Jean85/pretty-package-versions/tree/2.1.1"
             },
-            "time": "2024-11-18T16:19:46+00:00"
+            "time": "2025-03-19T14:43:43+00:00"
         },
         {
             "name": "justinrainbow/json-schema",
@@ -7656,32 +7574,32 @@
         },
         {
             "name": "laradumps/laradumps",
-            "version": "v3.5.2",
+            "version": "v4.0.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laradumps/laradumps.git",
-                "reference": "2aa47ef6be7becf8583234b82161e2dced689e2d"
+                "reference": "3eaf17ace8a103c26cee077d5fc5d0956836b924"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laradumps/laradumps/zipball/2aa47ef6be7becf8583234b82161e2dced689e2d",
-                "reference": "2aa47ef6be7becf8583234b82161e2dced689e2d",
+                "url": "https://api.github.com/repos/laradumps/laradumps/zipball/3eaf17ace8a103c26cee077d5fc5d0956836b924",
+                "reference": "3eaf17ace8a103c26cee077d5fc5d0956836b924",
                 "shasum": ""
             },
             "require": {
                 "illuminate/mail": "^10.0|^11.0|^12.0",
                 "illuminate/support": "^10.0|^11.0|^12.0",
-                "laradumps/laradumps-core": ">2.4 | <3.0",
+                "laradumps/laradumps-core": "^3.0",
                 "nunomaduro/termwind": "^1.15.1|^2.0.1",
                 "php": "^8.1"
             },
             "require-dev": {
-                "laravel/framework": "^12.0",
+                "laravel/framework": "^10.0|^11.0|^12.0",
                 "laravel/pint": "^1.17.2",
                 "livewire/livewire": "^3.5.6",
                 "mockery/mockery": "^1.6.12",
-                "orchestra/testbench-core": "10.0",
-                "pestphp/pest": "^2.35.1|^3.0",
+                "orchestra/testbench-core": "^8.0|^9.4|^10.0",
+                "pestphp/pest": "^2.35.1|^3.7.0",
                 "symfony/var-dumper": "^6.4.0|^7.1.3"
             },
             "type": "library",
@@ -7715,7 +7633,7 @@
             "homepage": "https://github.com/laradumps/laradumps",
             "support": {
                 "issues": "https://github.com/laradumps/laradumps/issues",
-                "source": "https://github.com/laradumps/laradumps/tree/v3.5.2"
+                "source": "https://github.com/laradumps/laradumps/tree/v4.0.2"
             },
             "funding": [
                 {
@@ -7723,20 +7641,20 @@
                     "type": "github"
                 }
             ],
-            "time": "2025-02-26T12:00:14+00:00"
+            "time": "2025-03-20T18:51:21+00:00"
         },
         {
             "name": "laradumps/laradumps-core",
-            "version": "v3.0.0",
+            "version": "v3.0.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laradumps/laradumps-core.git",
-                "reference": "e784290fe9c022b3bd76d48610a759e15ed8d5cd"
+                "reference": "644fbdc1def25b63e2844ea5497ec9046baa907d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laradumps/laradumps-core/zipball/e784290fe9c022b3bd76d48610a759e15ed8d5cd",
-                "reference": "e784290fe9c022b3bd76d48610a759e15ed8d5cd",
+                "url": "https://api.github.com/repos/laradumps/laradumps-core/zipball/644fbdc1def25b63e2844ea5497ec9046baa907d",
+                "reference": "644fbdc1def25b63e2844ea5497ec9046baa907d",
                 "shasum": ""
             },
             "require": {
@@ -7784,7 +7702,7 @@
             "homepage": "https://github.com/laradumps/laradumps-core",
             "support": {
                 "issues": "https://github.com/laradumps/laradumps-core/issues",
-                "source": "https://github.com/laradumps/laradumps-core/tree/v3.0.0"
+                "source": "https://github.com/laradumps/laradumps-core/tree/v3.0.1"
             },
             "funding": [
                 {
@@ -7792,7 +7710,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2025-03-04T14:29:43+00:00"
+            "time": "2025-03-20T18:48:50+00:00"
         },
         {
             "name": "laravel/pint",
@@ -11333,7 +11251,8 @@
     "aliases": [],
     "minimum-stability": "dev",
     "stability-flags": {
-        "power-components/livewire-powergrid": 20
+        "power-components/livewire-powergrid": 20,
+        "torchlight/torchlight-laravel": 20
     },
     "prefer-stable": true,
     "prefer-lowest": false,

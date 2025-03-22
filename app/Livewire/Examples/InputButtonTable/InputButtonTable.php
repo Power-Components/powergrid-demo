@@ -104,29 +104,29 @@ class InputButtonTable extends PowerGridComponent
                 ->icon('default-eye', [
                     'class' => '!text-green-500',
                 ])
-                ->slot('View')
-                ->class('text-slate-500 flex gap-2 hover:text-slate-700 hover:bg-slate-100 font-bold p-1 px-2 rounded')
+                ->slot('')
+                ->class('btn btn-sm')
                 ->dispatch('clickToEdit', ['dishId' => $row?->id, 'dishName' => $row?->name]),
             Button::add('edit')
                 ->icon('default-pencil', [
                     'class' => '!text-blue-500',
                 ])
-                ->slot('Edit')
-                ->class('text-slate-500 flex gap-2 hover:text-slate-700 hover:bg-slate-100 font-bold p-1 px-2 rounded')
+                ->slot('')
+                ->class('btn btn-sm')
                 ->dispatch('clickToEdit', ['dishId' => $row?->id, 'dishName' => $row?->name]),
             Button::add('download')
                 ->icon('default-download', [
                     'class' => '!text-slate-500',
                 ])
-                ->slot('Download')
-                ->class('text-slate-500 flex gap-2 hover:text-slate-700 hover:bg-slate-100 font-bold p-1 px-2 rounded')
+                ->slot('')
+                ->class('btn btn-sm')
                 ->dispatch('clickToEdit', ['dishId' => $row?->id, 'dishName' => $row?->name]),
             Button::add('delete')
-                ->slot('Delete')
+                ->slot('')
                 ->icon('default-trash', [
                     'class' => 'text-red-500',
                 ])
-                ->class('text-slate-500 flex gap-2 hover:text-slate-700 hover:bg-slate-100 font-bold p-1 px-2 rounded')
+                ->class('btn btn-sm')
                 ->dispatch('clickToEdit', ['dishId' => $row?->id, 'dishName' => $row?->name]),
         ];
     }

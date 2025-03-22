@@ -2,7 +2,7 @@
     $hasTorchLight = !empty(env('TORCHLIGHT_TOKEN'));
 @endphp
 <div class="relative mx-auto text-sm">
-    <div class="bg-pg-primary-900 text-white p-4 rounded-md">
+    <div class="bg-base-300 text-white p-4 rounded-md">
         <div class="flex justify-between items-center mb-4">
             <a
                 target="_blank"
@@ -20,7 +20,7 @@
                 class="text-gray-300 text-sm"
             >
 @if ($hasTorchLight)
-<x-torchlight-code language="php" theme="material-theme-darker">{!! $example->sourceCode() !!}</x-torchlight-code>
+<x-torchlight-code language="php" theme="github-dark">{!! $example->sourceCode() !!}</x-torchlight-code>
 @else
 <code>{{ $example->sourceCode() }}</code>
 @endif

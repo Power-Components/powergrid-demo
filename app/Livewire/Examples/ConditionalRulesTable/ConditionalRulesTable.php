@@ -87,12 +87,12 @@ class ConditionalRulesTable extends PowerGridComponent
         return [
             Button::add('edit')
                 ->slot('edit')
-                ->class('bg-blue-500 text-white font-bold py-2 px-2 rounded')
+                ->class('btn btn-primary btn-sm')
                 ->dispatch('clickToEdit', ['dishId' => $row->id, 'dishName' => $row->name]),
 
             Button::add('delete')
                 ->slot('delete')
-                ->class('bg-red-500 text-white font-bold py-2 px-2 rounded')
+                ->class('btn btn-error btn-sm')
                 ->dispatch('clickToDelete', ['dishId' => $row->id, 'dishName' => $row->name]),
         ];
     }

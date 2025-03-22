@@ -30,6 +30,8 @@ final class ExportTable extends PowerGridComponent
                 ->columnWidth([
                     2 => 30,
                 ])
+                ->queues(2)
+
                 ->type(Exportable::TYPE_XLS, Exportable::TYPE_CSV),
 
             PowerGrid::header()

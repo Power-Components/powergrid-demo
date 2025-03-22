@@ -6,10 +6,14 @@
     "keywords": ["laravel", "livewire", "powergrid"],
     "license": "MIT",
     "repositories": [
-         {
+        {
             "type": "path",
-            "url": "./_packages/torchlight-laravel"
-         }
+            "url": "/Users/luan.freitas/Dev/power-components/powergrid"
+        },
+        {
+            "type": "vcs",
+            "url": "https://github.com/laravel-shift/torchlight-laravel.git"
+        }
     ],
     "require": {
         "php": "^8.2",
@@ -21,12 +25,11 @@
         "picqer/php-barcode-generator": "^2.4.2",
         "power-components/livewire-powergrid": "6.x-dev",
         "predis/predis": "^2.3.0",
-        "torchlight/torchlight-laravel": "*",
-        "wireui/wireui": "^2.4.0"
+        "torchlight/torchlight-laravel": "dev-l12-compatibility"
     },
     "require-dev": {
         "composer/composer": "^2.8.6",
-        "laradumps/laradumps": "^3.5.2",
+        "laradumps/laradumps": "^4.0",
         "laravel/pint": "^1.21.2",
         "laravel/sail": "^1.41.0",
         "mockery/mockery": "^1.6.12",

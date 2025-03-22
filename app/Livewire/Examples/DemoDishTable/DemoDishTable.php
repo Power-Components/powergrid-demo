@@ -53,7 +53,7 @@ class DemoDishTable extends PowerGridComponent
         return [
             Button::add('bulk-delete')
                 ->slot('Bulk delete')
-                ->class('pg-btn-white dark:ring-pg-primary-600 dark:border-pg-primary-600 dark:hover:bg-pg-primary-700 dark:ring-offset-pg-primary-800 dark:text-pg-primary-300 dark:bg-pg-primary-700')
+                ->class('btn btn-sm btn-error btn-outline')
                 ->dispatch('bulkDelete', []),
         ];
     }
@@ -166,7 +166,7 @@ class DemoDishTable extends PowerGridComponent
         return [
             Button::add('order-now')
                 ->slot('order now')
-                ->class('bg-blue-500 text-white font-bold py-2 px-2 rounded')
+                ->class('btn btn-primary btn-sm')
                 ->openModal('order-now', ['dishId' => $dish->id]),
         ];
     }
