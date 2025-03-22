@@ -7,10 +7,6 @@
     "license": "MIT",
     "repositories": [
         {
-            "type": "path",
-            "url": "/Users/luan.freitas/Dev/power-components/powergrid"
-        },
-        {
             "type": "vcs",
             "url": "https://github.com/laravel-shift/torchlight-laravel.git"
         }
@@ -23,7 +19,7 @@
         "mews/purifier": "^3.4.3",
         "openspout/openspout": "^4.29.1",
         "picqer/php-barcode-generator": "^2.4.2",
-        "power-components/livewire-powergrid": "6.x-dev",
+        "power-components/livewire-powergrid": "dev-daisyui-theme",
         "predis/predis": "^2.3.0",
         "torchlight/torchlight-laravel": "dev-l12-compatibility"
     },
