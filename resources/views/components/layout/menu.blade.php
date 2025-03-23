@@ -56,7 +56,7 @@
                     <ul class="menu menu-md w-full">
                         @foreach($menu as $item)
                             <li>
-                                <a class="menu-item" wire:navigate href="{{ data_get($item, 'url') }}" wire:current.attr.exact="menu-active">
+                                <a class="menu-item" href="{{ data_get($item, 'url') }}" wire:current.attr.exact="menu-active">
                                     {{ data_get($item, 'label') }}
                                 </a>
                             </li>
@@ -79,14 +79,15 @@
 <div class="hidden lg:flex lg:flex-shrink-0">
     <div class="flex flex-col w-64">
         <div
-            class="flex-1 flex flex-col min-h-0 border-r border-base-content/30 bg-base-200">
+            class="flex-1 flex flex-col min-h-0 shadow-lg bg-base-200">
             <div class="flex-1 flex flex-col pt-5 pb-4 overflow-y-auto">
-                <div class="flex items-center flex-shrink-0 px-4">
+                <div class="flex gap-2 items-center flex-shrink-0 px-4">
                     <img
                         class="h-8 w-auto"
                         src="https://raw.githubusercontent.com/Power-Components/livewire-powergrid/main/art/logomark.svg"
                         alt="Workflow"
                     >
+                    <span class="font-title inline-flex text-lg">PowerGrid</span>
                 </div>
 
                 <nav
@@ -96,7 +97,7 @@
                     <ul class="menu menu-md w-full">
                         @foreach($menu as $item)
                             <li>
-                                <a class="menu-item" wire:navigate href="{{ data_get($item, 'url') }}" wire:current.attr.exact="menu-active">
+                                <a class="menu-item" href="{{ data_get($item, 'url') }}" wire:current.attr.exact="menu-active">
                                     {{ data_get($item, 'label') }}
                                 </a>
                             </li>

@@ -5,7 +5,7 @@
 @endsection
 
 @section('main')
-    <div class="p-4 dark:text-gray-200">
+    <div class="p-4 text-sm">
         <h2>Welcome to the Livewire Powergrid Demo!</h2>
         <br />
         <p>This website is a catalog of code examples using <a

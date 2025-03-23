@@ -36,3 +36,11 @@
         border-color: var(--color-base-300, currentColor);
     }
 }
+
+.shiki {
+    @apply !bg-transparent
+}
+
+[wire\:target^="toggleDetail"] svg {
+    @apply text-base-content
+}

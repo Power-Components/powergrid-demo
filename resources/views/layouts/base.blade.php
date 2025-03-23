@@ -70,7 +70,10 @@
             <div class="flex-1 relative z-0 flex overflow-hidden">
                 <main class="flex-1 relative z-0 overflow-y-auto focus:outline-none xl:order-last">
 
-                    <!-- Start main area-->
+                    <div class="bg-base-100 flex justify-center rounded-sm p-2">
+                        <span class="btn !cursor-default btn-soft group btn-sm [width:clamp(20rem,100%,30rem)] rounded-full">⚡️ PowerGrid 6 + daisyUI 5 theme</span>
+                    </div>
+
                     <div class="py-6 px-4 sm:px-6 lg:px-8 bg-base-100 space-y-2">
 
                         <div class="dropdown flex justify-end">

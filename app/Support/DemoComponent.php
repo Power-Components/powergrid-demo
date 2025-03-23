@@ -13,6 +13,7 @@ use App\Actions\Component\ParseComponentTag;
 use App\Exceptions\DemoComponentException;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\Facades\File;
+use Spatie\ShikiPhp\Shiki;
 
 final class DemoComponent
 {
@@ -52,6 +53,12 @@ final class DemoComponent
 
     public function sourceCode(): string
     {
+        return Shiki::highlight(
+            code: FetchComponentCode::handle($this),
+            language: 'php',
+            theme: 'github-dark',
+        );;
+
         return FetchComponentCode::handle($this);
     }
 
