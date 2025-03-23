@@ -65,7 +65,7 @@ class RowTemplatesTable extends PowerGridComponent
     public function rowTemplates(): array
     {
         return [
-            'template-name' => '<div id="custom-{{ id }}" class="bg-red-100 py-1 rounded px-3">{{ name }}</div>',
+            'template-name' => '<div id="custom-{{ id }}" class="bg-accent text-accent-content py-1 rounded px-3">{{ name }}</div>',
         ];
     }
 }

@@ -3047,12 +3047,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Power-Components/livewire-powergrid.git",
-                "reference": "6e5d17e161ef71fdf37159d5e4d751d9d253cbd0"
+                "reference": "5481388e8729b88dc186d017e0847c9ca3231cfb"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Power-Components/livewire-powergrid/zipball/6e5d17e161ef71fdf37159d5e4d751d9d253cbd0",
-                "reference": "6e5d17e161ef71fdf37159d5e4d751d9d253cbd0",
+                "url": "https://api.github.com/repos/Power-Components/livewire-powergrid/zipball/5481388e8729b88dc186d017e0847c9ca3231cfb",
+                "reference": "5481388e8729b88dc186d017e0847c9ca3231cfb",
                 "shasum": ""
             },
             "require": {
@@ -3117,7 +3117,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2025-03-22T16:19:34+00:00"
+            "time": "2025-03-23T18:33:51+00:00"
         },
         {
             "name": "predis/predis",
