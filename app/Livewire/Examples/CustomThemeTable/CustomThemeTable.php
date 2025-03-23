@@ -11,6 +11,7 @@ use PowerComponents\LivewirePowerGrid\Column;
 use PowerComponents\LivewirePowerGrid\Facades\PowerGrid;
 use PowerComponents\LivewirePowerGrid\PowerGridComponent;
 use PowerComponents\LivewirePowerGrid\PowerGridFields;
+use PowerComponents\LivewirePowerGrid\Themes\Tailwind;
 
 final class CustomThemeTable extends PowerGridComponent
 {
@@ -77,10 +78,5 @@ final class CustomThemeTable extends PowerGridComponent
                 ->sortable(),
 
         ];
-    }
-
-    public function customThemeClass(): ?string
-    {
-        return TailwindStriped::class;
     }
 }

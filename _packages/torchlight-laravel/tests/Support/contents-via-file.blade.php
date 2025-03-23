@@ -1,1 +1,0 @@
-<x-torchlight-code torchlight-id='component' language='php' :contents='config_path("app.php")'/>
