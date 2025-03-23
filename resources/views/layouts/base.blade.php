@@ -74,7 +74,7 @@
                         <span class="btn !cursor-default btn-soft group btn-sm [width:clamp(20rem,100%,30rem)] rounded-full">⚡️ PowerGrid 6 + daisyUI 5 theme</span>
                     </div>
 
-                    <div class="py-6 px-4 sm:px-6 lg:px-8 bg-base-100 space-y-2">
+                    <div class="px-4 sm:px-6 lg:px-8 bg-base-100 space-y-2">
 
                         <div class="dropdown flex justify-end">
                             <div tabindex="0" role="button" class="btn">
@@ -136,6 +136,22 @@
                                         class="theme-controller w-full btn btn-sm btn-block btn-ghost justify-start"
                                         aria-label="Aqua"
                                         value="aqua" />
+                                </li>
+                                <li>
+                                    <input
+                                        type="radio"
+                                        name="theme-dropdown"
+                                        class="theme-controller w-full btn btn-sm btn-block btn-ghost justify-start"
+                                        aria-label="Dracula"
+                                        value="dracula" />
+                                </li>
+                                <li>
+                                    <input
+                                        type="radio"
+                                        name="theme-dropdown"
+                                        class="theme-controller w-full btn btn-sm btn-block btn-ghost justify-start"
+                                        aria-label="Coffee"
+                                        value="coffee" />
                                 </li>
                             </ul>
                         </div>
