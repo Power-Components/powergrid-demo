@@ -13,7 +13,7 @@
         "mews/purifier": "^3.4.3",
         "openspout/openspout": "^4.29.1",
         "picqer/php-barcode-generator": "^2.4.2",
-        "power-components/livewire-powergrid": "dev-daisyui-theme",
+        "power-components/livewire-powergrid": "6.x-dev",
         "predis/predis": "^2.3.0",
         "spatie/shiki-php": "^2.3"
     },
