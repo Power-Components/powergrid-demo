@@ -1,6 +1,6 @@
-<div class="bg-yellow-200 p-1 rounded-md my-2 w-full">
+<div class="bg-warning text-warning-content p-1 rounded-md my-2 w-full">
    Custom Paginator Component:
-  
+
     @if ($paginator->hasPages())
             @foreach ($elements as $element)
                 @foreach ($element as $pageNumber => $url)

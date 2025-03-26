@@ -177,7 +177,7 @@ class DemoDishTable extends PowerGridComponent
             Rule::button('order-now')
                 ->when(fn ($dish) => $dish->in_stock == false)
                 ->slot('- not in stock -')
-                ->setAttribute('class', '!bg-red-100')
+                ->setAttribute('class', '!btn !btn-warning btn-sm')
                 ->disable(),
 
             Rule::button('destroy')
@@ -190,7 +190,7 @@ class DemoDishTable extends PowerGridComponent
 
             Rule::rows()
                 ->when(fn ($dish) => $dish->in_stock == false)
-                ->setAttribute('class', 'bg-red-50 hover:bg-red-100'),
+                ->setAttribute('class', 'bg-warning/70 text-error-content'),
         ];
     }
 

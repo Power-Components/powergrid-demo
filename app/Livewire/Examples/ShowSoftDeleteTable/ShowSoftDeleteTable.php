@@ -71,7 +71,7 @@ final class ShowSoftDeleteTable extends PowerGridComponent
         return [
             Rule::rows()
                 ->when(fn ($dish) => $dish->trashed())
-                ->setAttribute('class', 'bg-red-200'),
+                ->setAttribute('class', 'bg-error text-error-content'),
         ];
     }
 }
