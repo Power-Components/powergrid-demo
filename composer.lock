@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "ed2b59779cdfe1f447725d4c85d5aa00",
+    "content-hash": "e0bf46d8844fbdbbae22645a4d9df610",
     "packages": [
         {
             "name": "brick/math",
@@ -3047,12 +3047,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Power-Components/livewire-powergrid.git",
-                "reference": "e7bab9806f0c55c8218290fcc62735ba7705deb5"
+                "reference": "5ef46782eb9773b5edda590e5ef80ca048197355"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Power-Components/livewire-powergrid/zipball/e7bab9806f0c55c8218290fcc62735ba7705deb5",
-                "reference": "e7bab9806f0c55c8218290fcc62735ba7705deb5",
+                "url": "https://api.github.com/repos/Power-Components/livewire-powergrid/zipball/5ef46782eb9773b5edda590e5ef80ca048197355",
+                "reference": "5ef46782eb9773b5edda590e5ef80ca048197355",
                 "shasum": ""
             },
             "require": {
@@ -3118,7 +3118,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2025-03-24T19:35:50+00:00"
+            "time": "2025-03-24T19:39:20+00:00"
         },
         {
             "name": "predis/predis",
