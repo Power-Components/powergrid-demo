@@ -57,7 +57,7 @@ final class DemoComponent
             code: FetchComponentCode::handle($this),
             language: 'php',
             theme: 'github-dark',
-        );;
+        );
 
         return FetchComponentCode::handle($this);
     }

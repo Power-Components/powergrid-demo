@@ -16,7 +16,7 @@ class NoResultsFoundTable extends PowerGridComponent
 
     public function noDataLabel(): string|View
     {
-        //return 'We could not find any dish matching your search.';
+        // return 'We could not find any dish matching your search.';
         return view('dishes.no-data');
     }
 
