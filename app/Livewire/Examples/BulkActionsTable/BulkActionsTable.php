@@ -93,7 +93,7 @@ final class BulkActionsTable extends PowerGridComponent
 
             Column::add()
                 ->title('Dish')
-                ->field('dish_name', 'dishes.name')
+                ->field('dish_name', 'name')
                 ->searchable()
                 ->editOnClick(hasPermission: true)
                 ->placeholder('Dish placeholder')

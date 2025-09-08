@@ -5,8 +5,8 @@ namespace App\Livewire\Examples\SearchablerawTable;
 use App\Models\Dish;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\DB;
 use PowerComponents\LivewirePowerGrid\Column;
-
 use PowerComponents\LivewirePowerGrid\Facades\PowerGrid;
 use PowerComponents\LivewirePowerGrid\PowerGridComponent;
 use PowerComponents\LivewirePowerGrid\PowerGridFields;
@@ -56,14 +56,19 @@ final class SearchablerawTable extends PowerGridComponent
 
             Column::add()
                 ->title('Dish')
-                ->field('dish_name')
+                ->field('dish_name', 'dishes.name')
                 ->searchable()
                 ->sortable(),
 
             Column::add()
                 ->title('Production date')
                 ->field('produced_at_formatted')
-                ->searchableRaw('DATE_FORMAT(dishes.produced_at, "%d/%m/%Y") like ?'),
+                ->searchableRaw(
+                    match (DB::getConfig('driver')) {
+                        'mysql'  => 'DATE_FORMAT(dishes.produced_at, "%d/%m/%Y") like ?',
+                        'sqlite' => 'strftime("%d/%m/%Y", dishes.produced_at) like ?'
+                    }
+                ),
         ];
     }
 }
