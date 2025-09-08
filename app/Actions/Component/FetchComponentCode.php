@@ -15,7 +15,7 @@ final class FetchComponentCode
         );
 
         return str($content)
-            ->replaceMatches('#/\*.+?\*/#s', '') // Remove docblock
+            ->removeDocBlocks()
             ->toString();
     }
 }
