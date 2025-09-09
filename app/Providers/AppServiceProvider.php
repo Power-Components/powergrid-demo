@@ -46,6 +46,13 @@ class AppServiceProvider extends ServiceProvider
         |
         */
 
+        if (! Stringable::hasMacro('removeDocBlocks')) {
+            Stringable::macro(
+                'removeDocBlocks',
+                fn (): Stringable => str($this->value)->replaceMatches('#/\*.+?\*/#s', '')
+            );
+        }
+
         if (! Stringable::hasMacro('forceTargetBlank')) {
             Stringable::macro(
                 'forceTargetBlank',

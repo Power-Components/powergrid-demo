@@ -1,86 +1,80 @@
 {
-    "name": "power-components/powergrid-demo",
-    "type": "project",
-    "description": "Livewire PowerGrid demo",
-    "homepage": "https://demo.livewire-powergrid.com",
-    "keywords": ["laravel", "livewire", "powergrid"],
-    "license": "MIT",
-    "require": {
-        "php": "^8.2",
-        "fakerphp/faker": "^1.24.1",
-        "laravel/framework": "^12.3.0",
-        "laravel/tinker": "^2.10.1",
-        "mews/purifier": "^3.4.3",
-        "openspout/openspout": "^4.29.1",
-        "picqer/php-barcode-generator": "^2.4.2",
-        "power-components/livewire-powergrid": "6.x-dev",
-        "predis/predis": "^2.3.0",
-        "spatie/shiki-php": "^2.3.2"
-    },
-    "require-dev": {
-        "composer/composer": "^2.8.6",
-        "laradumps/laradumps": "^4.0.2",
-        "laravel/pint": "^1.21.2",
-        "laravel/sail": "^1.41.0",
-        "mockery/mockery": "^1.6.12",
-        "nunomaduro/collision": "^8.7.0",
-        "pestphp/pest": "^3.7.4",
-        "pestphp/pest-plugin-laravel": "^3.1",
-        "spatie/laravel-ignition": "^2.9.1"
-    },
-    "autoload": {
-        "files": [
-            "bootstrap/Helpers.php"
-        ],
-        "psr-4": {
-            "App\\": "app/",
-            "Database\\Factories\\": "database/factories/",
-            "Database\\Seeders\\": "database/seeders/"
-        }
-    },
-    "autoload-dev": {
-        "psr-4": {
-            "Tests\\": "tests/"
-        }
-    },
-    "scripts": {
-        "pint:fix": "./vendor/bin/pint",
-        "test:pint": "./vendor/bin/pint --test",
-        "test":   "./vendor/bin/pest --order-by random",
-        "post-autoload-dump": [
-            "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
-            "@php artisan package:discover --ansi"
-        ],
-        "post-update-cmd": [
-            "@php artisan vendor:publish --tag=laravel-assets --ansi --force"
-        ],
-        "post-root-package-install": [
-            "@php -r \"file_exists('.env') || copy('.env.example', '.env');\""
-        ],
-        "post-create-project-cmd": [
-            "@php artisan key:generate --ansi",
-            "@php -r \"file_exists('database/database.sqlite') || touch('database/database.sqlite');\"",
-            "@php artisan migrate --graceful --ansi"
-        ],
-        "dev": [
-            "Composer\\Config::disableProcessTimeout",
-            "npx concurrently -c \"#93c5fd,#fdba74\" \"php artisan serve\"  \"npm run dev\" --names=server,vite"
-        ]
-    },
-    "extra": {
-        "laravel": {
-            "dont-discover": []
-        }
-    },
-    "config": {
-        "optimize-autoloader": true,
-        "preferred-install": "dist",
-        "sort-packages": true,
-        "allow-plugins": {
-            "pestphp/pest-plugin": true,
-            "php-http/discovery": true
-        }
-    },
-    "minimum-stability": "dev",
-    "prefer-stable": true
+  "name": "power-components/powergrid-demo",
+  "type": "project",
+  "description": "Livewire PowerGrid demo",
+  "homepage": "https://demo.livewire-powergrid.com",
+  "keywords": [
+    "laravel", "livewire", "powergrid"
+  ],
+  "license": "MIT",
+  "require": {
+    "php": "^8.2",
+    "fakerphp/faker": "^1.24.1",
+    "laravel/framework": "^12.3.0",
+    "laravel/tinker": "^2.10.1",
+    "mews/purifier": "^3.4.3",
+    "openspout/openspout": "^4.29.1",
+    "picqer/php-barcode-generator": "^2.4.2",
+    "power-components/livewire-powergrid": "^6.0",
+    "predis/predis": "^2.3.0",
+    "spatie/shiki-php": "^2.3.2"
+  },
+  "require-dev": {
+    "composer/composer": "^2.8.6",
+    "laradumps/laradumps": "^4.0.2",
+    "laravel/pail": "^1.2.2",
+    "laravel/pint": "^1.24",
+    "laravel/sail": "^1.41.0",
+    "mockery/mockery": "^1.6.12",
+    "nunomaduro/collision": "^8.7.0",
+    "pestphp/pest": "^4.0",
+    "pestphp/pest-plugin-laravel": "^4.0",
+    "spatie/laravel-ignition": "^2.9.1"
+  },
+  "autoload": {
+    "files": ["bootstrap/Helpers.php"],
+    "psr-4": {
+      "App\\": "app/",
+      "Database\\Factories\\": "database/factories/",
+      "Database\\Seeders\\": "database/seeders/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Tests\\": "tests/"
+    }
+  },
+  "scripts": {
+    "pint:fix": "./vendor/bin/pint",
+    "test:pint": "./vendor/bin/pint --test",
+    "test": "./vendor/bin/pest --order-by random",
+    "post-autoload-dump": [
+      "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump", "@php artisan package:discover --ansi"
+    ],
+    "post-update-cmd": ["@php artisan vendor:publish --tag=laravel-assets --ansi --force"],
+    "post-root-package-install": ["@php -r \"file_exists('.env') || copy('.env.example', '.env');\""],
+    "post-create-project-cmd": [
+      "@php artisan key:generate --ansi", "@php -r \"file_exists('database/database.sqlite') || touch('database/database.sqlite');\"", "@php artisan migrate --graceful --ansi"
+    ],
+    "dev": [
+      "Composer\\Config::disableProcessTimeout", "npx concurrently -c \"#93c5fd,#c4b5fd,#fb7185,#fdba74\" \"php artisan serve\" \"php artisan queue:listen --tries=1\" \"php artisan pail --timeout=0\" \"npm run dev\" --names=server,queue,logs,vite --kill-others"
+    ],
+    "test": ["@php artisan config:clear --ansi", "@php artisan test"]
+  },
+  "extra": {
+    "laravel": {
+      "dont-discover": []
+    }
+  },
+  "config": {
+    "optimize-autoloader": true,
+    "preferred-install": "dist",
+    "sort-packages": true,
+    "allow-plugins": {
+      "pestphp/pest-plugin": true,
+      "php-http/discovery": true
+    }
+  },
+  "minimum-stability": "stable",
+  "prefer-stable": true
 }

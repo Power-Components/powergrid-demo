@@ -79,12 +79,12 @@ final class ExportTable extends PowerGridComponent
                 ->searchable()
                 ->sortable(),
 
-            //Displayed on the grid, but no in the exported file
+            // Displayed on the grid, but no in the exported file
             Column::make('Name', 'link', 'name')
                 ->visibleInExport(visible: true)
                 ->sortable(),
 
-            //Hidden on the grid, but available in the exported file
+            // Hidden on the grid, but available in the exported file
             Column::make('Name', 'name')
                 ->searchable()
                 ->hidden()

@@ -6,7 +6,7 @@
 
 ## About
 
-This repository is a catalog of code examples using [Livewire PowerGrid v5](https://livewire-powergrid.com/) in a Laravel application.
+This repository is a catalog of code examples using Livewire PowerGrid in a Laravel application.
 
 The resources available here are aimed at helping the user get up and running as fast as possible, and also allow everyone to stay up-to-date with the latest PowerGrid features.
 
@@ -18,8 +18,11 @@ The resources available here are aimed at helping the user get up and running as
 
 ## Stack
 
-- [Laravel 11](https://laravel.com/)
-- [Livewire v3](https://laravel-livewire.com)
+- [Laravel 12](https://laravel.com)
+- [Livewire v3](https://livewire.laravel.com)
+- [Livewire PowerGrid v6](https://livewire-powergrid.com)
+- [daisyUI v5](https://daisyui.com)
+- [Tailwind v4](https://tailwindcss.com)
 
 ## Get Started
 
@@ -29,7 +32,6 @@ The resources available here are aimed at helping the user get up and running as
 - [Composer](https://getcomposer.org/doc/00-intro.md#installation-linux-unix-macos)
 - PHP 8.2+
 - [Npm](https://www.npmjs.com/get-npm)
-- A database (e.g. MySQL)
 
 ### Clone
 

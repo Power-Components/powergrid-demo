@@ -13,7 +13,7 @@ final class ParseAnnotation
 
         $pattern = "/@([a-z]+[a-z0–9_]*)(.*)\s{1,}/i";
 
-        //perform the regular expression on the string provided
+        // perform the regular expression on the string provided
         preg_match_all($pattern, strval($doc), $matches, PREG_PATTERN_ORDER);
 
         $annotations = collect();

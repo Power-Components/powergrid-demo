@@ -19,7 +19,7 @@ return [
     */
 
     'redirect_old_links' => [
-        //Old => new
+        // Old => new
         'batch-export'    => 'examples/batch-export',
         'bulk-action'     => 'examples/bulk-action',
         'collection'      => 'examples/collection',
