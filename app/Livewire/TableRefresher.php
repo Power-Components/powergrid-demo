@@ -8,7 +8,7 @@ class TableRefresher extends Component
 {
     public function refreshTable()
     {
-        $this->dispatch('pg:eventRefresh-dishTable');
+        $this->dispatch('pg:eventRefresh-auto-refresh-table');
     }
 
     public function render()
