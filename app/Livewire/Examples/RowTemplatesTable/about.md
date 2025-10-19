@@ -1,1 +1,1 @@
-This example demonstrates how to use [Buttons](https://livewire-powergrid.com/table-features/rows.html#buttons) in Table rows.
+This example demonstrates how to use [Row Template](https://livewire-powergrid.com/table-component/component-columns.html#template) to customize a field.
