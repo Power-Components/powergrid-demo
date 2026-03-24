@@ -18,8 +18,8 @@ The resources available here are aimed at helping the user get up and running as
 
 ## Stack
 
-- [Laravel 12](https://laravel.com)
-- [Livewire v3](https://livewire.laravel.com)
+- [Laravel 13](https://laravel.com)
+- [Livewire 4](https://livewire.laravel.com)
 - [Livewire PowerGrid v6](https://livewire-powergrid.com)
 - [daisyUI v5](https://daisyui.com)
 - [Tailwind v4](https://tailwindcss.com)

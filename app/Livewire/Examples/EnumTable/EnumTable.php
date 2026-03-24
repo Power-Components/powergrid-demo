@@ -55,7 +55,7 @@ class EnumTable extends PowerGridComponent
         return PowerGrid::fields()
             ->add('id')
             ->add('dish_name', fn ($dish) => $dish->name)
-            ->add('diet', fn ($dish) => \App\Enums\Diet::from($dish->diet)->labels());
+            ->add('diet', fn ($dish) => Diet::from($dish->diet)->labels());
     }
 
     public function columns(): array

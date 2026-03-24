@@ -1,5 +1,14 @@
 <?php
 
+use Stevebauman\Purify\Facades\Purify;
+
+if (! function_exists('clear')) {
+    function clear(string $input): string
+    {
+        return Purify::clean($input);
+    }
+}
+
 if (! function_exists('path_to_namespace')) {
     /**
      * Converts a file path into a namespace

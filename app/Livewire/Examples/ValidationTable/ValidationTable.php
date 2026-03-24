@@ -6,8 +6,9 @@ use App\Models\Icecream;
 use App\Rules\EuroCurrencyBetween2and5;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Number;
-use PowerComponents\LivewirePowerGrid\Column;
+use Illuminate\Validation\Validator;
 
+use PowerComponents\LivewirePowerGrid\Column;
 use PowerComponents\LivewirePowerGrid\Facades\PowerGrid;
 use PowerComponents\LivewirePowerGrid\PowerGridComponent;
 use PowerComponents\LivewirePowerGrid\PowerGridFields;
@@ -104,7 +105,7 @@ final class ValidationTable extends PowerGridComponent
 
     public function onUpdatedEditable(string|int $id, string $field, string $value): void
     {
-        $this->withValidator(function (\Illuminate\Validation\Validator $validator) use ($id, $field) {
+        $this->withValidator(function (Validator $validator) use ($id, $field) {
             if ($validator->errors()->isNotEmpty()) {
                 $this->dispatch('toggle-' . $field . '-' . $id);
             }

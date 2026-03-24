@@ -12,11 +12,11 @@
                 class="text-yellow-600 underline hover:text-yellow-400"
                 target="_blank"
                 href="https://livewire-powergrid.com/"
-            >Livewire PowerGrid v5</a>, currently running on <a
+            >Livewire PowerGrid v6</a>, currently running on <a
                 class="text-yellow-600 underline hover:text-yellow-400"
                 target="_blank"
                 href="https://laravel.com/"
-            >Laravel 11</a>.</p>
+            >Laravel 13</a>.</p>
         <br />
         </p>The source code is available at <a
             class="text-yellow-600 underline hover:text-yellow-400"

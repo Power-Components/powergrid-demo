@@ -24,3 +24,4 @@ frankenphp
 frankenphp-worker.php
 laradumps.yaml
 **/.DS_Store
+composer.lock
