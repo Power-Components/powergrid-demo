@@ -11,7 +11,7 @@
         aria-hidden="true"
     ></div>
 
-    <div class="relative flex-1 flex flex-col max-w-xs w-full focus:outline-none">
+    <div class="relative flex-1 flex flex-col max-w-xs w-full focus:outline-none bg-base-200">
 
         <div class="absolute top-0 right-0 -mr-12 pt-2">
             <button
