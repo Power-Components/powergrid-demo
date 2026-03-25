@@ -5,6 +5,7 @@ namespace App\Livewire\Examples\DemoDishTable;
 use App\Enums\Diet;
 use App\Models\Category;
 use App\Models\Dish;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Blade;
@@ -58,7 +59,7 @@ class DemoDishTable extends PowerGridComponent
         ];
     }
 
-    public function datasource(): \Illuminate\Database\Eloquent\Builder
+    public function datasource(): Builder
     {
         return Dish::query()
             ->join('categories as newCategories', function ($categories) {

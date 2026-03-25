@@ -5,8 +5,9 @@ namespace App\Livewire\Examples\CustomFieldBarcodeTable;
 use App\Models\Dish;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Carbon;
-use PowerComponents\LivewirePowerGrid\Column;
+use Picqer\Barcode\BarcodeGeneratorPNG;
 
+use PowerComponents\LivewirePowerGrid\Column;
 use PowerComponents\LivewirePowerGrid\Facades\PowerGrid;
 use PowerComponents\LivewirePowerGrid\PowerGridComponent;
 use PowerComponents\LivewirePowerGrid\PowerGridFields;
@@ -34,7 +35,7 @@ class CustomFieldBarcodeTable extends PowerGridComponent
 
     public function fields(): PowerGridFields
     {
-        $barcodeGenerator = new \Picqer\Barcode\BarcodeGeneratorPNG;
+        $barcodeGenerator = new BarcodeGeneratorPNG;
 
         return PowerGrid::fields()
             ->add('id')

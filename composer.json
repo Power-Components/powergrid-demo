@@ -8,20 +8,20 @@
   ],
   "license": "MIT",
   "require": {
-    "php": "^8.2",
+    "php": "^8.3",
     "fakerphp/faker": "^1.24.1",
-    "laravel/framework": "^12.3.0",
-    "laravel/tinker": "^2.10.1",
-    "mews/purifier": "^3.4.3",
+    "laravel/framework": "^13.0",
+    "laravel/tinker": "^3.0",
     "openspout/openspout": "^4.29.1",
     "picqer/php-barcode-generator": "^2.4.2",
     "power-components/livewire-powergrid": "^6.0",
     "predis/predis": "^2.3.0",
-    "spatie/shiki-php": "^2.3.2"
+    "spatie/shiki-php": "^2.3.2",
+    "stevebauman/purify": "^6.3"
   },
   "require-dev": {
     "composer/composer": "^2.8.6",
-    "laradumps/laradumps": "^4.0.2",
+    "laradumps/laradumps": "^5.0",
     "laravel/pail": "^1.2.2",
     "laravel/pint": "^1.24",
     "laravel/sail": "^1.41.0",
@@ -45,9 +45,13 @@
     }
   },
   "scripts": {
-    "pint:fix": "./vendor/bin/pint",
     "test:pint": "./vendor/bin/pint --test",
-    "test": "./vendor/bin/pest --order-by random",
+    "test:feature": ["@php artisan config:clear --ansi", "./vendor/bin/pest --order-by random"],
+    "tests": [
+      "@test:pint",
+      "@test:feature"
+    ],
+  "pint:fix": "./vendor/bin/pint",
     "post-autoload-dump": [
       "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump", "@php artisan package:discover --ansi"
     ],
@@ -58,8 +62,7 @@
     ],
     "dev": [
       "Composer\\Config::disableProcessTimeout", "npx concurrently -c \"#93c5fd,#c4b5fd,#fb7185,#fdba74\" \"php artisan serve\" \"php artisan queue:listen --tries=1\" \"php artisan pail --timeout=0\" \"npm run dev\" --names=server,queue,logs,vite --kill-others"
-    ],
-    "test": ["@php artisan config:clear --ansi", "@php artisan test"]
+    ]
   },
   "extra": {
     "laravel": {

@@ -4,6 +4,8 @@ use Illuminate\Support\Facades\Http;
 
 use function Pest\Laravel\withoutVite;
 
+use Tests\TestCase;
+
 /*
 |--------------------------------------------------------------------------
 | Test Case
@@ -15,7 +17,7 @@ use function Pest\Laravel\withoutVite;
 |
 */
 
-uses(Tests\TestCase::class)->beforeEach(function () {
+uses(TestCase::class)->beforeEach(function () {
     Http::fake([
         'api.torchlight.dev/highlight' => Http::response(),
     ]);
