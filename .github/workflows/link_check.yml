@@ -1,0 +1,21 @@
+name: Check for broken links
+
+on:
+  #push:
+  #pull_request:
+  schedule:
+    - cron: '0 0 * * 0'
+jobs:
+  crawl_for_broken_links:
+    runs-on: ubuntu-latest
+    name: Broken-Links-Crawler
+    steps:
+    - name: Checking links
+      uses: ScholliYT/Broken-Links-Crawler-Action@v3
+      with:
+        website_url: 'https://demo.livewire-powergrid.com'
+        exclude_url_prefix: 'mailto:,data:,https://www.twitter.com,https://www.google.com'
+        verbose: 'true'
+        max_retry_time: 30
+        max_retries: 5
+        max_depth: -1
