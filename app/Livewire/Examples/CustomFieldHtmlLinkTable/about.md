@@ -1,1 +1,1 @@
-This example demonstrates how to use a [Custom Field](https://livewire-powergrid.com/data-source-fields.html#custom-fields) to display a HTML Link.
+This example demonstrates how to use a [Custom Field](https://livewire-powergrid.com/table-component/data-source-fields.html#custom-fields) to display a HTML Link.
