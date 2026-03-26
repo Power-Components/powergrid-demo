@@ -1,4 +1,4 @@
-This example illustrates the use of [Validation Rules](https://livewire-powergrid.com/table-features/conditional-rules.html) and [Data Update](https://livewire-powergrid.comtable-features/editing-data.html).
+This example illustrates the use of [Validation Rules](https://livewire-powergrid.com/table-features/conditional-rules.html) and [Data Update](https://livewire-powergrid.com/table-features/updating-data.html#updating-data).
 
 You can switch the availablity of each Ice cream flavor.
 

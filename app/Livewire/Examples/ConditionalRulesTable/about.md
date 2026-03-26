@@ -1,4 +1,4 @@
-Here you can see the [Conditional Action Rules](https://livewire-powergrid.comtable-features/conditional-rules.html) changing the Table behaviour based on predefined conditions.
+Here you can see the [Conditional Action Rules](https://livewire-powergrid.com/table-features/conditional-rules.html) changing the Table behaviour based on predefined conditions.
 
 The example below verifies these rules:
 
