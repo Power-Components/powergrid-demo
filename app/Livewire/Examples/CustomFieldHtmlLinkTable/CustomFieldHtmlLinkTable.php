@@ -53,7 +53,7 @@ final class CustomFieldHtmlLinkTable extends PowerGridComponent
         return [
             Column::make('ID', 'id'),
 
-            Column::make('Name', 'link', 'name'),
+            Column::make('Name', 'name', 'name'),
 
             Column::make('Link', 'link', 'link'),
 
