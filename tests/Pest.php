@@ -2,8 +2,6 @@
 
 use Illuminate\Support\Facades\Http;
 
-use function Pest\Laravel\withoutVite;
-
 use Tests\TestCase;
 
 /*
@@ -17,14 +15,19 @@ use Tests\TestCase;
 |
 */
 
-uses(TestCase::class)->beforeEach(function () {
-    Http::fake([
-        'api.torchlight.dev/highlight' => Http::response(),
-    ]);
+pest()->browser()->timeout(20000);
 
-    withoutVite();
-})
-    ->in('Feature');
+pest()->extend(TestCase::class)->in('Browser');
+
+pest()->extend(TestCase::class)
+    ->in('Feature')
+    ->beforeEach(function () {
+        Http::fake([
+            'api.torchlight.dev/highlight' => Http::response(),
+        ]);
+
+        $this->withoutVite();
+    });
 
 /*
 |--------------------------------------------------------------------------

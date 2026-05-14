@@ -62,6 +62,9 @@ jobs:
           npm install
           npm run build
 
+      - name: Install Playwright Browsers
+        run: npx playwright install --with-deps
+
       - name: Clear Config
         run: php artisan config:clear
 
