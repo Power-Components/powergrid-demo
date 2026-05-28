@@ -4,10 +4,4 @@ alias pa='php artisan'
 
 alias pt='pa tinker'
 
-alias pg="cd ~/demo.livewire-powergrid.com"
-
-alias deploy="bash demo.livewire-powergrid.com/.github/deploy.sh"
-
 alias g.pull="git pull origin main"
-
-alias g.rebase='git pull --rebase && git push'
