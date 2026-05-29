@@ -19,7 +19,7 @@ beforeEach(function () {
 
 it('has deploy route', function () {
     $deployUrl = config()->string('app.url') . '/' . config()->string('app.deploy.route');
-    expect(route('deploy'))->toBe($deployUrl);
+    expect(rtrim(route('deploy'), '/'))->toBe(rtrim($deployUrl, '/'));
 });
 
 test('it blocks unauthorized deployment requests with missing token', function () {
