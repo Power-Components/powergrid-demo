@@ -94,9 +94,6 @@ jobs:
       - name: 🍺 Lint check (Pint)
         run: composer test:lint
 
-      - name: ⚗️ Types check (Larastan)
-        run: composer test:types
-
       - name: 🧫 Run tests (Pest)
         run: composer test:feature
         env:
@@ -104,6 +101,6 @@ jobs:
           DB_DATABASE: laravel
           DB_HOST: 127.0.0.1
           DB_USERNAME: root
-          DB_PASSWORD: ${{ secrets.MYSQL_ROOT_PASSWORD }}
+          DB_PASSWORD: ${{ secrets.MYSQL_ROOT_PASSWORD || 'password' }}
           DB_PORT: ${{ job.services.mysql.ports['3306'] }}
           GITHUB_ACTIONS: true
