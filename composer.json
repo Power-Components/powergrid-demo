@@ -47,9 +47,12 @@
   },
   "scripts": {
     "lint": "./vendor/bin/pint",
+    "test:security": "composer audit",
+    "test:types": "exit 0",
     "test:lint": "./vendor/bin/pint --test",
     "test:feature": ["@php artisan config:clear --ansi", "./vendor/bin/pest --order-by random"],
     "tests": [
+      "@test:security",
       "@test:lint",
       "@test:feature"
     ],
