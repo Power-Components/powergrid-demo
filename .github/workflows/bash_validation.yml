@@ -25,16 +25,13 @@ jobs:
         with:
           persist-credentials: false
 
-      # Step 1: Run ShellCheck to parse semantic errors, bad habits, and security bugs
       - name: Run ShellCheck Linter
-        uses: ludeeus/action-shellcheck@2.0.0 # Standard moving semantic tag
+        uses: ludeeus/action-shellcheck@2.0.0
         with:
-          scandir: './src/'
+          scandir: '.'
         env:
-          # Forces strict Bash parsing and ignores minor styling rules if desired
           SHELLCHECK_OPTS: -s bash
 
-      # Step 2: Native Bash Syntax validation "Dry Run"
       - name: Check Bash Compiler Syntax
         run: |
           find . -type f \( -name "*.sh" -o -name "*.bash" \) -print0 | while IFS= read -r -d '' file; do
