@@ -1,10 +1,17 @@
 name: Check for broken links
 
 on:
-  #push:
-  #pull_request:
   schedule:
     - cron: '0 0 * * 0'
+  workflow_dispatch:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
 jobs:
   crawl_for_broken_links:
     runs-on: ubuntu-latest
@@ -14,8 +21,8 @@ jobs:
       uses: ScholliYT/Broken-Links-Crawler-Action@v3
       with:
         website_url: 'https://demo.livewire-powergrid.com'
-        exclude_url_prefix: 'mailto:,data:,https://www.twitter.com,https://www.google.com'
-        verbose: 'true'
-        max_retry_time: 30
-        max_retries: 5
+        exclude_url_prefix: 'mailto:,data:,tel:,https://www.twitter.com,https://twitter.com,https://x.com,https://www.google.com,https://linkedin.com'
+        max_retry_time: 15
+        max_retries: 3
         max_depth: -1
+        verbose: 'true'

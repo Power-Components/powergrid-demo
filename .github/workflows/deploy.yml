@@ -1,0 +1,55 @@
+name: Production Deployment Hook
+
+on:
+  workflow_run:
+    workflows: ["Tests", "Validate Bash Scripts"]
+    types:
+      - completed
+
+concurrency:
+  group: deployment-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  trigger-deploy:
+    runs-on: ubuntu-latest
+    if: >
+      github.event.workflow_run.conclusion == 'success' && 
+      github.event.workflow_run.head_branch == 'main'
+
+    steps:
+      - name: Ping Deployment Webhook
+        shell: bash
+        run: |
+          # 1. Disable execution tracing to guarantee secrets are never printed to step logs
+          set +x
+
+          # 2. Register secrets dynamically into the runner's tracking system as masking markers
+          echo "::add-mask::${{ secrets.DEPLOY_ROUTE }}"
+          echo "::add-mask::${{ secrets.DEPLOY_SECRET }}"
+
+          echo "Initiating production secure deployment ping..."
+
+          # 3. Execute the HTTP POST payload request securely
+          RESPONSE=$(curl -s -w "\n%{http_code}" -X POST "${{ secrets.DEPLOY_ROUTE }}" \
+            -H "Accept: application/json" \
+            -H "X-Deploy-Token: ${{ secrets.DEPLOY_SECRET }}")
+
+          # 4. Extract headers from the body payload safely
+          HTTP_STATUS=$(echo "$RESPONSE" | tail -n1)
+          BODY=$(echo "$RESPONSE" | sed '$d')
+
+          echo "Server Response Status Code: $HTTP_STATUS"
+          echo "Server Response JSON:"
+          echo "$BODY"
+
+          # 5. Terminate job execution if server responds with non-200 codes
+          if [ "$HTTP_STATUS" -ne 200 ]; then
+            echo "❌ Error: Deployment route rejected or failed script execution."
+            exit 1
+          fi
+
+          echo "✅ Website deployed."
