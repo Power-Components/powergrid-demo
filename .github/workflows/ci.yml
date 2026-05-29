@@ -69,7 +69,7 @@ jobs:
         run: php artisan config:clear
 
       - name: 🍺 Laravel Pint - Lint check
-        run: composer test:pint
+        run: composer test:lint
 
       - name: 🗳️ Migrate MySQL DB
         env: 
