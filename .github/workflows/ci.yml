@@ -68,9 +68,6 @@ jobs:
           php -r "file_exists('.env') || copy('.env.example', '.env');"
           php artisan key:generate
 
-      - name: Build config cache
-        run: php artisan config:cache
-
       - name: 🗳️ Migrate database
         run: php artisan migrate:fresh --seed
         env:
